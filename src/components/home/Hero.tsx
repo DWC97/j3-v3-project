@@ -3,7 +3,7 @@
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
 import SplitType from 'split-type'
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./HeroStyles.css"
 
 export default function Hero(){

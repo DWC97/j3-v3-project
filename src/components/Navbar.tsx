@@ -1,6 +1,33 @@
+"use client"
+
+import gsap from "gsap"; 
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
 export default function Navbar(){
+
+    let navbar = useRef(null)
+
+    useGSAP(() => {
+        gsap.fromTo(
+            navbar.current,
+            { 
+              y: -50,
+              opacity: 0
+            },
+            {
+              y: 0,
+              opacity: 1,
+              stagger: 0.05,
+              duration: 3,
+              delay: 2,
+              ease: 'power4.out',
+            }
+        )
+    })
+
     return (
-        <div className="absolute left-0 top-0 z-[1000] w-screen h-20">
+        <div className="absolute left-0 top-0 z-[1000] w-screen h-20" ref={navbar}>
             <div className="relative">
                 <img src="/logo.png" className="absolute left-0 right-0 m-auto my-auto w-20 mt-2"/>
             </div>
