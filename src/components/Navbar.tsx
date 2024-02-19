@@ -9,6 +9,7 @@ export default function Navbar(){
     let navbar = useRef(null)
     const [isShrunk, setIsShrunk] = useState(false) // set height of navbar based on scroll distance from top
     const [isFixed, setIsFixed] = useState(false) // set fixed position of navbar based on scroll distance from top
+    const [isDropdown, setIsDropdown] = useState(true) // set the navbar distance from top for a dropdown animation
 
     useGSAP(() => {
         gsap.fromTo(
@@ -32,12 +33,19 @@ export default function Navbar(){
     // managing navbar height and visibility based on scroll position from top of home page
     function scrollFunction(){
         if (document.body.scrollTop > window.innerHeight || document.documentElement.scrollTop > window.innerHeight) {
+            setIsDropdown(true)
             setIsFixed(true)
             setIsShrunk(true)
         }
         else {
             setIsFixed(false)
             setIsShrunk(false)
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200){
+                setIsDropdown(false)
+            }
+            else {
+                setIsDropdown(true)
+            }
         }
     }
 
@@ -52,7 +60,7 @@ export default function Navbar(){
     loadEvents()
 
     return (
-        <div className={`left-0 top-0 z-[1000] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
+        <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[1000] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
             <div className="relative">
                 <img src="/logo.png" className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}/>
             </div>
