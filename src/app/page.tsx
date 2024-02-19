@@ -1,8 +1,21 @@
+import Hero from "@/components/home/Hero";
+import Navbar from "../components/Navbar";
+import About from "@/components/about/About";
 
 export default function Home() {
   return (
-    <div>
-      hey
-    </div>
+    <>
+      <header>
+        <nav className="relative">
+          <Navbar />
+        </nav>
+      </header>
+
+      <main>
+        <Hero />
+        <About />
+      </main>
+    </>
+    
   );
 }

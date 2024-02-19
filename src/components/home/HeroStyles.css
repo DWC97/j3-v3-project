@@ -1,0 +1,274 @@
+.hero {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto
+}
+
+.wrapper {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    min-width: 178vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.vignette {
+    position: absolute;
+    z-index: 100;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.75));
+    pointer-events: none;
+    animation: fadeInAnimation ease 5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.parallax {
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    scale: 1.085;
+    transition: 0.45s cubic-bezier(0.2, 0.49, 0.32, .99);
+}
+
+.sky {
+    position: absolute;
+    width: 100%;
+    max-height: 115%;
+    /* top: 50%; */
+    top: 28%;
+    left: 54.25%;
+    z-index: 0;
+}
+.sea {
+    position: absolute;
+    width: 100%;
+    max-height: 109.57%;
+    /* top: 68.23%; */
+    top: 89%;
+    left: 54.03%;
+    z-index: 1;
+}
+
+.left-cliff {
+    position: absolute;
+    width: 24.89%;
+    top: 23.96%;
+    left: 9.74%;
+    z-index: 2;
+}
+
+.right-cliff {
+    position: absolute;
+    width: 14.28%;
+    top: 30.47%;
+    left: 96.12%;
+    z-index: 3;
+}
+
+.middle-cliff {
+    position: absolute;
+    width: 27.82%;
+    top: 22.01%;
+    left: 47.07%;
+    z-index: 4;
+}
+
+.text {
+    position: absolute;
+    z-index: 5;
+    top: 37.76%;
+    left: 46.71%;
+    text-align: center;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    pointer-events: auto;
+    scale: 0.95;
+}
+
+.main-heading {
+    font-size: 6rem;
+}
+
+.sub-heading {
+    font-size: 1.25rem;
+}
+
+/* ::selection {
+    background-color: pink;
+} */
+
+.big-ship {
+    position: absolute;
+    width: 20.5%;
+    top: 50.65%;
+    left: 24.38%;
+    z-index: 6;
+}
+
+.boat1 {
+    position: absolute;
+    width: 2.12%;
+    top: 63.02%;
+    left: 64.64%;
+    z-index: 7;
+}
+
+.boat2 {
+    position: absolute;
+    width: 1.9%;
+    top: 63.02%;
+    left: 53.66%;
+    z-index: 7;
+}
+
+.boat3 {
+    position: absolute;
+    width: 2.42%;
+    top: 73.44%;
+    left: 71.96%;
+    z-index: 7;
+}
+
+.foliage {
+    position: absolute;
+    width: 100%;
+    bottom: -26%;
+    left: 53.66%;
+    z-index: 10;
+}
+
+@media screen and (min-width: 1800px) {
+    .main-heading {
+        font-size: 7rem;
+    }
+    .sub-heading {
+        font-size: 1.5rem;
+    }
+    .text {
+        top: 35%;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+   
+}
+
+@media screen and (max-width: 1100px) {
+    .main-heading {
+        font-size: 5rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .main-heading {
+        font-size: 4rem;
+    }
+    .sub-heading {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .main-heading {
+        font-size: 3rem;
+    }
+    .sub-heading {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .main-heading {
+        font-size: 2.5rem;
+    }
+    .sub-heading {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .main-heading {
+        font-size: 2.25rem;
+    }
+    .sub-heading {
+        font-size: .9rem;
+    }
+}
+
+@media (min-aspect-ratio: 3/5) and (max-aspect-ratio: 1/1) {
+    .sky {
+        width: 60%;
+        max-height: 90%;
+        top: 45%;
+        left: 54.25%;
+    }
+    .sea {
+        width: 60%;
+        max-height: 55%;
+        top: 75%;
+    }
+    .left-cliff {
+        width: 14.93%;
+        top: 41%;
+        left: 27%;
+    }
+    .right-cliff {
+        width: 8.57%;
+        top: 45%;
+        left: 79%;
+    }  
+    .middle-cliff {
+        width: 16.69%;
+        top: 40%;
+        left: 50%;
+    }
+    .big-ship {
+        width: 12.3%;
+        top: 56%;
+        left: 36%;
+    }
+    .boat1 {
+        width: 1.27%;
+        top: 62%;
+        left: 60%;
+    }
+    .boat2 {
+        width: 1.14%;
+        top: 62%;
+        left: 50%;
+    }
+    .boat3 {
+        width: 1.45%;
+        top: 72%;
+        left: 68%;
+    }
+    .foliage {
+        width: 60%;
+        bottom: -13.5%;
+        left: 53.66%;
+    }
+}
+
+@media (min-aspect-ratio: 1/10) and (max-aspect-ratio: 3/5) {
+    .foliage {
+        width: 50%;
+        bottom: -11%;
+        left: 50%;
+    }
+}
