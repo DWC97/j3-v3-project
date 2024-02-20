@@ -1,9 +1,9 @@
 export default function About(){
     return (
-        <div className="w-screen h-screen bg-black flex flex-row px-16 pt-32">
-            <div className="flex flex-row w-screen items-center border-2 border-red-500">
-                <div className="flex flex-col min-h-[400px] justify-between border-2 border-green-500">
-                    <h1 className="bg-gradient-to-r from-custom-blue  to-custom-yellow inline-block text-transparent bg-clip-text text-[44px] font-semibold tracking-wide">SMALL GROUP PARTY TOURS</h1>
+        <div className="w-screen h-screen bg-black flex flex-row px-16">
+            <div className="flex flex-row w-screen items-center max-h-[400px] mt-32">
+                <div className="flex flex-col min-h-[400px] justify-between">
+                    <h2 className="bg-gradient-to-r from-custom-blue  to-custom-yellow inline-block text-transparent bg-clip-text text-[44px] font-semibold tracking-wide">SMALL GROUP PARTY TOURS</h2>
                     <p className="text-white">
                         Ahoy there! If you’re looking to experience the best nightlife & culture South-East Asia has to offer with a rowdy group of travellers and tick-off bucket-list activities along the way, JR has you covered. We make logistics stress-free so you can focus on having a good time.
                     </p>
@@ -21,7 +21,7 @@ export default function About(){
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-center items-center border-2 border-blue-500 ml-12">
+                <div className="flex justify-center items-center ml-12">
                     <img src="/about/jagged.png" className="min-w-[430px]"/>
                 </div>
                 

@@ -11,7 +11,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <main>
+      <main className="overflow-x-hidden">
         <Hero />
         <About />
       </main>
