@@ -1,8 +1,8 @@
 export default function About(){
     return (
-        <div className="overflow-hidden">
-            <div className="w-full h-[624px] bg-black flex flex-row px-16">
-                <div className="flex flex-row w-screen items-center max-h-[402px] mt-40">
+        <div className="overflow-hidden relative bg-black -z-20">
+            <div className="w-full h-[624px]  flex flex-row px-16">
+                <div className="flex flex-row w-screen items-center max-h-[402px] mt-48">
                     <div className="flex flex-col min-h-[402px] justify-between">
                         <h2 className="bg-gradient-to-r from-custom-blue  to-custom-yellow inline-block text-transparent bg-clip-text text-[44px] font-semibold tracking-wide">SMALL GROUP PARTY TOURS</h2>
                         <p className="text-white text-[16px] leading-7">
@@ -27,20 +27,17 @@ export default function About(){
                     </div>
                 </div>
             </div>
-            <div className="flex flex-row bg-black w-full px-16 h-[456px]">
-                <div className="w-1/2 flex flex-row justify-around -mt-20">
+            <div className="flex flex-row w-full px-16 h-[456px]">
+                <div className="w-1/2 flex flex-row justify-around -mt-28">
                     <img src="/about/pirate-polaroid.png" className="w-[250px] -rotate-6 object-contain	"/>
                     <img src="/about/tubing-polaroid.png" className="w-[250px] rotate-12 object-contain	"/>
                 </div>
-                <div className="w-1/2 flex flex-row justify-around -mt-20">
+                <div className="w-1/2 flex flex-row justify-around -mt-28">
                     <img src="/about/waterpark-polaroid.png" className="w-[250px] -rotate-4 object-contain	"/>
                     <img src="/about/muaythai-polaroid.png" className="w-[250px] -rotate-12 object-contain	"/>
                 </div>
-                {/* <div className="w-1/2 flex flex-row justify-around">
-                    <img src="/about/waterpark-polaroid.png" className="w-[250px] -rotate-6"/>
-                    <img src="/about/muaythai-polaroid.png" className="w-[250px] rotate-12"/>
-                </div> */}
             </div>
+            <div className="absolute bottom-0 left-0 w-full h-[500px] -z-10 bg-gradient-to-b from-black to-custom-blue opacity-70"></div>
         </div>
     )
 }
