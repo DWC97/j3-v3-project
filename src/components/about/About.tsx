@@ -1,11 +1,11 @@
 export default function About(){
     return (
         <div className="overflow-hidden relative bg-black">
-            <div className="absolute bottom-0 left-0 w-full h-1/2 md:h-1/3 bg-gradient-to-b from-black to-custom-orange opacity-60"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1/2 md:h-1/3 bg-gradient-to-b from-black to-custom-blue opacity-35" />
             <div className="w-full lg:h-[624px] flex flex-row px-8 md:px-16 ">
                 <div className="flex flex-col lg:flex-row w-screen items-center justify-center lg:max-h-[402px] mt-32 md:mt-48  mb-16 lg:mb-0">
                     <div className="flex flex-col h-[400px] mb-12 md:mb-16 lg:mb-0 max-w-[850px] lg:min-h-[402px] justify-between">
-                        <h2 className="bg-gradient-to-r from-custom-orange  to-custom-pink inline-block text-transparent bg-clip-text text-[40px] md:text-[44px] lg:text-[36px] xl:text-[44px] font-semibold tracking-wide min-[1366px]:text-[48px] 2xl:text-[56px] max-[480px]:text-[24px] max-[642px]:text-[28px] max-[416px]:text-[20px] ">SMALL GROUP PARTY TOURS</h2>
+                        <h2 className="bg-gradient-to-r from-custom-blue  to-custom-yellow inline-block text-transparent bg-clip-text text-[40px] md:text-[44px] lg:text-[36px] xl:text-[44px] font-semibold tracking-wide min-[1366px]:text-[48px] 2xl:text-[56px] max-[480px]:text-[24px] max-[642px]:text-[28px] max-[416px]:text-[20px] ">SMALL GROUP PARTY TOURS</h2>
                         <p className="text-white text-[16px] xl:text-[18px] max-[480px]:text-[14px]">
                             Ahoy there! If you’re looking to experience the best nightlife & culture South-East Asia has to offer with a rowdy group of travellers and tick-off bucket-list activities along the way, JR has you covered. We make logistics stress-free so you can focus on having a good time.
                         </p>
