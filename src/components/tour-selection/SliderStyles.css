@@ -3,14 +3,13 @@
     max-height: 500px;
     padding-bottom: 50px;
     padding-top: 50px;
-    border: 2px solid red;
+
   }
 
 .swiper-slide {
   height: 340px;
-  width: 300px;
+  min-width: 220px;
   position: relative;
-  border: 2px solid violet;
   display: flex;
   flex-direction: column;
   justify-content: center;

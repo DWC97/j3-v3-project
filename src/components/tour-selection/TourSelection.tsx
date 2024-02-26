@@ -16,11 +16,11 @@ import { formatNumber } from '@/utilities/Utils';
 
 export default function TourSelection(){
     return (
-        <div className="w-full relative h-[1080px] flex justify-center items-center">
+        <div className="w-full relative h-[1080px] flex justify-center items-center overflow-hidden">
             <div className="bg-[url('/tour-selection/beach.jpg')] w-full h-full bg-center bg-no-repeat bg-cover bg-fixed absolute -z-20" />
             <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b from-custom-blue to-custom-yellow opacity-80 -z-10" />
-            <div className="border-2 border-red w-[1000px] h-[600px] flex flex-col justify-between items-center">
-                <h2 className="text-[44px] text-white font-semibold tracking-wide">
+            <div className=" w-[1000px] h-[600px] flex flex-col justify-between items-center">
+                <h2 className="w-screen px-2 text-center text-[24px] min-[450px]:text-[24px] min-[550px]:text-[28px] md:text-[36px] lg:text-[44px] text-white font-semibold tracking-wide">
                     CHECK OUT OUR <span className="text-custom-yellow">UPCOMING TRIPS</span>!
                 </h2>
                 <div className='w-full flex justify-center items-center'>
@@ -84,7 +84,7 @@ export default function TourSelection(){
                         </div>
                     </Swiper>
                 </div>
-                <p className="text-[20px] text-gray-100">
+                <p className="w-screen text-[16px] md:text-[18px] lg:text-[20px] text-gray-100 text-center px-2">
                     Each tour includes transport, accommodation and activities.
                 </p>
             </div>
