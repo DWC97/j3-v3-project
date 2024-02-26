@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import About from "@/components/about/About";
 import TourSelection from "@/components/tour-selection/TourSelection";
 import Contact from "@/components/contact/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <About />
         <TourSelection />
         <Contact />
+        <Footer />
       </main>
     </>
     
