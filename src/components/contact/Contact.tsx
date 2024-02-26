@@ -12,7 +12,7 @@ export default function Contact(){
             <div className="absolute w-full h-[375px] top-0 left-0 bg-gradient-to-b from-black to-transparent" />
             <div className="absolute w-full h-[300px] bottom-0 left-0 bg-gradient-to-t from-black to-transparent" />
             <div className="flex flex-col justify-between w-[600px] h-[500px] bg-black bg-opacity-50 mt-20 rounded-3xl border border-gray-300 p-10 z-30">
-                <p className="text-white text-[14px]">
+                <p className="text-white text-[14px] mb-4">
                     Please note. Jolly Roger Tours is currently going through the incorporation and licensing process in the UK and will launch officially in late 2024. 
                 </p>
                 <h2 className="font-semibold text-[44px] text-white">RESERVE A SPOT</h2>
@@ -27,7 +27,7 @@ export default function Contact(){
                         <input type="text" placeholder="Destination*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"/>  
                         <input type="text" placeholder="No. of people*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"/>  
                     </div>
-                    <button>
+                    <button className="font-semibold ease-in-out duration-300 text-white w-full self-center py-2 rounded-md mt-8 bg-gradient-to-r from-custom-orange to-custom-pink ">
                         SUBMIT
                     </button>
                 </form>
