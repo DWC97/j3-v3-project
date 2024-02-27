@@ -1,6 +1,6 @@
 export default function About(){
     return (
-        <div className="overflow-hidden relative bg-black">
+        <div className="overflow-hidden relative bg-black" id="about">
             <div className="absolute bottom-0 left-0 w-full h-1/2 md:h-1/3 bg-gradient-to-b from-black to-custom-blue opacity-35" />
             <div className="w-full lg:h-[624px] flex flex-row px-8 md:px-16 ">
                 <div className="flex flex-col lg:flex-row w-screen items-center justify-center lg:max-h-[402px] mt-32 md:mt-48  mb-16 lg:mb-0">

@@ -33,7 +33,7 @@ export default function Navbar(){
 
     // managing navbar height and visibility based on scroll position from top of home page
     function scrollFunction(){
-        if (document.body.scrollTop > window.innerHeight || document.documentElement.scrollTop > window.innerHeight) {
+        if (document.body.scrollTop > (window.innerHeight - 10) || document.documentElement.scrollTop > (window.innerHeight - 10)) {
             setIsDropdown(true)
             setIsFixed(true)
             setIsShrunk(true)
@@ -62,19 +62,29 @@ export default function Navbar(){
 
     return (
         <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[1000] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
-            <div className="relative">
-                <img src="/logo.png" className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}/>
-            </div>
+            <Link href="#hero">
+                <div className="relative">
+                    <img src="/logo.png" className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}/>
+                </div>
+            </Link>
             <div className="flex flex-row w-screen h-full ">
                 <div className="w-1/2 h-full flex justify-end text-white">
-                    <span className="mt-1 h-full flex items-center justify-center border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink w-44 ease-in-out duration-300">ABOUT</span>
-                    <span className="mt-1 h-full flex items-center justify-center w-44 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">TOURS</span>
-                    <span className=" mt-1 h-full flex items-center justify-center w-44 mr-24 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">
-                        <Link href="#contact">
+                    <Link href="#about">
+                        <span className="mt-1 h-full flex items-center justify-center border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink w-44 ease-in-out duration-300">
+                            ABOUT
+                        </span>
+                    </Link>
+                    
+                    <Link href="#tours">
+                        <span className="mt-1 h-full flex items-center justify-center w-44 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">
+                            TOURS
+                        </span>
+                    </Link>
+                    <Link href="#contact">
+                        <span className=" mt-1 h-full flex items-center justify-center w-44 mr-24 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">
                             CONTACT
-                        </Link>
-                        
-                    </span>
+                        </span>
+                    </Link>
                 </div>
                 <div className="w-1/2 right-1/2 h-full flex justify-between text-white">
                     <span className="mt-1 h-full flex items-center justify-center w-44 ml-24 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">STORE</span>
