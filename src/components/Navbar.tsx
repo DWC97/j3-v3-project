@@ -1,5 +1,6 @@
 "use client"
 
+import Link from 'next/link'
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
 import { useRef, useState } from "react";
@@ -68,7 +69,12 @@ export default function Navbar(){
                 <div className="w-1/2 h-full flex justify-end text-white">
                     <span className="mt-1 h-full flex items-center justify-center border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink w-44 ease-in-out duration-300">ABOUT</span>
                     <span className="mt-1 h-full flex items-center justify-center w-44 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">TOURS</span>
-                    <span className=" mt-1 h-full flex items-center justify-center w-44 mr-24 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">CONTACT</span>
+                    <span className=" mt-1 h-full flex items-center justify-center w-44 mr-24 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">
+                        <Link href="#contact">
+                            CONTACT
+                        </Link>
+                        
+                    </span>
                 </div>
                 <div className="w-1/2 right-1/2 h-full flex justify-between text-white">
                     <span className="mt-1 h-full flex items-center justify-center w-44 ml-24 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">STORE</span>
