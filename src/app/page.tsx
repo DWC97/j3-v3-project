@@ -14,18 +14,13 @@ export default function Home() {
 
   return (
     <>
-      <header>
-        <nav className="relative">
-          <Navbar activeSection={activeSection}/>
-        </nav>
-      </header>
+      
 
       <main className="overflow-x-hidden">
         <Hero/>
         <About setActiveSection={setActiveSection}/>
         <TourSelection setActiveSection={setActiveSection}/>
         <Contact setActiveSection={setActiveSection}/>
-        <Footer/>
       </main>
     </>
     

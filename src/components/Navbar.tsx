@@ -68,18 +68,18 @@ export default function Navbar({ activeSection }){
             </Link>
             <div className="flex flex-row w-screen h-full ">
                 <div className="w-1/2 h-full flex justify-end text-white">
-                    <Link href="#about">
+                    <Link href="/#about">
                         <span className={`mt-1 h-full flex items-center justify-center ${activeSection === "about" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink w-44 ease-in-out duration-300`}>
                             ABOUT
                         </span>
                     </Link>
                     
-                    <Link href="#tours">
+                    <Link href="/#tours">
                         <span className={`mt-1 h-full flex items-center justify-center w-44 ${activeSection === "tours" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300`}>
                             TOURS
                         </span>
                     </Link>
-                    <Link href="#contact">
+                    <Link href="/#contact">
                         <span className={`mt-1 h-full flex items-center justify-center w-44 mr-24 ${activeSection === "contact" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300`}>
                             CONTACT
                         </span>
