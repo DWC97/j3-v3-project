@@ -2,6 +2,7 @@
 
 import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useRef, useState, useEffect } from "react"
 
 // Import Swiper styles
 import 'swiper/css';
@@ -14,9 +15,34 @@ import "./SliderStyles.css"
 import toursData from "@/data/tours.json"
 import { formatNumber } from '@/utilities/Utils';
 
-export default function TourSelection(){
+export default function TourSelection({ setActiveSection }){
+
+    const toursRef = useRef(null)
+    const [isInView, setIsInView] = useState(false)
+
+    const checkInView = () => {
+        const rect = toursRef.current.getBoundingClientRect();
+        setIsInView(
+            rect.top < (window.innerHeight / 2) && rect.bottom >= (window.innerHeight / 2)
+        );
+        
+    };
+    
+    useEffect(() => {
+        document.addEventListener("scroll", checkInView);
+        return () => {
+            document.removeEventListener("scroll", checkInView);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isInView){
+            setActiveSection("tours")
+        }
+    }, [isInView])
+
     return (
-        <div className="section w-full relative h-[1080px] flex justify-center items-center overflow-hidden" id='tours'>
+        <div className="section w-full relative h-[1080px] flex justify-center items-center overflow-hidden" id='tours' ref={toursRef}>
             <div className="bg-[url('/tour-selection/beach.jpg')] w-full h-full bg-center bg-no-repeat bg-cover bg-fixed absolute -z-20" />
             <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b from-custom-blue to-custom-yellow opacity-80 -z-10" />
             <div className=" w-[1000px] h-[570px] flex flex-col justify-between items-center">

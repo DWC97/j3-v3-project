@@ -1,3 +1,5 @@
+"use client"
+
 import Hero from "@/components/home/Hero";
 import Navbar from "../components/Navbar";
 import About from "@/components/about/About";
@@ -8,19 +10,21 @@ import { useState } from 'react';
 
 export default function Home() {
 
+  const [activeSection, setActiveSection] = useState("")
+
   return (
     <>
       <header>
         <nav className="relative">
-          <Navbar/>
+          <Navbar activeSection={activeSection}/>
         </nav>
       </header>
 
       <main className="overflow-x-hidden">
         <Hero/>
-        <About/>
-        <TourSelection/>
-        <Contact/>
+        <About setActiveSection={setActiveSection}/>
+        <TourSelection setActiveSection={setActiveSection}/>
+        <Contact setActiveSection={setActiveSection}/>
         <Footer/>
       </main>
     </>

@@ -6,6 +6,7 @@ import SplitType from 'split-type'
 import { useEffect, useRef } from "react";
 import "./HeroStyles.css"
 
+
 export default function Hero(){
 
     let parallaxEl: any[] = []

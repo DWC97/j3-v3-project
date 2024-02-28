@@ -1,32 +1,19 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 
-export default function About(){
+export default function About({ setActiveSection }){
 
     const aboutRef = useRef(null)
     const [isInView, setIsInView] = useState(false)
-    const router = useRouter()
 
     const checkInView = () => {
         const rect = aboutRef.current.getBoundingClientRect();
         setIsInView(
             rect.top < (window.innerHeight / 2) && rect.bottom >= (window.innerHeight / 2)
         );
-
         
     };
-
-    useEffect(() => {
-        if (isInView){
-            router.push(`#about`)
-        }
-    }, [isInView])
-
-    useEffect(() => {
-        checkInView();
-    }, []);
     
     useEffect(() => {
         document.addEventListener("scroll", checkInView);
@@ -35,7 +22,14 @@ export default function About(){
         };
     }, []);
 
-    console.log(isInView)
+    useEffect(() => {
+        if (isInView){
+            setActiveSection("about")
+        }
+        else {
+            setActiveSection("")
+        }
+    }, [isInView])
 
     return (
         <div className="section overflow-x-hidden overflow-y-auto relative bg-black" id="about" ref={aboutRef}>

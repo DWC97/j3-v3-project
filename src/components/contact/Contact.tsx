@@ -1,13 +1,36 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 
-export default function Contact(){
+export default function Contact({ setActiveSection }){
 
     const [name, setName] = useState("")
+    const contactRef = useRef(null)
+    const [isInView, setIsInView] = useState(false)
+
+    const checkInView = () => {
+        const rect = contactRef.current.getBoundingClientRect();
+        setIsInView(
+            rect.top < (window.innerHeight / 2) && rect.bottom >= (window.innerHeight / 2)
+        );
+        
+    };
+    
+    useEffect(() => {
+        document.addEventListener("scroll", checkInView);
+        return () => {
+            document.removeEventListener("scroll", checkInView);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isInView){
+            setActiveSection("contact")
+        }
+    }, [isInView])
 
     return (
-        <div className=" section h-[984px] w-full flex justify-center items-center relative" id="contact">
+        <div className=" section h-[984px] w-full flex justify-center items-center relative" id="contact" ref={contactRef}>
             <div className="bg-[url('/contact/contact-bg.jpg')] w-full h-full bg-center bg-no-repeat bg-cover absolute -z-20" />
             <div className="absolute w-full h-[375px] top-0 left-0 bg-gradient-to-b from-black to-transparent" />
             <div className="absolute w-full h-[300px] bottom-0 left-0 bg-gradient-to-t from-black to-transparent" />

@@ -4,9 +4,8 @@ import Link from 'next/link'
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
 import { useRef, useState, useEffect } from "react";
-import { useRouter } from 'next/navigation'
 
-export default function Navbar(){
+export default function Navbar({ activeSection }){
 
     let navbar = useRef(null)
     const [isShrunk, setIsShrunk] = useState(false) // set height of navbar based on scroll distance from top
@@ -59,7 +58,7 @@ export default function Navbar(){
         };
 
     loadEvents()
-
+    console.log(activeSection)
     return (
         <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[1000] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
             <Link href="#hero">
@@ -70,18 +69,18 @@ export default function Navbar(){
             <div className="flex flex-row w-screen h-full ">
                 <div className="w-1/2 h-full flex justify-end text-white">
                     <Link href="#about">
-                        <span className="mt-1 h-full flex items-center justify-center border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink w-44 ease-in-out duration-300">
+                        <span className={`mt-1 h-full flex items-center justify-center ${activeSection === "about" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink w-44 ease-in-out duration-300`}>
                             ABOUT
                         </span>
                     </Link>
                     
                     <Link href="#tours">
-                        <span className="mt-1 h-full flex items-center justify-center w-44 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">
+                        <span className={`mt-1 h-full flex items-center justify-center w-44 ${activeSection === "tours" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300`}>
                             TOURS
                         </span>
                     </Link>
                     <Link href="#contact">
-                        <span className=" mt-1 h-full flex items-center justify-center w-44 mr-24 border-opacity-0 hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300">
+                        <span className={`mt-1 h-full flex items-center justify-center w-44 mr-24 ${activeSection === "contact" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300`}>
                             CONTACT
                         </span>
                     </Link>
