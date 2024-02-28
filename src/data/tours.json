@@ -2,8 +2,8 @@
     "tours":[
         {
             "id": 1,
-            "region": "NORTHERN THAILAND",
-            "title": "MOUNTAIN ADVENTURES",
+            "region": "northern thailand",
+            "title": "mountain adventures",
             "duration": 10,
             "price": 999,
             "imageSrc": "/slides/northern-thailand.jpg",
@@ -11,8 +11,8 @@
         },
         {
             "id": 2,
-            "region": "SOUTHERN THAILAND",
-            "title": "ISLAND HOPPING",
+            "region": "southern thailand",
+            "title": "island hopping",
             "duration": 11,
             "price": 1099,
             "imageSrc": "/slides/southern-thailand.png",
@@ -20,8 +20,8 @@
         },
         {
             "id": 3,
-            "region": "VIETNAM",
-            "title": "TBD",
+            "region": "vietnam",
+            "title": "tbd",
             "duration": 22,
             "price": 1999,
             "imageSrc": "/slides/vietnam.jpg",
@@ -29,8 +29,8 @@
         },
         {
             "id": 4,
-            "region": "BALI",
-            "title": "TBD",
+            "region": "bali",
+            "title": "tbd",
             "duration": 7,
             "price": 899,
             "imageSrc": "/slides/bali.jpg",
@@ -38,8 +38,8 @@
         },
         {
             "id": 5,
-            "region": "PHILIPPINES",
-            "title": "TBD",
+            "region": "philippines",
+            "title": "tbd",
             "duration": 14,
             "price": 1299,
             "imageSrc": "/slides/philippines.jpg",
