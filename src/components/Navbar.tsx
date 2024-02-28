@@ -58,7 +58,7 @@ export default function Navbar({ activeSection }){
         };
 
     loadEvents()
-    console.log(activeSection)
+
     return (
         <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[1000] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
             <Link href="#hero">

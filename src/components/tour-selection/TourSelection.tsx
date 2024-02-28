@@ -63,18 +63,18 @@ export default function TourSelection({ setActiveSection }){
                                     <div className='card-container'>
                                         <img src={tour.imageSrc}/>
                                         <div className='card-content'>
-                                            <span className='region'>{tour.region}</span>
-                                            <span className='title'>{tour.title}</span>
+                                            <span className='region'>{tour.region.toUpperCase()}</span>
+                                            <span className='title'>{tour.title.toUpperCase()}</span>
                                             <div className="hidden-content flex flex-col">
                                                 {tour.available ? 
-                                                <div className='flex flex-row items-center justify-between'>
+                                                (<div className='flex flex-row items-center justify-between'>
                                                     <p className='text-sm text-gray-200'>Learn more</p>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className='-mr-4' width={20} height={20} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
-                                                </div> : 
-                                                <div className='flex flex-row items-center justify-between'>
+                                                </div>) : 
+                                                (<div className='flex flex-row items-center justify-between'>
                                                     <p className='text-sm text-gray-200'>Currently unavailable</p>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className='-mr-4' width={20} height={20} viewBox="0 0 21 21"><g fill="none" fillRule="evenodd" stroke="white" strokeLinecap="round" strokeLinejoin="round" transform="translate(2 2)"><circle cx={8.5} cy={8.5} r={8}></circle><path d="M14 3L3 14"></path></g></svg>
-                                                </div>
+                                                </div>)
                                                 }
                                                 
                                                 <div className='flex flex-row justify-between items-center pb-3'>
