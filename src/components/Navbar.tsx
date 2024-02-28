@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useRouter } from 'next/navigation'
 
-export default function Navbar(){
+export default function Navbar({ activeSection }){
 
     let navbar = useRef(null)
     const [isShrunk, setIsShrunk] = useState(false) // set height of navbar based on scroll distance from top
@@ -29,10 +30,9 @@ export default function Navbar(){
             }
         )
     })
-
-
+    
     // managing navbar height and visibility based on scroll position from top of home page
-    function scrollFunction(){
+    function scrollHandle(){
         if (document.body.scrollTop > (window.innerHeight - 10) || document.documentElement.scrollTop > (window.innerHeight - 10)) {
             setIsDropdown(true)
             setIsFixed(true)
@@ -53,13 +53,14 @@ export default function Navbar(){
     function loadEvents(){
         if (typeof window !== 'undefined') {
                 window.onscroll = function() {
-                    scrollFunction()
+                    scrollHandle()
                 }
             } 
         };
 
     loadEvents()
 
+    // console.log(activeSection)
     return (
         <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[1000] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
             <Link href="#hero">

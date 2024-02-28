@@ -111,7 +111,7 @@ export default function Hero(){
     loadEvents()
 
     return (
-        <div className="hero" id="hero">
+        <div className="section hero" id="hero">
             <div className="wrapper">
                 <div className="vignette"></div>
                 <img src="/hero/sky6.png" className="sky parallax" data-speedx="0.08" data-speedy="0.075" data-speedz="0" data-rotation="0"/>

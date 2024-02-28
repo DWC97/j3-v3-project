@@ -16,7 +16,7 @@ import { formatNumber } from '@/utilities/Utils';
 
 export default function TourSelection(){
     return (
-        <div className="w-full relative h-[1080px] flex justify-center items-center overflow-hidden" id='tours'>
+        <div className="section w-full relative h-[1080px] flex justify-center items-center overflow-hidden" id='tours'>
             <div className="bg-[url('/tour-selection/beach.jpg')] w-full h-full bg-center bg-no-repeat bg-cover bg-fixed absolute -z-20" />
             <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b from-custom-blue to-custom-yellow opacity-80 -z-10" />
             <div className=" w-[1000px] h-[570px] flex flex-col justify-between items-center">
@@ -47,7 +47,7 @@ export default function TourSelection(){
                     >
                         {toursData.tours.map(tour => {
                             return (
-                                <SwiperSlide>
+                                <SwiperSlide key={tour.id}>
                                     <div className='card-container'>
                                         <img src={tour.imageSrc}/>
                                         <div className='card-content'>
