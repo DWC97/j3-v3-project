@@ -1,18 +1,28 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
-export default function About({ setActiveSection }){
+export default function About(){
 
     const aboutRef = useRef(null)
     const [isInView, setIsInView] = useState(false)
+    const router = useRouter()
 
     const checkInView = () => {
         const rect = aboutRef.current.getBoundingClientRect();
         setIsInView(
-            rect.top < window.innerHeight && rect.bottom >= 0
+            rect.top < (window.innerHeight / 2) && rect.bottom >= (window.innerHeight / 2)
         );
+
+        
     };
+
+    useEffect(() => {
+        if (isInView){
+            router.push(`#about`)
+        }
+    }, [isInView])
 
     useEffect(() => {
         checkInView();
