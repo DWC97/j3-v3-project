@@ -2,7 +2,7 @@
     "tours":[
         {
             "id": 1,
-            "region": "northern thailand",
+            "region": "northern-thailand",
             "title": "mountain adventures",
             "duration": 10,
             "price": 999,
@@ -11,7 +11,7 @@
         },
         {
             "id": 2,
-            "region": "southern thailand",
+            "region": "southern-thailand",
             "title": "island hopping",
             "duration": 11,
             "price": 1099,

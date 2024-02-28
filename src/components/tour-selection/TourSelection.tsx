@@ -3,6 +3,7 @@
 import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRef, useEffect } from "react"
+import Link from 'next/link'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -60,10 +61,10 @@ export default function TourSelection({ setActiveSection }){
                         {toursData.tours.map(tour => {
                             return (
                                 <SwiperSlide key={tour.id}>
-                                    <div className='card-container'>
+                                    <Link className='card-container' href={`/${tour.region}`}>
                                         <img src={tour.imageSrc}/>
                                         <div className='card-content'>
-                                            <span className='region'>{tour.region.toUpperCase()}</span>
+                                            <span className='region'>{tour.region.toUpperCase().replace("-"," ")}</span>
                                             <span className='title'>{tour.title.toUpperCase()}</span>
                                             <div className="hidden-content flex flex-col">
                                                 {tour.available ? 
@@ -83,7 +84,7 @@ export default function TourSelection({ setActiveSection }){
                                                 </div>
                                             </div>
                                         </div>    
-                                    </div> 
+                                    </Link> 
                                 </SwiperSlide>
                             )
                         })}
