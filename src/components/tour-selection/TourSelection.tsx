@@ -2,7 +2,7 @@
 
 import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef, useState, useEffect } from "react"
+import { useRef, useEffect } from "react"
 
 // Import Swiper styles
 import 'swiper/css';
@@ -14,26 +14,12 @@ import "./SliderStyles.css"
 
 import toursData from "@/data/tours.json"
 import { formatNumber } from '@/utilities/Utils';
+import useDetectSection from '@/hooks/useDetectSection';
 
 export default function TourSelection({ setActiveSection }){
 
     const toursRef = useRef(null)
-    const [isInView, setIsInView] = useState(false)
-
-    const checkInView = () => {
-        const rect = toursRef.current.getBoundingClientRect();
-        setIsInView(
-            rect.top < (window.innerHeight / 2) && rect.bottom >= (window.innerHeight / 2)
-        );
-        
-    };
-    
-    useEffect(() => {
-        document.addEventListener("scroll", checkInView);
-        return () => {
-            document.removeEventListener("scroll", checkInView);
-        };
-    }, []);
+    const [isInView] = useDetectSection(toursRef)
 
     useEffect(() => {
         if (isInView){

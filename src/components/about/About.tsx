@@ -1,28 +1,12 @@
 "use client"
 
 import useDetectSection from "@/hooks/useDetectSection"
-import { useRef, useState, useEffect } from "react"
+import { useRef, useEffect } from "react"
 
 export default function About({ setActiveSection }){
 
     const aboutRef = useRef(null)
     const [isInView] = useDetectSection(aboutRef)
-    // const [isInView, setIsInView] = useState(false)
-
-    // const checkInView = () => {
-    //     const rect = aboutRef.current.getBoundingClientRect();
-    //     setIsInView(
-    //         rect.top < (window.innerHeight / 2) && rect.bottom >= (window.innerHeight / 2)
-    //     );
-        
-    // };
-    
-    // useEffect(() => {
-    //     document.addEventListener("scroll", checkInView);
-    //     return () => {
-    //         document.removeEventListener("scroll", checkInView);
-    //     };
-    // }, []);
 
     useEffect(() => {
         if (isInView){
