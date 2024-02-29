@@ -3,12 +3,15 @@
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
 import SplitType from 'split-type'
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "./HeroStyles.css"
+import useDetectSection from "@/hooks/useDetectSection";
+import { ActiveSectionContext } from "@/context/ActiveSectionContext";
 
 
 export default function Hero(){
 
+    let { setActiveSection } = useContext(ActiveSectionContext)
     let parallaxEl: any[] = []
     let xValue = 0
     let yValue = 0
@@ -16,6 +19,14 @@ export default function Hero(){
     let mainHeading = useRef(null)
     let subHeading = useRef(null)
     let foliage = useRef(null)
+    const heroRef = useRef(null)
+    const [isInView] = useDetectSection(heroRef)
+
+    useEffect(() => {
+        if (isInView){
+            setActiveSection("contact")
+        }
+    }, [isInView])
 
     useEffect(() => {
         parallaxEl = Array.from(
@@ -112,7 +123,7 @@ export default function Hero(){
     loadEvents()
 
     return (
-        <div className="section hero" id="hero">
+        <div className="section hero" id="hero" ref={heroRef}>
             <div className="wrapper">
                 <div className="vignette"></div>
                 <img src="/hero/sky6.png" className="sky parallax" data-speedx="0.08" data-speedy="0.075" data-speedz="0" data-rotation="0"/>
