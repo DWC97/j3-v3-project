@@ -63,7 +63,10 @@ export default function TourSelection(){
                         {toursData.tours.map(tour => {
                             return (
                                 <SwiperSlide key={tour.id}>
-                                    <Link className='card-container' href={`/${tour.region}`}>
+                                    <Link className='card-container' href={`/${tour.region}`} onClick={(e) => {
+                                        if (tour.available) return
+                                        e.preventDefault()
+                                    }}>
                                         <img src={tour.imageSrc}/>
                                         <div className='card-content'>
                                             <span className='region'>{tour.region.toUpperCase().replace("-"," ")}</span>
@@ -76,7 +79,7 @@ export default function TourSelection(){
                                                 </div>) : 
                                                 (<div className='flex flex-row items-center justify-between'>
                                                     <p className='text-sm text-gray-200'>Currently unavailable</p>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className='-mr-4' width={20} height={20} viewBox="0 0 21 21"><g fill="none" fillRule="evenodd" stroke="white" strokeLinecap="round" strokeLinejoin="round" transform="translate(2 2)"><circle cx={8.5} cy={8.5} r={8}></circle><path d="M14 3L3 14"></path></g></svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className='-mr-4' width={20} height={20} viewBox="0 0 21 21"><g fill="none" fillRule="evenodd" stroke="red" strokeLinecap="round" strokeLinejoin="round" transform="translate(2 2)"><circle cx={8.5} cy={8.5} r={8}></circle><path d="M14 3L3 14"></path></g></svg>
                                                 </div>)
                                                 }
                                                 

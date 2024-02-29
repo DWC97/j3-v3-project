@@ -17,9 +17,13 @@ export default function Navbar(){
     const path = usePathname()
 
     useEffect(() => {
+        if (path !== "/"){
+            setActiveSection("")
+        }
+        
         if (path === "/store"){
             setActiveSection("store")
-        }
+        } 
     }, [path])
 
     useGSAP(() => {
