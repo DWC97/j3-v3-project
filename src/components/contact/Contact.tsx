@@ -22,7 +22,7 @@ export default function Contact(){
             <div className="bg-[url('/contact/contact-bg.jpg')] w-full h-full bg-center bg-no-repeat bg-cover absolute -z-20" />
             <div className="absolute w-full h-[375px] top-0 left-0 bg-gradient-to-b from-black to-transparent" />
             <div className="absolute w-full h-[300px] bottom-0 left-0 bg-gradient-to-t from-black to-transparent" />
-            <div className="flex flex-col justify-between w-[600px] h-[500px] bg-black bg-opacity-50 mt-20 rounded-3xl border border-gray-300 p-10 z-30">
+            <div className="flex flex-col justify-between w-[500px] md:w-[600px] h-[500px] bg-black bg-opacity-50 mt-20 rounded-3xl border border-gray-300 p-10 z-30">
                 <p className="text-white text-[14px] mb-4">
                     Please note. Jolly Roger Tours is currently going through the incorporation and licensing process in the UK and will launch officially in late 2024. 
                 </p>
