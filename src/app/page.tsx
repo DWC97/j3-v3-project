@@ -10,19 +10,12 @@ import { useState } from 'react';
 
 export default function Home() {
 
-  // const [activeSection, setActiveSection] = useState("")
-
   return (
-    <>
-      
-
-      <main className="overflow-x-hidden">
+      <div className="overflow-x-hidden">
         <Hero/>
         <About />
         <TourSelection />
         <Contact />
-      </main>
-    </>
-    
+      </div>
   );
 }

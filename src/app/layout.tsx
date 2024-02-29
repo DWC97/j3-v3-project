@@ -28,14 +28,11 @@ export default function RootLayout({
               <Navbar />
             </nav>
           </header>
-
           {children}
-
           <footer>
             <Footer />
           </footer>
         </Providers>
-        
       </body>
     </html>
   );
