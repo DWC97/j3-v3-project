@@ -10,7 +10,9 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
 
     return (
         <div>
-            tour page for {tour?.region}
+            <div className="w-full h-[400px] relative">
+                <img src={tour?.imageSrc} className="absolute object-cover object-center w-full h-[400px]" />
+            </div>
         </div>
     )
 }
