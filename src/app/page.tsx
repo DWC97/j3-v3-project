@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 export default function Home() {
 
-  const [activeSection, setActiveSection] = useState("")
+  // const [activeSection, setActiveSection] = useState("")
 
   return (
     <>
@@ -18,9 +18,9 @@ export default function Home() {
 
       <main className="overflow-x-hidden">
         <Hero/>
-        <About setActiveSection={setActiveSection}/>
-        <TourSelection setActiveSection={setActiveSection}/>
-        <Contact setActiveSection={setActiveSection}/>
+        <About />
+        <TourSelection />
+        <Contact />
       </main>
     </>
     

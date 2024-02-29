@@ -2,7 +2,7 @@
 
 import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useContext } from "react"
 import Link from 'next/link'
 
 // Import Swiper styles
@@ -16,9 +16,11 @@ import "./SliderStyles.css"
 import toursData from "@/data/tours.json"
 import { formatNumber } from '@/utilities/Utils';
 import useDetectSection from '@/hooks/useDetectSection';
+import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 
-export default function TourSelection({ setActiveSection }){
+export default function TourSelection(){
 
+    let { setActiveSection } = useContext(ActiveSectionContext)
     const toursRef = useRef(null)
     const [isInView] = useDetectSection(toursRef)
 

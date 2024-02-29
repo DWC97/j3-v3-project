@@ -1,10 +1,12 @@
 "use client"
 
+import { ActiveSectionContext } from "@/context/ActiveSectionContext"
 import useDetectSection from "@/hooks/useDetectSection"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useContext } from "react"
 
-export default function Contact({ setActiveSection }){
+export default function Contact(){
 
+    let { setActiveSection } = useContext(ActiveSectionContext)
     const [name, setName] = useState("")
     const contactRef = useRef(null)
     const [isInView] = useDetectSection(contactRef)

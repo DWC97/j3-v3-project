@@ -3,10 +3,12 @@
 import Link from 'next/link'
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
+import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 
-export default function Navbar({ activeSection }){
+export default function Navbar(){
 
+    let { activeSection } = useContext(ActiveSectionContext)
     let navbar = useRef(null)
     const [isShrunk, setIsShrunk] = useState(false) // set height of navbar based on scroll distance from top
     const [isFixed, setIsFixed] = useState(false) // set fixed position of navbar based on scroll distance from top
