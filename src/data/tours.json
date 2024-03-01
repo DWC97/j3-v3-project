@@ -7,7 +7,15 @@
             "duration": 10,
             "price": 999,
             "imageSrc": "/slides/northern-thailand.jpg",
-            "available": true
+            "available": true,
+            "tagline": "Get the ultimate Northern Thailand experience with us as we dive into the vibrant culture, stunning landscapes, and delicious cuisine of the region.",
+            "description1": "Our adventure starts in the heart of the nightlife scene, Bangkok, where we'll explore the bustling night markets and indulge in authentic Thai street food before hitting the clubs and bars where the party doesn't stop... Bangkok is also the fighting capital of the world so we'll be bringing you to one of the top Muay Thai gyms to learn the basics. Next, we'll head to Ayutthaya, where we'll explore the temples and palaces that make up the ancient ruins.",
+            "description2": "Then, it's further north and onto Chiang Mai, a beautiful city nestled in the mountains. Chiang Mai is home to the most ethical elephant sanctuaries in Thailand and the best water park in the world which is built into a canyon.Finally, we'll finish in Pai by tubing down the river and relaxing in the hot springs before looping back to Bangkok with a night out in Chiang Mai on the way.",
+            "mapUrl": "",
+            "activities": "",
+            "included": "",
+            "needed": "You will need a tourist visa to be in Thailand. They will give you one on arrival to the country. - It's compulsory for you to have personal travel insurance for this trip. We can help you find a provider if you don't have any.",
+            "gallery": []
         },
         {
             "id": 2,
