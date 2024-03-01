@@ -39,11 +39,11 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     <svg xmlns="http://www.w3.org/2000/svg" className='pl-3' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                 </Link>
                 <div className="w-full flex flex-row justify-between relative ">
-                    <div className="flex flex-col mr-10 bg-slate-700 h-[1500px]">
+                    <div className="flex flex-col mr-10 h-[1500px]">
                         <div className='text-white'>
-                            <p>{tour?.tagline}</p>
-                            <p>{tour?.description1}</p>
-                            <p>{tour?.description2}</p>
+                            <p className='text-[20px] font-medium mb-4'>{tour?.tagline}</p>
+                            <p className='text-[18px]  mb-4'>{tour?.description1}</p>
+                            <p className='text-[18px] '>{tour?.description2}</p>
                         </div>
                     </div>
                     <div className=' min-w-[400px] h-[815px] flex flex-col justify-between  sticky -top-[220px]'>
