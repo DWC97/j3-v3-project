@@ -25,7 +25,7 @@ export default function RootLayout({
         <Providers>
           <header>
             <nav className="relative">
-              <Navbar />
+              {/* <Navbar /> */}
             </nav>
           </header>
           {children}
