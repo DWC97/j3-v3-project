@@ -33,9 +33,10 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             <p>{tour?.description2}</p>
                         </div>
                     </div>
-                    <div className=' min-w-[400px] h-[900px] border-2 border-white sticky -top-[250px]'>
-                        <div className='min-h-[800px] w-full bg-pink-500'>
-
+                    <div className=' min-w-[400px] h-[900px] sticky -top-[250px]'>
+                        <div className='min-h-[800px] w-full border border-gray-300 rounded-lg relative overflow-hidden'>
+                            <img src="/tour-page/info-card.png" className='absolute object-cover object-center h-full'/>
+                            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-40'/>
                         </div>
                         <button className='text-white'>BOOK NOW</button>
                     </div>
