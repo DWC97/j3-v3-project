@@ -1,3 +1,3 @@
 export function formatNumber(number: number){
-    return number.toLocaleString("en-US")
+    return `£${number.toLocaleString("en-US")}`
 }
