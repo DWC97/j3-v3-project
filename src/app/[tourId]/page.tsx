@@ -46,7 +46,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             <p>{tour?.description2}</p>
                         </div>
                     </div>
-                    <div className=' min-w-[400px] h-[900px] sticky -top-[250px]'>
+                    <div className=' min-w-[400px] h-[815px] flex flex-col justify-between  sticky -top-[220px]'>
                         <div className='min-h-[700px] w-full border border-gray-300 rounded-lg relative overflow-hidden'>
                             <img src="/tour-page/info-card.png" className='absolute object-cover object-center h-full -z-20'/>
                             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-40 -z-10'/>
@@ -93,7 +93,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                 </div>
                             </div>
                         </div>
-                        <button className='text-white'>BOOK NOW</button>
+                        <button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px]'>BOOK NOW</button>
                     </div>
                 </div>
             </div>

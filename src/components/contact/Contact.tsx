@@ -38,7 +38,7 @@ export default function Contact(){
                         <input type="text" placeholder="Destination*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"/>  
                         <input type="text" placeholder="No. of people*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"/>  
                     </div>
-                    <button className="font-semibold ease-in-out duration-300 text-white w-full self-center py-2 rounded-md mt-8 bg-gradient-to-r from-custom-orange to-custom-pink ">
+                    <button className="font-semibold  text-white w-full self-center py-2 rounded-md mt-8 bg-gradient-to-r from-custom-orange to-custom-pink ">
                         SUBMIT
                     </button>
                 </form>
