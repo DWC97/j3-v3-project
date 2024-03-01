@@ -45,13 +45,21 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             <p className='text-[18px]  mb-4'>{tour?.description1}</p>
                             <p className='text-[18px] '>{tour?.description2}</p>
                         </div>
+                        <img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/>
+                        <div className='w-full flex flex-col border-b border-gray-300 pb-4'>
+                            <div className='w-full flex flex-row items-center relative'>
+                                <h2 className='font-semibold text-[36px] text-white'>What do you need to join us?</h2>
+                                <span className='text-[14px] text-gray-200 ml-10'>(open)</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m9 11l3 3l3-3"></path></g></svg>
+                            </div>
+                        </div>
                     </div>
                     <div className=' min-w-[400px] h-[815px] flex flex-col justify-between  sticky -top-[220px]'>
                         <div className='min-h-[700px] w-full border border-gray-300 rounded-lg relative overflow-hidden'>
                             <img src="/tour-page/info-card.png" className='absolute object-cover object-center h-full -z-20'/>
                             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-40 -z-10'/>
                             <div className='flex flex-col w-full p-5 h-[700px] justify-between'>
-                                <h3 className='font-semibold text-[36px] text-white'>OVERVIEW</h3>
+                                <h3 className='font-semibold text-[36px] text-white'>Overview</h3>
                                 <ul className='w-full h-[450px] flex flex-col justify-between'>
                                     <li className='w-full flex flex-row justify-between text-[20px]'>
                                         <span className='font-medium  text-gray-200'>Duration</span>
