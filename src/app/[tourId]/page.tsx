@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import toursData from "@/data/tours.json"
+import ProgressBar from "@ramonak/react-progress-bar";
 
 export default function tourDetails({ params }: { params: { tourId: string }}){
 
@@ -35,8 +36,45 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     </div>
                     <div className=' min-w-[400px] h-[900px] sticky -top-[250px]'>
                         <div className='min-h-[800px] w-full border border-gray-300 rounded-lg relative overflow-hidden'>
-                            <img src="/tour-page/info-card.png" className='absolute object-cover object-center h-full'/>
-                            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-40'/>
+                            <img src="/tour-page/info-card.png" className='absolute object-cover object-center h-full -z-20'/>
+                            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-40 -z-10'/>
+                            <div className='flex flex-col w-full p-5 h-[800px] justify-between'>
+                                <h3 className='font-semibold text-[36px] text-white border-red-300 border'>OVERVIEW</h3>
+                                <ul className='w-full border-blue-300 border h-[500px] flex flex-col justify-between'>
+                                    <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <span className='font-medium  text-white'>Duration</span>
+                                        <span className='font-semibold text-gray-200'>{tour?.duration} days</span>
+                                    </li>
+                                    <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <span className='font-medium  text-white'>Group Size</span>
+                                        <span className='font-semibold text-gray-200'>{tour?.['group-size']}</span>
+                                    </li>
+                                    <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <span className='font-medium  text-white'>Dates</span>
+                                        <span className='font-semibold text-gray-200'>{tour?.dates}</span>
+                                    </li>
+                                    <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <span className='font-medium  text-white'>Starts</span>
+                                        <span className='font-semibold text-gray-200'>{tour?.starts}</span>
+                                    </li>
+                                    <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <span className='font-medium  text-white'>Finishes</span>
+                                        <span className='font-semibold text-gray-200'>{tour?.finishes}</span>
+                                    </li>
+                                    {Object.entries(tour?.scores).map(([key, val], i)=> {
+                                            return (
+                                                <li key={i} className='w-full flex flex-row justify-between text-[20px] relative'>
+                                                    <span className='font-medium  text-white'>{key}</span>
+                                                    <span className='font-semibold text-gray-200'>{val}</span>
+                                                    <div className='absolute bg-pink-400 w-[150px] left-[145px] top-[10px] h-[12px] rounded-r-md'
+                                                    // style={{backgroundColor: }}
+                                                    />
+                                                </li>
+                                            )
+                                    })}
+                                </ul>
+                            </div>
+                            
                         </div>
                         <button className='text-white'>BOOK NOW</button>
                     </div>
