@@ -51,13 +51,15 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                 <h2 className='font-semibold text-[36px] text-white'>What do you need to join us?</h2>
                                 <span className='text-[14px] text-gray-200 ml-10'>(open)</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m9 11l3 3l3-3"></path></g></svg>
+                                {/* iconamoon:arrow-down-6-circle-light */}
                             </div>
+                            <p className='my-4 text-white text-[18px]'>{tour?.needed}</p>
                         </div>
                     </div>
                     <div className=' min-w-[400px] h-[815px] flex flex-col justify-between  sticky -top-[220px]'>
                         <div className='min-h-[700px] w-full border border-gray-300 rounded-lg relative overflow-hidden'>
                             <img src="/tour-page/info-card.png" className='absolute object-cover object-center h-full -z-20'/>
-                            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-40 -z-10'/>
+                            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50 -z-10'/>
                             <div className='flex flex-col w-full p-5 h-[700px] justify-between'>
                                 <h3 className='font-semibold text-[36px] text-white'>Overview</h3>
                                 <ul className='w-full h-[450px] flex flex-col justify-between'>
