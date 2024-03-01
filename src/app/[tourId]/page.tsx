@@ -10,6 +10,18 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         return tour.region === params.tourId
     })
 
+    function colorGenerator(val){
+        if (val === 10){
+            return "#0CEEE0"
+        }
+        if (val >= 7){
+            return "#A0E515"
+        }
+        else {
+            return "#FFDD57"
+        }
+    }
+
     return (
         <div className="bg-black -z-50">
             <div className="w-full h-[400px] relative flex flex-col justify-end z-0">
@@ -66,8 +78,10 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                                 <li key={i} className='w-full flex flex-row justify-between text-[20px] relative'>
                                                     <span className='font-medium  text-white'>{key}</span>
                                                     <span className='font-semibold text-gray-200'>{val}</span>
-                                                    <div className='absolute bg-pink-400 w-[150px] left-[145px] top-[10px] h-[12px] rounded-r-md'
-                                                    // style={{backgroundColor: }}
+                                                    <div className='absolute w-[150px] left-[145px] top-[10px] h-[12px] rounded-r-md'
+                                                    style={{backgroundColor: colorGenerator(val),
+                                                            width: `${(150/10) * val}px`
+                                                    }}
                                                     />
                                                 </li>
                                             )
