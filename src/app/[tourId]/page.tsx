@@ -56,29 +56,37 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             <p className='text-[18px] '>{tour?.description2}</p>
                         </div>
                         <img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/>
-                        <div className='w-full flex flex-col border-b border-gray-300 pb-4'>
-                            <div className='w-full flex flex-row items-center relative cursor-pointer' onClick={() => toggleAnswer('activities')}>
+                        <div className='w-full flex flex-col border-b border-gray-300 pb-4 '>
+                            <div className='w-full flex flex-row items-center relative cursor-pointer' 
+                            onClick={() => toggleAnswer('activities')}>
                                 <h2 className='font-semibold text-[36px] text-white'>Activities</h2>
                                 <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['activities'] ? "(close)" : "(open)"}</span>
+                                {answersVisible['activities'] ? 
+                                <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
+                                :
                                 <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m9 11l3 3l3-3"></path></g></svg>
-                                {/* iconamoon:arrow-down-6-circle-light */}
-                            </div>
-                            {answersVisible['activities'] && 
-                            <div className='my-4 text-white text-[18px] -py-1'>
+                                }
+                            </div> 
+                            <div className={`my-4 text-white text-[18px] -py-1 ${answersVisible['activities'] ? undefined : "hidden"}`}>
                                 {tour?.activities?.map(activity => {
                                     return (
                                         <p className='py-1'>{activity}</p>
                                     )
                                 })}
-                            </div>}
+                            </div>
                         </div>
                         <div className='w-full flex flex-col border-b border-gray-300 pb-4 mt-16'>
-                            <div className='w-full flex flex-row items-center relative'>
+                            <div className='w-full flex flex-row items-center relative cursor-pointer'
+                            onClick={() => toggleAnswer('included')}>
                                 <h2 className='font-semibold text-[36px] text-white'>What's included?</h2>
-                                <span className='text-[14px] text-gray-200 ml-10'>(open)</span>
+                                <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['included'] ? "(close)" : "(open)"}</span>
+                                {answersVisible['included'] ? 
+                                <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
+                                :
                                 <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m9 11l3 3l3-3"></path></g></svg>
+                                }
                             </div>
-                            <div className='my-4 text-white text-[18px] -py-1'>
+                            <div className={`my-4 text-white text-[18px] -py-1 ${answersVisible['included'] ? undefined : "hidden"}`}>
                                 <h3 className='font-semibold text-[20px] mb-2'>TRAVEL</h3>
                                 {tour?.included?.travel.map(activity => {
                                     return (
@@ -94,12 +102,17 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             </div>
                         </div>
                         <div className='w-full flex flex-col border-b border-gray-300 pb-4 mt-16'>
-                            <div className='w-full flex flex-row items-center relative'>
+                            <div className='w-full flex flex-row items-center relative cursor-pointer'
+                            onClick={() => toggleAnswer('needed')}>
                                 <h2 className='font-semibold text-[36px] text-white'>What do you need to join us?</h2>
-                                <span className='text-[14px] text-gray-200 ml-10'>(open)</span>
+                                <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['needed'] ? "(close)" : "(open)"}</span>
+                                {answersVisible['needed'] ? 
+                                <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
+                                :
                                 <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m9 11l3 3l3-3"></path></g></svg>
+                                }
                             </div>
-                            <p className='my-4 text-white text-[18px]'>{tour?.needed}</p>
+                            <p className={`my-4 text-white text-[18px] ${answersVisible['needed'] ? undefined : "hidden"}`}>{tour?.needed}</p>
                         </div>
                     </div>
                     <div className=' min-w-[400px] h-[815px] flex flex-col justify-between  sticky -top-[220px]'>
