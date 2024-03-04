@@ -19,6 +19,10 @@ const config: Config = {
         'custom-yellow':'#FCCF14',
         'custom-orange':'#d19c2a',
         'custom-red':'#ca1111',
+      },
+      screens: {
+        'tall': { 'raw': '(min-height: 850px)' },
+        'vtall': { 'raw': '(min-height: 1030px)' },
       }
     },
   },
