@@ -5,6 +5,7 @@ import toursData from "@/data/tours.json"
 import { formatNumber } from '@/utilities/Utils';
 import { useState } from 'react';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 
 export default function tourDetails({ params }: { params: { tourId: string }}){
 
@@ -13,6 +14,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     })
     const [answersVisible, setAnswersVisible] = useState({})
     const [gallery, setGallery] = useState({ image: "", i: 0 })
+    const [toggle] = useBodyLockScroll() // toggle scroll lock
 
     // Function to toggle visibility of answer for a specific heading
     function toggleAnswer(heading){
@@ -23,8 +25,8 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     };
 
     function viewImage(image, i){
-        
         setGallery({ image, i })
+        toggle()
         console.log(gallery)
     }
 
@@ -41,11 +43,15 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     }
 
     return (
-        <div className='relative'>
+        <div className='relative overflow-hidden'>
             {gallery.image && 
-                <div className='fixed top-0 left-0 h-screen w-full z-50 bg-black opacity-70'>
-
+                <div className='fixed top-0 left-0 h-screen w-full z-50 bg-black opacity-70 overflow-hidden flex flex-col'>
+                    <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
+                        setGallery({ image: "", i: 0 })
+                        toggle()
+                    }} className='absolute top-5 right-5 cursor-pointer' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
                 </div>
+                
             }
             <div className="bg-black -z-50 pb-8">
                 <div className="w-full h-[400px] relative flex flex-col justify-end z-0">
