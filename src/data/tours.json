@@ -52,7 +52,16 @@
                 
             },
             "needed": "You will need a tourist visa to be in Thailand. They will give you one on arrival to the country. - It's compulsory for you to have personal travel insurance for this trip. We can help you find a provider if you don't have any.",
-            "gallery": []
+            "gallery": [
+                "/tour-page/northern/ayutthaya.jpg",
+                "/tour-page/northern/bar-crawl.jpg",
+                "/tour-page/northern/canyon.jpg",
+                "/tour-page/northern/elephant-sanctuary.jpg",
+                "/tour-page/northern/market.jpg",
+                "/tour-page/northern/tubing.jpg",
+                "/tour-page/northern/wat-pho.jpg",
+                "/tour-page/northern/lessons.jpg"
+            ]
         },
         {
             "id": 2,

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import toursData from "@/data/tours.json"
 import { formatNumber } from '@/utilities/Utils';
 import { useState } from 'react';
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
 export default function tourDetails({ params }: { params: { tourId: string }}){
 
@@ -103,7 +104,22 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             <p className={`my-4 text-gray-200 text-[18px] ${answersVisible['needed'] ? undefined : "hidden"}`}>{tour?.needed}</p>
                         </div>
                         <div className='mt-16'>
-                            <h2 className='font-semibold text-[36px] text-white'>Gallery</h2>
+                            <h2 className='font-semibold text-[36px] text-white mb-8'>Gallery</h2>
+                            <div className='w-full  overflow-hidden mb-8'>
+                            <ResponsiveMasonry
+                                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+                            >
+                                <Masonry columnsCount={3} gutter="15px">
+                                    {tour?.gallery.map((image, i) => (
+                                        <img
+                                            key={i}
+                                            src={image}
+                                            style={{width: "100%", display: "block"}}
+                                        />
+                                    ))}
+                                </Masonry>
+                            </ResponsiveMasonry>
+                            </div>
                         </div>
                     </div>
                     <div className=' min-w-[400px] h-[815px] flex flex-col justify-between  sticky -top-[220px]'>
