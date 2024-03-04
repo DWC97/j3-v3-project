@@ -23,8 +23,34 @@
             "description1": "Our adventure starts in the heart of the nightlife scene, Bangkok, where we'll explore the bustling night markets and indulge in authentic Thai street food before hitting the clubs and bars where the party doesn't stop... Bangkok is also the fighting capital of the world so we'll be bringing you to one of the top Muay Thai gyms to learn the basics. Next, we'll head to Ayutthaya, where we'll explore the temples and palaces that make up the ancient ruins.",
             "description2": "Then, it's further north and onto Chiang Mai, a beautiful city nestled in the mountains. Chiang Mai is home to the most ethical elephant sanctuaries in Thailand and the best water park in the world which is built into a canyon. Finally, we'll finish in Pai by tubing down the river and relaxing in the hot springs before looping back to Bangkok with a night out in Chiang Mai on the way.",
             "mapUrl": "/tour-page/northern-thailand-itinerary.jpg",
-            "activities": "",
-            "included": "",
+            "activities": [
+                "- Bar crawls around Bangkok, Chiang Mai and Pai 🍻",
+                "- Tipsy Tubing down Pai River ⭕",
+                "- Elephant sanctuary 🐘",
+                "- Muay Thai training session with professional coaches 🥊",
+                "- Trip to Grand Canyon Water Park 🌊",
+                "- Trip to Ayutthaya 🛕",
+                "- Trip to Wat Pho 🕉️",
+                "- Temple tour around Chiang Mai 🏯",
+                "- Bangkok floating market tour ⚖",
+                "Disclaimer. Certain activities are weather-dependent but this trip takes place during dry season so floods are unlikely."
+            ],
+            "included": {
+                "travel": [
+                    "- Bangkok -> Ayutthaya 🚆 (day trip)",
+                    "- Bangkok -> Chiang Mai 🚌",
+                    "- Chiang Mai -> Pai 🚌",
+                    "Note. All trips are return journeys. The tour is a loop that starts and finishes in Bangkok"
+                ],
+                "accomodation": [
+                    "- 10 nights in shared bedrooms/dorms 🏨",
+                    "- Bangkok: 4 nights",
+                    "- Chiang Mai: 4 nights",
+                    "- Pai: 2 nights",
+                    "Note. Accommodation is a mixture of party hostels and chilled-out hotels for nights that the group needs to rest. Free breakfast will be included with some of the accommodations."
+                ]
+                
+            },
             "needed": "You will need a tourist visa to be in Thailand. They will give you one on arrival to the country. - It's compulsory for you to have personal travel insurance for this trip. We can help you find a provider if you don't have any.",
             "gallery": []
         },

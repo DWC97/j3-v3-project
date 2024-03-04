@@ -39,7 +39,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     <svg xmlns="http://www.w3.org/2000/svg" className='pl-3' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                 </Link>
                 <div className="w-full flex flex-row justify-between relative ">
-                    <div className="flex flex-col mr-10 h-[1500px]">
+                    <div className="flex flex-col mr-10">
                         <div className='text-white'>
                             <p className='text-[20px] font-medium mb-4'>{tour?.tagline}</p>
                             <p className='text-[18px]  mb-4'>{tour?.description1}</p>
@@ -47,6 +47,43 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                         </div>
                         <img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/>
                         <div className='w-full flex flex-col border-b border-gray-300 pb-4'>
+                            <div className='w-full flex flex-row items-center relative'>
+                                <h2 className='font-semibold text-[36px] text-white'>Activities</h2>
+                                <span className='text-[14px] text-gray-200 ml-10'>(open)</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m9 11l3 3l3-3"></path></g></svg>
+                                {/* iconamoon:arrow-down-6-circle-light */}
+                            </div>
+                            <div className='my-4 text-white text-[18px] -py-1'>
+                                {tour?.activities?.map(activity => {
+                                    return (
+                                        <p className='py-1'>{activity}</p>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                        <div className='w-full flex flex-col border-b border-gray-300 pb-4 mt-16'>
+                            <div className='w-full flex flex-row items-center relative'>
+                                <h2 className='font-semibold text-[36px] text-white'>What's included?</h2>
+                                <span className='text-[14px] text-gray-200 ml-10'>(open)</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className='absolute right-0' width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m9 11l3 3l3-3"></path></g></svg>
+                                {/* iconamoon:arrow-down-6-circle-light */}
+                            </div>
+                            <div className='my-4 text-white text-[18px] -py-1'>
+                                <h3 className='font-semibold text-[20px] mb-2'>TRAVEL</h3>
+                                {tour?.included?.travel.map(activity => {
+                                    return (
+                                        <p className='py-1'>{activity}</p>
+                                    )
+                                })}
+                                <h3 className='font-semibold text-[20px] mt-6 mb-2'>ACCOMODATION</h3>
+                                {tour?.included?.accomodation.map(activity => {
+                                    return (
+                                        <p className='py-1'>{activity}</p>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                        <div className='w-full flex flex-col border-b border-gray-300 pb-4 mt-16'>
                             <div className='w-full flex flex-row items-center relative'>
                                 <h2 className='font-semibold text-[36px] text-white'>What do you need to join us?</h2>
                                 <span className='text-[14px] text-gray-200 ml-10'>(open)</span>
