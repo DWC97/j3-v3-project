@@ -45,13 +45,17 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     return (
         <div className="bg-black -z-50 pb-8">
         {gallery.image && 
-            <div className='fixed top-0 left-0 h-screen w-full z-50 bg-black opacity-70 overflow-hidden flex flex-col'>
+            <div className='fixed top-0 left-0 h-screen w-full z-30 bg-black opacity-70 overflow-hidden flex flex-col justify-center items-center'>
                 <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
                     setGallery({ image: "", i: 0 })
                     toggle()
                 }} className='absolute top-5 right-5 cursor-pointer' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
+                <div className='w-full flex flex-row justify-around items-center z-50'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
+                    <img src={gallery.image} className='z-[999]'/>
+                    <svg xmlns="http://www.w3.org/2000/svg" className='rotate-180' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
+                </div>
             </div>
-            
         }
             <div className="w-full h-[400px] relative flex flex-col justify-end z-0">
                 <img src={tour?.imageSrc} className="absolute object-cover object-center w-full h-[400px] -z-10"/>
