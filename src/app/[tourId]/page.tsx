@@ -69,7 +69,11 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                         }}>
                         <svg xmlns="http://www.w3.org/2000/svg"  className='' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                     </div>
-                    <img src={gallery.image}  className='object-contain h-full max-w-full'/>
+                    <div className='h-full max-w-full relative'>
+                        <img src={gallery.image}  className='object-contain h-full max-w-full'/>
+                        <span className='absolute bottom-0 py-2 flex justify-center items-center text-gray-200 text-[16px] w-full bg-black bg-opacity-60'>{tour.captions[gallery.i]}</span>
+                    </div>
+                    
                     <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 flex justify-center items-center' onClick={() => {
                             if (gallery.i === tour?.gallery.length - 1){
                                 setGallery({ image: tour.gallery[0], i: 0}) 
