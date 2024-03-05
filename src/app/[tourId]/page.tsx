@@ -58,7 +58,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     setGallery({ image: "", i: 0 })
                     toggle()
                 }} className='absolute top-5 right-5 cursor-pointer z-[900]' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
-                <div ref={domNode} className='flex flex-row justify-center items-center z-50 max-h-[80%] max-w-[80%] '>
+                <div ref={domNode} className='relative flex flex-row justify-center items-center z-50 h-[80%] max-w-[80%]  pb-16 mt-16'>
                     <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 flex justify-center items-center' onClick={() => {
                             if (gallery.i === 0){
                                 setGallery({ image: tour.gallery[tour?.gallery.length - 1], i: tour?.gallery.length - 1})
@@ -80,7 +80,24 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                         }}>
                         <svg xmlns="http://www.w3.org/2000/svg"  className='rotate-180' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                     </div>
+                    <div className='absolute bottom-5 left-50 flex flex-row justify-center items-center z-[60]'>
+                    {tour?.gallery?.map((image, i) => {
+                        if (gallery.i === i){
+                            return (
+                                <svg key={i} xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 16 16"><circle cx={8} cy={8} r={4} fill="white"></circle></svg>
+                            )
+                        }
+                        else {
+                            return (
+                                <svg key={i} onClick={() => {
+                                    setGallery({ image: tour.gallery[i], i: i})
+                                }} xmlns="http://www.w3.org/2000/svg" className='z-[90] cursor-pointer ease-in-out duration-300' width={20} height={20} viewBox="0 0 16 16"><path fill="white" d="M4 8a4 4 0 1 1 8 0a4 4 0 0 1-8 0m4-2.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5"></path></svg>
+                            )
+                        } 
+                    })}
                 </div>
+                </div>
+                
             </div>
         }
             <div className="w-full h-[400px] relative flex flex-col justify-end z-0">
