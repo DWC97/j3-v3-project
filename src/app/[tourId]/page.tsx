@@ -6,6 +6,7 @@ import { formatNumber } from '@/utilities/Utils';
 import { useState } from 'react';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 export default function tourDetails({ params }: { params: { tourId: string }}){
 
@@ -15,6 +16,12 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     const [answersVisible, setAnswersVisible] = useState({})
     const [gallery, setGallery] = useState({ image: "", i: 0 })
     const [toggle] = useBodyLockScroll() // toggle scroll lock
+
+    let domNode = useClickOutside(() => {
+        if (!gallery.image) return
+        setGallery({ image: "", i: 0 })
+        toggle()
+    })
 
     // Function to toggle visibility of answer for a specific heading
     function toggleAnswer(heading){
@@ -51,9 +58,9 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     setGallery({ image: "", i: 0 })
                     toggle()
                 }} className='absolute top-5 right-5 cursor-pointer z-[900]' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
-                <div className='w-full flex flex-row justify-around items-center z-50'>
+                <div className='w-full flex flex-row justify-around items-center z-50 max-h-[80%] max-w-[80%] border-2 border-red-500'>
                     <svg xmlns="http://www.w3.org/2000/svg" width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
-                    <img src={gallery.image} className='max-h-[80%] '/>
+                    <img src={gallery.image} ref={domNode} className='object-contain h-full max-w-full'/>
                     <svg xmlns="http://www.w3.org/2000/svg" className='rotate-180' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                 </div>
             </div>
