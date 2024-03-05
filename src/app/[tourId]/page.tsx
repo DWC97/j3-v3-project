@@ -58,24 +58,28 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     setGallery({ image: "", i: 0 })
                     toggle()
                 }} className='absolute top-5 right-5 cursor-pointer z-[900]' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
-                <div ref={domNode} className='w-full flex flex-row justify-evenly items-center z-50 max-h-[80%] max-w-[80%] border-2 border-red-500'>
-                    <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
-                        if (gallery.i === 0){
-                            setGallery({ image: tour.gallery[tour?.gallery.length - 1], i: tour?.gallery.length - 1})
-                        }
-                        else {
-                            setGallery({ image: tour.gallery[gallery.i - 1], i: gallery.i - 1})
-                        }
-                    }} className='cursor-pointer' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
+                <div ref={domNode} className='flex flex-row justify-center items-center z-50 max-h-[80%] max-w-[80%] '>
+                    <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 flex justify-center items-center' onClick={() => {
+                            if (gallery.i === 0){
+                                setGallery({ image: tour.gallery[tour?.gallery.length - 1], i: tour?.gallery.length - 1})
+                            }
+                            else {
+                                setGallery({ image: tour.gallery[gallery.i - 1], i: gallery.i - 1})
+                            }
+                        }}>
+                        <svg xmlns="http://www.w3.org/2000/svg"  className='' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
+                    </div>
                     <img src={gallery.image}  className='object-contain h-full max-w-full'/>
-                    <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
-                        if (gallery.i === tour?.gallery.length - 1){
-                            setGallery({ image: tour.gallery[0], i: 0}) 
-                        }
-                        else {
-                            setGallery({ image: tour.gallery[gallery.i + 1], i: gallery.i + 1})
-                        }   
-                    }} className='rotate-180 cursor-pointer' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
+                    <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 flex justify-center items-center' onClick={() => {
+                            if (gallery.i === tour?.gallery.length - 1){
+                                setGallery({ image: tour.gallery[0], i: 0}) 
+                            }
+                            else {
+                                setGallery({ image: tour.gallery[gallery.i + 1], i: gallery.i + 1})
+                            }  
+                        }}>
+                        <svg xmlns="http://www.w3.org/2000/svg"  className='rotate-180' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
+                    </div>
                 </div>
             </div>
         }
