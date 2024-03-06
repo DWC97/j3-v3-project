@@ -88,10 +88,22 @@ export default function Navbar(){
                 <img src="/full.jpg" className='max-w-[250px] w-1/2'/>
                 <div className='w-full px-10'>
                     <ul className='text-white font-medium text-[18px]'>
-                        <li className='border-b border-gray-400 py-4'>ABOUT</li>
-                        <li className='border-b border-gray-400 py-4'>TOURS</li>
-                        <li className='border-b border-gray-400 py-4'>CONTACT</li>
-                        <li className='border-b border-gray-400 py-4'>STORE</li>
+                        <Link href="/#about" onClick={() => {
+                            setNav(!nav)
+                            toggle()
+                        }}><li className='border-b border-gray-400 py-4'>ABOUT</li></Link>
+                        <Link href="/#tours" onClick={() => {
+                            setNav(!nav)
+                            toggle()
+                        }}><li className='border-b border-gray-400 py-4'>TOURS</li></Link>
+                        <Link href="/#contact" onClick={() => {
+                            setNav(!nav)
+                            toggle()
+                        }}><li className='border-b border-gray-400 py-4'>CONTACT</li></Link>
+                        <Link href="/store" onClick={() => {
+                            setNav(!nav)
+                            toggle()
+                        }}><li className='border-b border-gray-400 py-4'>STORE</li></Link>
                     </ul>
                 </div>
                 
