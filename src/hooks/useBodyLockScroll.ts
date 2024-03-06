@@ -5,15 +5,22 @@ import { useEffect, useState } from 'react'
 function useBodyLockScroll() {
 
     const [locked, setLocked] = useState(false)
-    const bodyStyle = document.body.style
+    
+    let bodyStyle
+    if (typeof document !== "undefined"){
+        bodyStyle = document.body.style
+    }
 
     useEffect(() => {
-        if (locked){
-            bodyStyle.overflowY = "hidden"
+        if (typeof document !== "undefined"){
+            if (locked){
+                bodyStyle.overflowY = "hidden"
+            }
+            else {
+                bodyStyle.overflowY = "auto"
+            }
         }
-        else {
-            bodyStyle.overflowY = "auto"
-        }
+        
     }, [locked])
 
     function toggle(){

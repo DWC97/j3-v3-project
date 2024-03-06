@@ -180,12 +180,14 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             >
                                 <Masonry columnsCount={3} gutter="15px">
                                     {tour?.gallery.map((image, i) => (
-                                        <img
+                                        <div className='relative overflow-hidden '>
+                                            <img
                                             key={i}
                                             src={image}
                                             style={{width: "100%", display: "block", cursor: "pointer"}}
                                             onClick={() => viewImage(image, i)}
-                                        />
+                                            />
+                                        </div>
                                     ))}
                                 </Masonry>
                             </ResponsiveMasonry>
