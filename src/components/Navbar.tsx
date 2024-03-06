@@ -78,13 +78,23 @@ export default function Navbar(){
 
     return (
         <div>
-            <div className={nav ? `fixed top-0 left-0 z-[1000] h-screen w-full flex ease-in-out duration-500 bg-black` : "fixed -top-[100%]"}>   
-                <div className={`absolute top-0 left-0 flex justify-center items-center cursor-pointer ml-9 ${isShrunk ? "h-16" : "h-20"}`} onClick={() => {
+            <div className={nav ? `fixed top-0 left-0 z-[1000] h-screen w-full flex flex-col justify-center items-center ease-in-out duration-500 bg-black` : "fixed -top-[100%]"}>   
+                <div className={`absolute top-0 left-0 flex justify-center items-center cursor-pointer ml-9 h-20`} onClick={() => {
                     setNav(!nav)
                     toggle()
                 }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width={isShrunk ? 32 : 40} height={isShrunk ? 32 : 40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
                 </div>
+                <img src="/full.jpg" className='max-w-[250px] w-1/2'/>
+                <div className='w-full px-10'>
+                    <ul className='text-white font-medium text-[18px]'>
+                        <li className='border-b border-gray-400 py-4'>ABOUT</li>
+                        <li className='border-b border-gray-400 py-4'>TOURS</li>
+                        <li className='border-b border-gray-400 py-4'>CONTACT</li>
+                        <li className='border-b border-gray-400 py-4'>STORE</li>
+                    </ul>
+                </div>
+                
             </div>
             <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[45] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
                 <Link href="/#hero">
