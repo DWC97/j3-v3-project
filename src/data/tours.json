@@ -80,7 +80,70 @@
             "duration": 11,
             "price": 1099,
             "imageSrc": "/slides/southern-thailand.png",
-            "available": true
+            "available": true,
+            "group-size": "8 - 12",
+            "dates": "TBC",
+            "starts": "Phuket",
+            "finishes": "Phuket",
+            "scores": {
+                "Nightlife": 10,
+                "Relaxation": 8,
+                "Nature": 6,
+                "Physical": 8,
+                "Party": 10
+            },
+            "tagline": "Thailand's southern islands are known for their idyllic nature, laid-back vibes and crazy beach parties. It's all crystal-clear waters and white sandy beaches in this tropical paradise...",
+            "description1": "Get ready to kick off an unforgettable adventure in the heart of Thailand's vibrant nightlife scene, Phuket, where you'll experience the incredible nature & culture the island has to offer during the day before getting electrified by the legendary clubs and bars at night. In Phuket, the music never stops and the drinks keep flowing. We'll also be stopping by one of the top Muay Thai gyms in the world to learn the basics.",
+            "description2": "Next, we'll head to Koh Phi Phi to check out Maya Bay as well as take part in an action-packed pirate boat booze cruise through the scenic bays and historic caves which includes kayaking, diving and cocktails galore. Then, it's onto Koh Lanta for much-needed rest and relaxation in the chilled-out beach town. Where better to hit on an island tour than Pirate Beach? Finally, we'll finish in Ao Nang with rock climbing and a hike to the secret lagoon before heading back to Phuket.",
+            "mapUrl": "/tour-page/southern-thailand-itinerary.jpg",
+            "activities": [
+                "- Bar crawls around Phuket, Koh Phi Phi, Koh Lanta and Ao Nang 🍻",
+                "- Muay Thai training session with professional coaches 🥊",
+                "- Nature exploration (beaches, waterfalls, lagoon) 🛵",
+                "- Trip to Big Buddha and Wat Chalong 🛕",
+                "- Maya Bay day trip 🏖️",
+                "- Pirate boat booze cruise 🏴‍☠️",
+                "- Rock climbing session 🧗"
+            ],
+            "included": {
+                "travel": [
+                    "- Phuket -> Koh Phi Phi ⛴️",
+                    "- Koh Phi Phi -> Koh Lanta ⛴️",
+                    "- Koh Lanta -> Ao Nang ⛴️",
+                    "- Ao Nang -> Phuket ⛴️",
+                    "Note. The tour is a loop that starts and finishes in Phuket."
+                ],
+                "accomodation": [
+                    "- 10 nights in shared bedrooms/dorms 🏨",
+                    "- Phuket: 3 nights",
+                    "- Koh Phi Phi: 3 nights",
+                    "- Koh Lanta: 2 nights",
+                    "- Ao Nang: 2 nights",
+                    "Note. Accommodation is a mixture of party hostels and chilled-out hotels for nights that the group needs to rest. Free breakfast will be included with some of the accommodation."
+                ]
+                
+            },
+            "needed": "You will need a tourist visa to be in Thailand. They will give you one on arrival to the country. - It's compulsory for you to have personal travel insurance for this trip. We can help you find a provider if you don't have any.",
+            "gallery": [
+                "/tour-page/southern/buddha.jpg",
+                "/tour-page/southern/climbing.jpg",
+                "/tour-page/southern/lagoon.jpg",
+                "/tour-page/southern/maya.jpg",
+                "/tour-page/southern/phuket-bar-crawl.jpg",
+                "/tour-page/southern/pirate-party.jpg",
+                "/tour-page/southern/beach-party.jpg",
+                "/tour-page/northern/lessons.jpg"
+            ],
+            "captions": [
+                "Day trip to Big Buddha",
+                "Rock climbing session on Railay beach",
+                "Trip to the Krabi lagoon",
+                "Day-out at Maya beach",
+                "Bar crawl around Phuket",
+                "Pirate boat booze cruise",
+                "Ao Nang beach party",
+                "Muay Thai training day to learn the basics"
+            ]
         },
         {
             "id": 3,
