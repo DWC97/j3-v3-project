@@ -85,7 +85,7 @@ export default function TourSelection(){
                                                 
                                                 <div className='flex flex-row justify-between items-center pb-3'>
                                                     <p className='italic'>{tour.duration} days</p>
-                                                    <p className='font-semibold text-xl -mr-4'>£{formatNumber(tour.price)}</p>
+                                                    <p className='font-semibold text-xl -mr-4'>{formatNumber(tour.price)}</p>
                                                 </div>
                                             </div>
                                         </div>    

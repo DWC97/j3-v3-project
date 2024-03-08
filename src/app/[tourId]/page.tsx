@@ -109,8 +109,8 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                 <div className="absolute h-[200px] w-full top-0 left-0 bg-gradient-to-b from-black to-transparent opacity-35 z-0"/>
                 <div className="absolute h-[200px] w-full bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-35 z-0"/>
                 <div className="w-full h-1/2 flex flex-col justify-center z-10 pl-10">
-                    <h1 className="font-semibold text-[56px] text-white tracking-wide">{tour?.region.toUpperCase().replace("-"," ")}</h1>
-                    <h3 className="text-[32px] text-gray-200">{tour?.title.toUpperCase()}</h3>
+                    <h1 className="font-bold text-[56px] text-white tracking-wide">{tour?.region.toUpperCase().replace("-"," ")}</h1>
+                    <h3 className="text-[32px] text-gray-200 font-medium">{tour?.title.toUpperCase()}</h3>
                 </div>
             </div>
             <div className='mx-10'>
@@ -174,13 +174,13 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                         </div>
                         <div className='mt-16'>
                             <h2 className='font-semibold text-[36px] text-white mb-8'>Gallery</h2>
-                            <div className='w-full  overflow-hidden'>
+                            <div className='w-full  overflow-hidden '>
                             <ResponsiveMasonry
                                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
                             >
                                 <Masonry columnsCount={3} gutter="15px">
                                     {tour?.gallery.map((image, i) => (
-                                        <div className='relative overflow-hidden '>
+                                        <div className='relative overflow-hidden hover:opacity-70'>
                                             <img
                                             key={i}
                                             src={image}
@@ -195,36 +195,36 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                         </div>
                     </div>
                     <div className=' min-w-[400px] h-[815px] flex flex-col justify-between sticky -top-[220px] tall:-top-[80px] vtall:top-[60px]'>
-                        <div className='min-h-[700px] w-full border border-gray-300 rounded-lg relative overflow-hidden'>
-                            <img src="/tour-page/info-card.png" className='absolute object-cover object-center h-full -z-20'/>
-                            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50 -z-10'/>
+                        <div className='min-h-[700px] w-full border border-gray-500 rounded-lg relative overflow-hidden'>
+                            <img src="/tour-page/info-card2.jpg" className='absolute object-cover object-center h-full -z-20'/>
+                            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-30 -z-10'/>
                             <div className='flex flex-col w-full p-5 h-[700px] justify-between'>
                                 <h3 className='font-semibold text-[36px] text-white'>Overview</h3>
                                 <ul className='w-full h-[450px] flex flex-col justify-between'>
                                     <li className='w-full flex flex-row justify-between text-[20px]'>
-                                        <span className='font-medium  text-gray-200'>Duration</span>
+                                        <span className='font-medium  text-white'>Duration</span>
                                         <span className='font-semibold text-white '>{tour?.duration} days</span>
                                     </li>
                                     <li className='w-full flex flex-row justify-between text-[20px]'>
-                                        <span className='font-medium text-gray-200 '>Group Size</span>
+                                        <span className='font-medium text-white '>Group Size</span>
                                         <span className='font-semibold text-white'>{tour?.['group-size']}</span>
                                     </li>
                                     <li className='w-full flex flex-row justify-between text-[20px]'>
-                                        <span className='font-medium  text-gray-200'>Dates</span>
+                                        <span className='font-medium  text-white'>Dates</span>
                                         <span className='font-semibold text-white '>{tour?.dates}</span>
                                     </li>
                                     <li className='w-full flex flex-row justify-between text-[20px]'>
-                                        <span className='font-medium  text-gray-200'>Starts</span>
+                                        <span className='font-medium  text-white'>Starts</span>
                                         <span className='font-semibold text-white'>{tour?.starts}</span>
                                     </li>
                                     <li className='w-full flex flex-row justify-between text-[20px]'>
-                                        <span className='font-medium  text-gray-200'>Finishes</span>
+                                        <span className='font-medium  text-white'>Finishes</span>
                                         <span className='font-semibold text-white'>{tour?.finishes}</span>
                                     </li>
                                     {Object.entries(tour?.scores).map(([key, val], i)=> {
                                             return (
                                                 <li key={i} className='w-full flex flex-row justify-between text-[20px] relative'>
-                                                    <span className='font-medium text-gray-200 '>{key}</span>
+                                                    <span className='font-medium text-white '>{key}</span>
                                                     <span className='font-semibold' style={{ color: colorGenerator(val) }}>{val}</span>
                                                     <div className='absolute w-[150px] left-[145px] top-[10px] h-[12px] rounded-r-md'
                                                     style={{backgroundColor: colorGenerator(val),
@@ -236,7 +236,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                     })}
                                 </ul>
                                 <div className='w-full h-[90px] flex flex-row justify-between'>
-                                    <span className='font-medium text-[20px] text-gray-200'>Price</span>
+                                    <span className='font-medium text-[20px] text-white'>Price</span>
                                     <span className='font-semibold text-[52px] text-white tracking-wide'>{formatNumber(tour?.price)}</span>
                                 </div>
                             </div>
