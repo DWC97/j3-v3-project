@@ -12,7 +12,7 @@ import { About2 } from "@/components/about/About2";
 export default function Home() {
 
   return (
-      <div className="overflow-x-hidden">
+      <div className="overflow-hidden">
         <Hero/>
         <About2 />
         <TourSelection />

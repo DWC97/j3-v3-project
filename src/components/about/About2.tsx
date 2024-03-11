@@ -21,6 +21,8 @@ const images = [
     "/about/muaythai-polaroid.png"
 ]
 
+const rotation = [3, -1, 2.5, -4, -2, -5, 1, -3.5, -2.5, -0.5]
+
 export function About2(){
 
     const gallery = useRef(null);
@@ -29,17 +31,13 @@ export function About2(){
     const { scrollYProgress } = useScroll({
 
         target: gallery,
-
         offset: ['start end', 'end start']
 
     })
 
     const { height } = dimension;
-    const y = useTransform(scrollYProgress, [0, 1], [0, height * -2])
-    const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 2])
-    const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25])
-
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3])
+    const y = useTransform(scrollYProgress, [0, 1], [0, height * -0.8])
+    const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3])
 
     useEffect( () => {
 
@@ -57,19 +55,20 @@ export function About2(){
       }, [])
 
     return (
-        <main className="main">
-            {/* <div className='h-screen w-full bg-green-200' /> */}
-                <div className="gallery" ref={gallery}>
+        <div className="flex flex-row bg-black h-[1080px]">
+                <div className='flex h-full w-1/2 justify-center items-center '>
+                    <p className='text-white'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui asperiores, aperiam aliquam rem deserunt non eveniet sapiente minus. Libero beatae unde dolorum voluptate minima quod ipsam sapiente cupiditate tempora minus!</p>
+                </div>
+                <div className="gallery ml-[11%] pl-[2%]" ref={gallery}>
                     <div className="galleryWrapper">
-                        <Column images={[images[0], images[1], images[2], images[3]]} y={y}/>
-                        <Column images={[images[4], images[5], images[6], images[7]]} y={y2}/>
+                        <Column images={[images[0], images[1], images[2], images[3], images[4], images[5]]} y={y}/>
+                        <Column images={[images[4], images[5], images[6], images[7], images[8], images[9]]} y={y2}/>
                         {/* <Column images={[images[0], images[1], images[2], images[3]]} y={y3}/>
                         <Column images={[images[4], images[5], images[6], images[7]]} y={y4}/> */}
                         
                     </div>
                 </div>
-            {/* <div className='h-screen w-full bg-green-200' /> */}
-        </main>
+        </div>
     )
 }
 
@@ -87,6 +86,7 @@ const Column = ({images, y}) => {
                     return <div key={i} className="imageContainer">
                     <Image 
                         src={src}
+                        style={{ transform: `rotate(${rotation[i]}deg)`}}
                         alt='image'
                         fill
                     />
