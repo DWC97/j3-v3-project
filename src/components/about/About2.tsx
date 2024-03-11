@@ -6,22 +6,69 @@ import './AboutStyles.css'
 import Image from 'next/image';
 import Lenis from '@studio-freight/lenis'
 
-const images = [
-    "/about/pirate-polaroid.png",
-    "/about/tubing-polaroid.png",
-    "/about/waterpark-polaroid.png",
-    "/about/muaythai-polaroid.png",
-    "/about/pirate-polaroid.png",
-    "/about/tubing-polaroid.png",
-    "/about/waterpark-polaroid.png",
-    "/about/muaythai-polaroid.png",
-    "/about/pirate-polaroid.png",
-    "/about/tubing-polaroid.png",
-    "/about/waterpark-polaroid.png",
-    "/about/muaythai-polaroid.png"
-]
 
-const rotation = [3, -1, 2.5, -4, -2, -5, 1, -3.5, -2.5, -0.5]
+const imageData = [
+    {
+        "id": 1,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 2,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 3,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 4,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 5,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 6,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 7,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 8,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 9,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 10,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 11,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    },
+    {
+        "id": 12,
+        "src": "/about/pirate-polaroid.png",
+        "rotation": 3
+    }
+]
 
 export function About2(){
 
@@ -61,18 +108,15 @@ export function About2(){
                 </div>
                 <div className="gallery ml-[11%] pl-[2%]" ref={gallery}>
                     <div className="galleryWrapper">
-                        <Column images={[images[0], images[1], images[2], images[3], images[4], images[5]]} y={y}/>
-                        <Column images={[images[4], images[5], images[6], images[7], images[8], images[9]]} y={y2}/>
-                        {/* <Column images={[images[0], images[1], images[2], images[3]]} y={y3}/>
-                        <Column images={[images[4], images[5], images[6], images[7]]} y={y4}/> */}
-                        
+                        <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y}/>
+                        <Column imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2}/>                 
                     </div>
                 </div>
         </div>
     )
 }
 
-const Column = ({images, y}) => {
+const Column = ({imagesData, y}) => {
     return (
         <motion.div 
         className="column"
@@ -82,11 +126,11 @@ const Column = ({images, y}) => {
             className="column"
             >
                 {
-                images.map( (src, i) => {
-                    return <div key={i} className="imageContainer">
+                imagesData.map( (image) => {
+                    return <div key={image.id} className="imageContainer">
                     <Image 
-                        src={src}
-                        style={{ transform: `rotate(${rotation[i]}deg)`}}
+                        src={image.src}
+                        style={{ transform: `rotate(${image.rotation}deg)`}}
                         alt='image'
                         fill
                     />
