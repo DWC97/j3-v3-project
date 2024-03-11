@@ -7,13 +7,14 @@ import TourSelection from "@/components/tour-selection/TourSelection";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/Footer";
 import { useState } from 'react';
+import { About2 } from "@/components/about/About2";
 
 export default function Home() {
 
   return (
       <div className="overflow-x-hidden">
         <Hero/>
-        <About />
+        <About2 />
         <TourSelection />
         <Contact />
       </div>
