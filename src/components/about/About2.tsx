@@ -16,47 +16,47 @@ const imageData = [
     {
         "id": 2,
         "src": "/about/tubing-polaroid.png",
-        "rotation": 3
+        "rotation": -3
     },
     {
         "id": 3,
         "src": "/about/joe-polaroid.png",
-        "rotation": 3
+        "rotation": 1
     },
     {
         "id": 4,
         "src": "/about/lagoon-polaroid.png",
-        "rotation": 3
+        "rotation": 2
     },
     {
         "id": 5,
         "src": "/about/pirate-polaroid.png",
-        "rotation": 3
+        "rotation": -2.5
     },
     {
         "id": 6,
         "src": "/about/maya-polaroid.png",
-        "rotation": 3
+        "rotation": 5
     },
     {
         "id": 7,
         "src": "/about/waterpark-polaroid.png",
-        "rotation": 3
+        "rotation": -4
     },
     {
         "id": 8,
         "src": "/about/muaythai-polaroid.png",
-        "rotation": 3
+        "rotation": 1
     },
     {
         "id": 9,
         "src": "/about/elephant-polaroid.png",
-        "rotation": 3
+        "rotation": -2.5
     },
     {
         "id": 10,
         "src": "/about/market-polaroid.png",
-        "rotation": 3
+        "rotation": -1
     },
     {
         "id": 11,
@@ -66,7 +66,7 @@ const imageData = [
     {
         "id": 12,
         "src": "/about/waterpark-polaroid.png",
-        "rotation": 3
+        "rotation": -3
     }
 ]
 

@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import { ActiveSectionContext } from "./ActiveSectionContext"
+import SmoothScrolling from "./SmoothScrolling"
+
 
 export function Providers({ children }){
 
@@ -9,7 +11,9 @@ export function Providers({ children }){
 
     return (
         <ActiveSectionContext.Provider value={{ activeSection, setActiveSection }}>
-            {children}
+            <SmoothScrolling>
+                {children}
+            </SmoothScrolling>
         </ActiveSectionContext.Provider>
     )
 }
