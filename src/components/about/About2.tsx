@@ -10,22 +10,22 @@ import Lenis from '@studio-freight/lenis'
 const imageData = [
     {
         "id": 1,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/maya-polaroid.png",
         "rotation": 3
     },
     {
         "id": 2,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/tubing-polaroid.png",
         "rotation": 3
     },
     {
         "id": 3,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/joe-polaroid.png",
         "rotation": 3
     },
     {
         "id": 4,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/lagoon-polaroid.png",
         "rotation": 3
     },
     {
@@ -35,37 +35,37 @@ const imageData = [
     },
     {
         "id": 6,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/maya-polaroid.png",
         "rotation": 3
     },
     {
         "id": 7,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/waterpark-polaroid.png",
         "rotation": 3
     },
     {
         "id": 8,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/muaythai-polaroid.png",
         "rotation": 3
     },
     {
         "id": 9,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/elephant-polaroid.png",
         "rotation": 3
     },
     {
         "id": 10,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/market-polaroid.png",
         "rotation": 3
     },
     {
         "id": 11,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/phuket-polaroid.png",
         "rotation": 3
     },
     {
         "id": 12,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/waterpark-polaroid.png",
         "rotation": 3
     }
 ]
