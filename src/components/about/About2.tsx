@@ -102,7 +102,7 @@ export function About2(){
       }, [])
 
     return (
-        <div className="flex flex-row bg-black h-[1080px]">
+        <div className="flex flex-row bg-black h-[1080px] relative">
                 <div className='flex h-full w-1/2 justify-center items-center '>
                     <p className='text-white'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui asperiores, aperiam aliquam rem deserunt non eveniet sapiente minus. Libero beatae unde dolorum voluptate minima quod ipsam sapiente cupiditate tempora minus!</p>
                 </div>
@@ -133,6 +133,7 @@ const Column = ({imagesData, y}) => {
                         style={{ transform: `rotate(${image.rotation}deg)`}}
                         alt='image'
                         fill
+                        sizes='height: 360px)'
                     />
                     </div>
                 })
