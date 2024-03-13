@@ -103,15 +103,17 @@ export function About2(){
 
     return (
         <div className="flex flex-row bg-black h-[1080px] relative">
-                <div className='flex h-full w-1/2 justify-center items-center '>
-                    <p className='text-white'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui asperiores, aperiam aliquam rem deserunt non eveniet sapiente minus. Libero beatae unde dolorum voluptate minima quod ipsam sapiente cupiditate tempora minus!</p>
+            <div className='absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-b from-transparent to-custom-blue opacity-20' />
+            <div className='absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-br from-transparent to-custom-blue opacity-20' />
+            <div className='flex h-full w-3/5 justify-center items-center '>
+                <p className='text-white'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui asperiores, aperiam aliquam rem deserunt non eveniet sapiente minus. Libero beatae unde dolorum voluptate minima quod ipsam sapiente cupiditate tempora minus!</p>
+            </div>
+            <div className="gallery " ref={gallery}>
+                <div className="galleryWrapper">
+                    <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y}/>
+                    <Column imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2}/>                 
                 </div>
-                <div className="gallery ml-[11%] pl-[2%]" ref={gallery}>
-                    <div className="galleryWrapper">
-                        <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y}/>
-                        <Column imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2}/>                 
-                    </div>
-                </div>
+            </div>
         </div>
     )
 }
