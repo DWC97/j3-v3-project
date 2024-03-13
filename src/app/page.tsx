@@ -8,6 +8,7 @@ import Contact from "@/components/contact/Contact";
 import Footer from "@/components/Footer";
 import { useEffect, useState } from 'react';
 import { About2 } from "@/components/about/About2";
+import Contact2 from "@/components/contact/Contact2";
 
 export default function Home() {
 
@@ -16,7 +17,7 @@ export default function Home() {
         <Hero/>
         <About2 />
         <TourSelection />
-        <Contact />
+        <Contact2 />
       </div>
   );
 }

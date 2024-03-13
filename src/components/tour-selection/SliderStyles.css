@@ -80,13 +80,13 @@
   color: whitesmoke;
 }
 
-.slider-controler .swiper-button-prev {
-  padding-right: 40px;
+/* .slider-controler .swiper-button-prev {
+  padding-right: 0px;
 }
 
 .slider-controler .swiper-button-next {
-  padding-left: 40px;
-}
+  padding-left: 0px;
+} */
 
 .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
