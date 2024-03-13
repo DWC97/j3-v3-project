@@ -118,8 +118,8 @@ export function About2(){
 
     return (
         <div className="flex flex-row bg-black h-[1080px] relative" id="about" ref={aboutRef}>
-            <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-b from-transparent to-custom-blue opacity-20' />
-            <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-br from-transparent to-custom-blue opacity-10' />
+            {/* <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-b from-transparent to-custom-blue opacity-20' />
+            <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-br from-transparent to-custom-blue opacity-10' /> */}
             <div className='z-10 flex flex-col h-full w-3/5 justify-center px-[7%] -pr-10'>
                 <h3 className='text-custom-blue text-[20px] font-bold mb-2'>JR SEASON 1</h3>
                 <h2 className='text-white font-bold text-[40px] leading-snug mb-4'>Small group party tours starting in 2025</h2>
