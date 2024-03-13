@@ -103,7 +103,6 @@ export function About2(){
     const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3])
 
     useEffect( () => {
-
         const resize = () => {
             setDimension({width: window.innerWidth, height: window.innerHeight})
         }
@@ -121,8 +120,8 @@ export function About2(){
         <div className="flex flex-row bg-black h-[1080px] relative" id="about" ref={aboutRef}>
             <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-b from-transparent to-custom-blue opacity-20' />
             <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-br from-transparent to-custom-blue opacity-10' />
-            <div className='z-10 flex flex-col h-full w-3/5 justify-center px-[5%] -pr-10'>
-                <h3 className='text-custom-blue text-[20px] font-semibold mb-2'>JR Season 1</h3>
+            <div className='z-10 flex flex-col h-full w-3/5 justify-center px-[7%] -pr-10'>
+                <h3 className='text-custom-blue text-[20px] font-bold mb-2'>JR SEASON 1</h3>
                 <h2 className='text-white font-bold text-[40px] leading-snug mb-4'>Small group party tours starting in 2025</h2>
                 <p className='text-white text-[16px] leading-relaxed mb-2'>Ahoy there! If you’re looking to experience the best nightlife & culture South-East Asia has to offer with a rowdy group of travellers and tick-off bucket-list activities along the way, JR has you covered. We make logistics stress-free so you can focus on having a good time. Be warned, we do things a little differently over at JR:</p>
                 <div className='flex flex-row items-center'>
