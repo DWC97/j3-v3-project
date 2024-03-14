@@ -3,13 +3,14 @@ import useDetectSection from "@/hooks/useDetectSection"
 import Link from "next/link"
 import { useState, useEffect, useRef, useContext } from "react"
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 
 export default function Contact2(){
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const contactRef = useRef(null)
     const [isInView] = useDetectSection(contactRef)
+    const [toggle] = useBodyLockScroll() // toggle scroll lock
 
     const [formData, setFormData] = useState({
         email: "",
@@ -38,13 +39,18 @@ export default function Contact2(){
     function handleSubmit(e){
         e.preventDefault()
 
-        MySwal.fire({
+
+        Swal.fire({
             title: "Submitted!",
             text: "We'll get back to you with details when tours are available for booking.",
-            icon: "success"
-          });
+            icon: "success",
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            scrollbarPadding: false,
+            allowOutsideClick: false
+        });
     }
-    const MySwal = withReactContent(Swal)
 
     return (
         <div className="bg-black w-full h-screen min-h-[800px] contact flex flex-row items-center justify-around pt-20" id="contact" ref={contactRef}>

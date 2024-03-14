@@ -11,9 +11,9 @@ export function Providers({ children }){
 
     return (
         <ActiveSectionContext.Provider value={{ activeSection, setActiveSection }}>
-            <SmoothScrolling>
+            {/* <SmoothScrolling> */}
                 {children}
-            </SmoothScrolling>
+            {/* </SmoothScrolling> */}
         </ActiveSectionContext.Provider>
     )
 }
