@@ -44,11 +44,10 @@ export default function Contact2(){
             title: "Submitted!",
             text: "We'll get back to you with details when tours are available for booking.",
             icon: "success",
-            timer: 3000,
+            timer: 5000,
             timerProgressBar: true,
             showConfirmButton: false,
             scrollbarPadding: false,
-            allowOutsideClick: false
         });
     }
 
@@ -68,13 +67,25 @@ export default function Contact2(){
                 <form action="" className="flex flex-col justify-between h-[300px] relative">
                     <input type="text" placeholder="Full name*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"
                     /> 
-                    <div className="absolute text-red-600  -top-6">Name is required</div>  
+                    <div className="absolute text-[red] -top-6">Name is required</div>  
+                    <div className="absolute top-24 left-56" title="Please include an '@' in the email address">
+                        <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
+                    </div>
                     <input type="text" placeholder="Email*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"
                     />   
-                    <div className="absolute text-red-600 top-16">Enter a valid email</div>  
-                    <div className="flex flex-row w-full justify-between">
-                        <input type="text" placeholder="Destination*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"/>  
-                        <input type="number" placeholder="No. of people*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"/>  
+                    <div className="absolute text-[red] top-16">Enter a valid email</div>  
+                    <div className="flex flex-row w-full justify-between items-center">
+                        <div className="w-[240px]">
+                            <select id="country" name="country" className="block w-full p-2 text-gray-300 bg-black border-white border-b outline-none">
+                                <option>Northern Thailand</option>
+                                <option>Southern Thailand</option>
+                                <option>Vietnam</option>
+                                <option>Bali</option>
+                                <option>Philippines</option>
+                            </select>
+                        </div>
+                        {/* <input type="text" placeholder="Destination*" className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"/>   */}
+                        <input type="number" min={1} max={4} defaultValue={1} className="w-[240px] placeholder-gray-300 text-white bg-transparent border-b border-white p-2 focus:outline-none"/>  
                     </div>
                     <div className="absolute text-white top-[9.5rem]">Destination</div>  
                     <div className="absolute text-white right-[140px] top-[9.5rem]">No. of people</div>  
