@@ -11,17 +11,20 @@ export default function Contact2(){
     const contactRef = useRef(null)
     const [isInView] = useDetectSection(contactRef)
 
+    useEffect(() => {
+        if (isInView){
+            setActiveSection("contact")
+        }
+    }, [isInView])
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         number: 1
     });
-
-    // let emailValid = formData.email !== "" && !formData.email.includes("@") 
-    // let nameValid = formData.name.length > 0 && !/[^a-z]/i.test(formData.name)
     const [nameValid, setNameValid] = useState(true)
     const [emailValid, setEmailValid] = useState(true)
-    let submittable = nameValid && emailValid
+    let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@")
 
     function handleInputChange(e){
     const { name, value } = e.target;
@@ -56,29 +59,18 @@ export default function Contact2(){
     });
     };
 
-
-    useEffect(() => {
-        if (isInView){
-            setActiveSection("contact")
-        }
-    }, [isInView])
-
     function handleSubmit(e){
         e.preventDefault()
 
         if (formData.name === ""){
             setNameValid(false)
-            if (formData.email == "" || !formData.email.includes("@")){
-                setEmailValid(false)
-                return
-            }
-            return
         }
 
         if (formData.email == "" || !formData.email.includes("@")){
             setEmailValid(false)
-            return
         }
+
+        if (!submittable) return
 
 
         Swal.fire({
@@ -146,13 +138,17 @@ export default function Contact2(){
                         onChange={handleInputChange}
                         />  
                     </div>
-                    <div className="absolute text-white top-[9.5rem]">Destination</div>  
-                    <div className="absolute text-white right-[140px] top-[9.5rem]">No. of people</div>  
-                    <button className="font-semibold  text-white w-full self-center py-2 rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink "
+                    <div className="absolute text-white top-[9.25rem]">Destination</div>  
+                    <div className="absolute text-white right-[140px] top-[9.25rem]">No. of people</div>  
+                    <div className={`${submittable ? "cursor-pointer" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
                     onClick={(e) => handleSubmit(e)}
                     >
-                        SUBMIT
-                    </button>
+                        <div className={`w-full h-full rounded-md py-[6px] ${submittable ? "bg-transparent" : "bg-black"}`}>
+                            <div className={`w-full flex justify-center items-center ${submittable ? "text-white" : "bg-gradient-to-r from-custom-orange to-custom-pink text-transparent bg-clip-text"}`}>
+                                SUBMIT
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 <p className="text-white text-[14px]">
                     Please note. Jolly Roger Tours is currently going through the incorporation and licensing process in the UK and will launch officially in late 2024. 
