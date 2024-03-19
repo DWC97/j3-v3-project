@@ -3,11 +3,11 @@
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
 import SplitType from 'split-type'
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./HeroStyles.css"
 import useDetectSection from "@/hooks/useDetectSection";
 import { ActiveSectionContext } from "@/context/ActiveSectionContext";
-import Lottie from "lottie-react";
+import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
 
 
@@ -23,6 +23,8 @@ export default function Hero(){
     let foliage = useRef(null)
     const heroRef = useRef(null)
     const [isInView] = useDetectSection(heroRef)
+    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
+    const [scrollAnimation, setScrollAnimation] = useState(true)
 
     useEffect(() => {
         if (isInView){
@@ -104,8 +106,21 @@ export default function Hero(){
         document.location.reload()
     }
 
+    function scrollHandle(){
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            setScrollAnimation(false)
+        }
+        else {
+            setScrollAnimation(true)
+        }
+    }
+
     function loadEvents(){
         if (typeof window !== 'undefined') {
+            window.onscroll = function() {
+                scrollHandle()
+            }
+
             setTimeout(() => {
                 window.addEventListener("mousemove", handleMousemove)
             }, 3000)
@@ -118,6 +133,7 @@ export default function Hero(){
             if (typeof window !== 'undefined') {
                 window.removeEventListener("mousemove", handleMousemove);
                 window.removeEventListener("resize", handleResize);
+                window.removeEventListener("scroll", scrollHandle);
             }
         };
     }
@@ -143,8 +159,8 @@ export default function Hero(){
                 <img src="/hero/boat3.png" className="boat3 parallax " data-speedx="0.04" data-speedy="0.04" data-speedz="0.84" data-rotation="0.23"/>
                 <img src="/hero/foliage.png" className="foliage parallax" data-speedx="0.01" data-speedy="0.01" data-speedz="0.8" data-rotation="0.25" ref={foliage}/>
             </div>
-            <div className="absolute w-full bottom-[30vh] left-0 flex justify-center items-center">
-                <Lottie animationData={animationData} className="w-16"/>
+            <div className={`absolute w-full bottom-[30vh] ${scrollAnimation ? " opacity-100" : "opacity-0"}  left-0 flex justify-center items-center ease-in-out duration-1000`}>
+                <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-16" loop={true} />
             </div>
         </div>
     )
