@@ -10,7 +10,7 @@ import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 
 export default function Navbar(){
 
-    let { activeSection, setActiveSection } = useContext(ActiveSectionContext)
+    let { activeSection, setActiveSection, setScrollAnimation } = useContext(ActiveSectionContext)
     let navbar = useRef(null)
     const [isShrunk, setIsShrunk] = useState(false) // set height of navbar based on scroll distance from top
     const [isFixed, setIsFixed] = useState(false) // set fixed position of navbar based on scroll distance from top
@@ -29,26 +29,32 @@ export default function Navbar(){
         } 
     }, [path])
 
-    useGSAP(() => {
-        gsap.fromTo(
-            navbar.current,
-            { 
-              y: -50,
-              opacity: 0
-            },
-            {
-              y: 0,
-              opacity: 1,
-              stagger: 0.05,
-              duration: 3,
-              delay: 2,
-              ease: 'power4.out',
-            }
-        )
-    })
+    // useGSAP(() => {
+    //     gsap.fromTo(
+    //         navbar.current,
+    //         { 
+    //           y: -50,
+    //           opacity: 0
+    //         },
+    //         {
+    //           y: 0,
+    //           opacity: 1,
+    //           stagger: 0.05,
+    //           duration: 3,
+    //           delay: 2,
+    //           ease: 'power4.out',
+    //         }
+    //     )
+    // })
     
     // managing navbar height and visibility based on scroll position from top of home page
     function scrollHandle(){
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            setScrollAnimation(false)
+        }
+        else {
+            setScrollAnimation(true)
+        }
         if (document.body.scrollTop > (window.innerHeight - 10) || document.documentElement.scrollTop > (window.innerHeight - 10)) {
             setIsDropdown(true)
             setIsFixed(true)

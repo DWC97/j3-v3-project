@@ -13,7 +13,7 @@ import animationData from "@/animations/scroll-animation.json"
 
 export default function Hero(){
 
-    let { setActiveSection } = useContext(ActiveSectionContext)
+    let { setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext)
     let parallaxEl: any[] = []
     let xValue = 0
     let yValue = 0
@@ -24,7 +24,6 @@ export default function Hero(){
     const heroRef = useRef(null)
     const [isInView] = useDetectSection(heroRef)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
-    const [scrollAnimation, setScrollAnimation] = useState(false)
 
     useEffect(() => {
         if (isInView){
@@ -110,21 +109,9 @@ export default function Hero(){
         document.location.reload()
     }
 
-    function scrollHandle(){
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            setScrollAnimation(false)
-        }
-        else {
-            setScrollAnimation(true)
-        }
-    }
 
     function loadEvents(){
         if (typeof window !== 'undefined') {
-            window.onscroll = function() {
-                scrollHandle()
-            }
-
             setTimeout(() => {
                 window.addEventListener("mousemove", handleMousemove)
             }, 3000)
@@ -137,7 +124,6 @@ export default function Hero(){
             if (typeof window !== 'undefined') {
                 window.removeEventListener("mousemove", handleMousemove);
                 window.removeEventListener("resize", handleResize);
-                window.removeEventListener("scroll", scrollHandle);
             }
         };
     }
