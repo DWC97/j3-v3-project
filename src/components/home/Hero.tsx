@@ -7,6 +7,8 @@ import { useContext, useEffect, useRef } from "react";
 import "./HeroStyles.css"
 import useDetectSection from "@/hooks/useDetectSection";
 import { ActiveSectionContext } from "@/context/ActiveSectionContext";
+import Lottie from "lottie-react";
+import animationData from "@/animations/scroll-animation.json"
 
 
 export default function Hero(){
@@ -141,7 +143,9 @@ export default function Hero(){
                 <img src="/hero/boat3.png" className="boat3 parallax " data-speedx="0.04" data-speedy="0.04" data-speedz="0.84" data-rotation="0.23"/>
                 <img src="/hero/foliage.png" className="foliage parallax" data-speedx="0.01" data-speedy="0.01" data-speedz="0.8" data-rotation="0.25" ref={foliage}/>
             </div>
-            
+            <div className="absolute w-full bottom-[30vh] left-0 flex justify-center items-center">
+                <Lottie animationData={animationData} className="w-16"/>
+            </div>
         </div>
     )
 }
