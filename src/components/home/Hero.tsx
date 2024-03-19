@@ -24,7 +24,7 @@ export default function Hero(){
     const heroRef = useRef(null)
     const [isInView] = useDetectSection(heroRef)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
-    const [scrollAnimation, setScrollAnimation] = useState(true)
+    const [scrollAnimation, setScrollAnimation] = useState(false)
 
     useEffect(() => {
         if (isInView){
@@ -36,6 +36,10 @@ export default function Hero(){
         parallaxEl = Array.from(
             document.getElementsByClassName('parallax')
         ); 
+
+        setTimeout(() => {
+            setScrollAnimation(true)
+        }, 5000);
     }, []);
 
     useGSAP(() => {
