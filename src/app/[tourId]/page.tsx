@@ -182,9 +182,8 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             >
                                 <Masonry columnsCount={3} gutter="15px">
                                     {tour?.gallery.map((image, i) => (
-                                        <div className='relative overflow-hidden hover:opacity-70'>
+                                        <div className='relative overflow-hidden hover:opacity-70' key={i}>
                                             <img
-                                            key={i}
                                             src={image}
                                             style={{width: "100%", display: "block", cursor: "pointer"}}
                                             onClick={() => viewImage(image, i)}
@@ -198,7 +197,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     </div>
                     <div className=' min-w-[400px] h-[815px] flex flex-col justify-between sticky -top-[220px] tall:-top-[80px] vtall:top-[60px]'>
                         <div className='min-h-[700px] w-full border border-gray-500 rounded-lg relative overflow-hidden'>
-                            <img src="/tour-page/info-card2.jpg" className='absolute object-cover object-center h-full -z-20'/>
+                            <img src={tour?.cardSrc} className='absolute object-cover object-center h-full -z-20'/>
                             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-30 -z-10'/>
                             <div className='flex flex-col w-full p-5 h-[700px] justify-between'>
                                 <h3 className='font-semibold text-[36px] text-white'>Overview</h3>
