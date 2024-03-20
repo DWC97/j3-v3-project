@@ -1,15 +1,15 @@
 import { motion, useInView, useAnimation } from "framer-motion"
 import { useEffect, useRef } from "react"
 
-export function Reveal({ children }: JSX.Element){
+export function Slide({ children }: JSX.Element){
 
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true })
-    const mainControls = useAnimation()
+    const slideControls = useAnimation()
 
     useEffect(() => {
         if (isInView){
-            mainControls.start("visible")
+            slideControls.start("visible")
         }
     }, [isInView])
 
@@ -19,11 +19,11 @@ export function Reveal({ children }: JSX.Element){
         className="">
             <motion.div
                 variants={{
-                    hidden: { opacity: 0, y: 75 },
-                    visible: { opacity: 1, y: 0 }
+                    hidden: { opacity: 0, x: -300 },
+                    visible: { opacity: 1, x: 0 }
                 }}
                 initial="hidden"
-                animate={mainControls}
+                animate={slideControls}
                 transition={{ duration: 1, delay: 0.25 }}
             >{children}</motion.div>
         </div>

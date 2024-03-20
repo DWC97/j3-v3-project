@@ -18,6 +18,7 @@ import { formatNumber } from '@/utilities/Utils';
 import useDetectSection from '@/hooks/useDetectSection';
 import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 import { Reveal } from '@/context/Reveal';
+import { Slide } from '@/context/Slide';
 
 export default function TourSelection(){
 
@@ -41,7 +42,7 @@ export default function TourSelection(){
                         CHECK OUT OUR <span className="text-custom-yellow">UPCOMING TRIPS</span>!
                     </h2>
                 </Reveal>
-                <div className='w-full flex justify-center items-center'>
+                <Slide><div className='w-full flex justify-center items-center'>
                     <Swiper
                     effect={'coverflow'}
                     grabCursor={true}
@@ -104,7 +105,7 @@ export default function TourSelection(){
                             <div className="swiper-pagination"></div>
                         </div>
                     </Swiper>
-                </div>
+                </div></Slide>
                 <Reveal>
                     <p className="w-screen text-[16px] md:text-[18px] lg:text-[20px] text-white text-center px-2">
                         Each tour includes transport, accommodation and activities.
