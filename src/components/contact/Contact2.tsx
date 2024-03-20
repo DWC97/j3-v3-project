@@ -26,7 +26,7 @@ export default function Contact2(){
     });
     const [nameValid, setNameValid] = useState(true)
     const [emailValid, setEmailValid] = useState(true)
-    let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@")
+    let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@") && formData.email.includes(".com")
 
     function handleInputChange(e){
     const { name, value } = e.target;
@@ -51,7 +51,7 @@ export default function Contact2(){
         setNameValid(true)
     }
 
-    if (formData.email !== "" && formData.email.includes("@")){
+    if (formData.email !== "" && formData.email.includes("@") && formData.email.includes(".co")){
         setEmailValid(true)
     }
 
@@ -68,7 +68,7 @@ export default function Contact2(){
             setNameValid(false)
         }
 
-        if (formData.email == "" || !formData.email.includes("@")){
+        if (formData.email == "" || !formData.email.includes("@") || !formData.email.includes(".com")){
             setEmailValid(false)
         }
 
@@ -145,6 +145,7 @@ export default function Contact2(){
                     <div className="absolute text-white right-[140px] top-[9.25rem]">No. of people</div>  
                     <div className={`${submittable ? "cursor-pointer" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
                     onClick={(e) => handleSubmit(e)}
+                    title={submittable ? "" : "Please fill out each field in the form correctly"}
                     >
                         <div className={`w-full h-full rounded-md py-[6px] ${submittable ? "bg-transparent" : "bg-black"}`}>
                             <div className={`w-full flex justify-center items-center ${submittable ? "text-white" : "bg-gradient-to-r from-custom-orange to-custom-pink text-transparent bg-clip-text"}`}>
