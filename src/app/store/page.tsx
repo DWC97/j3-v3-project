@@ -15,7 +15,7 @@ export default function Store(){
                 </div>
             </div>
             <div className="w-full flex flex-row justify-between pt-12">
-                <div className="w-full flex flex-col">
+                <div className="w-1/4 flex flex-col">
                     <div className="w-full flex flex-col">
                         <span className="text-white pb-4">Category</span>
                         <div className="pb-1">
@@ -57,6 +57,40 @@ export default function Store(){
                                 Gray
                             </label>
                         </div>
+                    </div>
+                </div>
+                <div className="grid grid-cols-3 gap-10 w-3/4">
+                    <div className="flex flex-col justify-between">
+                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" className="w-full aspect-[5/6] object-cover rounded-t-lg"/>
+                        <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
+                            <span>Basic Tee</span>
+                            <span className="font-semibold">£25</span>
+                        </div>
+                        <span className="text-gray-300">Black</span>
+                    </div>
+                    <div className="flex flex-col justify-between">
+                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" className="w-full aspect-[5/6] object-cover"/>
+                        <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
+                            <span>Basic Tee</span>
+                            <span className="font-semibold">£25</span>
+                        </div>
+                        <span className="text-gray-300">Black</span>
+                    </div>
+                    <div className="flex flex-col justify-between">
+                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" className="w-full aspect-[5/6] object-cover"/>
+                        <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
+                            <span>Basic Tee</span>
+                            <span className="font-semibold">£25</span>
+                        </div>
+                        <span className="text-gray-300">Black</span>
+                    </div>
+                    <div className="flex flex-col justify-between p">
+                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" className="w-full aspect-[5/6] object-cover"/>
+                        <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
+                            <span>Basic Tee</span>
+                            <span className="font-semibold">£25</span>
+                        </div>
+                        <span className="text-gray-300">Black</span>
                     </div>
                 </div>
             </div>
