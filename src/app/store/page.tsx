@@ -14,6 +14,52 @@ export default function Store(){
                     </div>
                 </div>
             </div>
+            <div className="w-full flex flex-row justify-between pt-12">
+                <div className="w-full flex flex-col">
+                    <div className="w-full flex flex-col">
+                        <span className="text-white pb-4">Category</span>
+                        <div className="pb-1">
+                            <label className="text-gray-300">
+                                <input type="checkbox" className="mr-3"/>
+                                Tees
+                            </label>
+                        </div>
+                        <div className="pb-1">
+                            <label className="text-gray-300">
+                                <input type="checkbox" className="mr-3"/>
+                                Hoodies
+                            </label>
+                        </div>
+                        <div className="pb-1">
+                            <label className="text-gray-300">
+                                <input type="checkbox" className="mr-3"/>
+                                Wife Beaters
+                            </label>
+                        </div>
+                        <div className="">
+                            <label className="text-gray-300">
+                                <input type="checkbox" className="mr-3"/>
+                                Accesories
+                            </label>
+                        </div>
+                    </div>
+                    <div className="w-full flex flex-col mt-12">
+                        <span className="text-white pb-4">Color</span>
+                        <div className="pb-1">
+                            <label className="text-gray-300">
+                                <input type="checkbox" className="mr-3"/>
+                                Black
+                            </label>
+                        </div>
+                        <div className="pb-1">
+                            <label className="text-gray-300">
+                                <input type="checkbox" className="mr-3"/>
+                                Gray
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
