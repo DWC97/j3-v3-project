@@ -1,0 +1,89 @@
+{
+    "items":[
+        {
+            "id": 1,
+            "name": "JR Tee",
+            "type": "t-shirt",
+            "price": 25,
+            "color": "Black",
+            "description": "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit.",
+            "gallery": [
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Thailand Tee",
+            "type": "t-shirt",
+            "price": 25,
+            "color": "White",
+            "description": "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit.",
+            "gallery": [
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "JR Hoodie",
+            "type": "hoodie",
+            "price": 35,
+            "color": "Black",
+            "description": "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit.",
+            "gallery": [
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "JR Tank Top",
+            "type": "tank-top",
+            "price": 25,
+            "color": "Black",
+            "description": "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit.",
+            "gallery": [
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+            ]
+        },
+        {
+            "id": 5,
+            "name": "JR Beach Towel",
+            "type": "towel",
+            "price": 40,
+            "color": "Black",
+            "description": "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit.",
+            "gallery": [
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+            ]
+        },
+        {
+            "id": 6,
+            "name": "JR Phone Case",
+            "type": "phone-case",
+            "price": 20,
+            "color": "Black",
+            "description": "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit.",
+            "gallery": [
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+                "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+            ]
+        }
+    ]
+    
+}
