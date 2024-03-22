@@ -8,22 +8,49 @@ export default function Store(){
 
     const [sortBy, setSortBy] = useState('popularity');
     const [showSortOptions, setShowSortOptions] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedColor, setSelectedColor] = useState(null);
 
-    function handleSortChange(e){
-        setSortBy(e.target.value);
-    }
+    const filteredItems = storeItemsData.items.filter(item => {
+        if (selectedCategory && selectedCategory !== item.type) {
+            return false
+        }
+        if (selectedColor && selectedColor !== item.color) {
+            return false
+        }
+        return true
+    })
 
-    const sortedProducts = storeItemsData.items.sort((a, b) => {
+    const sortedItems = filteredItems.sort((a, b) => {
         if (sortBy === 'popularity') {
-          return b.popularity - a.popularity;
+            return b.popularity - a.popularity;
         } else if (sortBy === 'price') {
-          return a.price - b.price;
+            return a.price - b.price;
+        }
+        else {
+            return b.price - a.price;
         }
     });
 
     let domNode = useClickOutside(() => {
         setShowSortOptions(false)
     })
+
+    const handleCategoryChange = (category) => {
+        if (selectedCategory === category) {
+            setSelectedCategory(null);
+        } else {
+            setSelectedCategory(category);
+        }
+    };
+    
+    const handleColorChange = (color) => {
+        if (selectedColor === color) {
+            setSelectedColor(null);
+        } else {
+            setSelectedColor(color);
+        }
+    };
 
     return (
         <div className="bg-black min-h-screen w-full px-12 pt-[180px]">
@@ -39,19 +66,25 @@ export default function Store(){
                         
                     </div>
                     {showSortOptions && 
-                        <ul className="absolute bg-white top-8 right-0 w-[140px] rounded-md overflow-hidden" ref={domNode}>
+                        <ul className="absolute bg-white top-8 right-0 rounded-md overflow-hidden" ref={domNode}>
                             <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "popularity" ? "text-black" : "text-gray-500"} p-3`}
                             onClick={() => {
                                 setSortBy("popularity")
                                 setShowSortOptions(!showSortOptions)
                             }}
-                            >Popularity</li>
+                            >Most Popular</li>
                             <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "price" ? "text-black" : "text-gray-500"} p-3`}
                             onClick={() => {
                                 setSortBy("price")
                                 setShowSortOptions(!showSortOptions)
                             }}
-                            >Price</li>
+                            >Price: Low to High</li>
+                            <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "price" ? "text-black" : "text-gray-500"} p-3`}
+                            onClick={() => {
+                                setSortBy("price-high")
+                                setShowSortOptions(!showSortOptions)
+                            }}
+                            >Price: High to Low</li>
                         </ul>
                         }
                 </div>
@@ -62,25 +95,41 @@ export default function Store(){
                         <span className="text-white pb-4">Category</span>
                         <div className="pb-1">
                             <label className="text-gray-300">
-                                <input type="checkbox" className="mr-3"/>
+                                <input type="checkbox" 
+                                className="mr-3"
+                                checked={selectedCategory === 't-shirt'}
+                                onChange={() => handleCategoryChange('t-shirt')}
+                                />
                                 Tees
                             </label>
                         </div>
                         <div className="pb-1">
                             <label className="text-gray-300">
-                                <input type="checkbox" className="mr-3"/>
+                                <input type="checkbox" 
+                                className="mr-3"
+                                checked={selectedCategory === 'hoodie'}
+                                onChange={() => handleCategoryChange('hoodie')}
+                                />
                                 Hoodies
                             </label>
                         </div>
                         <div className="pb-1">
                             <label className="text-gray-300">
-                                <input type="checkbox" className="mr-3"/>
-                                Wife Beaters
+                                <input type="checkbox" 
+                                className="mr-3"
+                                checked={selectedCategory === 'tank-top'}
+                                onChange={() => handleCategoryChange('tank-top')}
+                                />
+                                Tank Tops
                             </label>
                         </div>
                         <div className="">
                             <label className="text-gray-300">
-                                <input type="checkbox" className="mr-3"/>
+                                <input type="checkbox" 
+                                className="mr-3"
+                                checked={selectedCategory === 'accessory'}
+                                onChange={() => handleCategoryChange('accessory')}
+                                />
                                 Accesories
                             </label>
                         </div>
@@ -89,20 +138,28 @@ export default function Store(){
                         <span className="text-white pb-4">Color</span>
                         <div className="pb-1">
                             <label className="text-gray-300">
-                                <input type="checkbox" className="mr-3"/>
+                                <input type="checkbox" 
+                                className="mr-3"
+                                checked={selectedColor === 'Black'}
+                                onChange={() => handleColorChange('Black')}
+                                />
                                 Black
                             </label>
                         </div>
                         <div className="pb-1">
                             <label className="text-gray-300">
-                                <input type="checkbox" className="mr-3"/>
+                                <input type="checkbox" 
+                                className="mr-3"
+                                checked={selectedColor === 'White'}
+                                onChange={() => handleColorChange('White')}
+                                />
                                 White
                             </label>
                         </div>
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-10 w-3/4">
-                    {sortedProducts.map(item => {
+                    {sortedItems.map(item => {
                         return (
                             <div className="flex flex-col justify-between">
                                 <img src={item.gallery[0]} className="w-full aspect-[5/6] object-cover rounded-t-lg"/>

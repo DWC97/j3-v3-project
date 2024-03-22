@@ -63,7 +63,7 @@
         {
             "id": 5,
             "name": "JR Beach Towel",
-            "type": "towel",
+            "type": "accessory",
             "price": 40,
             "color": "Black",
             "description": "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit.",
@@ -78,7 +78,7 @@
         {
             "id": 6,
             "name": "JR Phone Case",
-            "type": "phone-case",
+            "type": "accessory",
             "price": 20,
             "color": "Black",
             "description": "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit.",
