@@ -3,6 +3,7 @@
 import storeItemsData from "@/data/storeItems.json"
 import { useState } from "react";
 import { useClickOutside } from '@/hooks/useClickOutside';
+import Link from 'next/link'
 
 export default function Store(){
 
@@ -161,14 +162,14 @@ export default function Store(){
                 <div className="grid grid-cols-3 gap-10 w-3/4">
                     {sortedItems.length > 0 ? sortedItems.map(item => {
                         return (
-                            <div className="flex flex-col justify-between">
+                            <Link href={`/store/${item.name}`} key={item.id} className="flex flex-col justify-between">
                                 <img src={item.gallery[0]} className="w-full aspect-[5/6] object-cover rounded-t-lg"/>
                                 <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
                                     <span>{item.name}</span>
                                     <span className="font-semibold">£{item.price}</span>
                                 </div>
                                 <span className="text-gray-300">{item.color}</span>
-                            </div>
+                            </Link>
                         )
                     })
                     :
