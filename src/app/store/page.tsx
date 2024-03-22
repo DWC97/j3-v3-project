@@ -2,6 +2,7 @@
 
 import storeItemsData from "@/data/storeItems.json"
 import { useState } from "react";
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 export default function Store(){
 
@@ -20,6 +21,10 @@ export default function Store(){
         }
     });
 
+    let domNode = useClickOutside(() => {
+        setShowSortOptions(false)
+    })
+
     return (
         <div className="bg-black min-h-screen w-full px-12 pt-[180px]">
             <div className="w-full h-[180px] border-b border-gray-300 flex flex-col justify-center">
@@ -34,9 +39,19 @@ export default function Store(){
                         
                     </div>
                     {showSortOptions && 
-                        <ul className="absolute bg-white top-8 right-0 rounded-md overflow-hidden">
-                            <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "popularity" ? "text-black" : "text-gray-500"} p-4`}>Popularity</li>
-                            <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "price" ? "text-black" : "text-gray-500"} p-4`}>Price</li>
+                        <ul className="absolute bg-white top-8 right-0 w-[140px] rounded-md overflow-hidden" ref={domNode}>
+                            <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "popularity" ? "text-black" : "text-gray-500"} p-3`}
+                            onClick={() => {
+                                setSortBy("popularity")
+                                setShowSortOptions(!showSortOptions)
+                            }}
+                            >Popularity</li>
+                            <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "price" ? "text-black" : "text-gray-500"} p-3`}
+                            onClick={() => {
+                                setSortBy("price")
+                                setShowSortOptions(!showSortOptions)
+                            }}
+                            >Price</li>
                         </ul>
                         }
                 </div>
