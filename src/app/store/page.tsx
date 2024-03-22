@@ -159,7 +159,7 @@ export default function Store(){
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-10 w-3/4">
-                    {sortedItems.map(item => {
+                    {sortedItems.length > 0 ? sortedItems.map(item => {
                         return (
                             <div className="flex flex-col justify-between">
                                 <img src={item.gallery[0]} className="w-full aspect-[5/6] object-cover rounded-t-lg"/>
@@ -170,7 +170,12 @@ export default function Store(){
                                 <span className="text-gray-300">{item.color}</span>
                             </div>
                         )
-                    })}
+                    })
+                    :
+                    <div className="text-white text-[20px]">
+                        No results found...
+                    </div>
+                    }
                 </div>
             </div>
         </div>
