@@ -12,7 +12,8 @@
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-            ]
+            ],
+            "popularity": 9
         },
         {
             "id": 2,
@@ -26,7 +27,8 @@
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-            ]
+            ],
+            "popularity": 7
         },
         {
             "id": 3,
@@ -40,7 +42,8 @@
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-            ]
+            ],
+            "popularity": 3
         },
         {
             "id": 4,
@@ -54,7 +57,8 @@
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-            ]
+            ],
+            "popularity": 8
         },
         {
             "id": 5,
@@ -68,7 +72,8 @@
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-            ]
+            ],
+            "popularity": 5
         },
         {
             "id": 6,
@@ -82,7 +87,8 @@
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
                 "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-            ]
+            ],
+            "popularity": 4
         }
     ]
     
