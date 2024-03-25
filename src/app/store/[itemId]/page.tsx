@@ -1,6 +1,7 @@
 "use client"
 
 import storeItemsData from "@/data/storeItems.json"
+import Link from "next/link"
 import { useState } from "react"
 
 export default function itemDetails({ params }: { params: { itemId: string }}){
@@ -9,11 +10,16 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
         return item.name === params.itemId.replaceAll("%20", " ")
     })
     const [activeSize, setActiveSize] = useState("XS")
+    const [activeSlide, setActiveSlide] = useState(0)
    
 
     return (
-        <div className="w-full min-h-screen bg-black px-12 pt-[180px]">
-            <div className="w-full flex flex-row-reverse justify-between pb-12">
+        <div className="w-full min-h-screen bg-black px-12 pt-[120px]">
+            <Link href={"/store"} className="mb-[60px] flex flex-row items-center w-full">
+                    <span className="text-gray-200 text-[14px] font-semibold">BACK TO PRODUCTS</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className='pl-3' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
+            </Link>
+            <div className="w-full flex flex-row-reverse justify-between pb-12 gap-8">
                 <div className="flex flex-col w-1/2">
                     <h2 className="text-white font-bold text-[32px]">{item?.name}</h2>
                     <span className="text-white text-[36px]">£{item?.price}</span>
@@ -57,6 +63,20 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                             <span className="text-white text-[14px] my-1">Loyalty rewards</span>
                             <span className="text-gray-300 text-[14px]">Earn store credit with purchases</span>
                         </div>
+                    </div>
+                </div>
+                <div className="flex flex-col w-1/2">
+                    <img src={item?.gallery[activeSlide]} className="w-full mb-8 rounded-lg"/>
+                    <div className="flex flex-row w-full gap-6">
+                        {item?.gallery.map((img, i) => {
+                            return (
+                                <div key={i} className={`w-full object-contain rounded-md overflow-hidden cursor-pointer ${activeSlide === i ? "border-2 border-custom-pink" : "border-2 border-transparent"}`}
+                                onClick={() => setActiveSlide(i)}
+                                >
+                                    <img src={img}/>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
