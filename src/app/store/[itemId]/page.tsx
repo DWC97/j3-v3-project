@@ -2,7 +2,9 @@
 
 import storeItemsData from "@/data/storeItems.json"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import Lottie, {LottieRefCurrentProps} from "lottie-react";
+import animationData from "@/animations/success.json"
 
 export default function itemDetails({ params }: { params: { itemId: string }}){
     
@@ -11,6 +13,14 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
     })
     const [activeSize, setActiveSize] = useState("XS")
     const [activeSlide, setActiveSlide] = useState(0)
+    const [submitted, setSubmitted] = useState(false)
+    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setSubmitted(false)
+    //     }, 2000);
+    // }, [submitted])
    
 
     return (
@@ -52,7 +62,20 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                         })}
                     </ul>
                     <div className="w-full flex flex-row justify-between items-center mt-8">
-                        <button className="w-2/3 py-3 text-white bg-custom-pink rounded-md ">Add to cart</button>
+                        <div className={`w-2/3 py-3 flex flex-row justify-center items-center rounded-md font-semibold ${submitted ? "bg-white" : "bg-custom-pink"} ease-in-out duration-300 cursor-pointer`}
+                        onClick={() => setSubmitted(true)}
+                        >
+                            {submitted ? 
+                            <div className="flex flex-row justify-center items-center gap-4">
+                                <span className="text-[#00c853]">Added</span>
+                                <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-6" loop={false} 
+                                onComplete={() => setSubmitted(false)}
+                                />
+                            </div>
+                            : 
+                            <span className="text-white">Add to cart</span>
+                            }
+                        </div>
                         <div className="w-1/3 flex flex-row justify-end gap-8 items-center h-full">
                             <span className="text-white">Quantity</span>
                             <input type="number" value={1} className="w-12 text-center rounded-md flex h-8"/>
