@@ -163,7 +163,7 @@ export default function Store(){
                     {sortedItems.length > 0 ? sortedItems.map(item => {
                         return (
                             <Link href={`/store/${item.name}`} key={item.id} className="flex flex-col justify-between">
-                                <img src={item.gallery[0]} className="w-full aspect-[5/6] object-cover rounded-t-lg"/>
+                                <img src={item.gallery[0]} className="hover:opacity-70 w-full aspect-[5/6] object-cover rounded-t-lg"/>
                                 <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
                                     <span>{item.name}</span>
                                     <span className="font-semibold">£{item.price}</span>
