@@ -24,7 +24,7 @@ export default function Navbar(){
             setActiveSection("")
         }
         
-        if (path === "/store"){
+        if (path.includes("/store")){
             setActiveSection("store")
         } 
     }, [path])
