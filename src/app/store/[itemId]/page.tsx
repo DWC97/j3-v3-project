@@ -2,15 +2,17 @@
 
 import storeItemsData from "@/data/storeItems.json"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/success.json"
+import { ShoppingCartContext } from "@/context/ShoppingCartContext";
 
 export default function itemDetails({ params }: { params: { itemId: string }}){
     
     const item = storeItemsData.items.find(item => {
         return item.name === params.itemId.replaceAll("%20", " ")
     })
+    const { increaseCartQuantity } = useContext(ShoppingCartContext)
     const [activeSize, setActiveSize] = useState("XS")
     const [activeSlide, setActiveSlide] = useState(0)
     const [submitted, setSubmitted] = useState(false)
@@ -56,7 +58,13 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                     </ul>
                     <div className="w-full flex flex-row justify-between items-center mt-8">
                         <div className={`w-2/3 py-3 flex flex-row justify-center items-center rounded-md font-semibold ${submitted ? "bg-white" : "bg-custom-pink"} ease-in-out duration-300 cursor-pointer`}
-                        onClick={() => setSubmitted(true)}
+                        onClick={() => {
+                            if (submitted) return
+                            else {
+                                increaseCartQuantity(item.id)
+                                setSubmitted(true)
+                            }
+                        }}
                         >
                             {submitted ? 
                             <div className="flex flex-row justify-center items-center gap-4">
