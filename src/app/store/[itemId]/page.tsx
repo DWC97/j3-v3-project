@@ -14,14 +14,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
     const [activeSize, setActiveSize] = useState("XS")
     const [activeSlide, setActiveSlide] = useState(0)
     const [submitted, setSubmitted] = useState(false)
-    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setSubmitted(false)
-    //     }, 2000);
-    // }, [submitted])
-   
+    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null) 
 
     return (
         <div className="w-full min-h-screen bg-black px-12 pt-[120px]">
@@ -77,7 +70,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                             }
                         </div>
                         <div className="w-1/3 flex flex-row justify-end gap-8 items-center h-full">
-                            <span className="text-white">Quantity</span>
+                            <span className="text-white">Quantity:</span>
                             <input type="number" value={1} className="w-12 text-center rounded-md flex h-8"/>
                         </div>
                     </div>

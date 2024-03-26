@@ -7,10 +7,12 @@ import { useRef, useState, useEffect, useContext } from "react";
 import { usePathname } from 'next/navigation';
 import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
+import { ShoppingCartContext } from '@/context/ShoppingCartContext';
 
 export default function Navbar(){
 
-    let { activeSection, setActiveSection, setScrollAnimation } = useContext(ActiveSectionContext)
+    const { activeSection, setActiveSection, setScrollAnimation } = useContext(ActiveSectionContext)
+    const { openCart, cartQuantity } = useContext(ShoppingCartContext)
     let navbar = useRef(null)
     const [isShrunk, setIsShrunk] = useState(false) // set height of navbar based on scroll distance from top
     const [isFixed, setIsFixed] = useState(false) // set fixed position of navbar based on scroll distance from top
@@ -157,9 +159,10 @@ export default function Navbar(){
                         </Link>
                         <div className='flex justify-center items-center w-44 relative cursor-pointer'>
                             <svg xmlns="http://www.w3.org/2000/svg" width={isShrunk ? 32 : 40} height={isShrunk ? 32 : 40} viewBox="0 0 24 24"><path fill="white" d="M7.308 21.115q-.633 0-1.067-.433q-.433-.434-.433-1.067q0-.632.433-1.066q.434-.434 1.067-.434q.632 0 1.066.434q.434.434.434 1.066q0 .633-.434 1.067q-.434.433-1.066.433m9.384 0q-.632 0-1.066-.433q-.434-.434-.434-1.067q0-.632.434-1.066q.434-.434 1.066-.434q.633 0 1.067.434q.433.434.433 1.066q0 .633-.433 1.067q-.434.433-1.067.433M5.881 5.5l2.669 5.615h6.635q.173 0 .307-.086q.135-.087.231-.24l2.615-4.75q.116-.212.02-.376q-.096-.163-.327-.163zm-.489-1h13.02q.651 0 .98.532q.33.531.035 1.095l-2.858 5.208q-.217.365-.564.573q-.347.207-.763.207H8.1l-1.215 2.231q-.154.23-.01.5t.433.27h10.884v1H7.308q-.875 0-1.306-.738q-.43-.738-.021-1.482l1.504-2.68L3.808 3.5H2v-1h2.442zm3.158 6.615h7z"></path></svg>
+                            {cartQuantity > 0 && 
                             <div className='absolute bottom-2 right-[3.5rem] w-8 h-8 rounded-full bg-custom-pink text-white font-semibold flex justify-center items-center'>
-                                2
-                            </div>
+                                {cartQuantity}
+                            </div>}
                         </div>
                     </div>
                 </div>
