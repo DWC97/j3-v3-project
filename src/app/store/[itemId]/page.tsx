@@ -14,6 +14,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
     })
     const { increaseCartQuantity } = useContext(ShoppingCartContext)
     const [activeSize, setActiveSize] = useState("XS")
+    const [quantity, setQuantity] = useState(1)
     const [activeSlide, setActiveSlide] = useState(0)
     const [submitted, setSubmitted] = useState(false)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null) 
@@ -61,7 +62,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                         onClick={() => {
                             if (submitted) return
                             else {
-                                increaseCartQuantity(item.id)
+                                increaseCartQuantity(item.id, item.quantity, activeSize)
                                 setSubmitted(true)
                             }
                         }}
