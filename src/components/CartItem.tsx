@@ -17,7 +17,7 @@ export default function CartItem({ id, quantity, size }){
                 </div>
                 <div className="flex flex-row justify-between items-center">
                     <span className="text-gray-500 text-[14px]">Qty {quantity}</span>
-                    <span className="text-custom-pink text-[14px]">Remove</span>
+                    <span className="text-custom-pink text-[14px] cursor-pointer ease-in-out duration-300 hover:opacity-85">Remove</span>
                 </div>
             </div>
         </div>
