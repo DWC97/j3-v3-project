@@ -12,12 +12,14 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
     const item = storeItemsData.items.find(item => {
         return item.name === params.itemId.replaceAll("%20", " ")
     })
-    const { increaseCartQuantity } = useContext(ShoppingCartContext)
+    const { increaseCartQuantity, cartItems } = useContext(ShoppingCartContext)
     const [activeSize, setActiveSize] = useState("XS")
     const [quantity, setQuantity] = useState(1)
     const [activeSlide, setActiveSlide] = useState(0)
     const [submitted, setSubmitted] = useState(false)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null) 
+
+    console.log("cart items: ", cartItems)
 
     return (
         <div className="w-full min-h-screen bg-black px-12 pt-[120px]">
@@ -51,9 +53,9 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                     }
                     <span className="text-white mt-8 text-[14px] mb-2">Material & Care</span>
                     <ul className="">
-                        {item?.["fabric-care"].map(point => {
+                        {item?.["fabric-care"].map((point, i) => {
                             return (
-                                <li className="text-gray-300 text-[14px] mt-1 pl-2">&#8226;&nbsp;&nbsp;{point}</li>
+                                <li key={i} className="text-gray-300 text-[14px] mt-1 pl-2">&#8226;&nbsp;&nbsp;{point}</li>
                             )
                         })}
                     </ul>
@@ -62,7 +64,11 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                         onClick={() => {
                             if (submitted) return
                             else {
-                                increaseCartQuantity(item.id, item.quantity, activeSize)
+                                if (item.sizes){
+                                    increaseCartQuantity(item.id, quantity, activeSize)
+                                } else {
+                                    increaseCartQuantity(item.id, quantity, "NA")
+                                }
                                 setSubmitted(true)
                             }
                         }}
@@ -80,7 +86,18 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                         </div>
                         <div className="w-1/3 flex flex-row justify-end gap-8 items-center h-full">
                             <span className="text-white">Quantity:</span>
-                            <input type="number" value={1} className="w-12 text-center rounded-md flex h-8"/>
+                            <input type="number" value={quantity} min={1} max={9} className="w-12 text-center rounded-md flex h-8"
+                            onChange={(e) => {
+                                if (e.target.value > 9){
+                                    setQuantity(9)
+                                }
+                                else if (e.target.value < 1){
+                                    setQuantity(1)
+                                } else {
+                                    setQuantity(e.target.value)
+                                }
+                            }}
+                            />
                         </div>
                     </div>
                     <div className="flex flex-row w-full gap-8 mt-8">
