@@ -41,7 +41,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
         setCartItems(currItems => {
             if (currItems.find(item => item.id === id) == null){
                 return [...currItems, { id, size, quantity }]
-            } else {
+            } 
+            else if (currItems.find(item => item.id === id && item.size !== size)) {
+                return [...currItems, { id, size, quantity }]
+            }
+            else {
                 return currItems.map(item => {
                     if (item.id === id){
                         if (item.size === size){
