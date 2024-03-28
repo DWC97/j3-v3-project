@@ -3,6 +3,7 @@
 import ShoppingCart from '@/components/ShoppingCart';
 import { ReactNode, createContext, useState } from 'react';
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 type ShoppingCartProviderProps = {
     children: ReactNode
@@ -30,7 +31,7 @@ export const ShoppingCartContext = createContext({} as ShoppingCartContext);
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
 
     const [isOpen, setIsOpen] = useState(false)
-    const [cartItems, setCartItems] = useState<CartItem[]>([])
+    const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping cart", [])
     const [toggle] = useBodyLockScroll() // toggle scroll lock
 
     const cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0)

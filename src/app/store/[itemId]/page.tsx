@@ -77,7 +77,10 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                             <div className="flex flex-row justify-center items-center gap-4">
                                 <span className="text-[#00c853]">Added</span>
                                 <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-6" loop={false} 
-                                onComplete={() => setSubmitted(false)}
+                                onComplete={() => {
+                                    setSubmitted(false)
+                                    setQuantity(1)
+                                }}
                                 />
                             </div>
                             : 

@@ -51,7 +51,11 @@ export default function ShoppingCart({ isOpen }){
                     <div className="flex flex-row w-full justify-center gap-1 items-center">
                         <span className="text-gray-500 text-[14px]">or</span>
                         <div className="flex flex-row items-center gap-1 cursor-pointer hover:opacity-85 ease-in-out duration-300">
-                            <span className="text-custom-pink">Continue Shopping</span>
+                            <span className="text-custom-pink"
+                            onClick={() => {
+                                closeCart()
+                            }}
+                            >Continue Shopping</span>
                             <svg xmlns="http://www.w3.org/2000/svg" className='' width={12} height={12} viewBox="0 0 16 16"><path fill="#ec2aa2" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                         </div>
                         
