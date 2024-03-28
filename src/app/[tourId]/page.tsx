@@ -111,23 +111,29 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                 <div className="absolute h-[200px] w-full top-0 left-0 bg-gradient-to-b from-black to-transparent opacity-35 z-0"/>
                 <div className="absolute h-[200px] w-full bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-35 z-0"/>
                 <div className="w-full h-1/2 flex flex-col justify-center z-10 pl-10">
-                <Reveal><h1 className="font-bold text-[56px] text-white tracking-wide">{tour?.region.toUpperCase().replace("-"," ")}</h1></Reveal>
-                <Reveal><h3 className="text-[32px] text-gray-200 font-medium">{tour?.title.toUpperCase()}</h3></Reveal>
+                    <Reveal>
+                        <h1 className="font-bold text-[56px] text-white tracking-wide">{tour?.region.toUpperCase().replace("-"," ")}</h1>
+                    </Reveal>
+                    <Reveal>
+                        <h3 className="text-[32px] text-gray-200 font-medium">{tour?.title.toUpperCase()}</h3>
+                    </Reveal>
                 </div>
             </div>
             <div className='mx-10'>
                 <Link href={"/#tours"} className="mt-5 mb-10 bg-black flex flex-row items-center w-[230px]">
-                    <span className="text-gray-200 text-[14px] font-semibold">BACK TO TOUR SELECTION</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className='pl-3' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" className='pl-3 rotate-180' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
+                    <span className="text-gray-200 text-[14px] font-semibold">BACK TO TOUR SELECTION</span>    
                 </Link>
                 <div className="w-full flex flex-row justify-between relative ">
                     <div className="flex flex-col mr-10">
                         <div className='text-white'>
                             <p className='text-[20px] font-medium mb-4'>{tour?.tagline}</p>
-                            <p className='text-[18px]  mb-4'>{tour?.description1}</p>
-                            <p className='text-[18px] '>{tour?.description2}</p>
+                            <p className='text-[18px] text-gray-100 mb-4'>{tour?.description1}</p>
+                            <p className='text-[18px] text-gray-100'>{tour?.description2}</p>
                         </div>
-                        <Slide><img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/></Slide>
+                        <Slide>
+                            <img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/>
+                        </Slide>
                         <div className={`w-full flex flex-col border-b border-gray-300 pb-4 `} >
                             <div className='w-full flex flex-row items-center relative cursor-pointer' 
                             onClick={() => toggleAnswer('activities')}>
