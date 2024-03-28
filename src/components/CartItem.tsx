@@ -5,7 +5,7 @@ export default function CartItem({ id, quantity, size }){
     const item = storeItemsData.items.find(item => item.id === id)
 
     return (
-        <div className="flex flex-row gap-6 border-b border-gray-300 pb-8 mt-8">
+        <div className="flex flex-row gap-6">
             <img src={item?.gallery[0]} className="w-24 h-24 object-cover border border-gray-300 rounded-md"/>
             <div className="flex flex-col justify-between w-full">
                 <div className="flex flex-row justify-between">

@@ -13,8 +13,8 @@ export default function ShoppingCart({ isOpen }){
 
     return (
         <div className={`${isOpen ? "visible" : "hidden"} z-[10000] overflow-hidden w-full h-screen bg-black bg-opacity-70 fixed top-0 left-0 flex flex-row justify-end backdrop-blur-sm`}>
-            <div className="w-1/3 bg-white h-full border-y border-gray-100 flex flex-col relative">
-                <div className="w-full flex flex-row justify-between px-8 items-center mt-7 mb-2">
+            <div className="w-1/3 bg-white h-full border-y border-gray-100 flex flex-col z-[10001]">
+                <div className="w-full flex flex-row justify-between px-8 items-center mt-7 pb-8">
                     <span className="text-[20px] font-medium">Shopping cart</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} className="hover:opacity-100 opacity-70 cursor-pointer ease-in-out duration-300" 
                     onClick={closeCart}
@@ -23,11 +23,13 @@ export default function ShoppingCart({ isOpen }){
                 <div className="px-8 h-full overflow-y-auto">
                     {cartItems.map((item, i) => {
                         return (
-                            <CartItem key={i} {...item}/>
+                            <div key={i} className="border-t first:border-transparent border-gray-300 pt-8 first:pt-2 mb-8">
+                                <CartItem {...item}/>
+                            </div>     
                         )
                     })}
                 </div>
-                <div className="flex flex-col justify-self-end justify-around border-t border-gray-300 h-48 w-full px-8">
+                <div className="flex flex-col justify-self-end justify-around border-t border-gray-300 h-96 w-full px-8">
                     <div className="flex flex-row justify-between">
                         <div className="flex flex-col">
                             <span className="font-semibold">Subtotal</span>
