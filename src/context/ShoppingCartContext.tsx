@@ -33,7 +33,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
     const [cartItems, setCartItems] = useState<CartItem[]>([])
     const [toggle] = useBodyLockScroll() // toggle scroll lock
 
-    const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
+    const cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0)
 
     function openCart(){
         setIsOpen(true)
