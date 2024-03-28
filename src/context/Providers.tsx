@@ -10,10 +10,13 @@ type ProviderProps = {
 
 export function Providers({ children }: ProviderProps){
     return (
-        <ActiveSectionProvider>
-            <ShoppingCartProvider>
-                {children}
-            </ShoppingCartProvider>
-        </ActiveSectionProvider>
+        <div className="overflow-hidden">
+            <ActiveSectionProvider>
+                <ShoppingCartProvider>
+                    {children}
+                </ShoppingCartProvider>
+            </ActiveSectionProvider>
+        </div>
+        
     )
 }

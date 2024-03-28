@@ -13,7 +13,7 @@ import Contact2 from "@/components/contact/Contact2";
 export default function Home() {
 
   return (
-      <div className="overflow-hidden">
+      <div className="overflow-x-hidden">
         <Hero/>
         <About2 />
         <TourSelection />
