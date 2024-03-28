@@ -1,15 +1,17 @@
 "use client"
 
 import { ShoppingCartContext } from "@/context/ShoppingCartContext"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import CartItem from "./CartItem"
 import storeItemsData from "@/data/storeItems.json"
+import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 
 export default function ShoppingCart({ isOpen }){
 
     const { cartItems, closeCart } = useContext(ShoppingCartContext)
     const subtotal = cartItems.reduce((total, currItem) => total + (currItem.quantity * storeItemsData.items.find(item => item.id == currItem.id)?.price)
     , 0)
+    const [toggle] = useBodyLockScroll() // toggle scroll lock
 
     return (
         <div className={`${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} z-[10000] overflow-hidden w-full h-screen bg-black bg-opacity-70 fixed top-0 left-0 backdrop-blur-sm transition-opacity ease-in-out duration-700`}>
@@ -17,7 +19,9 @@ export default function ShoppingCart({ isOpen }){
                 <div className="w-full flex flex-row justify-between px-8 items-center mt-7 pb-8">
                     <span className="text-[20px] font-medium">Shopping cart</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} className="hover:opacity-100 opacity-70 cursor-pointer ease-in-out duration-300" 
-                    onClick={closeCart}
+                    onClick={() => {
+                        closeCart()
+                    }}
                     viewBox="0 0 16 16"><path fill="gray" d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708z"></path></svg>
                 </div>
                 <div className="px-8 h-full overflow-y-auto">

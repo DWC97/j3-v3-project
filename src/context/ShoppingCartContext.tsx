@@ -2,6 +2,7 @@
 
 import ShoppingCart from '@/components/ShoppingCart';
 import { ReactNode, createContext, useState } from 'react';
+import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 
 type ShoppingCartProviderProps = {
     children: ReactNode
@@ -30,11 +31,18 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
 
     const [isOpen, setIsOpen] = useState(false)
     const [cartItems, setCartItems] = useState<CartItem[]>([])
+    const [toggle] = useBodyLockScroll() // toggle scroll lock
 
     const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
 
-    const openCart = () => setIsOpen(true)
-    const closeCart = () => setIsOpen(false)
+    function openCart(){
+        setIsOpen(true)
+        toggle()
+    }
+    function closeCart(){
+        setIsOpen(false)
+        toggle()
+    }
     function getItemQuantity(id: number, size: string){
         return cartItems.find(item => item.id === id && item.size === size)?.quantity || 0
     }
