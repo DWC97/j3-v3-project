@@ -228,7 +228,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                         <span className='font-medium  text-white'>Finishes</span>
                                         <span className='font-semibold text-white'>{tour?.finishes}</span>
                                     </li>
-                                    {Object.entries(tour?.scores).map(([key, val], i)=> {
+                                    {tour && Object.entries(tour?.scores).map(([key, val], i)=> {
                                             return (
                                                 <li key={i} className='w-full flex flex-row justify-between text-[20px] relative'>
                                                     <span className='font-medium text-white '>{key}</span>
@@ -244,7 +244,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                 </ul>
                                 <div className='w-full h-[90px] flex flex-row justify-between'>
                                     <span className='font-medium text-[20px] text-white'>Price</span>
-                                    <span className='font-semibold text-[52px] text-white tracking-wide'>{formatNumber(tour?.price)}</span>
+                                    <span className='font-semibold text-[52px] text-white tracking-wide'>{tour && formatNumber(tour?.price)}</span>
                                 </div>
                             </div>
                         </div>
