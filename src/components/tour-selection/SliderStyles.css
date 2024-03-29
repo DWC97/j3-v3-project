@@ -80,13 +80,15 @@
   color: whitesmoke;
 }
 
-/* .slider-controler .swiper-button-prev {
-  padding-right: 0px;
+.slider-controler .swiper-button-prev:hover {
+  opacity: 0.7;
+  transition: all ease-in-out 300ms;
 }
 
-.slider-controler .swiper-button-next {
-  padding-left: 0px;
-} */
+.slider-controler .swiper-button-next:hover {
+  opacity: 0.7;
+  transition: all ease-in-out 300ms;
+}
 
 .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
@@ -94,6 +96,11 @@
   background: none;
   border: 2px solid whitesmoke;
   opacity: 100;
+}
+
+.swiper-pagination .swiper-pagination-bullet:hover {
+  opacity: 0.7;
+  transition: all ease-in-out 300ms;
 }
 
 .swiper-pagination .swiper-pagination-bullet-active {

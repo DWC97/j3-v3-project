@@ -21,7 +21,7 @@ export default function Footer(){
                 </a>  
             </div>
             <p className="absolute left-0 right-0 mx-auto top-50 text-center text-[14px] text-gray-300">2024 JOLLY ROGER TOURS LTD. ALL RIGHTS RESERVED.</p>
-            <Link href={"#hero"} className='flex justify-center items-center w-[40px] h-[40px] z-40'>
+            <Link href={"#hero"} className='flex justify-center items-center w-[40px] h-[40px] z-40 hover:opacity-85 ease-in-out duration-300'>
                 <svg xmlns="http://www.w3.org/2000/svg" className='z-30' width={40} height={40} viewBox="0 0 16 16"><path fill="white" d="m2.931 10.843l4.685-4.611a.546.546 0 0 1 .768 0l4.685 4.61a.55.55 0 0 0 .771 0a.53.53 0 0 0 0-.759l-4.684-4.61a1.65 1.65 0 0 0-2.312 0l-4.684 4.61a.53.53 0 0 0 0 .76a.55.55 0 0 0 .771 0"></path></svg>
             </Link>
         </div>

@@ -54,7 +54,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     return (
         <div className="bg-black -z-50 pb-8">
         {gallery.image && 
-            <div className='fixed overflow-hidden top-0 left-0 h-screen w-full z-40 flex flex-col justify-center items-center'>
+            <div className='fixed overflow-hidden top-0 left-0 h-screen w-full z-50 flex flex-col justify-center items-center'>
                 <div className='absolute bg-black opacity-70 z-[50] h-screen w-full' />
                 <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
                     setGallery({ image: "", i: 0 })
@@ -120,7 +120,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                 </div>
             </div>
             <div className='mx-10'>
-                <Link href={"/#tours"} className="mt-5 mb-10 bg-black flex flex-row items-center w-[230px]">
+                <Link href={"/#tours"} className="mt-5 mb-10 bg-black flex flex-row items-center w-[230px] hover:opacity-85 ease-in-out duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className='pl-3 rotate-180' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                     <span className="text-gray-200 text-[14px] font-semibold">BACK TO TOUR SELECTION</span>    
                 </Link>
@@ -135,11 +135,11 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             <img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/>
                         </Slide>
                         <div className={`w-full flex flex-col border-b border-gray-300 pb-4 `} >
-                            <div className='w-full flex flex-row items-center relative cursor-pointer' 
+                            <div className='w-full flex flex-row items-center relative cursor-pointer hover:opacity-85 ease-in-out duration-300' 
                             onClick={() => toggleAnswer('activities')}>
                                 <h2 className='font-semibold text-[36px] text-white'>Activities</h2>
                                 <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['activities'] ? "(close)" : "(open)"}</span>  
-                                <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['activities'] && "rotate-180"}`} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['activities'] && "rotate-180"} `} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
                             </div> 
                             <div className={`my-4 text-gray-200 text-[18px] -py-1 ${answersVisible['activities'] ? undefined : "hidden"}`}>
                                 {tour?.activities?.map((activity, i) => {
@@ -150,7 +150,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             </div>
                         </div>
                         <div className='w-full flex flex-col border-b border-gray-300 pb-4 mt-16'>
-                            <div className='w-full flex flex-row items-center relative cursor-pointer'
+                            <div className='w-full flex flex-row items-center relative cursor-pointer hover:opacity-85 ease-in-out duration-300'
                             onClick={() => toggleAnswer('included')}>
                                 <h2 className='font-semibold text-[36px] text-white'>What's included?</h2>
                                 <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['included'] ? "(close)" : "(open)"}</span>
@@ -172,7 +172,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             </div>
                         </div>
                         <div className='w-full flex flex-col border-b border-gray-300 pb-4 mt-16'>
-                            <div className='w-full flex flex-row items-center relative cursor-pointer'
+                            <div className='w-full flex flex-row items-center relative cursor-pointer hover:opacity-85 ease-in-out duration-300'
                             onClick={() => toggleAnswer('needed')}>
                                 <h2 className='font-semibold text-[36px] text-white'>What do you need to join us?</h2>
                                 <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['needed'] ? "(close)" : "(open)"}</span>
@@ -188,7 +188,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             >
                                 <Masonry columnsCount={3} gutter="15px">
                                     {tour?.gallery.map((image, i) => (
-                                        <div className='relative overflow-hidden hover:opacity-70' key={i}>
+                                        <div className='relative overflow-hidden hover:opacity-70 ease-in-out duration-300' key={i}>
                                             <img
                                             src={image}
                                             style={{width: "100%", display: "block", cursor: "pointer"}}
@@ -248,7 +248,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                 </div>
                             </div>
                         </div>
-                        <button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px]'>BOOK NOW</button>
+                        <button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px] hover:opacity-85 ease-in-out duration-300'>BOOK NOW</button>
                     </div>
                 </div>
             </div>

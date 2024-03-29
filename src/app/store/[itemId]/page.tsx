@@ -23,7 +23,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
 
     return (
         <div className="w-full min-h-screen bg-black px-12 pt-[120px]">
-            <Link href={"/store"} className="mb-[40px] flex flex-row items-center w-48">
+            <Link href={"/store"} className="mb-[40px] flex flex-row items-center w-48 hover:opacity-85 ease-in-out duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" className='pl-3 rotate-180' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                 <span className="text-gray-200 text-[14px] font-semibold">BACK TO PRODUCTS</span>
             </Link>
@@ -60,7 +60,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                         })}
                     </ul>
                     <div className="w-full flex flex-row justify-between items-center mt-8">
-                        <div className={`w-2/3 py-3 flex flex-row justify-center items-center rounded-md font-semibold ${submitted ? "bg-white" : "bg-custom-pink"} ease-in-out duration-300 cursor-pointer`}
+                        <div className={`w-2/3 py-3 flex flex-row justify-center items-center rounded-md font-semibold ${submitted ? "bg-white" : "bg-custom-pink hover:opacity-85 ease-in-out duration-300 cursor-pointer"} ease-in-out duration-300 `}
                         onClick={() => {
                             if (submitted) return
                             else {
@@ -121,7 +121,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                     <div className="flex flex-row w-full gap-6">
                         {item?.gallery.map((img, i) => {
                             return (
-                                <div key={i} className={`w-full object-contain rounded-md overflow-hidden cursor-pointer ${activeSlide === i ? "border-2 border-custom-pink" : "border-2 border-transparent"}`}
+                                <div key={i} className={`w-full object-contain rounded-md overflow-hidden cursor-pointer ease-in-out duration-300 ${activeSlide === i ? "border-2 border-custom-pink" : "border-2 border-transparent  hover:opacity-85"}`}
                                 onClick={() => setActiveSlide(i)}
                                 >
                                     <img src={img}/>

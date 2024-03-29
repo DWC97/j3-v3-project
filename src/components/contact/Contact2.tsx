@@ -96,7 +96,7 @@ export default function Contact2(){
             <div className="-mr-20 flex flex-col items-center justify-center h-[500px]">
                 <Slide><img src="/contact/Jolly_Roger.jpg" className="w-[360px] "/></Slide>
                 <Reveal>
-                    <Link href={"/store"} className='flex flex-row items-center justify-center mt-10'>
+                    <Link href={"/store"} className='flex flex-row items-center justify-center mt-10 hover:opacity-85 ease-in-out duration-300'>
                         <button className='text-white text-[18px]'>Get our merch</button>
                         <svg xmlns="http://www.w3.org/2000/svg" className='pl-3' width={40} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                     </Link>
@@ -143,7 +143,7 @@ export default function Contact2(){
                     </div>
                     <div className="absolute text-white top-[9.25rem]">Destination</div>  
                     <div className="absolute text-white right-[140px] top-[9.25rem]">No. of people</div>  
-                    <div className={`${submittable ? "cursor-pointer" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
+                    <div className={`${submittable ? "cursor-pointer hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
                     onClick={(e) => handleSubmit(e)}
                     title={submittable ? "" : "Please fill out each field in the form correctly"}
                     >

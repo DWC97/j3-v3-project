@@ -59,7 +59,7 @@ export default function Store(){
                 <h1 className="text-white font-bold text-[40px] mb-2">Merchandise</h1>
                 <div className="flex flex-row justify-between items-center relative">
                     <span className="text-gray-300">Join the JR crew early with our custom apparel and accessories for Season 1</span>
-                    <div className="flex flex-row justify-between items-center w-[3.5rem] cursor-pointer text-gray-300 hover:text-white"
+                    <div className="flex flex-row justify-between items-center w-[3.5rem] cursor-pointer text-white hover:opacity-85 ease-in-out duration-300"
                     onClick={() => setShowSortOptions(!showSortOptions)}
                     >
                         <span className=" font-semibold ">Sort</span>
@@ -95,7 +95,7 @@ export default function Store(){
                     <div className="w-full flex flex-col">
                         <span className="text-white pb-4">Category</span>
                         <div className="pb-1">
-                            <label className="text-gray-300">
+                            <label className="text-gray-300 hover:opacity-85 cursor-pointer ease-in-out duration-300">
                                 <input type="checkbox" 
                                 className="mr-3"
                                 checked={selectedCategory === 't-shirt'}
@@ -105,7 +105,7 @@ export default function Store(){
                             </label>
                         </div>
                         <div className="pb-1">
-                            <label className="text-gray-300">
+                            <label className="text-gray-300 hover:opacity-85 cursor-pointer ease-in-out duration-300">
                                 <input type="checkbox" 
                                 className="mr-3"
                                 checked={selectedCategory === 'hoodie'}
@@ -115,7 +115,7 @@ export default function Store(){
                             </label>
                         </div>
                         <div className="pb-1">
-                            <label className="text-gray-300">
+                            <label className="text-gray-300 hover:opacity-85 cursor-pointer ease-in-out duration-300">
                                 <input type="checkbox" 
                                 className="mr-3"
                                 checked={selectedCategory === 'tank-top'}
@@ -125,7 +125,7 @@ export default function Store(){
                             </label>
                         </div>
                         <div className="">
-                            <label className="text-gray-300">
+                            <label className="text-gray-300 hover:opacity-85 cursor-pointer ease-in-out duration-300">
                                 <input type="checkbox" 
                                 className="mr-3"
                                 checked={selectedCategory === 'accessory'}
@@ -138,7 +138,7 @@ export default function Store(){
                     <div className="w-full flex flex-col mt-12">
                         <span className="text-white pb-4">Color</span>
                         <div className="pb-1">
-                            <label className="text-gray-300">
+                            <label className="text-gray-300 hover:opacity-85 cursor-pointer ease-in-out duration-300">
                                 <input type="checkbox" 
                                 className="mr-3"
                                 checked={selectedColor === 'Black'}
@@ -148,7 +148,7 @@ export default function Store(){
                             </label>
                         </div>
                         <div className="pb-1">
-                            <label className="text-gray-300">
+                            <label className="text-gray-300 hover:opacity-85 cursor-pointer ease-in-out duration-300">
                                 <input type="checkbox" 
                                 className="mr-3"
                                 checked={selectedColor === 'White'}
@@ -162,8 +162,8 @@ export default function Store(){
                 <div className="grid grid-cols-3 gap-10 w-3/4">
                     {sortedItems.length > 0 ? sortedItems.map(item => {
                         return (
-                            <Link href={`/store/${item.name}`} key={item.id} className="flex flex-col justify-between">
-                                <img src={item.gallery[0]} className="hover:opacity-70 w-full aspect-[5/6] object-cover rounded-t-lg"/>
+                            <Link href={`/store/${item.name}`} key={item.id} className="flex flex-col justify-between hover:opacity-85 ease-in-out duration-300">
+                                <img src={item.gallery[0]} className="w-full aspect-[5/6] object-cover rounded-t-lg"/>
                                 <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
                                     <span>{item.name}</span>
                                     <span className="font-semibold">£{item.price}</span>

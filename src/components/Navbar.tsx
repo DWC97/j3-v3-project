@@ -31,23 +31,23 @@ export default function Navbar(){
         } 
     }, [path])
 
-    // useGSAP(() => {
-    //     gsap.fromTo(
-    //         navbar.current,
-    //         { 
-    //           y: -50,
-    //           opacity: 0
-    //         },
-    //         {
-    //           y: 0,
-    //           opacity: 1,
-    //           stagger: 0.05,
-    //           duration: 3,
-    //           delay: 2,
-    //           ease: 'power4.out',
-    //         }
-    //     )
-    // })
+    useGSAP(() => {
+        gsap.fromTo(
+            navbar.current,
+            { 
+                y: -50,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.05,
+                duration: 3,
+                delay: 2,
+                ease: 'power4.out',
+            }
+        )
+    })
     
     // managing navbar height and visibility based on scroll position from top of home page
     function scrollHandle(){
