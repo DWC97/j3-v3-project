@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Footer(){
     return (
-        <div className="w-full h-20 bg-black flex flex-row justify-between items-center px-20 relative">
+        <div className="w-full h-[10vh] bg-black flex flex-row justify-between items-center px-20 relative">
             <div className="flex flex-row justify-between w-[220px]">
                 <a href="http://www.instagram.com" target="_blank">
                     <div className="w-[40px] h-[40px] flex justify-center items-center">
