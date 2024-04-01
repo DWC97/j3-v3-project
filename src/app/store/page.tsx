@@ -54,7 +54,7 @@ export default function Store(){
     };
 
     return (
-        <div className="bg-black min-h-screen w-full px-12 pt-[180px]">
+        <div className="bg-black min-h-[90vh] w-full px-12 pt-[120px]">
             <div className="w-full h-[180px] border-b border-gray-300 flex flex-col justify-center">
                 <h1 className="text-white font-bold text-[40px] mb-2">Merchandise</h1>
                 <div className="flex flex-row justify-between items-center relative">

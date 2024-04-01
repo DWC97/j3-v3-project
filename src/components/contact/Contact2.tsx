@@ -115,22 +115,22 @@ export default function Contact2(){
             <Reveal><div className="flex flex-col justify-between w-[500px] md:w-[600px] h-[500px] bg-black bg-opacity-50 rounded-3xl z-30 -ml-20">
                 <h2 className="font-semibold text-[44px] text-white">RESERVE A SPOT</h2>
                 <form action="" className="flex flex-col justify-between h-[300px] relative" autoComplete="off">
-                <input type="text" name="name" placeholder="" className={`w-[240px]  text-gray-300 border-b ${!nameValid ? "border-[red]" : "border-white"} pl-2 pr-6 pb-2 outline-none !bg-black`}
+                <input type="text" name="name" placeholder="" className={`w-[240px]  text-gray-300 border-b ${!nameValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 outline-none !bg-black`}
                     value={formData.name}
                     onChange={handleInputChange}
                     /> 
                     <div className="absolute text-white -top-8">Full name</div>
-                    {!nameValid &&
-                    <div className="absolute top-1 left-56" title="You haven't entered a valid name">
+                    
+                    <div className={`absolute top-1 left-56 ${nameValid ? "opacity-0 invisible" : "opacity-100 visible"} transition-opacity ease-in-out duration-300`} title="You haven't entered a valid name">
                         <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
-                    </div>}
-                    {!emailValid &&
-                    <div className="absolute top-[5.75rem] left-56" title="Please include an valid email address">
+                    </div>
+                    
+                    <div className={`absolute top-[5.75rem] left-56 ${emailValid ? "opacity-0 invisible" : "opacity-100 visible"} transition-opacity ease-in-out duration-300`}title="Please include an valid email address">
                     <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
                     </div>
-                    }
                     
-                    <input type="text" name="email" placeholder="" className={`w-[240px] text-gray-300 border-b ${!emailValid ? "border-[red]" : "border-white"} pl-2 pr-6 pb-2 mt-2 outline-none bg-black`}
+                    
+                    <input type="text" name="email" placeholder="" className={`w-[240px] text-gray-300 border-b ${!emailValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 mt-2 outline-none bg-black`}
                     value={formData.email}
                     onChange={handleInputChange}
                     />   
