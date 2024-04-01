@@ -12,7 +12,6 @@ export default function ShoppingCart({ isOpen }){
     const { cartItems, closeCart } = useContext(ShoppingCartContext)
     const subtotal = cartItems.reduce((total, currItem) => total + (currItem.quantity * storeItemsData.items.find(item => item.id == currItem.id)?.price)
     , 0)
-    const [toggle] = useBodyLockScroll() // toggle scroll lock
 
     let domNode = useClickOutside(() => {
         if (!isOpen) return

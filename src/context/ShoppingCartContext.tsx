@@ -59,7 +59,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
                 return currItems.map(item => {
                     if (item.id === id){
                         if (item.size === size){
-                            return { ...item, quantity: item.quantity + quantity, size }
+                            return { ...item, quantity: (item.quantity + quantity), size }
                         } else {
                             return item
                         }
@@ -85,9 +85,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
             }
         })
     }
-    function removeFromCart(id: number){
+    function removeFromCart(id: number, size: string){
         setCartItems(currItems => {
-            return currItems.filter(item => item.id !== id)
+            return currItems.filter(item => {
+                return item.id !== id || item.size !== size
+            })
         })
     }
 
