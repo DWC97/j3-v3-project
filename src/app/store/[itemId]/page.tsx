@@ -30,7 +30,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                     <svg xmlns="http://www.w3.org/2000/svg" className='pl-3 rotate-180' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                     <span className="text-gray-200 text-[14px] font-semibold">BACK TO PRODUCTS</span>
                 </Link>
-                <div className="w-full flex flex-row-reverse justify-between pb-12 gap-8">
+                <div className="w-full flex flex-row-reverse justify-between pb-12 gap-8 border-b border-gray-300">
                     <div className="flex flex-col w-1/2">
                         <h2 className="text-white font-bold text-[32px]">{item?.name}</h2>
                         <span className="text-white text-[36px]">£{item?.price}</span>
@@ -78,7 +78,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                             >
                                 {submitted ? 
                                 <div className="flex flex-row justify-center items-center gap-4">
-                                    <span className="text-[#00c853]">Added</span>
+                                    <span className="text-[#00c853]">Adding</span>
                                     <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-6" loop={false} 
                                     onComplete={() => {
                                         setSubmitted(false)
@@ -132,6 +132,25 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                                 )
                             })}
                         </div>
+                    </div>
+                </div>
+                <div className="w-full flex flex-col mt-20 pb-16">
+                    <span className="text-white font-semibold text-[20px]">Customers also viewed</span>
+                    <div className="flex flex-row gap-10 w-full mt-8">
+                        {storeItemsData.items.filter(i => i.id !== item.id).slice(0, 4).map(item => {
+                            return (
+                                <div key={item.id} className="flex flex-col">
+                                    <div className="relative w-full object-contain rounded-lg overflow-hidden">
+                                        <img src={item.gallery[0]}/>
+                                        <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-70" />
+                                        <span className="absolute text-white text-[20px] bottom-4 right-4">£{item.price}</span>
+                                    </div>
+                                    <span className="text-white mt-4">{item.name}</span>
+                                    <span className="text-[14px] text-gray-300 mt-1">{item.color}</span>
+                                    <Link href={`/store/${item.name}`} className="mt-6 w-full text-gray-300 hover:text-white hover:border-white py-2 border border-gray-300 rounded-md font-medium ease-in-out duration-300 text-center">Find out more</Link>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
