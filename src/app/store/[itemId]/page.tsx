@@ -18,14 +18,33 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
     const [quantity, setQuantity] = useState(1)
     const [activeSlide, setActiveSlide] = useState(0)
     const [submitted, setSubmitted] = useState(false)
+    const [notification, setNotification] = useState(false)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null) 
 
-    console.log("cart items: ", cartItems)
+    useEffect(() => {
+        if (notification == true){
+            setTimeout(() => {
+                setNotification(false)
+            }, 3000);
+        }
+    }, [notification])
 
     return (
         <div>
             {item ? 
-            <div className="w-full min-h-screen bg-black px-12 pt-[120px]">
+            <div className="w-full min-h-screen bg-black px-12 pt-[120px] relative">
+                <div className={`z-50 fixed w-96 h-20 bg-white top-24 right-8 rounded-md flex flex-row ${notification ? "visible opacity-100" : "invisible opacity-0"} transition-opacity ease-in-out duration-300`}>
+                    <img src={item.gallery[0]} className="object-cover py-1 px-4"/>
+                    <div className="w-full flex flex-col justify-center">
+                        <span className="font-semibold">Successfully added!</span>
+                        <span className="text-[14px] text-gray-700">{item.name}</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} className="hover:opacity-100 opacity-70 cursor-pointer ease-in-out duration-300 absolute right-4 top-4" 
+                    onClick={() => {
+                        setNotification(false)
+                    }}
+                    viewBox="0 0 16 16"><path fill="gray" d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708z"></path></svg>
+                </div>
                 <Link href={"/store"} className="mb-[40px] flex flex-row items-center w-48 hover:opacity-85 ease-in-out duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className='pl-3 rotate-180' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                     <span className="text-gray-200 text-[14px] font-semibold">BACK TO PRODUCTS</span>
@@ -82,6 +101,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                                     <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-6" loop={false} 
                                     onComplete={() => {
                                         setSubmitted(false)
+                                        setNotification(true)
                                         setQuantity(1)
                                     }}
                                     />
