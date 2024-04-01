@@ -138,8 +138,8 @@ export function About2(){
                         <span className='text-[20px] mr-4'>🍻</span>
                         <span className='font-medium text-white text-[16px]'>Be prepared for LOTS of drinking...</span>
                     </div>
-                    <div className='flex flex-row items-center'>   
-                        <Link href={"/#tours"} className='z-[1000] w-1/2 mr-16 cursor-pointer font-semibold text-center text-white  py-2 rounded-md bg-gradient-to-r from-custom-blue to-custom-yellow text-[18px] hover:opacity-85 ease-in-out duration-300'
+                    <div className='flex flex-row items-center gap-16'>   
+                        <Link href={"/#tours"} className='z-[1000] w-1/2 cursor-pointer font-semibold text-center text-white  py-2 rounded-md bg-gradient-to-r from-custom-blue to-custom-yellow text-[18px] hover:opacity-85 ease-in-out duration-300'
                         >Learn more</Link>
                         <Link href={"/#contact"} className='flex flex-row items-center justify-center hover:opacity-85 ease-in-out duration-300'>
                             <button className='text-white text-[18px]'>Get in touch</button>

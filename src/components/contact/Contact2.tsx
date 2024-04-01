@@ -3,9 +3,11 @@ import useDetectSection from "@/hooks/useDetectSection"
 import Link from "next/link"
 import { useState, useEffect, useRef, useContext } from "react"
 import Swal from 'sweetalert2'
-import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import { Reveal } from "@/context/Reveal"
 import { Slide } from "@/context/Slide"
+// import { Float, Sparkles, useTexture } from "@react-three/drei"
+// import { PlaneGeometry } from "three"
+// import { Canvas } from "@react-three/fiber"
 
 export default function Contact2(){
 
@@ -94,7 +96,14 @@ export default function Contact2(){
     return (
         <div className="bg-black w-full h-screen min-h-[800px] contact flex flex-row items-center justify-around pt-20" id="contact" ref={contactRef}>
             <div className="-mr-20 flex flex-col items-center justify-center h-[500px]">
-                <Slide><img src="/contact/Jolly_Roger.jpg" className="w-[360px] "/></Slide>
+                <Slide>
+                    {/* <div className="">
+                        <Canvas>
+                            <Sticker />
+                        </Canvas>
+                    </div> */}
+                    <img src="/contact/Jolly_Roger.jpg" className="w-[360px] "/>
+                </Slide>
                 <Reveal>
                     <Link href={"/store"} className='flex flex-row items-center justify-center mt-10 hover:opacity-85 ease-in-out duration-300'>
                         <button className='text-white text-[18px]'>Get our merch</button>
@@ -163,3 +172,23 @@ export default function Contact2(){
         </div>
     )
 }
+
+// function Sticker(){
+//     const texture = useTexture("/contact/Jolly_Roger.jpg")
+
+//     return (
+//         <Float>
+//             <Sparkles />
+//             <mesh>
+//                 <planeGeometry />
+//                 <meshPhysicalMaterial 
+//                 map={texture}
+//                 transparent
+//                 clearcoat={1}
+//                 roughness={0}
+//                 metalness={0.9}
+//                 />
+//             </mesh>
+//         </Float>
+//     )
+// }

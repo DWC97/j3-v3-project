@@ -10,6 +10,7 @@ import { useClickOutside } from '@/hooks/useClickOutside';
 import { Reveal } from '@/context/Reveal';
 import { Slide } from '@/context/Slide';
 import NotFound from '../not-found';
+import Swal from 'sweetalert2'
 
 export default function tourDetails({ params }: { params: { tourId: string }}){
 
@@ -50,6 +51,19 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         else {
             return "#FFDD57"
         }
+    }
+
+    function handleSubmit(){
+        Swal.fire({
+            title: "Sorry!",
+            text: "Booking is currently unavailable while we sort out our licensing.",
+            icon: "error",
+            timer: 5000,
+            footer: '<a className="text-custom-pink" href="#contact">Click here to reserve a spot</a>',
+            timerProgressBar: true,
+            showConfirmButton: false,
+            scrollbarPadding: false,
+        });
     }
 
 
@@ -252,7 +266,9 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                     </div>
                                 </div>
                             </div>
-                            <button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px] hover:opacity-85 ease-in-out duration-300'>BOOK NOW</button>
+                            <button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px] hover:opacity-85 ease-in-out duration-300'
+                            onClick={handleSubmit}
+                            >BOOK NOW</button>
                         </div>
                     </div>
                 </div>

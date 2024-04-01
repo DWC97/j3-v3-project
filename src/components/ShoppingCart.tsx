@@ -6,6 +6,7 @@ import CartItem from "./CartItem"
 import storeItemsData from "@/data/storeItems.json"
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import { useClickOutside } from '@/hooks/useClickOutside';
+import Swal from 'sweetalert2'
 
 export default function ShoppingCart({ isOpen }){
 
@@ -17,6 +18,19 @@ export default function ShoppingCart({ isOpen }){
         if (!isOpen) return
         closeCart()
     })
+
+    function handleSubmit(){
+        closeCart()
+        Swal.fire({
+            title: "Sorry!",
+            text: "Checkout is currently unavailable while we sort out our payments on the back-end.",
+            icon: "error",
+            timer: 5000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            scrollbarPadding: false,
+        });
+    }
 
     return (
         <div className={`${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} z-[10000] overflow-hidden w-full h-screen bg-black bg-opacity-70 fixed top-0 left-0 backdrop-blur-sm transition-opacity ease-in-out duration-700`}>
@@ -46,7 +60,9 @@ export default function ShoppingCart({ isOpen }){
                         </div>
                         <span className="font-semibold">£{subtotal}.00</span>
                     </div>
-                    <button className="w-full py-3 rounded-md font-semibold bg-custom-pink text-white bg-opacity-85 hover:bg-opacity-100 ease-in-out duration-300">Checkout</button>
+                    <button className="w-full py-3 rounded-md font-semibold bg-custom-pink text-white bg-opacity-85 hover:bg-opacity-100 ease-in-out duration-300"
+                    onClick={handleSubmit}
+                    >Checkout</button>
                     <div className="flex flex-row w-full justify-center gap-1 items-center">
                         <span className="text-gray-500 text-[14px]">or</span>
                         <div className="flex flex-row items-center gap-1 cursor-pointer hover:opacity-85 ease-in-out duration-300">

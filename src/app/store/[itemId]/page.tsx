@@ -33,7 +33,7 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
         <div>
             {item ? 
             <div className="w-full min-h-screen bg-black px-12 pt-[120px] relative">
-                <div className={`z-50 fixed w-96 h-20 bg-white top-24 right-8 rounded-md flex flex-row ${notification ? "visible" : "invisible"} transition-opacity ease-in-out duration-300`}>
+                <div className={`z-50 fixed w-96 h-20 bg-white top-24 right-8 rounded-md flex flex-row ${notification ? "opacity-100 visible" : "opacity-0 invisible"} transition-opacity ease-in-out duration-500`}>
                     <img src={item.gallery[0]} className="object-cover py-1 px-4"/>
                     <div className="w-full flex flex-col justify-center">
                         <span className="font-semibold">Successfully added!</span>
