@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import toursData from "@/data/tours.json"
 import { formatNumber } from '@/utilities/Utils';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import { useClickOutside } from '@/hooks/useClickOutside';
@@ -20,6 +20,8 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     const [answersVisible, setAnswersVisible] = useState({})
     const [gallery, setGallery] = useState({ image: "", i: 0 })
     const [toggle] = useBodyLockScroll() // toggle scroll lock
+    const prevArrowRef = useRef(null)
+    const nextArrowRef = useRef(null)
 
     let domNode = useClickOutside(() => {
         if (!gallery.image) return
@@ -66,6 +68,36 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         });
     }
 
+    function handlePrev(){
+        if (gallery.i === 0){
+            setGallery({ image: tour.gallery[tour?.gallery.length - 1], i: tour?.gallery.length - 1})
+        }
+        else {
+            setGallery({ image: tour.gallery[gallery.i - 1], i: gallery.i - 1})
+        }
+
+        // prevArrowRef.current.focus()
+    }
+
+    function handleNext(){
+        if (gallery.i === tour?.gallery.length - 1){
+            setGallery({ image: tour.gallery[0], i: 0}) 
+        }
+        else {
+            setGallery({ image: tour.gallery[gallery.i + 1], i: gallery.i + 1})
+        } 
+
+        // nextArrowRef.current.focus()
+    }
+
+    useEffect(() => {
+        if (gallery.image){
+            console.log("shoudl be focusing now")
+            nextArrowRef.current.focus()
+        }
+        
+    }, [gallery.image])
+
 
     return (
         <div>
@@ -77,16 +109,9 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
                         setGallery({ image: "", i: 0 })
                         toggle()
-                    }} className='absolute top-5 right-5 cursor-pointer z-[900]' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
+                    }} className='absolute top-5 right-5 cursor-pointer z-[900] hover:opacity-85 ease-in-out duration-300' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
                     <div ref={domNode} className='relative flex flex-row justify-center items-center z-50 h-[80%] max-w-[80%]  pb-16 mt-16'>
-                        <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 flex justify-center items-center' onClick={() => {
-                                if (gallery.i === 0){
-                                    setGallery({ image: tour.gallery[tour?.gallery.length - 1], i: tour?.gallery.length - 1})
-                                }
-                                else {
-                                    setGallery({ image: tour.gallery[gallery.i - 1], i: gallery.i - 1})
-                                }
-                            }}>
+                        <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none' tabIndex={0} ref={prevArrowRef} onClick={handlePrev}>
                             <svg xmlns="http://www.w3.org/2000/svg"  className='' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                         </div>
                         <div className='h-full max-w-full relative'>
@@ -94,14 +119,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             <span className='absolute bottom-0 py-2 flex justify-center items-center text-gray-200 text-[16px] w-full bg-black bg-opacity-60'>{tour.captions[gallery.i]}</span>
                         </div>
                         
-                        <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 flex justify-center items-center' onClick={() => {
-                                if (gallery.i === tour?.gallery.length - 1){
-                                    setGallery({ image: tour.gallery[0], i: 0}) 
-                                }
-                                else {
-                                    setGallery({ image: tour.gallery[gallery.i + 1], i: gallery.i + 1})
-                                }  
-                            }}>
+                        <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none ' tabIndex={0} ref={nextArrowRef} onClick={handleNext}>
                             <svg xmlns="http://www.w3.org/2000/svg"  className='rotate-180' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                         </div>
                         <div className='absolute bottom-5 left-50 flex flex-row justify-center items-center z-[60]'>
@@ -267,7 +285,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                 </div>
                             </div>
                             <button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px] hover:opacity-85 ease-in-out duration-300'
-                            onClick={handleSubmit}
+                            onClick={handleSubmit} 
                             >BOOK NOW</button>
                         </div>
                     </div>
