@@ -22,11 +22,15 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     const [toggle] = useBodyLockScroll() // toggle scroll lock
     const prevArrowRef = useRef(null)
     const nextArrowRef = useRef(null)
+    const overlayRef = useRef(null)
+    const [isOverlayActive, setIsOverlayActive] = useState(false)
+    const [focusedArrow, setFocusedArrow] = useState("")
 
     let domNode = useClickOutside(() => {
         if (!gallery.image) return
         setGallery({ image: "", i: 0 })
         toggle()
+        setIsOverlayActive(false)
     })
 
     // Function to toggle visibility of answer for a specific heading
@@ -40,6 +44,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     function viewImage(image, i){
         setGallery({ image, i })
         toggle()
+        setIsOverlayActive(true)
         console.log(gallery)
     }
 
@@ -75,8 +80,6 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         else {
             setGallery({ image: tour.gallery[gallery.i - 1], i: gallery.i - 1})
         }
-
-        // prevArrowRef.current.focus()
     }
 
     function handleNext(){
@@ -86,17 +89,44 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         else {
             setGallery({ image: tour.gallery[gallery.i + 1], i: gallery.i + 1})
         } 
+    }
 
-        // nextArrowRef.current.focus()
+    function handleKeyDown(e){
+        console.log("keydown called")
+        if (isOverlayActive){
+            if (e.key === "Tab"){
+                e.preventDefault()
+                if (focusedArrow === "" || focusedArrow === "prev"){
+                    nextArrowRef.current.focus()
+                } else {
+                    prevArrowRef.current.focus()
+                }
+            }
+            else if (e.key === "Enter"){
+                if (focusedArrow === "" || focusedArrow === "next"){
+                    handleNext()
+                } else {
+                    handlePrev()
+                }
+            }
+            else if (e.key === "ArrowLeft"){
+                handlePrev()
+                prevArrowRef.current.focus()
+            }
+            else if (e.key === "ArrowRight"){
+                handleNext()
+                nextArrowRef.current.focus()
+            }
+        }
     }
 
     useEffect(() => {
         if (gallery.image){
             console.log("shoudl be focusing now")
-            nextArrowRef.current.focus()
+            overlayRef.current.focus()
         }
         
-    }, [gallery.image])
+    }, [isOverlayActive])
 
 
     return (
@@ -104,14 +134,21 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
             {tour ? 
             <div className="bg-black -z-50 pb-8">
             {gallery.image && 
-                <div className='fixed overflow-hidden top-0 left-0 h-screen w-full z-50 flex flex-col justify-center items-center'>
-                    <div className='absolute bg-black opacity-70 z-[50] h-screen w-full' />
+                <div className='fixed overflow-hidden top-0 left-0 h-screen w-full z-50 flex flex-col justify-center items-center focus:outline-none'
+                tabIndex={0}
+                ref={overlayRef}
+                onKeyDown={(e) => handleKeyDown(e)}
+                >
+                    <div className='absolute bg-black opacity-70 z-[50] h-screen w-full'/>
                     <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
                         setGallery({ image: "", i: 0 })
                         toggle()
+                        setIsOverlayActive(false)
                     }} className='absolute top-5 right-5 cursor-pointer z-[900] hover:opacity-85 ease-in-out duration-300' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
                     <div ref={domNode} className='relative flex flex-row justify-center items-center z-50 h-[80%] max-w-[80%]  pb-16 mt-16'>
-                        <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none' tabIndex={0} ref={prevArrowRef} onClick={handlePrev}>
+                        <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none' tabIndex={0} ref={prevArrowRef} 
+                        onClick={handlePrev}
+                        onFocus={() => setFocusedArrow("prev")}>
                             <svg xmlns="http://www.w3.org/2000/svg"  className='' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                         </div>
                         <div className='h-full max-w-full relative'>
@@ -119,7 +156,9 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             <span className='absolute bottom-0 py-2 flex justify-center items-center text-gray-200 text-[16px] w-full bg-black bg-opacity-60'>{tour.captions[gallery.i]}</span>
                         </div>
                         
-                        <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none ' tabIndex={0} ref={nextArrowRef} onClick={handleNext}>
+                        <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none ' tabIndex={0} ref={nextArrowRef} 
+                        onClick={handleNext}
+                        onFocus={() => setFocusedArrow("next")}>
                             <svg xmlns="http://www.w3.org/2000/svg"  className='rotate-180' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                         </div>
                         <div className='absolute bottom-5 left-50 flex flex-row justify-center items-center z-[60]'>
