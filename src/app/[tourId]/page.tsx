@@ -211,7 +211,14 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             </Slide>
                             <div className={`w-full flex flex-col border-b border-gray-300 pb-4 `} >
                                 <div className='w-full flex flex-row items-center relative cursor-pointer hover:opacity-85 ease-in-out duration-300' 
-                                onClick={() => toggleAnswer('activities')}>
+                                onClick={() => toggleAnswer('activities')}
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        toggleAnswer('activities')
+                                    }
+                                }}
+                                >
                                     <h2 className='font-semibold text-[36px] text-white'>Activities</h2>
                                     <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['activities'] ? "(close)" : "(open)"}</span>  
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['activities'] && "rotate-180"} `} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
@@ -226,7 +233,14 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             </div>
                             <div className='w-full flex flex-col border-b border-gray-300 pb-4 mt-16'>
                                 <div className='w-full flex flex-row items-center relative cursor-pointer hover:opacity-85 ease-in-out duration-300'
-                                onClick={() => toggleAnswer('included')}>
+                                onClick={() => toggleAnswer('included')}
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        toggleAnswer('included')
+                                    }
+                                }}
+                                >
                                     <h2 className='font-semibold text-[36px] text-white'>What's included?</h2>
                                     <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['included'] ? "(close)" : "(open)"}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['included'] && "rotate-180"}`} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
@@ -248,7 +262,14 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             </div>
                             <div className='w-full flex flex-col border-b border-gray-300 pb-4 mt-16'>
                                 <div className='w-full flex flex-row items-center relative cursor-pointer hover:opacity-85 ease-in-out duration-300'
-                                onClick={() => toggleAnswer('needed')}>
+                                onClick={() => toggleAnswer('needed')}
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        toggleAnswer('needed')
+                                    }
+                                }}
+                                >
                                     <h2 className='font-semibold text-[36px] text-white'>What do you need to join us?</h2>
                                     <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['needed'] ? "(close)" : "(open)"}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['needed'] && "rotate-180"}`} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
@@ -325,6 +346,11 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                             </div>
                             <button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px] hover:opacity-85 ease-in-out duration-300'
                             onClick={handleSubmit} 
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter"){
+                                    handleSubmit()
+                                }
+                            }}
                             >BOOK NOW</button>
                         </div>
                     </div>

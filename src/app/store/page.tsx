@@ -1,7 +1,7 @@
 "use client"
 
 import storeItemsData from "@/data/storeItems.json"
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useClickOutside } from '@/hooks/useClickOutside';
 import Link from 'next/link'
 
@@ -11,6 +11,7 @@ export default function Store(){
     const [showSortOptions, setShowSortOptions] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
+    const popularityRef = useRef(null)
 
     const filteredItems = storeItemsData.items.filter(item => {
         if (selectedCategory && selectedCategory !== item.type) {
@@ -61,13 +62,19 @@ export default function Store(){
                     <span className="text-gray-300">Join the JR crew early with our custom apparel and accessories for Season 1</span>
                     <div className="flex flex-row justify-between items-center w-[3.5rem] cursor-pointer text-white hover:opacity-85 ease-in-out duration-300"
                     onClick={() => setShowSortOptions(!showSortOptions)}
+                    tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        setShowSortOptions(!showSortOptions)
+                                    }
+                                }}
                     >
                         <span className=" font-semibold ">Sort</span>
                         <svg xmlns="http://www.w3.org/2000/svg" className='rotate-180' width={12} height={12} viewBox="0 0 16 16"><path fill="white" d="m2.931 10.843l4.685-4.611a.546.546 0 0 1 .768 0l4.685 4.61a.55.55 0 0 0 .771 0a.53.53 0 0 0 0-.759l-4.684-4.61a1.65 1.65 0 0 0-2.312 0l-4.684 4.61a.53.53 0 0 0 0 .76a.55.55 0 0 0 .771 0"></path></svg>
                         
                     </div>
                     {showSortOptions && 
-                        <ul className="absolute bg-white top-8 right-0 rounded-md overflow-hidden" ref={domNode}>
+                        <ul className="absolute bg-white top-8 right-0 rounded-md overflow-hidden z-40" ref={domNode}>
                             <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "popularity" ? "text-black" : "text-gray-500"} p-3`}
                             onClick={() => {
                                 setSortBy("popularity")
