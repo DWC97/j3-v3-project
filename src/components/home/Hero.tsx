@@ -10,6 +10,16 @@ import { ActiveSectionContext } from "@/context/ActiveSectionContext";
 import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
 
+function debounce(fn, ms) {
+    let timer
+    return _ => {
+      clearTimeout(timer)
+      timer = setTimeout(_ => {
+        timer = null
+        fn.apply(this, arguments)
+      }, ms)
+    };
+  }
 
 export default function Hero(){
 
@@ -24,6 +34,10 @@ export default function Hero(){
     const heroRef = useRef(null)
     const [isInView] = useDetectSection(heroRef)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
+    const [dimensions, setDimensions] = useState({ 
+        height: window.innerHeight,
+        width: window.innerWidth
+      })
 
     useEffect(() => {
         if (isInView){
@@ -107,8 +121,20 @@ export default function Hero(){
 
     function handleResize(){
         document.location.reload()
+        // setDimensions({
+        //     height: window.innerHeight,
+        //     width: window.innerWidth
+        //   })
+
+        
     }
 
+    const debouncedHandleResize = debounce(function handleResize() {
+        setDimensions({
+          height: window.innerHeight,
+          width: window.innerWidth
+        })
+      }, 1000)
 
     function loadEvents(){
         if (typeof window !== 'undefined') {
@@ -116,14 +142,14 @@ export default function Hero(){
                 window.addEventListener("mousemove", handleMousemove)
             }, 3000)
     
-            window.addEventListener("resize", handleResize)
+            window.addEventListener("resize", debouncedHandleResize)
         } 
 
         // Cleanup function to remove event listener when the component unmounts
         return () => {
             if (typeof window !== 'undefined') {
                 window.removeEventListener("mousemove", handleMousemove);
-                window.removeEventListener("resize", handleResize);
+                window.removeEventListener("resize", debouncedHandleResize);
             }
         };
     }
@@ -131,7 +157,7 @@ export default function Hero(){
     loadEvents()
 
     return (
-        <div className="section hero" id="hero" ref={heroRef}>
+        <div className="section hero" id="hero" ref={heroRef} key={1}>
             <div className="wrapper">
                 <div className="vignette"></div>
                 <img src="/hero/sky6.png" className="sky parallax" data-speedx="0.08" data-speedy="0.075" data-speedz="0" data-rotation="0"/>
