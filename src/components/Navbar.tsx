@@ -20,6 +20,7 @@ export default function Navbar(){
     const path = usePathname()
     const [nav, setNav] = useState(false) // set mobile nav menu
     const [toggle] = useBodyLockScroll() // toggle scroll lock
+    const mobileView = window.innerWidth < 500
 
     useEffect(() => {
         if (path !== "/"){
@@ -125,11 +126,11 @@ export default function Navbar(){
                 
             </div>
             <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[45] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50 backdrop-blur-sm" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
-                <Link href="/#hero" tabIndex={-1} >
+                {!mobileView && <Link href="/#hero" tabIndex={-1} >
                     <div className="relative">
                         <img src="/logo.png" className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}/>
                     </div>
-                </Link>
+                </Link>}
                 <div className='flex lg:hidden w-full justify-between h-full px-10'>
                     <div className='flex justify-center items-center -ml-1 cursor-pointer ' onClick={() => {
                         setNav(!nav)

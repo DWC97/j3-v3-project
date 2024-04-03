@@ -35,10 +35,7 @@ export default function Hero(){
     const heroRef = useRef(null)
     const [isInView] = useDetectSection(heroRef)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
-    const [dimensions, setDimensions] = useState({ 
-        height: window.innerHeight,
-        width: window.innerWidth
-      })
+    const mobileView = window.innerWidth < 500
 
     useEffect(() => {
         if (isInView){
@@ -57,7 +54,7 @@ export default function Hero(){
     }, []);
 
     useGSAP(() => {
-        if (window.innerWidth <= 500) return
+        if (mobileView) return
 
         const ourText = new SplitType(mainHeading.current, { types: 'chars' })
         const chars = ourText.chars
@@ -137,7 +134,7 @@ export default function Hero(){
         //   height: window.innerHeight,
         //   width: window.innerWidth
         // })
-        if (window.innerWidth > 500){
+        if (!mobileView){
             document.location.reload()
         }
         
@@ -166,7 +163,7 @@ export default function Hero(){
 
     return (
         <div ref={heroRef} className="h-screen w-full">
-            {window.innerWidth > 500 ? 
+            {!mobileView ? 
             <div className="section hero" id="hero">
                 <div className="wrapper">
                     <div className="vignette"></div>
