@@ -130,11 +130,16 @@ export default function Hero(){
     }
 
     const debouncedHandleResize = debounce(function handleResize() {
-        setDimensions({
-          height: window.innerHeight,
-          width: window.innerWidth
-        })
+        // setDimensions({
+        //   height: window.innerHeight,
+        //   width: window.innerWidth
+        // })
+        if (window.innerWidth > 500){
+            document.location.reload()
+        }
+        
       }, 1000)
+      
 
     function loadEvents(){
         if (typeof window !== 'undefined') {
