@@ -87,7 +87,7 @@ export default function Store(){
                                 setShowSortOptions(!showSortOptions)
                             }}
                             >Price: Low to High</li>
-                            <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "price" ? "text-black" : "text-gray-500"} p-3`}
+                            <li className={`hover:bg-gray-100 cursor-pointer ${sortBy === "price-high" ? "text-black" : "text-gray-500"} p-3`}
                             onClick={() => {
                                 setSortBy("price-high")
                                 setShowSortOptions(!showSortOptions)
@@ -107,6 +107,11 @@ export default function Store(){
                                 className="mr-3"
                                 checked={selectedCategory === 't-shirt'}
                                 onChange={() => handleCategoryChange('t-shirt')}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        handleCategoryChange('t-shirt')
+                                    }
+                                }}
                                 />
                                 Tees
                             </label>
@@ -117,6 +122,11 @@ export default function Store(){
                                 className="mr-3"
                                 checked={selectedCategory === 'hoodie'}
                                 onChange={() => handleCategoryChange('hoodie')}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        handleCategoryChange('hoodie')
+                                    }
+                                }}
                                 />
                                 Hoodies
                             </label>
@@ -127,6 +137,11 @@ export default function Store(){
                                 className="mr-3"
                                 checked={selectedCategory === 'tank-top'}
                                 onChange={() => handleCategoryChange('tank-top')}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        handleCategoryChange('tank-top')
+                                    }
+                                }}
                                 />
                                 Tank Tops
                             </label>
@@ -137,6 +152,11 @@ export default function Store(){
                                 className="mr-3"
                                 checked={selectedCategory === 'accessory'}
                                 onChange={() => handleCategoryChange('accessory')}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        handleCategoryChange('accessory')
+                                    }
+                                }}
                                 />
                                 Accesories
                             </label>
@@ -150,6 +170,11 @@ export default function Store(){
                                 className="mr-3"
                                 checked={selectedColor === 'Black'}
                                 onChange={() => handleColorChange('Black')}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        handleColorChange('Black')
+                                    }
+                                }}
                                 />
                                 Black
                             </label>
@@ -160,6 +185,11 @@ export default function Store(){
                                 className="mr-3"
                                 checked={selectedColor === 'White'}
                                 onChange={() => handleColorChange('White')}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter"){
+                                        handleColorChange('White')
+                                    }
+                                }}
                                 />
                                 White
                             </label>

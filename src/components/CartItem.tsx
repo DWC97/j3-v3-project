@@ -26,6 +26,11 @@ export default function CartItem({ id, quantity, size }){
                     <span className="text-gray-500 text-[14px]">Qty {quantity}</span>
                     <span className="text-custom-pink text-[14px] cursor-pointer ease-in-out duration-300 hover:opacity-85"
                     onClick={() => removeFromCart(item?.id, size)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter"){
+                            removeFromCart(item?.id, size)
+                        }
+                    }}
                     >Remove</span>
                 </div>
             </div>

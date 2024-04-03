@@ -58,18 +58,28 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                         <div className="flex flex-row w-full gap-3 mt-8">
                             <button className={`w-full ${activeSize === "XS" ? "text-white bg-custom-pink border-custom-pink" : "bg-none border-gray-300 hover:border-custom-pink hover:text-custom-pink"} text-white border  py-3 text-[14px] rounded-md font-semibold ease-in-out duration-300`}
                             onClick={() => setActiveSize("XS")}
+                            tabIndex={0}
+                            onFocus={() => setActiveSize("XS")}
                             >XS</button>
                             <button className={`w-full ${activeSize === "S" ? "text-white bg-custom-pink border-custom-pink" : "bg-none border-gray-300 hover:border-custom-pink hover:text-custom-pink"} text-white border  py-3 text-[14px] rounded-md font-semibold ease-in-out duration-300`}
                             onClick={() => setActiveSize("S")}
+                            tabIndex={0}
+                            onFocus={() => setActiveSize("S")}
                             >S</button>
                             <button className={`w-full ${activeSize === "M" ? "text-white bg-custom-pink border-custom-pink" : "bg-none border-gray-300 hover:border-custom-pink hover:text-custom-pink"} text-white border  py-3 text-[14px] rounded-md font-semibold ease-in-out duration-300`}
                             onClick={() => setActiveSize("M")}
+                            tabIndex={0}
+                            onFocus={() => setActiveSize("M")}
                             >M</button>
                             <button className={`w-full ${activeSize === "L" ? "text-white bg-custom-pink border-custom-pink" : "bg-none border-gray-300 hover:border-custom-pink hover:text-custom-pink"} text-white border  py-3 text-[14px] rounded-md font-semibold ease-in-out duration-300`}
                             onClick={() => setActiveSize("L")}
+                            tabIndex={0}
+                            onFocus={() => setActiveSize("L")}
                             >L</button>
                             <button className={`w-full ${activeSize === "XL" ? "text-white bg-custom-pink border-custom-pink" : "bg-none border-gray-300 hover:border-custom-pink hover:text-custom-pink"} text-white border  py-3 text-[14px] rounded-md font-semibold ease-in-out duration-300`}
                             onClick={() => setActiveSize("XL")}
+                            tabIndex={0}
+                            onFocus={() => setActiveSize("XL")}
                             >XL</button>
                         </div>
                         }
@@ -83,6 +93,20 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                         </ul>
                         <div className="w-full flex flex-row justify-between items-center mt-8">
                             <div className={`w-2/3 py-3 flex flex-row justify-center items-center rounded-md font-semibold ${submitted ? "bg-white" : "bg-custom-pink hover:opacity-85 ease-in-out duration-300 cursor-pointer"} ease-in-out duration-300 `}
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter"){
+                                    if (submitted) return
+                                    else {
+                                        if (item.sizes){
+                                            increaseCartQuantity(item.id, parseInt(quantity), activeSize)
+                                        } else {
+                                            increaseCartQuantity(item.id, parseInt(quantity), "NA")
+                                        }
+                                        setSubmitted(true)
+                                    }
+                                }
+                            }}
                             onClick={() => {
                                 if (submitted) return
                                 else {
