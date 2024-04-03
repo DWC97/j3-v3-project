@@ -152,24 +152,24 @@ export default function Navbar(){
                 </div>
                 <div className="hidden lg:flex flex-row w-screen h-full ">
                     <div className="w-1/2 h-full flex justify-end text-white">  
-                        <span className={`mt-1 h-full  ${activeSection === "about" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink w-44 ease-in-out duration-300 out`} >
+                        <span className={`mt-1 h-full  ${activeSection === "about" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 hover:opacity-85 border-custom-pink w-44 ease-in-out duration-300 out`} >
                             <Link href="/#about" tabIndex={0} className='w-full h-full flex items-center justify-center'>
                                 ABOUT
                             </Link>
                         </span>
-                        <span className={`mt-1 h-full w-44 ${activeSection === "tours" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300`}>
+                        <span className={`mt-1 h-full w-44 ${activeSection === "tours" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 hover:opacity-85 border-b-2 border-custom-pink ease-in-out duration-300`}>
                             <Link href="/#tours" tabIndex={0} className='w-full h-full flex items-center justify-center'>
                                 TOURS
                             </Link>
                         </span>
-                        <span className={`mt-1 h-full w-44 mr-24 ${activeSection === "contact" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300`}>
+                        <span className={`mt-1 h-full w-44 mr-24 ${activeSection === "contact" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 hover:opacity-85 border-b-2 border-custom-pink ease-in-out duration-300`}>
                             <Link href="/#contact" tabIndex={0} className='w-full h-full flex items-center justify-center'>
                                 CONTACT
                             </Link>
                         </span>
                     </div>
                     <div className="w-1/2 right-1/2 h-full flex justify-between text-white">   
-                        <span className={`mt-1 h-full w-44 ml-24 ${activeSection === "store" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 border-custom-pink ease-in-out duration-300`}>
+                        <span className={`mt-1 h-full w-44 ml-24 ${activeSection === "store" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 hover:opacity-85 border-b-2 border-custom-pink ease-in-out duration-300`}>
                             <Link href={"/store"} tabIndex={0} className='w-full h-full flex items-center justify-center'>
                                 STORE
                             </Link>
