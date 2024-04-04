@@ -118,13 +118,13 @@ export function About2(){
     
 
     return (
-        <div className="flex flex-row bg-black h-[1080px] relative" id="about" ref={aboutRef}>
+        <div className="flex flex-row bg-black min-h-screen h-[1080px] relative" id="about" ref={aboutRef}>
             {/* <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-b from-transparent to-custom-blue opacity-20' />
             <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-br from-transparent to-custom-blue opacity-10' /> */}
             <div className={`z-10 flex flex-col h-full lg:w-3/5 w-4/5 justify-center px-[7%] -pr-10 `}>
                 <Reveal>
                     <h3 className='text-custom-blue text-[20px] font-bold mb-2'>JR SEASON 1</h3>
-                    <h2 className='text-white font-bold text-[40px] leading-snug mb-4'>Small group party tours starting in 2025</h2>
+                    <h2 className='text-white font-bold text-[40px] leading-snug mb-6'>Small group party tours starting in 2025</h2>
                     <p className='text-white text-[16px] leading-relaxed mb-2'>Ahoy there! If you’re looking to experience the best nightlife & culture South-East Asia has to offer with a rowdy group of travellers and tick-off bucket-list activities along the way, JR has you covered. We make logistics stress-free so you can focus on having a good time. Be warned, we do things a little differently over at JR:</p>
                     <div className='flex flex-row items-center'>
                         <span className='text-[20px] mr-4'>❌</span>
@@ -150,10 +150,16 @@ export function About2(){
                 
             </div>
             <div className="gallery pl-10" ref={gallery}>
-                <div className="galleryWrapper">
-                    <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y}/>
-                    <Column imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2}/>                 
-                </div>
+                
+                    {window.innerWidth > 1024 ? 
+                    <div className="galleryWrapper">
+                        <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y}/>
+                        <Column imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2}/> 
+                    </div>  
+                    :
+                    <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5], imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y}/>
+                    }              
+            
             </div>
         </div>
     )

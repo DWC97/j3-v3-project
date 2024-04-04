@@ -43,3 +43,12 @@
 img{
     object-fit: cover;
 }
+
+@media screen and (max-width: 1024px) {
+    .column{
+        min-width: 200px;
+    }
+    .imageContainer{
+        min-height: 250px;
+    }
+}
