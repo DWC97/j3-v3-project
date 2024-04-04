@@ -24,7 +24,7 @@ function debounce(fn, ms) {
 
 export default function Hero(){
 
-    let { setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext)
+    let { activeSection, setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext)
     let parallaxEl: any[] = []
     let xValue = 0
     let yValue = 0
@@ -36,10 +36,15 @@ export default function Hero(){
     const [isInView] = useDetectSection(heroRef)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
     const mobileView = window.innerWidth < 500
+    const [needsReloading, setNeedsReloading] = useState(false)
 
     useEffect(() => {
         if (isInView){
-            setActiveSection("contact")
+            setActiveSection("hero")
+            if (needsReloading){
+                document.location.reload()
+                setNeedsReloading(false)
+            }
         }
     }, [isInView])
 
@@ -119,28 +124,19 @@ export default function Hero(){
         })
     }
 
-    function handleResize(){
-        document.location.reload()
-        // setDimensions({
-        //     height: window.innerHeight,
-        //     width: window.innerWidth
-        //   })
-
-        
-    }
 
     const debouncedHandleResize = debounce(function handleResize() {
-        // setDimensions({
-        //   height: window.innerHeight,
-        //   width: window.innerWidth
-        // })
+
         if (!mobileView){
-            document.location.reload()
+            if (activeSection !== "hero"){
+                setNeedsReloading(true)
+            } else {
+                document.location.reload()
+            }
         }
         
       }, 1000)
       
-
     function loadEvents(){
         if (typeof window !== 'undefined') {
             setTimeout(() => {

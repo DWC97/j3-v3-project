@@ -127,7 +127,7 @@ export default function Navbar(){
             </div>
             <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[45] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50 backdrop-blur-sm" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
                 {!mobileView && <Link href="/#hero" tabIndex={-1} >
-                    <div className="relative">
+                    <div className="relative hover:opacity-85 ease-in-out duration-300">
                         <img src="/logo.png" className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}/>
                     </div>
                 </Link>}
