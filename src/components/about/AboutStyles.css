@@ -52,3 +52,9 @@ img{
         min-height: 250px;
     }
 }
+
+/* @media screen and (max-width: 640px) {
+    .gallery{
+        visibility: hidden;
+    }
+} */
