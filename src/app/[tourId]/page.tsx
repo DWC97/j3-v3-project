@@ -43,7 +43,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     };
 
     function viewImage(image, i){
-        // if (window.innerWidth < 640) return
+        if (window.innerWidth < 640) return
         setGallery({ image, i })
         toggle()
         setIsOverlayActive(true)
@@ -134,7 +134,6 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         }
         
     }, [isOverlayActive])
-
 
     return (
         <div>
