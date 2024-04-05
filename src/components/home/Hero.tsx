@@ -35,7 +35,7 @@ export default function Hero(){
     const heroRef = useRef(null)
     const [isInView] = useDetectSection(heroRef)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
-    const mobileView = window.innerWidth < 500
+    let mobileView = window.innerWidth < 500
     const [needsReloading, setNeedsReloading] = useState(false)
 
     useEffect(() => {

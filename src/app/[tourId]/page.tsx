@@ -25,6 +25,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     const overlayRef = useRef(null)
     const [isOverlayActive, setIsOverlayActive] = useState(false)
     const [focusedArrow, setFocusedArrow] = useState("")
+    let mobileView = window.innerWidth < 640
 
     let domNode = useClickOutside(() => {
         if (!gallery.image) return
@@ -42,6 +43,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     };
 
     function viewImage(image, i){
+        // if (window.innerWidth < 640) return
         setGallery({ image, i })
         toggle()
         setIsOverlayActive(true)
@@ -117,6 +119,11 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                 handleNext()
                 nextArrowRef.current.focus()
             }
+            else if(e.key === "Escape"){
+                setGallery({ image: "", i: 0 })
+                toggle()
+                setIsOverlayActive(false)
+            }
         }
     }
 
@@ -185,22 +192,22 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                     <img src={tour?.imageSrc} className="absolute object-cover object-center w-full h-[400px] -z-10"/>
                     <div className="absolute h-[200px] w-full top-0 left-0 bg-gradient-to-b from-black to-transparent opacity-35 z-0"/>
                     <div className="absolute h-[200px] w-full bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-35 z-0"/>
-                    <div className="w-full h-1/2 flex flex-col justify-center z-10 pl-10">
+                    <div className="w-full h-1/2 flex flex-col justify-center z-10 px-10 xl:px-20 2xl:px-60">
                         <Reveal>
-                            <h1 className="font-bold text-[56px] text-white tracking-wide">{tour?.region.toUpperCase().replace("-"," ")}</h1>
+                            <h1 className="font-bold text-[40px] md:text-[56px] text-white tracking-wide">{tour?.region.toUpperCase().replace("-"," ")}</h1>
                         </Reveal>
                         <Reveal>
-                            <h3 className="text-[32px] text-gray-200 font-medium">{tour?.title.toUpperCase()}</h3>
+                            <h3 className="text-[28px] md:text-[32px] text-gray-200 font-medium">{tour?.title.toUpperCase()}</h3>
                         </Reveal>
                     </div>
                 </div>
-                <div className='mx-10'>
+                <div className='px-10 xl:px-20 2xl:px-60'>
                     <Link href={"/#tours"} className="mt-5 mb-10 bg-black flex flex-row items-center w-[230px] hover:opacity-85 ease-in-out duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" className='pl-3 rotate-180' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                         <span className="text-gray-200 text-[14px] font-semibold">BACK TO TOUR SELECTION</span>    
                     </Link>
-                    <div className="w-full flex flex-row justify-between relative ">
-                        <div className="flex flex-col mr-10">
+                    <div className="w-full flex md:gap-0 gap-20 flex-col-reverse md:flex-row justify-between relative ">
+                        <div className="flex flex-col md:mr-10">
                             <div className='text-white'>
                                 <p className='text-[20px] font-medium mb-4'>{tour?.tagline}</p>
                                 <p className='text-[18px] text-gray-100 mb-4'>{tour?.description1}</p>
@@ -219,8 +226,8 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                     }
                                 }}
                                 >
-                                    <h2 className='font-semibold text-[36px] text-white'>Activities</h2>
-                                    <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['activities'] ? "(close)" : "(open)"}</span>  
+                                    <h2 className='font-semibold text-[28px] sm:text-[36px] text-white'>Activities</h2>
+                                    <span className='text-[14px] text-gray-200 ml-10 hidden lg:block'>{answersVisible['activities'] ? "(close)" : "(open)"}</span>  
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['activities'] && "rotate-180"} `} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
                                 </div> 
                                 <div className={`my-4 text-gray-200 text-[18px] -py-1 ${answersVisible['activities'] ? undefined : "hidden"}`}>
@@ -241,8 +248,8 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                     }
                                 }}
                                 >
-                                    <h2 className='font-semibold text-[36px] text-white'>What's included?</h2>
-                                    <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['included'] ? "(close)" : "(open)"}</span>
+                                    <h2 className='font-semibold text-[28px] sm:text-[36px] text-white pr-8'>What's included?</h2>
+                                    <span className='text-[14px] hidden lg:block text-gray-200 ml-10'>{answersVisible['included'] ? "(close)" : "(open)"}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['included'] && "rotate-180"}`} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
                                 </div>
                                 <div className={`my-4 text-gray-200 text-[18px] -py-1 ${answersVisible['included'] ? undefined : "hidden"}`}>
@@ -270,14 +277,14 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                     }
                                 }}
                                 >
-                                    <h2 className='font-semibold text-[36px] text-white'>What do you need to join us?</h2>
-                                    <span className='text-[14px] text-gray-200 ml-10'>{answersVisible['needed'] ? "(close)" : "(open)"}</span>
+                                    <h2 className='font-semibold text-[28px] sm:text-[36px] text-white pr-8'>What do you need to join us?</h2>
+                                    <span className='text-[14px] text-gray-200 ml-10 hidden lg:block'>{answersVisible['needed'] ? "(close)" : "(open)"}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['needed'] && "rotate-180"}`} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
                                 </div>
                                 <p className={`my-4 text-gray-200 text-[18px] ${answersVisible['needed'] ? undefined : "hidden"}`}>{tour?.needed}</p>
                             </div>
                             <div className='mt-16'>
-                                <h2 className='font-semibold text-[36px] text-white mb-8'>Gallery</h2>
+                                <h2 className='font-semibold text-[28px] sm:text-[36px] text-white mb-8'>Gallery</h2>
                                 <div className='w-full  overflow-hidden '>
                                 <ResponsiveMasonry
                                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
@@ -288,7 +295,9 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                                 <img
                                                 src={image}
                                                 style={{width: "100%", display: "block", cursor: "pointer"}}
-                                                onClick={() => viewImage(image, i)}
+                                                onClick={() => {
+                                                    viewImage(image, i)
+                                                }}
                                                 />
                                             </div>
                                         ))}
@@ -297,39 +306,44 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                 </div>
                             </div>
                         </div>
-                        <div className=' min-w-[400px] h-[815px] flex flex-col justify-between sticky -top-[220px] tall:-top-[80px] vtall:top-[60px]'>
-                            <div className='min-h-[700px] w-full border border-gray-500 rounded-lg relative overflow-hidden'>
-                                <img src={tour?.cardSrc} className='absolute object-cover object-center h-full -z-20'/>
-                                <div className='absolute top-0 left-0 w-full h-full bg-black opacity-30 -z-10'/>
-                                <div className='flex flex-col w-full p-5 h-[700px] justify-between'>
-                                    <h3 className='font-semibold text-[36px] text-white'>Overview</h3>
+                        <div className='w-full md:w-[280px] lg:min-w-[400px] h-[815px] flex flex-col justify-between md:sticky -top-[220px] tall:-top-[80px] vtall:top-[60px]'>
+                            <div className='min-h-[700px] w-full border border-gray-500 rounded-lg relative overflow-hidden z-0'
+                            style={{backgroundImage: "url(" + tour.cardSrc + ")",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center"
+                            }}
+                            >
+                                {/* <img src={tour?.cardSrc} className='w-full absolute object-cover object-center h-full -z-20'/> */}
+                                <div className='absolute top-0 left-0 w-full h-full bg-black opacity-30 z-[1]'/>
+                                <div className='flex flex-col w-full p-5 h-[700px] justify-between '>
+                                    <h3 className='font-semibold text-[36px] text-white z-30'>Overview</h3>
                                     <ul className='w-full h-[450px] flex flex-col justify-between'>
-                                        <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <li className='w-full flex flex-row justify-between text-[20px] lg:text-[20px] md:text-[16px] z-30'>
                                             <span className='font-medium  text-white'>Duration</span>
                                             <span className='font-semibold text-white '>{tour?.duration} days</span>
                                         </li>
-                                        <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <li className='w-full flex flex-row justify-between text-[20px] lg:text-[20px] md:text-[16px] z-30'>
                                             <span className='font-medium text-white '>Group Size</span>
                                             <span className='font-semibold text-white'>{tour?.['group-size']}</span>
                                         </li>
-                                        <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <li className='w-full flex flex-row justify-between text-[20px] lg:text-[20px] md:text-[16px] z-30'>
                                             <span className='font-medium  text-white'>Dates</span>
                                             <span className='font-semibold text-white '>{tour?.dates}</span>
                                         </li>
-                                        <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <li className='w-full flex flex-row justify-between text-[20px] lg:text-[20px] md:text-[16px] z-30'>
                                             <span className='font-medium  text-white'>Starts</span>
                                             <span className='font-semibold text-white'>{tour?.starts}</span>
                                         </li>
-                                        <li className='w-full flex flex-row justify-between text-[20px]'>
+                                        <li className='w-full flex flex-row justify-between text-[20px] lg:text-[20px] md:text-[16px] z-30'>
                                             <span className='font-medium  text-white'>Finishes</span>
                                             <span className='font-semibold text-white'>{tour?.finishes}</span>
                                         </li>
-                                        {tour && Object.entries(tour?.scores).map(([key, val], i)=> {
+                                        {Object.entries(tour?.scores).map(([key, val], i)=> {
                                                 return (
-                                                    <li key={i} className='w-full flex flex-row justify-between text-[20px] relative'>
+                                                    <li key={i} className=' w-full flex flex-row justify-between text-[20px] lg:text-[20px] md:text-[16px] relative z-30'>
                                                         <span className='font-medium text-white '>{key}</span>
                                                         <span className='font-semibold' style={{ color: colorGenerator(val) }}>{val}</span>
-                                                        <div className='absolute w-[150px] left-[145px] top-[10px] h-[12px] rounded-r-md'
+                                                        <div className='hidden sm:block md:hidden lg:block absolute w-[150px] sm:left-[250px] lg:left-[145px] top-[10px] h-[12px] rounded-r-md'
                                                         style={{backgroundColor: colorGenerator(val),
                                                                 width: `${(150/10) * val}px`
                                                         }}
@@ -339,8 +353,8 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
                                         })}
                                     </ul>
                                     <div className='w-full h-[90px] flex flex-row justify-between'>
-                                        <span className='font-medium text-[20px] text-white'>Price</span>
-                                        <span className='font-semibold text-[52px] text-white tracking-wide'>{tour && formatNumber(tour?.price)}</span>
+                                        <span className='font-medium text-[20px] lg:text-[20px] md:text-[16px] text-white z-30'>Price</span>
+                                        <span className='font-semibold text-[36px]  lg:text-[52px] text-white tracking-wide pt-8 lg:pt-0 z-30'>{tour && formatNumber(tour?.price)}</span>
                                     </div>
                                 </div>
                             </div>
