@@ -5,9 +5,6 @@ import { useState, useEffect, useRef, useContext } from "react"
 import Swal from 'sweetalert2'
 import { Reveal } from "@/context/Reveal"
 import { Slide } from "@/context/Slide"
-// import { Float, Sparkles, useTexture } from "@react-three/drei"
-// import { PlaneGeometry } from "three"
-// import { Canvas } from "@react-three/fiber"
 
 export default function Contact2(){
 
@@ -94,14 +91,9 @@ export default function Contact2(){
     }
 
     return (
-        <div className="bg-black w-full h-screen min-h-[800px] contact flex flex-row items-center justify-around pt-20" id="contact" ref={contactRef}>
-            <div className="-mr-20 flex flex-col items-center justify-center h-[500px]">
+        <div className="bg-black w-full min-h-screen xl:pb-0 pb-28 xl:pt-20 pt-60 flex flex-col-reverse  gap-40 xl:gap-0 xl:flex-row items-center justify-center" id="contact" ref={contactRef}>
+            <div className="xl:mr-20 2xl:mr-28 flex flex-col items-center justify-center h-[500px]">
                 <Slide>
-                    {/* <div className="">
-                        <Canvas>
-                            <Sticker />
-                        </Canvas>
-                    </div> */}
                     <img src="/contact/Jolly_Roger.jpg" className="w-[360px] "/>
                 </Slide>
                 <Reveal>
@@ -112,9 +104,9 @@ export default function Contact2(){
                 </Reveal>
             </div>
             
-            <Reveal><div className="flex flex-col justify-between w-[500px] md:w-[600px] h-[500px] bg-black bg-opacity-50 rounded-3xl z-30 -ml-20">
-                <h2 className="font-semibold text-[44px] text-white">RESERVE A SPOT</h2>
-                <form action="" className="flex flex-col justify-between h-[300px] relative" autoComplete="off">
+            <Reveal><div className="flex flex-col justify-between px-10 sm:px-0 sm:w-[500px] md:w-[600px] h-[650px] sm:h-[500px] bg-black bg-opacity-50 rounded-3xl z-30 ">
+                <h2 className="font-semibold text-[32px] md:text-[44px] text-white sm:mb-0 mb-8">RESERVE A SPOT</h2>
+                <form action="" className="flex flex-col justify-between h-[450px] sm:h-[300px] relative" autoComplete="off">
                 <input type="text" name="name" placeholder="" className={`w-[240px]  text-gray-300 border-b ${!nameValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 outline-none !bg-black`}
                     value={formData.name}
                     onChange={handleInputChange}
@@ -125,7 +117,7 @@ export default function Contact2(){
                         <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
                     </div>
                     
-                    <div className={`absolute top-[5.75rem] left-56 ${emailValid ? "opacity-0 invisible" : "opacity-100 visible"} transition-opacity ease-in-out duration-300`}title="Please include an valid email address">
+                    <div className={`absolute top-[7rem] sm:top-[5.75rem] left-56 ${emailValid ? "opacity-0 invisible" : "opacity-100 visible"} transition-opacity ease-in-out duration-300`}title="Please include an valid email address">
                     <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
                     </div>
                     
@@ -134,8 +126,8 @@ export default function Contact2(){
                     value={formData.email}
                     onChange={handleInputChange}
                     />   
-                    <div className="absolute text-white top-[3.75rem]">Email</div>  
-                    <div className="flex flex-row w-full justify-between items-center">
+                    <div className="absolute text-white top-[5rem] sm:top-[3.75rem]">Email</div>  
+                    <div className="flex flex-col gap-12 sm:gap-0 sm:flex-row w-full sm:justify-between sm:items-center">
                         <div className="w-[240px]">
                             <select id="country" name="country" className="block w-full p-2 text-gray-300 bg-black border-white border-b outline-none">
                                 <option>Northern Thailand</option>
@@ -145,13 +137,13 @@ export default function Contact2(){
                                 <option>Philippines</option>
                             </select>
                         </div>
-                        <input type="number" name="number" min={1} max={4} className="w-[240px] text-gray-300 border-b border-white p-2 outline-none bg-black"
+                        <input type="number" name="number" min={1} max={4} className="mt-2 sm:mt-0 w-[240px] text-gray-300 border-b border-white p-2 outline-none bg-black"
                         value={formData.number}
                         onChange={handleInputChange}
                         />  
                     </div>
-                    <div className="absolute text-white top-[9.25rem]">Destination</div>  
-                    <div className="absolute text-white right-[140px] top-[9.25rem]">No. of people</div>  
+                    <div className="absolute text-white top-[10.5rem] sm:top-[9.25rem]">Destination</div>  
+                    <div className="absolute text-white left-0 sm:left-auto top-[17rem] sm:right-[140px] sm:top-[9.25rem]">No. of people</div>  
                     <div className={`${submittable ? "cursor-pointer hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
                     tabIndex={0}
                     onKeyDown={(e) => {
@@ -170,7 +162,7 @@ export default function Contact2(){
                     </div>
                     
                 </form>
-                <p className="text-white text-[14px]">
+                <p className="text-white text-[12px] sm:text-[14px]">
                     Please note. Jolly Roger Tours is currently going through the incorporation and licensing process in the UK and will launch officially in late 2024. 
                 </p>
             </div></Reveal>
@@ -178,23 +170,3 @@ export default function Contact2(){
         </div>
     )
 }
-
-// function Sticker(){
-//     const texture = useTexture("/contact/Jolly_Roger.jpg")
-
-//     return (
-//         <Float>
-//             <Sparkles />
-//             <mesh>
-//                 <planeGeometry />
-//                 <meshPhysicalMaterial 
-//                 map={texture}
-//                 transparent
-//                 clearcoat={1}
-//                 roughness={0}
-//                 metalness={0.9}
-//                 />
-//             </mesh>
-//         </Float>
-//     )
-// }
