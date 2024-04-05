@@ -149,7 +149,7 @@ export function About2(){
                 </Reveal>
                 
             </div>
-            <div className="gallery pl-10 hidden sm:flex" ref={gallery}>
+            <div className="gallery px-10 hidden sm:flex" ref={gallery}>
                 
                     {window.innerWidth > 1024 ? 
                     <div className="galleryWrapper">
