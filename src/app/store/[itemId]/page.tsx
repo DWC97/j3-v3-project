@@ -36,8 +36,8 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                 <div className={`z-50 fixed w-72 md:w-96 h-20 bg-white top-24 right-8 rounded-md flex flex-row ${notification ? "opacity-100 visible" : "opacity-0 invisible"} transition-opacity ease-in-out duration-500`}>
                     <img src={item.gallery[0]} className="object-cover py-1 px-4"/>
                     <div className="w-full flex flex-col justify-center">
-                        <span className="font-semibold">Successfully added!</span>
-                        <span className="text-[14px] text-gray-700">{item.name}</span>
+                        <span className="font-semibold md:text-[16px] text-[14px]">Successfully added!</span>
+                        <span className="text-[12px] md:text-[14px] text-gray-700">{item.name}</span>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} className="hover:opacity-100 opacity-70 cursor-pointer ease-in-out duration-300 absolute right-4 top-4" 
                     onClick={() => {

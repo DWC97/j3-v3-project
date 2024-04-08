@@ -3,7 +3,7 @@
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
 import SplitType from 'split-type'
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState, MouseEvent as ReactMouseEvent } from "react";
 import "./HeroStyles.css"
 import useDetectSection from "@/hooks/useDetectSection";
 import { ActiveSectionContext } from "@/context/ActiveSectionContext";
@@ -11,32 +11,35 @@ import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
 import HeroMobile from "./HeroMobile";
 
-function debounce(fn, ms) {
-    let timer
-    return _ => {
-      clearTimeout(timer)
-      timer = setTimeout(_ => {
-        timer = null
-        fn.apply(this, arguments)
-      }, ms)
+type ParallaxElement = HTMLImageElement & { 
+    dataset: { 
+        speedx: string
+        speedy: string
+        speedz: string
+        rotation: string
+    } }
+
+function debounce(fn: (...args: any[]) => void, ms: number) {
+    let timer: ReturnType<typeof setTimeout>;
+    return (...args: any[]) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            fn(...args);
+        }, ms);
     };
-  }
+}
 
 export default function Hero(){
 
-    let { activeSection, setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext)
-    let parallaxEl: any[] = []
-    let xValue = 0
-    let yValue = 0
-    let rotateDegree = 0
-    let mainHeading = useRef(null)
-    let subHeading = useRef(null)
-    let foliage = useRef(null)
-    const heroRef = useRef(null)
-    const [isInView] = useDetectSection(heroRef)
-    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
+    const { activeSection, setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext);
+    const mainHeading = useRef<HTMLHeadingElement>(null);
+    const subHeading = useRef<HTMLHeadingElement>(null);
+    const foliage = useRef<HTMLImageElement>(null);
+    const heroRef = useRef<HTMLDivElement>(null);
+    const [isInView] = useDetectSection(heroRef);
+    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null);
+    const [needsReloading, setNeedsReloading] = useState<boolean>(false);
     let mobileView = window.innerWidth < 500
-    const [needsReloading, setNeedsReloading] = useState(false)
 
     useEffect(() => {
         if (isInView){
@@ -49,19 +52,16 @@ export default function Hero(){
     }, [isInView])
 
     useEffect(() => {
-        parallaxEl = Array.from(
-            document.getElementsByClassName('parallax')
-        ); 
-
+        const parallaxElements: ParallaxElement[] = Array.from(document.getElementsByClassName('parallax')) as ParallaxElement[];
         setTimeout(() => {
-            setScrollAnimation(true)
+            setScrollAnimation(true);
         }, 5000);
     }, []);
 
     useGSAP(() => {
         if (mobileView) return
 
-        const ourText = new SplitType(mainHeading.current, { types: 'chars' })
+        const ourText = new SplitType(mainHeading.current!, { types: 'chars' })
         const chars = ourText.chars
 
         gsap.from(
@@ -105,23 +105,18 @@ export default function Hero(){
         )
     })
 
-    function handleMousemove(e){
-        xValue = e.clientX - window.innerWidth / 2
-        yValue = e.clientY - window.innerHeight / 2
+    function handleMousemove(e: MouseEvent) {
+        const xValue = e.clientX - window.innerWidth / 2;
+        const yValue = e.clientY - window.innerHeight / 2;
+        const rotateDegree = (xValue / (window.innerWidth / 2)) * 25;
 
-        rotateDegree = (xValue / (window.innerWidth / 2)) * 25
-
-        parallaxEl.forEach(el => {
-            let speedx = el.dataset.speedx
-            let speedy = el.dataset.speedy
-            let speedz = el.dataset.speedz
-            let rotation = el.dataset.rotation
-
+        const parallaxElements: ParallaxElement[] = Array.from(document.getElementsByClassName('parallax')) as ParallaxElement[];
+        parallaxElements.forEach(el => {
+            const { speedx, speedy, speedz, rotation } = el.dataset;
             let isInLeft = (parseFloat(getComputedStyle(el).left) < window.innerWidth / 2) ? 1 : -1
             let zValue = (e.clientX - parseFloat(getComputedStyle(el).left)) * isInLeft * 0.06
-            
-            el.style.transform = `translateX(calc(-50% + ${-xValue * speedx}px)) translateY(calc(-50% + ${yValue * speedy}px)) perspective(2300px) translateZ(${zValue * speedz}px) rotateY(${rotateDegree * rotation}deg)`
-        })
+            el.style.transform = `translateX(calc(-50% + ${-xValue * parseFloat(speedx)}px)) translateY(calc(-50% + ${yValue * parseFloat(speedy)}px))  translateZ(${zValue * parseFloat(speedz)}px) rotateY(${rotateDegree * parseFloat(rotation)}deg)`;
+        });
     }
 
 
