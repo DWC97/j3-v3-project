@@ -94,7 +94,12 @@ export default function Navbar(){
                 }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
                 </div>
-                <img src="/full.jpg" className='max-w-[250px] w-1/2'/>
+                <Link href="/#hero" className='w-1/2' tabIndex={-1} onClick={() => {
+                    setNav(!nav)
+                    toggle()
+                }}>
+                        <img src="/full.jpg" className='max-w-[250px] w-full object-cover'/>
+                    </Link>
                 <div className='w-full px-10'>
                     <ul className='text-white font-medium text-[18px]'>
                         <Link href="/#about" tabIndex={-1} onClick={() => {

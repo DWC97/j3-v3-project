@@ -91,10 +91,10 @@ export default function Contact2(){
     }
 
     return (
-        <div className="bg-black w-full min-h-screen xl:pb-0 pb-28 xl:pt-20 pt-60 flex flex-col-reverse  gap-40 xl:gap-0 xl:flex-row items-center justify-center" id="contact" ref={contactRef}>
+        <div className="bg-black w-full min-h-screen xl:pb-0 pb-28 xl:pt-20 pt-60 flex flex-col-reverse  gap-24 xl:gap-0 xl:flex-row items-center justify-center" id="contact" ref={contactRef}>
             <div className="xl:mr-20 2xl:mr-28 flex flex-col items-center justify-center h-[500px]">
                 <Slide>
-                    <img src="/contact/Jolly_Roger.jpg" className="w-[360px] "/>
+                    <img src="/contact/Jolly_Roger.jpg" className="w-[300px] sm:w-[360px] "/>
                 </Slide>
                 <Reveal>
                     <Link href={"/store"} className='flex flex-row items-center justify-center mt-10 hover:opacity-85 ease-in-out duration-300'>
