@@ -64,7 +64,7 @@ export default function ShoppingCart({ isOpen }){
         tabIndex={0}
         onKeyDown={(e) => handleKeyDown(e)}
         className={`${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} z-[10000] overflow-hidden w-full h-screen bg-black bg-opacity-70 fixed top-0 left-0 backdrop-blur-sm transition-opacity ease-in-out duration-700`}>
-            <div className={`w-1/3 bg-white h-full absolute  top-0 border-y border-gray-100 flex flex-col z-[10001] ${isOpen ? "right-0" : "-right-[40vw]"} ease-in-out duration-700`} ref={domNode}>
+            <div className={`w-full md:w-1/2 xl:w-1/3 bg-white h-full absolute  top-0 border-y border-gray-100 flex flex-col z-[10001] ${isOpen ? "right-0" : "-right-[40vw]"} ease-in-out duration-700`} ref={domNode}>
                 <div className="w-full flex flex-row justify-between px-8 items-center mt-7 pb-8">
                     <span className="text-[20px] font-medium">Shopping cart</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} className="hover:opacity-100 opacity-70 cursor-pointer ease-in-out duration-300" 
