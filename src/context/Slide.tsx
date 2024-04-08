@@ -1,9 +1,13 @@
 import { motion, useInView, useAnimation } from "framer-motion"
-import { useEffect, useRef } from "react"
+import { ReactNode, useEffect, useRef } from "react"
 
-export function Slide({ children }: JSX.Element){
+interface SlideProps {
+    children: ReactNode;
+}
 
-    const ref = useRef(null)
+export function Slide({ children }: SlideProps){
+
+    const ref = useRef<HTMLDivElement>(null)
     const isInView = useInView(ref, { once: true })
     const slideControls = useAnimation()
 
