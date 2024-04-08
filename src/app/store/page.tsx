@@ -57,9 +57,9 @@ export default function Store(){
     return (
         <div className="bg-black min-h-[90vh] w-full px-12 pt-[120px]">
             <div className="w-full h-[180px] border-b border-gray-300 flex flex-col justify-center">
-                <h1 className="text-white font-bold text-[40px] mb-2">Merchandise</h1>
+                <h1 className="text-white font-bold text-[32px] md:text-[40px] mb-2">Merchandise</h1>
                 <div className="flex flex-row justify-between items-center relative">
-                    <span className="text-gray-300">Join the JR crew early with our custom apparel and accessories for Season 1</span>
+                    <span className="text-gray-300 pr-8 md:text-[16px] text-[14px]">Join the JR crew early with our custom apparel and accessories for Season 1</span>
                     <div className="flex flex-row justify-between items-center w-[3.5rem] cursor-pointer text-white hover:opacity-85 ease-in-out duration-300"
                     onClick={() => setShowSortOptions(!showSortOptions)}
                     tabIndex={0}
@@ -98,7 +98,7 @@ export default function Store(){
                 </div>
             </div>
             <div className="w-full flex flex-row justify-between py-12">
-                <div className="w-1/4 flex flex-col">
+                <div className="w-1/4 flex flex-col min-w-[120px]">
                     <div className="w-full flex flex-col">
                         <span className="text-white pb-4">Category</span>
                         <div className="pb-1">
@@ -196,7 +196,7 @@ export default function Store(){
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-10 w-3/4">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-10 w-3/4 sm:pl-0 pl-4">
                     {sortedItems.length > 0 ? sortedItems.map(item => {
                         return (
                             <Link href={`/store/${item.name}`} key={item.id} className="flex flex-col justify-between hover:opacity-85 ease-in-out duration-300">
