@@ -20,10 +20,22 @@ import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 import { Reveal } from '@/context/Reveal';
 import { Slide } from '@/context/Slide';
 
-export default function TourSelection(){
+interface Tour {
+    id: number;
+    region: string;
+    title: string;
+    imageSrc: string;
+    available: boolean;
+    duration: number;
+    price: number;
+}
+
+interface TourSelectionProps {}
+
+export default function TourSelection(props: TourSelectionProps){
 
     let { setActiveSection } = useContext(ActiveSectionContext)
-    const toursRef = useRef(null)
+    const toursRef = useRef<HTMLDivElement>(null)
     const [isInView] = useDetectSection(toursRef)
 
     useEffect(() => {
@@ -65,10 +77,11 @@ export default function TourSelection(){
                     modules={[EffectCoverflow, Pagination, Navigation]}
                     className="swiper_container"
                     >
-                        {toursData.tours.map(tour => {
+                        {toursData.tours.map((tour: Tour) => {
                             return (
                                 <SwiperSlide key={tour.id}>
-                                    <Link className='card-container' href={`/${tour.region}`} onClick={(e) => {
+                                    
+                                    <Link className='card-container' href={tour.available ? `/${tour.region}` : "#"} onClick={(e) => {
                                         if (tour.available) return
                                         e.preventDefault()
                                     }}>
