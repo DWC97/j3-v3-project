@@ -1,25 +1,26 @@
 // hooks
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, RefObject } from "react";
+
+type EventHandler = (event: MouseEvent) => void;
 
 // listens for when a user clicks outside of a given area
-export function useClickOutside(handler){
+export function useClickOutside(handler: EventHandler): RefObject<HTMLDivElement>{
 
-    let domNode = useRef()
+    const domNode: RefObject<HTMLDivElement> = useRef(null)
     
     useEffect(() => {
-
-        function maybeHandler(e){
-            if (!domNode.current?.contains(e.target)){
-                handler()
-            }    
+        function maybeHandler(e: MouseEvent) {
+            if (domNode.current && !domNode.current.contains(e.target as Node)) {
+                handler(e);
+            }
         }
 
-        document.addEventListener("mousedown", maybeHandler)
+        document.addEventListener("mousedown", maybeHandler);
 
         return () => {
-            document.removeEventListener("mousedown", maybeHandler)
-        }
-    })
+            document.removeEventListener("mousedown", maybeHandler);
+        };
+    }, [handler]);
 
     return domNode
 }

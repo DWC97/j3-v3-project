@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 
-export default function useDetectSection(ref){
+type UseDetectSectionReturn = [boolean];
+
+type RefType<T> = RefObject<T>;
+
+export default function useDetectSection(ref: RefType<HTMLElement>): UseDetectSectionReturn {
     const [isInView, setIsInView] = useState(false)
 
-    function checkInView(){
-        const rect = ref.current.getBoundingClientRect();
-        setIsInView(
-            rect.top < (window.innerHeight / 2) && rect.bottom >= (window.innerHeight / 2)
-        );
+    function checkInView() {
+        if (ref.current){
+            const rect = ref.current.getBoundingClientRect();
+            setIsInView(
+                rect.top < window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2
+            );
+        }
     }
 
     useEffect(() => {
