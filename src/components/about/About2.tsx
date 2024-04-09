@@ -9,7 +9,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Reveal } from '@/context/Reveal';
 
-const imageData = [
+interface ImageData {
+    id: number;
+    src: string;
+    rotation: number;
+}
+
+interface AboutProps {}
+
+const imageData: ImageData[] = [
     {
         "id": 1,
         "src": "/about/maya-polaroid.png",
@@ -72,10 +80,10 @@ const imageData = [
     }
 ]
 
-export function About2(){
+export function About2(): React.FC<AboutProps>{
 
     let { setActiveSection } = useContext(ActiveSectionContext)
-    const aboutRef = useRef(null)
+    const aboutRef = useRef<HTMLDivElement>(null)
     const [isInView] = useDetectSection(aboutRef)
 
     useEffect(() => {
@@ -119,8 +127,6 @@ export function About2(){
 
     return (
         <div className="flex flex-row bg-black min-h-screen h-[1080px] relative" id="about" ref={aboutRef}>
-            {/* <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-b from-transparent to-custom-blue opacity-20' />
-            <div className='z-0 absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-br from-transparent to-custom-blue opacity-10' /> */}
             <div className={`z-10 flex flex-col h-full lg:w-3/5 sm:w-4/5 w-full justify-center px-10 sm:px-[7%] 2xl:pl-[15%] -pr-10 `}>
                 <Reveal>
                     <h3 className='text-custom-blue text-[20px] font-bold mb-2'>JR SEASON 1</h3>
@@ -165,29 +171,29 @@ export function About2(){
     )
 }
 
-const Column = ({imagesData, y}) => {
+const Column: React.FC<{ imagesData: ImageData[], y: any }> = ({ imagesData, y }) => {
     return (
-        <motion.div 
-        className="column"
-        style={{y}}
-        >
-            <div 
+        <motion.div
             className="column"
+            style={{ y }}
+        >
+            <div
+                className="column"
             >
                 {
-                imagesData.map( (image) => {
-                    return <div key={image.id} className="imageContainer">
-                    <Image 
-                        src={image.src}
-                        style={{ transform: `rotate(${image.rotation}deg)`}}
-                        alt='image'
-                        fill
-                        sizes='height: 360px)'
-                    />
-                    </div>
-                })
+                    imagesData.map((image) => {
+                        return <div key={image.id} className="imageContainer">
+                            <Image
+                                src={image.src}
+                                style={{ transform: `rotate(${image.rotation}deg)` }}
+                                alt='image'
+                                fill
+                                sizes='height: 360px)'
+                            />
+                        </div>
+                    })
                 }
             </div>
-      </motion.div>
+        </motion.div>
     )
-  }
+}
