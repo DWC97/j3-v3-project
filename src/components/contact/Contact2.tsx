@@ -6,10 +6,10 @@ import Swal from 'sweetalert2'
 import { Reveal } from "@/context/Reveal"
 import { Slide } from "@/context/Slide"
 
-export default function Contact2(){
+export default function Contact2(): JSX.Element{
 
     let { setActiveSection } = useContext(ActiveSectionContext)
-    const contactRef = useRef(null)
+    const contactRef = useRef<HTMLDivElement>(null)
     const [isInView] = useDetectSection(contactRef)
 
     useEffect(() => {
@@ -27,23 +27,27 @@ export default function Contact2(){
     const [emailValid, setEmailValid] = useState(true)
     let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@") && formData.email.includes(".com")
 
-    function handleInputChange(e){
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>){
     const { name, value } = e.target;
 
     // group number edge cases
-    if (name === "number" && value < 1){
-        setFormData({
-            ...formData,
-            [name]: 1
-        });
-        return
-    }
-    if (name === "number" && value > 4){
-        setFormData({
-            ...formData,
-            [name]: 4
-        });
-        return
+    if (name === "number") {
+        const parsedValue = parseInt(value, 10); // Parse value to integer
+        if (isNaN(parsedValue)) return; // Ensure parsedValue is a valid number
+        if (parsedValue < 1) {
+            setFormData({
+                ...formData,
+                [name]: 1
+            });
+            return
+        }
+        if (parsedValue > 4) {
+            setFormData({
+                ...formData,
+                [name]: 4
+            });
+            return
+        }
     }
 
     if (formData.name.length > 0){
@@ -60,7 +64,7 @@ export default function Contact2(){
     });
     };
 
-    function handleSubmit(e){
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
 
         if (formData.name === ""){
@@ -91,7 +95,7 @@ export default function Contact2(){
     }
 
     return (
-        <div className="bg-black w-full min-h-[972px] h-[90vh] xl:pb-0 pb-28 xl:pt-20 pt-60 flex flex-col-reverse  gap-24 xl:gap-0 xl:flex-row items-center justify-center" id="contact" ref={contactRef}>
+        <div className="bg-black w-full min-h-[972px] xl:pb-0 pb-28 xl:pt-20 pt-60 flex flex-col-reverse  gap-24 xl:gap-0 xl:flex-row items-center justify-center" id="contact" ref={contactRef}>
             <div className="xl:mr-20 2xl:mr-28 flex flex-col items-center justify-center h-[500px]">
                 <Slide>
                     <img src="/contact/Jolly_Roger.jpg" className="w-[300px] sm:w-[360px] "/>
@@ -106,7 +110,9 @@ export default function Contact2(){
             
             <Reveal><div className="flex flex-col justify-between px-10 sm:px-0 sm:w-[500px] md:w-[600px] h-[650px] sm:h-[500px] bg-black bg-opacity-50 rounded-3xl z-30 ">
                 <h2 className="font-semibold text-[32px] md:text-[44px] text-white sm:mb-0 mb-8">RESERVE A SPOT</h2>
-                <form action="" className="flex flex-col justify-between h-[450px] sm:h-[300px] relative" autoComplete="off">
+                <form action="" className="flex flex-col justify-between h-[450px] sm:h-[300px] relative" autoComplete="off"
+                
+                >
                 <input type="text" name="name" placeholder="" className={`w-[240px]  text-gray-300 border-b ${!nameValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 outline-none !bg-black`}
                     value={formData.name}
                     onChange={handleInputChange}
@@ -144,7 +150,8 @@ export default function Contact2(){
                     </div>
                     <div className="absolute text-white top-[10.5rem] sm:top-[9.25rem]">Destination</div>  
                     <div className="absolute text-white left-0 sm:left-auto top-[17rem] sm:right-[140px] sm:top-[9.25rem]">No. of people</div>  
-                    <div className={`${submittable ? "cursor-pointer hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
+                    <form className={`${submittable ? "cursor-pointer hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
+                    
                     tabIndex={0}
                     onKeyDown={(e) => {
                         if (e.key === "Enter"){
@@ -159,7 +166,7 @@ export default function Contact2(){
                                 SUBMIT
                             </div>
                         </div>
-                    </div>
+                    </form>
                     
                 </form>
                 <p className="text-white text-[12px] sm:text-[14px]">
