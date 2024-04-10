@@ -4,17 +4,19 @@ import { ShoppingCartContext } from "@/context/ShoppingCartContext"
 import { useContext, useEffect, useRef } from "react"
 import CartItem from "./CartItem"
 import storeItemsData from "@/data/storeItems.json"
-import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import Swal from 'sweetalert2'
 
-export default function ShoppingCart({ isOpen }){
+interface ShoppingCartProps {
+    isOpen: boolean;
+}
+
+export default function ShoppingCart({ isOpen }: ShoppingCartProps){
 
     const { cartItems, closeCart } = useContext(ShoppingCartContext)
-    const subtotal = cartItems.reduce((total, currItem) => total + (currItem.quantity * storeItemsData.items.find(item => item.id == currItem.id)?.price)
-    , 0)
-    const cartRef = useRef(null)
-    const checkoutRef = useRef(null)
+    const subtotal = cartItems.reduce((total, currItem) => total + (currItem.quantity * (storeItemsData.items.find(item => item.id === currItem.id)?.price || 0)), 0)
+    const cartRef = useRef<HTMLDivElement>(null)
+    const checkoutRef = useRef<HTMLButtonElement>(null)
 
     let domNode = useClickOutside(() => {
         if (!isOpen) return
@@ -34,11 +36,11 @@ export default function ShoppingCart({ isOpen }){
         });
     }
 
-    function handleKeyDown(e){
+    function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>){
         if (isOpen){
             if (e.key === "Tab"){
                 e.preventDefault()
-                checkoutRef.current.focus()
+                checkoutRef.current?.focus()
             }
             else if (e.key === "Enter"){
                 handleSubmit()
@@ -54,7 +56,7 @@ export default function ShoppingCart({ isOpen }){
 
     useEffect(() => {
         if (isOpen){
-            cartRef.current.focus()
+            cartRef.current?.focus()
         }
     }, [isOpen])
 
@@ -94,7 +96,7 @@ export default function ShoppingCart({ isOpen }){
                             <span className="font-semibold">Subtotal</span>
                             <span className="text-gray-500 text-[14px]">Shipping & taxes calculated at checkout.</span>
                         </div>
-                        <span className="font-semibold">£{subtotal}.00</span>
+                        <span className="font-semibold">£{subtotal.toFixed(2)}</span>
                     </div>
                     <button className="w-full py-3 rounded-md font-semibold bg-custom-pink text-white bg-opacity-85 hover:bg-opacity-100 ease-in-out duration-300"
                     onClick={handleSubmit}
