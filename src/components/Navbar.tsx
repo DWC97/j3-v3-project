@@ -13,14 +13,26 @@ export default function Navbar(){
 
     const { activeSection, setActiveSection, setScrollAnimation } = useContext(ActiveSectionContext)
     const { openCart, cartQuantity } = useContext(ShoppingCartContext)
-    let navbar = useRef(null)
-    const [isShrunk, setIsShrunk] = useState(false) // set height of navbar based on scroll distance from top
-    const [isFixed, setIsFixed] = useState(false) // set fixed position of navbar based on scroll distance from top
-    const [isDropdown, setIsDropdown] = useState(true) // set the navbar distance from top for a dropdown animation
+    let navbar = useRef<HTMLDivElement>(null)
+    const [isShrunk, setIsShrunk] = useState<boolean>(false) // set height of navbar based on scroll distance from top
+    const [isFixed, setIsFixed] = useState<boolean>(false) // set fixed position of navbar based on scroll distance from top
+    const [isDropdown, setIsDropdown] = useState<boolean>(true) // set the navbar distance from top for a dropdown animation
     const path = usePathname()
-    const [nav, setNav] = useState(false) // set mobile nav menu
+    const [nav, setNav] = useState<boolean>(false) // set mobile nav menu
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    const mobileView = window.innerWidth < 500
+    const [mobileView, setMobileView] = useState(false);
+
+    useEffect(() => {
+        function handleResize() {
+            setMobileView(window.innerWidth < 500);
+        }
+
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         if (path !== "/"){
@@ -94,12 +106,12 @@ export default function Navbar(){
                 }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
                 </div>
-                <Link href="/#hero" className='w-1/2' tabIndex={-1} onClick={() => {
+                <Link href="/#hero" className='w-full flex items-center justify-center self-center' tabIndex={-1} onClick={() => {
                     setNav(!nav)
                     toggle()
                 }}>
-                        <img src="/full.jpg" className='max-w-[250px] w-full object-cover'/>
-                    </Link>
+                    <img src="/full.jpg" className='max-w-[250px] w-1/2 object-cover'/>
+                </Link>
                 <div className='w-full px-10'>
                     <ul className='text-white font-medium text-[18px]'>
                         <Link href="/#about" tabIndex={-1} onClick={() => {
