@@ -13,14 +13,14 @@ export default function Navbar(){
 
     const { activeSection, setActiveSection, setScrollAnimation } = useContext(ActiveSectionContext)
     const { openCart, cartQuantity } = useContext(ShoppingCartContext)
-    let navbar = useRef(null)
-    const [isShrunk, setIsShrunk] = useState(false) // set height of navbar based on scroll distance from top
-    const [isFixed, setIsFixed] = useState(false) // set fixed position of navbar based on scroll distance from top
-    const [isDropdown, setIsDropdown] = useState(true) // set the navbar distance from top for a dropdown animation
+    let navbar = useRef<HTMLDivElement>(null)
+    const [isShrunk, setIsShrunk] = useState<boolean>(false) // set height of navbar based on scroll distance from top
+    const [isFixed, setIsFixed] = useState<boolean>(false) // set fixed position of navbar based on scroll distance from top
+    const [isDropdown, setIsDropdown] = useState<boolean>(true) // set the navbar distance from top for a dropdown animation
     const path = usePathname()
-    const [nav, setNav] = useState(false) // set mobile nav menu
+    const [nav, setNav] = useState<boolean>(false) // set mobile nav menu
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    const mobileView = window.innerWidth < 500
+    const mobileView: boolean = window.innerWidth < 500
 
     useEffect(() => {
         if (path !== "/"){
