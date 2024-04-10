@@ -34,7 +34,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     const overlayRef = useRef<HTMLDivElement>(null)
     const [isOverlayActive, setIsOverlayActive] = useState(false)
     const [focusedArrow, setFocusedArrow] = useState("")
-    let mobileView = window.innerWidth < 640
+    // let mobileView = window.innerWidth < 640
 
     let domNode = useClickOutside(() => {
         if (!gallery.image) return

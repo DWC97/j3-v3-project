@@ -20,7 +20,7 @@ export default function Navbar(){
     const path = usePathname()
     const [nav, setNav] = useState<boolean>(false) // set mobile nav menu
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    const mobileView: boolean = window.innerWidth < 500
+    let mobileView: boolean
 
     useEffect(() => {
         if (path !== "/"){
@@ -77,6 +77,7 @@ export default function Navbar(){
 
     function loadEvents(){
         if (typeof window !== 'undefined') {
+                mobileView = window.innerWidth < 500
                 window.onscroll = function() {
                     scrollHandle()
                 }
@@ -94,11 +95,11 @@ export default function Navbar(){
                 }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
                 </div>
-                <Link href="/#hero" className='w-1/2' tabIndex={-1} onClick={() => {
+                <Link href="/#hero" className='w-full flex justify-center items-center' tabIndex={-1} onClick={() => {
                     setNav(!nav)
                     toggle()
                 }}>
-                        <img src="/full.jpg" className='max-w-[250px] w-full object-cover'/>
+                        <img src="/full.jpg" className='max-w-[250px] w-1/2 object-cover'/>
                     </Link>
                 <div className='w-full px-10'>
                     <ul className='text-white font-medium text-[18px]'>
