@@ -2,10 +2,20 @@ import { ShoppingCartContext } from "@/context/ShoppingCartContext"
 import storeItemsData from "@/data/storeItems.json"
 import { useContext } from "react"
 
-export default function CartItem({ id, quantity, size }){
+interface CartItemProps {
+    id: number;
+    quantity: number;
+    size?: string;
+}
+
+export default function CartItem({ id, quantity, size } : CartItemProps){
 
     const item = storeItemsData.items.find(item => item.id === id)
     const { removeFromCart } = useContext(ShoppingCartContext)
+
+    if (!item) {
+        return null;
+    }
 
     return (
         <div className="flex flex-row gap-6">
@@ -25,11 +35,11 @@ export default function CartItem({ id, quantity, size }){
                 <div className="flex flex-row justify-between items-center">
                     <span className="text-gray-500 text-[14px]">Qty {quantity}</span>
                     <span className="text-custom-pink text-[14px] cursor-pointer ease-in-out duration-300 hover:opacity-85"
-                    onClick={() => removeFromCart(item?.id, size)}
+                    onClick={() => removeFromCart(id, size || "")}
                     onKeyDown={(e) => {
-                        if (e.key === "Enter"){
-                            removeFromCart(item?.id, size)
-                        }
+                      if (e.key === "Enter") {
+                        removeFromCart(id, size || "");
+                      }
                     }}
                     >Remove</span>
                 </div>
