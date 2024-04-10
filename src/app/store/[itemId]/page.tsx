@@ -8,17 +8,18 @@ import animationData from "@/animations/success.json"
 import { ShoppingCartContext } from "@/context/ShoppingCartContext";
 import NotFound from "@/app/not-found";
 
+
 export default function itemDetails({ params }: { params: { itemId: string }}){
     
     const item = storeItemsData.items.find(item => {
         return item.name === params.itemId.replaceAll("%20", " ")
     })
     const { increaseCartQuantity, cartItems } = useContext(ShoppingCartContext)
-    const [activeSize, setActiveSize] = useState("XS")
-    const [quantity, setQuantity] = useState(1)
-    const [activeSlide, setActiveSlide] = useState(0)
-    const [submitted, setSubmitted] = useState(false)
-    const [notification, setNotification] = useState(false)
+    const [activeSize, setActiveSize] = useState<string>("XS")
+    const [quantity, setQuantity] = useState<number>(1)
+    const [activeSlide, setActiveSlide] = useState<number>(0)
+    const [submitted, setSubmitted] = useState<boolean>(false)
+    const [notification, setNotification] = useState<boolean>(false)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null) 
 
     useEffect(() => {
@@ -138,15 +139,15 @@ export default function itemDetails({ params }: { params: { itemId: string }}){
                                 <span className="text-white">Quantity:</span>
                                 <input type="number" value={quantity} min={1} max={9} className="w-12 text-center rounded-md flex h-8"
                                 onChange={(e) => {
-                                    if (e.target.value > 9){
-                                        setQuantity(9)
-                                    }
-                                    else if (e.target.value < 1){
-                                        setQuantity(1)
+                                    const value = parseInt(e.target.value);
+                                    if (value > 9) {
+                                      setQuantity(9);
+                                    } else if (value < 1) {
+                                      setQuantity(1);
                                     } else {
-                                        setQuantity(e.target.value)
+                                      setQuantity(value);
                                     }
-                                }}
+                                  }}
                                 />
                             </div>
                         </div>
