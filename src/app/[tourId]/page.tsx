@@ -12,17 +12,26 @@ import { Slide } from '@/context/Slide';
 import NotFound from '../not-found';
 import Swal from 'sweetalert2'
 
+interface Gallery {
+    image: string;
+    i: number;
+}
+  
+interface AnswersVisible {
+[key: string]: boolean;
+}
+
 export default function tourDetails({ params }: { params: { tourId: string }}){
 
     const tour = toursData.tours.find(tour => {
         return tour.region === params.tourId
     })
-    const [answersVisible, setAnswersVisible] = useState({})
-    const [gallery, setGallery] = useState({ image: "", i: 0 })
+    const [answersVisible, setAnswersVisible] = useState<AnswersVisible>({})
+    const [gallery, setGallery] = useState<Gallery>({ image: "", i: 0 })
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    const prevArrowRef = useRef(null)
-    const nextArrowRef = useRef(null)
-    const overlayRef = useRef(null)
+    const prevArrowRef = useRef<HTMLDivElement>(null)
+    const nextArrowRef = useRef<HTMLDivElement>(null)
+    const overlayRef = useRef<HTMLDivElement>(null)
     const [isOverlayActive, setIsOverlayActive] = useState(false)
     const [focusedArrow, setFocusedArrow] = useState("")
     let mobileView = window.innerWidth < 640
@@ -35,14 +44,14 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     })
 
     // Function to toggle visibility of answer for a specific heading
-    function toggleAnswer(heading){
+    function toggleAnswer(heading: string): void{
         setAnswersVisible(prevState => ({
         ...prevState,
         [heading]: !prevState[heading]
         }));
     };
 
-    function viewImage(image, i){
+    function viewImage(image: string, i: number): void {
         if (window.innerWidth < 640) return
         setGallery({ image, i })
         toggle()
@@ -50,7 +59,7 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         console.log(gallery)
     }
 
-    function colorGenerator(val){
+    function colorGenerator(val: number): string {
         if (val === 10){
             return "#0CEEE0"
         }
@@ -75,62 +84,62 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         });
     }
 
-    function handlePrev(){
-        if (gallery.i === 0){
-            setGallery({ image: tour.gallery[tour?.gallery.length - 1], i: tour?.gallery.length - 1})
-        }
-        else {
-            setGallery({ image: tour.gallery[gallery.i - 1], i: gallery.i - 1})
-        }
+    function handlePrev(): void {
+        if (!tour) return;
+        const lastIndex = tour.gallery.length - 1;
+        const newIndex = gallery.i === 0 ? lastIndex : gallery.i - 1;
+        setGallery({ image: tour.gallery[newIndex], i: newIndex });
     }
-
-    function handleNext(){
-        if (gallery.i === tour?.gallery.length - 1){
-            setGallery({ image: tour.gallery[0], i: 0}) 
-        }
-        else {
-            setGallery({ image: tour.gallery[gallery.i + 1], i: gallery.i + 1})
-        } 
+      
+    function handleNext(): void {
+    if (!tour) return;
+    const lastIndex = tour.gallery.length - 1;
+    const newIndex = gallery.i === lastIndex ? 0 : gallery.i + 1;
+    setGallery({ image: tour.gallery[newIndex], i: newIndex });
     }
-
-    function handleKeyDown(e){
-        console.log("keydown called")
-        if (isOverlayActive){
-            if (e.key === "Tab"){
-                e.preventDefault()
-                if (focusedArrow === "" || focusedArrow === "prev"){
-                    nextArrowRef.current.focus()
-                } else {
-                    prevArrowRef.current.focus()
-                }
-            }
-            else if (e.key === "Enter"){
-                if (focusedArrow === "" || focusedArrow === "next"){
-                    handleNext()
-                } else {
-                    handlePrev()
-                }
-            }
-            else if (e.key === "ArrowLeft"){
-                handlePrev()
-                prevArrowRef.current.focus()
-            }
-            else if (e.key === "ArrowRight"){
-                handleNext()
-                nextArrowRef.current.focus()
-            }
-            else if(e.key === "Escape"){
-                setGallery({ image: "", i: 0 })
-                toggle()
-                setIsOverlayActive(false)
-            }
+      
+    function handleKeyDown(e: KeyboardEvent): void {
+    console.log("keydown called");
+    if (!isOverlayActive) return;
+    
+    switch (e.key) {
+        case "Tab":
+        e.preventDefault();
+        if (focusedArrow === "" || focusedArrow === "prev") {
+            nextArrowRef.current?.focus();
+        } else {
+            prevArrowRef.current?.focus();
         }
+        break;
+        case "Enter":
+        if (focusedArrow === "" || focusedArrow === "next") {
+            handleNext();
+        } else {
+            handlePrev();
+        }
+        break;
+        case "ArrowLeft":
+        handlePrev();
+        prevArrowRef.current?.focus();
+        break;
+        case "ArrowRight":
+        handleNext();
+        nextArrowRef.current?.focus();
+        break;
+        case "Escape":
+        setGallery({ image: "", i: 0 });
+        toggle();
+        setIsOverlayActive(false);
+        break;
+        default:
+        break;
+    }
     }
 
     useEffect(() => {
         if (gallery.image){
             console.log("shoudl be focusing now")
-            overlayRef.current.focus()
+            overlayRef.current?.focus()
         }
         
     }, [isOverlayActive])
