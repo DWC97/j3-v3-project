@@ -15,8 +15,6 @@ interface ImageData {
     rotation: number;
 }
 
-interface AboutProps {}
-
 const imageData: ImageData[] = [
     {
         "id": 1,
@@ -80,7 +78,7 @@ const imageData: ImageData[] = [
     }
 ]
 
-export function About2(): React.FC<AboutProps>{
+export default function About2(){
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const aboutRef = useRef<HTMLDivElement>(null)
