@@ -1,19 +1,28 @@
 "use client"
 
 import storeItemsData from "@/data/storeItems.json"
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useClickOutside } from '@/hooks/useClickOutside';
 import Link from 'next/link'
 
+interface StoreItem {
+    id: number;
+    name: string;
+    type: string;
+    color: string;
+    price: number;
+    popularity: number;
+    gallery: string[];
+}
+
 export default function Store(){
 
-    const [sortBy, setSortBy] = useState('popularity');
-    const [showSortOptions, setShowSortOptions] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState(null);
-    const [selectedColor, setSelectedColor] = useState(null);
-    const popularityRef = useRef(null)
+    const [sortBy, setSortBy] = useState<string>('popularity');
+    const [showSortOptions, setShowSortOptions] = useState<boolean>(false);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
-    const filteredItems = storeItemsData.items.filter(item => {
+    const filteredItems: StoreItem[] = storeItemsData.items.filter(item => {
         if (selectedCategory && selectedCategory !== item.type) {
             return false
         }
@@ -23,7 +32,7 @@ export default function Store(){
         return true
     })
 
-    const sortedItems = filteredItems.sort((a, b) => {
+    const sortedItems: StoreItem[] = filteredItems.sort((a, b) => {
         if (sortBy === 'popularity') {
             return b.popularity - a.popularity;
         } else if (sortBy === 'price') {
@@ -38,7 +47,7 @@ export default function Store(){
         setShowSortOptions(false)
     })
 
-    const handleCategoryChange = (category) => {
+    const handleCategoryChange = (category: string) => {
         if (selectedCategory === category) {
             setSelectedCategory(null);
         } else {
@@ -46,7 +55,7 @@ export default function Store(){
         }
     };
     
-    const handleColorChange = (color) => {
+    const handleColorChange = (color: string) => {
         if (selectedColor === color) {
             setSelectedColor(null);
         } else {

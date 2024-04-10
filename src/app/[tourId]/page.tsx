@@ -56,7 +56,6 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
         setGallery({ image, i })
         toggle()
         setIsOverlayActive(true)
-        console.log(gallery)
     }
 
     function colorGenerator(val: number): string {
@@ -92,53 +91,52 @@ export default function tourDetails({ params }: { params: { tourId: string }}){
     }
       
     function handleNext(): void {
-    if (!tour) return;
-    const lastIndex = tour.gallery.length - 1;
-    const newIndex = gallery.i === lastIndex ? 0 : gallery.i + 1;
-    setGallery({ image: tour.gallery[newIndex], i: newIndex });
+        if (!tour) return;
+        const lastIndex = tour.gallery.length - 1;
+        const newIndex = gallery.i === lastIndex ? 0 : gallery.i + 1;
+        setGallery({ image: tour.gallery[newIndex], i: newIndex });
     }
-      
+        
     function handleKeyDown(e: KeyboardEvent): void {
-    console.log("keydown called");
-    if (!isOverlayActive) return;
-    
-    switch (e.key) {
-        case "Tab":
-        e.preventDefault();
-        if (focusedArrow === "" || focusedArrow === "prev") {
-            nextArrowRef.current?.focus();
-        } else {
-            prevArrowRef.current?.focus();
-        }
-        break;
-        case "Enter":
-        if (focusedArrow === "" || focusedArrow === "next") {
-            handleNext();
-        } else {
+
+        if (!isOverlayActive) return;
+        
+        switch (e.key) {
+            case "Tab":
+            e.preventDefault();
+            if (focusedArrow === "" || focusedArrow === "prev") {
+                nextArrowRef.current?.focus();
+            } else {
+                prevArrowRef.current?.focus();
+            }
+            break;
+            case "Enter":
+            if (focusedArrow === "" || focusedArrow === "next") {
+                handleNext();
+            } else {
+                handlePrev();
+            }
+            break;
+            case "ArrowLeft":
             handlePrev();
+            prevArrowRef.current?.focus();
+            break;
+            case "ArrowRight":
+            handleNext();
+            nextArrowRef.current?.focus();
+            break;
+            case "Escape":
+            setGallery({ image: "", i: 0 });
+            toggle();
+            setIsOverlayActive(false);
+            break;
+            default:
+            break;
         }
-        break;
-        case "ArrowLeft":
-        handlePrev();
-        prevArrowRef.current?.focus();
-        break;
-        case "ArrowRight":
-        handleNext();
-        nextArrowRef.current?.focus();
-        break;
-        case "Escape":
-        setGallery({ image: "", i: 0 });
-        toggle();
-        setIsOverlayActive(false);
-        break;
-        default:
-        break;
-    }
     }
 
     useEffect(() => {
         if (gallery.image){
-            console.log("shoudl be focusing now")
             overlayRef.current?.focus()
         }
         

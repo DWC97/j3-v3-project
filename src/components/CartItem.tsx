@@ -30,7 +30,7 @@ export default function CartItem({ id, quantity, size } : CartItemProps){
                         }
                         
                     </div>
-                    <span className="font-semibold">£{item?.price}.00</span>
+                    <span className="font-semibold">£{item?.price.toFixed(2)}</span>
                 </div>
                 <div className="flex flex-row justify-between items-center">
                     <span className="text-gray-500 text-[14px]">Qty {quantity}</span>
