@@ -39,7 +39,17 @@ export default function Hero(){
     const [isInView] = useDetectSection(heroRef);
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null);
     const [needsReloading, setNeedsReloading] = useState<boolean>(false);
-    let mobileView = window.innerWidth < 500
+    const [mobileView, setMobileView] = useState(false); // State to keep track of mobile view
+
+    // Set mobileView based on window size
+    useEffect(() => {
+        function updateSize() {
+            setMobileView(window.innerWidth < 500);
+        }
+        window.addEventListener('resize', updateSize);
+        updateSize(); // Initialize the state at mount
+        return () => window.removeEventListener('resize', updateSize); // Cleanup listener
+    }, []);
 
     useEffect(() => {
         if (isInView){
