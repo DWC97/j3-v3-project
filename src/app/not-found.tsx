@@ -1,9 +1,20 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound(){
     return (
         <div className="w-full h-[90vh] bg-black relative flex justify-center items-center">
-            <img src="/404-bg.jpg" className="w-full h-full object-cover absolute top-0 left-0"/>
+            {/* <img src="/404-bg.jpg" className="w-full h-full object-cover absolute top-0 left-0"/> */}
+            <div className="w-full h-full absolute top-0 left-0 overflow-hidden">
+                <Image
+                    src="/404-bg.jpg" 
+                    alt="404 background"
+                    fill
+                    sizes='(height: 100%)'
+                    className="object-cover"
+                    priority
+                />
+            </div>
             <div className="w-full h-1/2 absolute top-0 left-0 bg-gradient-to-b from-black to-transparent opacity-30" />
             <div className="z-10 -mt-20 flex flex-col items-center justify-center gap-2">
                 <span className="text-white font-medium">404</span>
