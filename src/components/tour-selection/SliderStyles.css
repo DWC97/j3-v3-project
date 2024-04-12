@@ -54,7 +54,8 @@
 }
 
 /* Styles for images in slides */
-.swiper-slide img {
+.swiper-slide .image {
+  overflow: hidden;
   border-radius: 10px;
   width: 100%;
   height: 100%;

@@ -19,6 +19,7 @@ import useDetectSection from '@/hooks/useDetectSection';
 import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 import { Reveal } from '@/context/Reveal';
 import { Slide } from '@/context/Slide';
+import Image from 'next/image';
 
 interface Tour {
     id: number;
@@ -85,7 +86,17 @@ export default function TourSelection(props: TourSelectionProps){
                                         if (tour.available) return
                                         e.preventDefault()
                                     }}>
-                                        <img src={tour.imageSrc}/>
+                                        {/* <img src={tour.imageSrc}/> */}
+                                        <div className='image'>
+                                            <Image
+                                                src={tour.imageSrc}
+                                                alt="location"
+                                                fill
+                                                priority
+                                                sizes='(height: 100%)'
+                                                className="image"
+                                            />
+                                        </div>
                                         <div className='card-content'>
                                             <span className='region'>{tour.region.toUpperCase().replace("-"," ")}</span>
                                             <span className='title'>{tour.title.toUpperCase()}</span>
