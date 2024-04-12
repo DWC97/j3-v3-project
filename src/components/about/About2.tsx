@@ -185,13 +185,16 @@ const Column: React.FC<{ imagesData: ImageData[], y: any }> = ({ imagesData, y }
             >
                 {
                     imagesData.map((image) => {
-                        return <div key={image.id} className="imageContainer">
+                        return <div key={image.id} className="imageContainer relative">
                             <Image
                                 src={image.src}
-                                style={{ transform: `rotate(${image.rotation}deg)` }}
+                                style={{ transform: `rotate(${image.rotation}deg)`,
+                                objectFit: "cover" }}
                                 alt='image'
                                 fill
-                                sizes='height: 360px)'
+                                priority
+                                sizes='(height: 340px)'
+                                blurDataURL="data:image/jpeg..."
                             />
                         </div>
                     })

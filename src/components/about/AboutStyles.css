@@ -28,7 +28,7 @@
 }
 
 .column2 {
-    top: -160%;
+    top: -165%;
 }
 
 .imageContainer{
@@ -37,10 +37,6 @@
     width: 100%;
     position: relative;
 
-}
-
-img{
-    object-fit: cover;
 }
 
 @media screen and (max-width: 1024px) {
