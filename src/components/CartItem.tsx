@@ -1,6 +1,7 @@
 import { ShoppingCartContext } from "@/context/ShoppingCartContext"
 import storeItemsData from "@/data/storeItems.json"
 import { useContext } from "react"
+import Image from 'next/image';
 
 interface CartItemProps {
     id: number;
@@ -19,7 +20,15 @@ export default function CartItem({ id, quantity, size } : CartItemProps){
 
     return (
         <div className="flex flex-row gap-6">
-            <img src={item?.gallery[0]} className="w-24 h-24 object-cover border border-gray-300 rounded-md"/>
+            <Image
+                src={item?.gallery[0]}
+                alt="cart item"
+                height={96}
+                width={96}
+                objectFit="cover"
+                className="border border-gray-300 rounded-md"
+            />
+            {/* <img src={item?.gallery[0]} className="w-24 h-24 object-cover border border-gray-300 rounded-md"/> */}
             <div className="flex flex-col justify-between w-full">
                 <div className="flex flex-row justify-between">
                     <div className="flex flex-col">
