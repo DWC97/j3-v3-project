@@ -7,6 +7,7 @@ import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/success.json"
 import { ShoppingCartContext } from "@/context/ShoppingCartContext";
 import NotFound from "@/app/not-found";
+import Image from 'next/image';
 
 
 export default function ItemDetails({ params }: { params: { itemId: string }}){
@@ -35,7 +36,14 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
             {item ? 
             <div className="w-full min-h-screen bg-black px-8 md:px-12 xl:px-20 2xl:px-60 pt-[120px] relative">
                 <div className={`z-50 fixed w-72 md:w-96 h-20 bg-white top-24 right-8 rounded-md flex flex-row ${notification ? "opacity-100 visible" : "opacity-0 invisible"} transition-opacity ease-in-out duration-500`}>
-                    <img src={item.gallery[0]} className="object-cover py-1 px-4"/>
+                    {/* <img src={item.gallery[0]} className="object-cover"/> */}
+                    <Image
+                        src={item.gallery[0]}
+                        alt="cart item"
+                        height={80}
+                        width={80}
+                        className="p-1"
+                    />
                     <div className="w-full flex flex-col justify-center">
                         <span className="font-semibold md:text-[16px] text-[14px]">Successfully added!</span>
                         <span className="text-[12px] md:text-[14px] text-gray-700">{item.name}</span>
@@ -164,15 +172,33 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col w-full md:w-1/2">
-                        <img src={item?.gallery[activeSlide]} className="w-full mb-8 rounded-lg"/>
+                    <div className="flex flex-col w-full md:w-1/2 relative">
+                        {/* <img src={item?.gallery[activeSlide]} className="w-full "/> */}
+                        <div className="w-full overflow-hidden mb-8 rounded-lg relative aspect-square">
+                            <Image
+                                src={item?.gallery[activeSlide]}
+                                alt="cart item"
+                                fill
+                                sizes='(width: 100%)'
+                                className=""
+                            />
+                        </div>
                         <div className="grid grid-cols-2 lg:grid-cols-4 w-full gap-6">
                             {item?.gallery.map((img, i) => {
                                 return (
                                     <div key={i} className={`w-full object-contain rounded-md overflow-hidden cursor-pointer ease-in-out duration-300 ${activeSlide === i ? "border-2 border-custom-pink" : "border-2 border-transparent  hover:opacity-85"}`}
                                     onClick={() => setActiveSlide(i)}
                                     >
-                                        <img src={img}/>
+                                        {/* <img src={img}/> */}
+                                        <div className="w-full overflow-hidden relative aspect-square">
+                                            <Image
+                                                src={img}
+                                                alt="cart item"
+                                                fill
+                                                sizes='(width: 100%)'
+                                                className=""
+                                            />
+                                        </div>
                                     </div>
                                 )
                             })}
@@ -186,7 +212,16 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                             return (
                                 <div key={item.id} className="flex flex-col">
                                     <div className="relative w-full object-contain rounded-lg overflow-hidden">
-                                        <img src={item.gallery[0]}/>
+                                        {/* <img src={item.gallery[0]}/> */}
+                                        <div className="w-full overflow-hidden relative aspect-square">
+                                            <Image
+                                                src={item.gallery[0]}
+                                                alt="cart item"
+                                                fill
+                                                sizes='(width: 100%)'
+                                                className=""
+                                            />
+                                        </div>
                                         <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-70" />
                                         <span className="absolute text-white text-[20px] bottom-4 right-4">£{item.price}</span>
                                     </div>

@@ -25,7 +25,6 @@ export default function CartItem({ id, quantity, size } : CartItemProps){
                 alt="cart item"
                 height={96}
                 width={96}
-                objectFit="cover"
                 className="border border-gray-300 rounded-md"
             />
             {/* <img src={item?.gallery[0]} className="w-24 h-24 object-cover border border-gray-300 rounded-md"/> */}
