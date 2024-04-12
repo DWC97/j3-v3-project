@@ -2,6 +2,7 @@ import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
 import { useEffect, useRef, useContext } from "react";
 import { ActiveSectionContext } from "@/context/ActiveSectionContext";
+import Image from "next/image";
 
 export default function HeroMobile(){
 
@@ -25,7 +26,16 @@ export default function HeroMobile(){
                 <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-16" loop={true} />
             </div>
             <div className="w-full px-[20px] h-1/2 flex flex-col items-center mb-[15vh]">
-                <img src="/logo.png" className="w-[40vw]"/>
+                {/* <img src="/logo.png" className="w-[40vw]"/> */}
+                <div className="relative aspect-square w-[40vw]">
+                    <Image
+                        src="/logo.png"
+                        alt="JR logo"
+                        fill
+                        sizes='(width: 100%)'
+                        className="object-contain"
+                    />
+                </div>
                 <h1 className="text-white font-bold text-3xl text-center mt-10 mb-4">JOLLY ROGER TOURS</h1>
                 <h3 className="text-white text-md font-medium text-center">THE ADVENTURE OF A LIFETIME AWAITS...</h3>
             </div>
