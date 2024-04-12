@@ -4,6 +4,7 @@ import storeItemsData from "@/data/storeItems.json"
 import { useState } from "react";
 import { useClickOutside } from '@/hooks/useClickOutside';
 import Link from 'next/link'
+import Image from "next/image";
 
 interface StoreItem {
     id: number;
@@ -209,7 +210,16 @@ export default function Store(){
                     {sortedItems.length > 0 ? sortedItems.map(item => {
                         return (
                             <Link href={`/store/${item.name}`} key={item.id} className="flex flex-col justify-between hover:opacity-85 ease-in-out duration-300">
-                                <img src={item.gallery[0]} className="w-full aspect-[5/6] object-cover rounded-t-lg"/>
+                                {/* <img src={item.gallery[0]} className="w-full aspect-[5/6] object-cover rounded-t-lg"/> */}
+                                <div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden">
+                                    <Image
+                                        src={item.gallery[0]}
+                                        alt="store item"
+                                        fill
+                                        sizes='(width: 100%)'
+                                        className="object-cover"
+                                    />
+                                </div>
                                 <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
                                     <span>{item.name}</span>
                                     <span className="font-semibold">£{item.price}</span>
