@@ -157,8 +157,13 @@ export default function About2(){
                 
                     {window.innerWidth > 1024 ? 
                     <div className="galleryWrapper">
-                        <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y}/>
-                        <Column imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2}/> 
+                        <div className="column column1">
+                        <Column  imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y}/>
+                        </div>
+                        <div className="column column2">
+                        <Column   imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2}/> 
+                        </div>
+                        
                     </div>  
                     :
                     <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5], imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y}/>

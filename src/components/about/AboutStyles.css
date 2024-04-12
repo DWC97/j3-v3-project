@@ -1,7 +1,7 @@
 .gallery{
     height: 100%;
     overflow: hidden;
-    
+    position: relative;
 }
 
 .galleryWrapper{
@@ -10,7 +10,6 @@
     height: 1200px;
     display: flex;
     gap: 2vw;
-    /* padding: 2vw; */
 
 }
 
@@ -21,15 +20,15 @@
     min-width: 250px;
     display: flex;
     flex-direction: column;
-    /* gap: 2vw; */
-    white-space: nowrap;
-    &:nth-of-type(1){
-        top: 5%;
-    }
-    &:nth-of-type(2){
-        top: -170%;
-    }
-    
+    white-space: nowrap;  
+}
+
+.column1 {
+    top: 5%;
+}
+
+.column2 {
+    top: -160%;
 }
 
 .imageContainer{
