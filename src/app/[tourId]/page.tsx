@@ -21,7 +21,7 @@ interface AnswersVisible {
 [key: string]: boolean;
 }
 
-export default function tourDetails({ params }: { params: { tourId: string }}){
+export default function TourDetails({ params }: { params: { tourId: string }}){
 
     const tour = toursData.tours.find(tour => {
         return tour.region === params.tourId

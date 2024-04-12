@@ -9,7 +9,7 @@ import { ShoppingCartContext } from "@/context/ShoppingCartContext";
 import NotFound from "@/app/not-found";
 
 
-export default function itemDetails({ params }: { params: { itemId: string }}){
+export default function ItemDetails({ params }: { params: { itemId: string }}){
     
     const item = storeItemsData.items.find(item => {
         return item.name === params.itemId.replaceAll("%20", " ")
