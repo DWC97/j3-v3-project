@@ -181,6 +181,7 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                                 fill
                                 sizes='(width: 100%)'
                                 className=""
+                                priority
                             />
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-4 w-full gap-6">

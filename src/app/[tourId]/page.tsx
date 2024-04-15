@@ -284,7 +284,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                     }
                                 }}
                                 >
-                                    <h2 className='font-semibold text-[28px] sm:text-[36px] text-white pr-8'>What's included?</h2>
+                                    <h2 className='font-semibold text-[28px] sm:text-[36px] text-white pr-8'>What&apos;s included?</h2>
                                     <span className='text-[14px] hidden lg:block text-gray-200 ml-10'>{answersVisible['included'] ? "(close)" : "(open)"}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['included'] && "rotate-180"}`} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
                                 </div>
