@@ -85,22 +85,25 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
     }
 
     function handlePrev(): void {
-        if (!tour) return;  // This guard remains the same
-        const lastIndex = tour?.gallery?.length? - 1 ?? 0;
+        // Directly access the `tour.gallery` or provide a default empty array if not available
+        const images = tour?.gallery ?? [];
+        if (images.length === 0 || gallery.i === undefined) return;  // Ensure we have images and a valid index
+    
+        const lastIndex = images.length - 1;
         const newIndex = gallery.i === 0 ? lastIndex : gallery.i - 1;
-        if (tour?.gallery) {
-            setGallery({ image: tour.gallery[newIndex], i: newIndex });
-        }
+        setGallery({ image: images[newIndex], i: newIndex });
     }
       
     function handleNext(): void {
-        if (!tour) return;  // This guard remains the same
-        const lastIndex = tour?.gallery?.length? - 1 ?? 0;
+        const images = tour?.gallery ?? [];
+        if (images.length === 0 || gallery.i === undefined) return;  // Ensure we have images and a valid index
+    
+        const lastIndex = images.length - 1;
         const newIndex = gallery.i === lastIndex ? 0 : gallery.i + 1;
-        if (tour?.gallery) {
-            setGallery({ image: tour.gallery[newIndex], i: newIndex });
-        }
+        setGallery({ image: images[newIndex], i: newIndex });
     }
+    
+    
         
     function handleKeyDown(e: KeyboardEvent): void {
 
