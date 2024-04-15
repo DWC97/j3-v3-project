@@ -15,7 +15,7 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
     const item = storeItemsData.items.find(item => {
         return item.name === params.itemId.replaceAll("%20", " ")
     })
-    const { increaseCartQuantity, cartItems } = useContext(ShoppingCartContext)
+    const { increaseCartQuantity } = useContext(ShoppingCartContext)
     const [activeSize, setActiveSize] = useState<string>("XS")
     const [quantity, setQuantity] = useState<number>(1)
     const [activeSlide, setActiveSlide] = useState<number>(0)

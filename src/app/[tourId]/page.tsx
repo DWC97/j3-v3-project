@@ -85,17 +85,21 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
     }
 
     function handlePrev(): void {
-        if (!tour) return;
-        const lastIndex = tour.gallery.length - 1;
+        if (!tour) return;  // This guard remains the same
+        const lastIndex = tour?.gallery?.length? - 1 ?? 0;
         const newIndex = gallery.i === 0 ? lastIndex : gallery.i - 1;
-        setGallery({ image: tour.gallery[newIndex], i: newIndex });
+        if (tour?.gallery) {
+            setGallery({ image: tour.gallery[newIndex], i: newIndex });
+        }
     }
       
     function handleNext(): void {
-        if (!tour) return;
-        const lastIndex = tour.gallery.length - 1;
+        if (!tour) return;  // This guard remains the same
+        const lastIndex = tour?.gallery?.length? - 1 ?? 0;
         const newIndex = gallery.i === lastIndex ? 0 : gallery.i + 1;
-        setGallery({ image: tour.gallery[newIndex], i: newIndex });
+        if (tour?.gallery) {
+            setGallery({ image: tour.gallery[newIndex], i: newIndex });
+        }
     }
         
     function handleKeyDown(e: KeyboardEvent): void {
@@ -242,7 +246,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                             <Slide>
                                 <div className={`mt-10 mb-16 w-full  relative`}>
                                     <Image
-                                        src={tour?.mapUrl}
+                                        src={tour?.mapUrl ?? ""}
                                         alt="tour map"
                                         width={0}
                                         height={0}
@@ -326,7 +330,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
                                 >
                                     <Masonry columnsCount={3} gutter="15px">
-                                        {tour?.gallery.map((image, i) => (
+                                        {tour?.gallery?.map((image, i) => (
                                             <div className='relative w-full h-full overflow-hidden hover:opacity-70 ease-in-out duration-300 cursor-pointer' key={i} onClick={() => {
                                                 viewImage(image, i)
                                             }}>
@@ -384,7 +388,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                             <span className='font-medium  text-white'>Finishes</span>
                                             <span className='font-semibold text-white'>{tour?.finishes}</span>
                                         </li>
-                                        {Object.entries(tour?.scores).map(([key, val], i)=> {
+                                        {Object.entries(tour?.scores ?? {}).map(([key, val], i)=> {
                                                 return (
                                                     <li key={i} className=' w-full flex flex-row justify-between text-[20px] lg:text-[20px] md:text-[16px] relative z-30'>
                                                         <span className='font-medium text-white '>{key}</span>
