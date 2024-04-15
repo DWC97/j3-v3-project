@@ -153,7 +153,7 @@ export default function About2(){
                 </Reveal>
                 
             </div>
-            <div className="gallery px-10 hidden sm:flex" ref={gallery}>
+            <div className="gallery px-10 hidden sm:flex relative" ref={gallery}>
                 
                     {window.innerWidth > 1024 ? 
                     <div className="galleryWrapper">
@@ -177,24 +177,23 @@ export default function About2(){
 const Column: React.FC<{ imagesData: ImageData[], y: any }> = ({ imagesData, y }) => {
     return (
         <motion.div
-            className="column"
+            className="column relative"
             style={{ y }}
         >
             <div
-                className="column"
+                className="column relative"
             >
                 {
                     imagesData.map((image) => {
-                        return <div key={image.id} className="imageContainer relative">
+                        return <div key={image.id} className="imageContainer">
                             <Image
                                 src={image.src}
-                                style={{ transform: `rotate(${image.rotation}deg)`,
-                                objectFit: "cover" }}
-                                alt='image'
+                                style={{ transform: `rotate(${image.rotation}deg)`}}
+                                alt='polaroid'
                                 fill
                                 priority
-                                sizes='(height: 340px)'
-                                blurDataURL="data:image/jpeg..."
+                                sizes='(height: 100%)'
+                                className='object-cover relative'
                             />
                         </div>
                     })

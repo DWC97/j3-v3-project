@@ -11,6 +11,7 @@ import { Reveal } from '@/context/Reveal';
 import { Slide } from '@/context/Slide';
 import NotFound from '../not-found';
 import Swal from 'sweetalert2'
+import Image from 'next/image';
 
 interface Gallery {
     image: string;
@@ -165,7 +166,16 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                             <svg xmlns="http://www.w3.org/2000/svg"  className='' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                         </div>
                         <div className='h-full max-w-full relative'>
-                            <img src={gallery.image}  className='object-contain h-full max-w-full'/>
+                            <div className='w-[80vh] aspect-square relative'>
+                                <Image
+                                    src={gallery.image} 
+                                    alt="gallery image"
+                                    fill
+                                    sizes='(height: 100%)'
+                                    className="object-contain"
+                                />
+                            </div>
+                            {/* <img src={gallery.image}  className='object-contain h-full max-w-full'/> */}
                             <span className='absolute bottom-0 py-2 flex justify-center items-center text-gray-200 text-[16px] w-full bg-black bg-opacity-60'>{tour.captions[gallery.i]}</span>
                         </div>
                         
@@ -195,7 +205,16 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                 </div>
             }
                 <div className="w-full h-[400px] relative flex flex-col justify-end z-0">
-                    <img src={tour?.imageSrc} className="absolute object-cover object-center w-full h-[400px] -z-10"/>
+                    <div className='absolute object-center w-full h-[400px] -z-10'>
+                        <Image
+                            src={tour?.imageSrc}
+                            alt="destination bg"
+                            fill
+                            sizes='(height: 100%)'
+                            className="object-cover"
+                        />
+                    </div>
+                    {/* <img src={tour?.imageSrc} className="absolute object-cover object-center w-full h-[400px] -z-10"/> */}
                     <div className="absolute h-[200px] w-full top-0 left-0 bg-gradient-to-b from-black to-transparent opacity-35 z-0"/>
                     <div className="absolute h-[200px] w-full bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-35 z-0"/>
                     <div className="w-full h-1/2 flex flex-col justify-center z-10 px-10 xl:px-20 2xl:px-60">
@@ -220,7 +239,17 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                 <p className='text-[18px] text-gray-100'>{tour?.description2}</p>
                             </div>
                             <Slide>
-                                <img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/>
+                                <div className={`mt-10 mb-16 w-full  relative`}>
+                                    <Image
+                                        src={tour?.mapUrl}
+                                        alt="tour map"
+                                        width={0}
+                                        height={0}
+                                        sizes="100vw"
+                                        style={{ width: '100%', height: '100%' }}
+                                    />
+                                </div>
+                                {/* <img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/> */}
                             </Slide>
                             <div className={`w-full flex flex-col border-b border-gray-300 pb-4 `} >
                                 <div className='w-full flex flex-row items-center relative cursor-pointer hover:opacity-85 ease-in-out duration-300' 
@@ -297,13 +326,23 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                 >
                                     <Masonry columnsCount={3} gutter="15px">
                                         {tour?.gallery.map((image, i) => (
-                                            <div className='relative overflow-hidden hover:opacity-70 ease-in-out duration-300' key={i}>
-                                                <img
+                                            <div className='relative w-full h-full overflow-hidden hover:opacity-70 ease-in-out duration-300 cursor-pointer' key={i} onClick={() => {
+                                                viewImage(image, i)
+                                            }}>
+                                                {/* <img
                                                 src={image}
                                                 style={{width: "100%", display: "block", cursor: "pointer"}}
                                                 onClick={() => {
                                                     viewImage(image, i)
                                                 }}
+                                                /> */}
+                                                <Image
+                                                    src={image}
+                                                    alt="gallery image"
+                                                    width={0}
+                                                    height={0}
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: '100%' }}
                                                 />
                                             </div>
                                         ))}
