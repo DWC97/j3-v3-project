@@ -44,7 +44,7 @@ export default function Store(){
         }
     });
 
-    let domNode = useClickOutside(() => {
+    let domNode = useClickOutside<HTMLUListElement>(() => {
         setShowSortOptions(false)
     })
 

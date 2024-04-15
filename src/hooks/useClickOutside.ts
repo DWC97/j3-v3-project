@@ -1,12 +1,10 @@
-// hooks
 import { useEffect, useRef, RefObject } from "react";
 
 type EventHandler = (event: MouseEvent) => void;
 
-// listens for when a user clicks outside of a given area
-export function useClickOutside(handler: EventHandler): RefObject<HTMLDivElement>{
-
-    const domNode: RefObject<HTMLDivElement> = useRef(null)
+// Generic version of useClickOutside to handle various element types
+export function useClickOutside<T extends HTMLElement>(handler: EventHandler): RefObject<T> {
+    const domNode: RefObject<T> = useRef<T>(null);
     
     useEffect(() => {
         function maybeHandler(e: MouseEvent) {
@@ -22,5 +20,5 @@ export function useClickOutside(handler: EventHandler): RefObject<HTMLDivElement
         };
     }, [handler]);
 
-    return domNode
+    return domNode;
 }

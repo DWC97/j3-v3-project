@@ -37,7 +37,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
     const [focusedArrow, setFocusedArrow] = useState("")
     // let mobileView = window.innerWidth < 640
 
-    let domNode = useClickOutside(() => {
+    let domNode = useClickOutside<HTMLDivElement>(() => {
         if (!gallery.image) return
         setGallery({ image: "", i: 0 })
         toggle()

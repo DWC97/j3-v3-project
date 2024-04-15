@@ -18,7 +18,7 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps){
     const cartRef = useRef<HTMLDivElement>(null)
     const checkoutRef = useRef<HTMLButtonElement>(null)
 
-    let domNode = useClickOutside(() => {
+    let domNode = useClickOutside<HTMLDivElement>(() => {
         if (!isOpen) return
         closeCart()
     })
