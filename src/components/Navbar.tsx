@@ -101,7 +101,7 @@ export default function Navbar(){
                     toggle()
                 }}>
                     {/* <img src="/full.jpg" className='max-w-[250px] w-1/2 object-cover'/> */}
-                    <div className='max-w-[250px] w-1/2'>
+                    <div className='max-w-[250px] w-1/2 relative'>
 
                     
                         <Image
