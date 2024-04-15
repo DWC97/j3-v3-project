@@ -34,7 +34,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping cart", [])
     const [toggle] = useBodyLockScroll() // toggle scroll lock
 
-    const cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0)
+    const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
 
     function openCart(){
         setIsOpen(true)
@@ -47,43 +47,20 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
     function getItemQuantity(id: number, size: string){
         return cartItems.find(item => item.id === id && item.size === size)?.quantity || 0
     }
-    function increaseCartQuantity(id: number, quantity: number, size: string){
+    function increaseCartQuantity(id: number, quantity: number, size: string) {
         setCartItems(currItems => {
-            // case if the item isn't in the cart
-            if (currItems.find(item => item.id === id) == null){
-                return [...currItems, { id, size, quantity }]
-            } 
-            else if (currItems.find(item => item.id === id && item.size == size)){
-                return currItems.map(item => {
-                    if (item.id === id){
-                        if (item.size === size){
-                            return { ...item, quantity: (item.quantity + quantity), size }
-                        } else {
-                            return item
-                        }
-                    } else {
-                        return item
-                    }
-                })
+            const index = currItems.findIndex(item => item.id === id && item.size === size);
+            if (index > -1) {
+                // Clone the array to avoid direct state mutation
+                const newItems = [...currItems];
+                // Update the item quantity
+                newItems[index] = { ...newItems[index], quantity: newItems[index].quantity + quantity };
+                return newItems;
+            } else {
+                // Item not found, add as new item
+                return [...currItems, { id, size, quantity }];
             }
-            // case if the item is in the cart but in a different size
-            else if (currItems.find(item => item.id === id && item.size !== size)) {
-                return [...currItems, { id, size, quantity }]
-            }
-            // else {
-            //     return currItems.map(item => {
-            //         if (item.id === id){
-            //             if (item.size === size){
-            //                 return { ...item, quantity: (item.quantity + quantity), size }
-            //             } else {
-            //                 return item
-            //             }
-            //         } else {
-            //             return item
-            //         }
-            //     })
-            // }
-        })
+        });
     }
     function decreaseCartQuantity(id: number){
         setCartItems(currItems => {
