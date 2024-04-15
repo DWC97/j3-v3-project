@@ -108,9 +108,9 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                                     if (submitted) return
                                     else {
                                         if (item.sizes){
-                                            increaseCartQuantity(item.id, parseInt(quantity), activeSize)
+                                            increaseCartQuantity(item.id, quantity, activeSize)
                                         } else {
-                                            increaseCartQuantity(item.id, parseInt(quantity), "NA")
+                                            increaseCartQuantity(item.id, quantity, "NA")
                                         }
                                         setSubmitted(true)
                                     }
@@ -120,9 +120,9 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                                 if (submitted) return
                                 else {
                                     if (item.sizes){
-                                        increaseCartQuantity(item.id, parseInt(quantity), activeSize)
+                                        increaseCartQuantity(item.id, quantity, activeSize)
                                     } else {
-                                        increaseCartQuantity(item.id, parseInt(quantity), "NA")
+                                        increaseCartQuantity(item.id, quantity, "NA")
                                     }
                                     setSubmitted(true)
                                 }

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import toursData from "@/data/tours.json"
 import { formatNumber } from '@/utilities/Utils';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, KeyboardEvent } from 'react';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import { useClickOutside } from '@/hooks/useClickOutside';
@@ -105,7 +105,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
     
     
         
-    function handleKeyDown(e: KeyboardEvent): void {
+    function handleKeyDown(e: KeyboardEvent<HTMLDivElement>): void {
 
         if (!isOverlayActive) return;
         
@@ -183,7 +183,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                 />
                             </div>
                             {/* <img src={gallery.image}  className='object-contain h-full max-w-full'/> */}
-                            <span className='absolute bottom-0 py-2 flex justify-center items-center text-gray-200 text-[16px] w-full bg-black bg-opacity-60'>{tour.captions[gallery.i]}</span>
+                            <span className='absolute bottom-0 py-2 flex justify-center items-center text-gray-200 text-[16px] w-full bg-black bg-opacity-60'>{tour?.captions?.[gallery.i] ?? "No caption available"}</span>
                         </div>
                         
                         <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none ' tabIndex={0} ref={nextArrowRef} 
