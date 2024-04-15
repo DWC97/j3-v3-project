@@ -129,14 +129,14 @@ export default function About2(){
                 <Reveal>
                     <h3 className='text-custom-blue text-[20px] font-bold mb-2'>JR SEASON 1</h3>
                     <h2 className='text-white font-bold md:text-[40px] text-[32px] leading-snug mb-6'>Small group party tours starting in 2025</h2>
-                    <p className='text-white text-[16px] leading-relaxed mb-2'>Ahoy there! If you’re looking to experience the best nightlife & culture South-East Asia has to offer with a rowdy group of travellers and tick-off bucket-list activities along the way, JR has you covered. We make logistics stress-free so you can focus on having a good time. Be warned, we do things a little differently over at JR:</p>
+                    <p className='text-white text-[16px] leading-relaxed mb-2'>Ahoy there! If you&apos;re looking to experience the best nightlife & culture South-East Asia has to offer with a rowdy group of travellers and tick-off bucket-list activities along the way, JR has you covered. We make logistics stress-free so you can focus on having a good time. Be warned, we do things a little differently over at JR:</p>
                     <div className='flex flex-row items-center'>
                         <span className='text-[20px] mr-4'>❌</span>
                         <span className='font-medium text-white text-[16px]'>No couples</span>
                     </div>
                     <div className='flex flex-row items-center'>
                         <span className='text-[20px] mr-4'>&nbsp;🤘&nbsp;</span>
-                        <span className='font-medium text-white text-[16px]'>18 – 30 only</span>
+                        <span className='font-medium text-white text-[16px]'>18 to 30 only</span>
                     </div>
                     <div className='flex flex-row items-center mb-10'>
                         <span className='text-[20px] mr-4'>🍻</span>

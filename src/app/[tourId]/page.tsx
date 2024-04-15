@@ -212,6 +212,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                             fill
                             sizes='(height: 100%)'
                             className="object-cover"
+                            priority
                         />
                     </div>
                     {/* <img src={tour?.imageSrc} className="absolute object-cover object-center w-full h-[400px] -z-10"/> */}
