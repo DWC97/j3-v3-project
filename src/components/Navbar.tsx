@@ -21,7 +21,7 @@ export default function Navbar(){
     const path = usePathname()
     const [nav, setNav] = useState<boolean>(false) // set mobile nav menu
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    let mobileView: boolean
+    let mobileView = typeof window !== 'undefined' ? window.innerWidth < 500 : false;
 
     useEffect(() => {
         if (path !== "/"){

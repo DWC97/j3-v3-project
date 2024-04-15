@@ -65,7 +65,7 @@ export default function Contact2(): JSX.Element{
     });
     };
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>){
+    function handleSubmit(e: React.SyntheticEvent){
         e.preventDefault()
 
         if (formData.name === ""){
