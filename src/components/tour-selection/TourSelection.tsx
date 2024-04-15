@@ -43,7 +43,7 @@ export default function TourSelection(props: TourSelectionProps){
         if (isInView){
             setActiveSection("tours")
         }
-    }, [isInView])
+    }, [isInView, setActiveSection])
 
     return (
         <div className="section w-full relative min-h-screen h-[1080px] flex justify-center items-center overflow-hidden" id='tours' ref={toursRef}

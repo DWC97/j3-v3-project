@@ -31,7 +31,7 @@ export default function Navbar(){
         if (path.includes("/store")){
             setActiveSection("store")
         } 
-    }, [path])
+    }, [path, setActiveSection])
 
     useGSAP(() => {
         gsap.fromTo(

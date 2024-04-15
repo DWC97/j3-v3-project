@@ -29,7 +29,7 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                 setNotification(false)
             }, 3000);
         }
-    }, [notification])
+    }, [notification, setNotification])
 
     return (
         <div>

@@ -91,7 +91,7 @@ export default function About2(){
         else {
             setActiveSection("")
         }
-    }, [isInView])
+    }, [isInView, setActiveSection])
 
     const gallery = useRef(null);
     const [dimension, setDimension] = useState({width:0, height:0});

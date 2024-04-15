@@ -141,7 +141,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
             overlayRef.current?.focus()
         }
         
-    }, [isOverlayActive])
+    }, [isOverlayActive, gallery.image])
 
     return (
         <div>

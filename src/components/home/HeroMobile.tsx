@@ -13,7 +13,7 @@ export default function HeroMobile(){
         setTimeout(() => {
             setScrollAnimation(true)
         }, 5000);
-    }, []);
+    }, [setScrollAnimation]);
 
     return (
         <div className="w-full h-screen relative flex flex-col justify-center items-center"

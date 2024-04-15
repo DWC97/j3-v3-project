@@ -17,7 +17,7 @@ export default function Contact2(): JSX.Element{
         if (isInView){
             setActiveSection("contact")
         }
-    }, [isInView])
+    }, [isInView, setActiveSection])
 
     const [formData, setFormData] = useState({
         name: "",

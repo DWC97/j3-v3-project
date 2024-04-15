@@ -21,7 +21,7 @@ export default function useDetectSection(ref: RefType<HTMLElement>): UseDetectSe
         return () => {
             document.removeEventListener("scroll", checkInView);
         };
-    }, []);
+    }, [checkInView]);
 
     return [isInView]
 }

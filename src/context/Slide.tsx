@@ -15,7 +15,7 @@ export function Slide({ children }: SlideProps){
         if (isInView){
             slideControls.start("visible")
         }
-    }, [isInView])
+    }, [isInView, slideControls])
 
     return (
         <div
