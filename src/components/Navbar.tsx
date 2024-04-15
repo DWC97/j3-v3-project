@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import { ShoppingCartContext } from '@/context/ShoppingCartContext';
+import Image from 'next/image';
 
 export default function Navbar(){
 
@@ -99,8 +100,20 @@ export default function Navbar(){
                     setNav(!nav)
                     toggle()
                 }}>
-                        <img src="/full.jpg" className='max-w-[250px] w-1/2 object-cover'/>
-                    </Link>
+                    {/* <img src="/full.jpg" className='max-w-[250px] w-1/2 object-cover'/> */}
+                    <div className='max-w-[250px] w-1/2'>
+
+                    
+                        <Image
+                            src="/full.jpg"
+                            alt="logo"
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                            style={{ width: '100%', height: '100%' }}
+                        />
+                    </div>
+                </Link>
                 <div className='w-full px-10'>
                     <ul className='text-white font-medium text-[18px]'>
                         <Link href="/#about" tabIndex={-1} onClick={() => {
@@ -134,7 +147,17 @@ export default function Navbar(){
             <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[45] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50 backdrop-blur-sm" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
                 {!mobileView && <Link href="/#hero" tabIndex={-1} >
                     <div className="relative hover:opacity-85 ease-in-out duration-300">
-                        <img src="/logo.png" className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}/>
+                        {/* <img src="/logo.png" className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}/> */}
+                        <div className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}>
+                            <Image
+                                src="/logo.png"
+                                alt="logo"
+                                width={0}
+                                height={0}
+                                sizes="100vw"
+                                style={{ width: '100%', height: '100%' }}
+                            />
+                        </div>
                     </div>
                 </Link>}
                 <div className='flex lg:hidden w-full justify-between h-full px-10'>
