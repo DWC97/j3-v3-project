@@ -1,7 +1,7 @@
 "use client"
 
 import storeItemsData from "@/data/storeItems.json"
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useClickOutside } from '@/hooks/useClickOutside';
 import Link from 'next/link'
 import Image from "next/image";
@@ -209,23 +209,10 @@ export default function Store(){
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-10 w-3/4 sm:pl-0 pl-4">
                     {sortedItems.length > 0 ? sortedItems.map(item => {
                         return (
-                            <Link href={`/store/${item.name}`} key={item.id} className="flex flex-col justify-between hover:opacity-85 ease-in-out duration-300">
-                                {/* <img src={item.gallery[0]} className="w-full aspect-[5/6] object-cover rounded-t-lg"/> */}
-                                <div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden">
-                                    <Image
-                                        src={item.gallery[0]}
-                                        alt="store item"
-                                        fill
-                                        sizes='(width: 100%)'
-                                        className="object-cover"
-                                    />
-                                </div>
-                                <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
-                                    <span>{item.name}</span>
-                                    <span className="font-semibold">£{item.price}</span>
-                                </div>
-                                <span className="text-gray-300">{item.color}</span>
-                            </Link>
+                            <Suspense fallback={<ItemCardSkeleton />} key={item.id}>
+                                <ItemCard item={item} />
+                            </Suspense>
+                            
                         )
                     })
                     :
@@ -235,6 +222,48 @@ export default function Store(){
                     }
                 </div>
             </div>
+        </div>
+    )
+}
+
+interface ItemCardProps {
+    item: StoreItem; 
+}
+
+function ItemCard({ item }: ItemCardProps){
+
+    return (
+        <Link href={`/store/${item.name}`} className="flex flex-col justify-between hover:opacity-85 ease-in-out duration-300">
+            <Suspense fallback={<div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden bg-custom-pink" />}>
+                <div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden">
+                    <Image
+                        src={item.gallery[0]}
+                        alt="store item"
+                        fill
+                        sizes='(width: 100%)'
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+            </Suspense>
+            <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
+                <span>{item.name}</span>
+                <span className="font-semibold">£{item.price}</span>
+            </div>
+            <span className="text-gray-300">{item.color}</span>
+        </Link>
+    )
+}
+
+function ItemCardSkeleton(){
+    return (
+        <div className="flex flex-col justify-between">
+            <div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden bg-custom-pink" />
+            <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
+                <div className="w-1/2 h-4 bg-custom-pink" />
+                <div className="w-8 h-4 bg-custom-pink" />
+            </div>
+            <div className="w-16 h-4 bg-custom-pink" />
         </div>
     )
 }
