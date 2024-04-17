@@ -105,7 +105,7 @@ export default function Navbar(){
 
                     
                         <Image
-                            src="/full.jpg"
+                            src="/full.avif"
                             alt="logo"
                             width={0}
                             height={0}
