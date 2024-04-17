@@ -102,7 +102,7 @@ export default function Contact2(): JSX.Element{
                     {/* <img src="/contact/Jolly_Roger.jpg" className="w-[300px] sm:w-[360px] "/> */}
                     <div className="w-[300px] sm:w-[360px] aspect-square relative">
                         <Image
-                            src="/contact/Jolly_Roger.jpg"
+                            src="/contact/Jolly_Roger.avif"
                             alt="JR logo"
                             fill
                             sizes='(width: 100%)'
