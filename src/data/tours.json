@@ -6,7 +6,7 @@
             "title": "island hopping",
             "duration": 11,
             "price": 1099,
-            "imageSrc": "/slides/southern-thailand.png",
+            "imageSrc": "/slides/southern-thailand.avif",
             "cardSrc": "/tour-page/info-card2.jpg",
             "available": true,
             "group-size": "8 - 12",
@@ -80,7 +80,7 @@
             "title": "mountain adventures",
             "duration": 10,
             "price": 999,
-            "imageSrc": "/slides/northern-thailand.jpg",
+            "imageSrc": "/slides/northern-thailand.avif",
             "cardSrc": "/tour-page/info-card.jpg",
             "available": true,
             "group-size": "8 - 12",
@@ -155,7 +155,7 @@
             "title": "tbd",
             "duration": 22,
             "price": 1999,
-            "imageSrc": "/slides/vietnam.jpg",
+            "imageSrc": "/slides/vietnam.avif",
             "available": false
         },
         {
@@ -164,7 +164,7 @@
             "title": "tbd",
             "duration": 7,
             "price": 899,
-            "imageSrc": "/slides/bali.jpg",
+            "imageSrc": "/slides/bali.avif",
             "available": false
         },
         {
@@ -173,7 +173,7 @@
             "title": "tbd",
             "duration": 14,
             "price": 1299,
-            "imageSrc": "/slides/philippines.jpg",
+            "imageSrc": "/slides/philippines.avif",
             "available": false
         }
     ]

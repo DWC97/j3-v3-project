@@ -17,7 +17,7 @@ export default function HeroMobile(){
 
     return (
         <div className="w-full h-screen relative flex flex-col justify-center items-center"
-        style={{backgroundImage: "url(" + "/hero/full.png" + ")",
+        style={{backgroundImage: "url(" + "/hero/full.avif" + ")",
         backgroundSize: "cover",
         backgroundPosition: "55% 50%"
         }}
