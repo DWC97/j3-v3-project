@@ -34,6 +34,7 @@ export default function HeroMobile(){
                         fill
                         sizes='(width: 100%)'
                         className="object-contain"
+                        priority
                     />
                 </div>
                 <h1 className="text-white font-bold text-3xl text-center mt-10 mb-4">JOLLY ROGER TOURS</h1>
