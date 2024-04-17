@@ -163,7 +163,7 @@ export default function Hero(){
     loadEvents()
 
     return (
-        <div ref={heroRef} className="h-screen w-full">
+        <div ref={heroRef} className="h-screen w-full bg-black">
             {!mobileView ? 
             <div className="section hero" id="hero">
                 <div className="wrapper">

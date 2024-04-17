@@ -6,3 +6,16 @@ body {
     font-family: "Poppins", sans-serif;
     overflow-x: hidden;
 }
+
+.spin {
+    animation: animate 1s infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(720deg);
+    }
+}
