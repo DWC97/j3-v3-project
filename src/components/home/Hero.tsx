@@ -34,7 +34,6 @@ export default function Hero(){
     const { activeSection, setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext);
     const mainHeading = useRef<HTMLHeadingElement>(null);
     const subHeading = useRef<HTMLHeadingElement>(null);
-    const foliage = useRef<HTMLImageElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
     const [isInView] = useDetectSection(heroRef);
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null);
@@ -73,15 +72,6 @@ export default function Hero(){
 
         const ourText = new SplitType(mainHeading.current!, { types: 'chars' })
         const chars = ourText.chars
-
-        gsap.from(
-            foliage.current, 
-            {
-            bottom: "calc(50% - 1100px)",
-            duration: 3.5,
-            ease: "power3.out"
-            }
-        )
 
         gsap.fromTo(
             chars,
@@ -181,7 +171,7 @@ export default function Hero(){
                     <img src="/hero/boat1.png" alt="boat1" className="boat1 parallax" data-speedx="0.04" data-speedy="0.04" data-speedz="0.82" data-rotation="0.21"/>
                     <img src="/hero/boat2.png" alt="boat2" className="boat2 parallax" data-speedx="0.04" data-speedy="0.04" data-speedz="0.83" data-rotation="0.22"/>
                     <img src="/hero/boat3.png" alt="boat3" className="boat3 parallax " data-speedx="0.04" data-speedy="0.04" data-speedz="0.84" data-rotation="0.23"/>
-                    <img src="/hero/foliage.png" alt="foliage" className="foliage parallax" data-speedx="0.01" data-speedy="0.01" data-speedz="0.8" data-rotation="0.25" ref={foliage}/>
+                    <img src="/hero/foliage.png" alt="foliage" className="foliage parallax" data-speedx="0.01" data-speedy="0.01" data-speedz="0.8" data-rotation="0.25"/>
                 </div>
                 <div className={`absolute w-full bottom-[30vh] ${scrollAnimation ? " opacity-100" : "opacity-0"}  left-0 flex justify-center items-center ease-in-out duration-1000`}>
                     <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-16" loop={true} />
