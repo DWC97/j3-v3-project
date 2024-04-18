@@ -18,62 +18,62 @@ interface ImageData {
 const imageData: ImageData[] = [
     {
         "id": 1,
-        "src": "/about/maya-polaroid.png",
+        "src": "/about/maya-polaroid.webp",
         "rotation": 3
     },
     {
         "id": 2,
-        "src": "/about/tubing-polaroid.png",
+        "src": "/about/tubing-polaroid.webp",
         "rotation": -3
     },
     {
         "id": 3,
-        "src": "/about/joe-polaroid.png",
+        "src": "/about/joe-polaroid.webp",
         "rotation": 1
     },
     {
         "id": 4,
-        "src": "/about/lagoon-polaroid.png",
+        "src": "/about/lagoon-polaroid.webp",
         "rotation": 2
     },
     {
         "id": 5,
-        "src": "/about/pirate-polaroid.png",
+        "src": "/about/pirate-polaroid.webp",
         "rotation": -2.5
     },
     {
         "id": 6,
-        "src": "/about/maya-polaroid.png",
+        "src": "/about/maya-polaroid.webp",
         "rotation": 5
     },
     {
         "id": 7,
-        "src": "/about/waterpark-polaroid.png",
+        "src": "/about/waterpark-polaroid.webp",
         "rotation": -4
     },
     {
         "id": 8,
-        "src": "/about/muaythai-polaroid.png",
+        "src": "/about/muaythai-polaroid.webp",
         "rotation": 1
     },
     {
         "id": 9,
-        "src": "/about/elephant-polaroid.png",
+        "src": "/about/elephant-polaroid.webp",
         "rotation": -2.5
     },
     {
         "id": 10,
-        "src": "/about/market-polaroid.png",
+        "src": "/about/market-polaroid.webp",
         "rotation": -1
     },
     {
         "id": 11,
-        "src": "/about/phuket-polaroid.png",
+        "src": "/about/phuket-polaroid.webp",
         "rotation": 3
     },
     {
         "id": 12,
-        "src": "/about/waterpark-polaroid.png",
+        "src": "/about/waterpark-polaroid.webp",
         "rotation": -3
     }
 ]

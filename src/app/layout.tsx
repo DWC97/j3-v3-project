@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Jolly Roger Tours",
   description: "Small group party tours around Thailand",
   icons: {
-    icon: "/logo.png",
+    icon: "/logo.webp",
   },
 };
 
