@@ -18,26 +18,16 @@ type ParallaxElement = HTMLImageElement & {
         speedz: string
         rotation: string
     } }
-
-function debounce(fn: (...args: any[]) => void, ms: number) {
-    let timer: ReturnType<typeof setTimeout>;
-    return (...args: any[]) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            fn(...args);
-        }, ms);
-    };
-}
+    
 
 export default function Hero(){
 
-    const { activeSection, setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext);
+    const { setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext);
     const mainHeading = useRef<HTMLHeadingElement>(null);
     const subHeading = useRef<HTMLHeadingElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
     const [isInView] = useDetectSection(heroRef);
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null);
-    const [needsReloading, setNeedsReloading] = useState<boolean>(false);
     const [mobileView, setMobileView] = useState(false); // State to keep track of mobile view
 
     // Set mobileView based on window size
@@ -53,12 +43,8 @@ export default function Hero(){
     useEffect(() => {
         if (isInView){
             setActiveSection("hero")
-            if (needsReloading){
-                document.location.reload()
-                setNeedsReloading(false)
-            }
         }
-    }, [isInView, setActiveSection, setNeedsReloading])
+    }, [isInView, setActiveSection])
 
     useEffect(() => {
         const parallaxElements: ParallaxElement[] = Array.from(document.getElementsByClassName('parallax')) as ParallaxElement[];
@@ -120,17 +106,7 @@ export default function Hero(){
     }
 
 
-    const debouncedHandleResize = debounce(function handleResize() {
 
-        if (!mobileView){
-            if (activeSection !== "hero"){
-                setNeedsReloading(true)
-            } else {
-                document.location.reload()
-            }
-        }
-        
-      }, 1000)
       
     function loadEvents(){
         if (typeof window !== 'undefined') {
@@ -138,14 +114,14 @@ export default function Hero(){
                 window.addEventListener("mousemove", handleMousemove)
             }, 3000)
     
-            window.addEventListener("resize", debouncedHandleResize)
+
         } 
 
         // Cleanup function to remove event listener when the component unmounts
         return () => {
             if (typeof window !== 'undefined') {
                 window.removeEventListener("mousemove", handleMousemove);
-                window.removeEventListener("resize", debouncedHandleResize);
+
             }
         };
     }
