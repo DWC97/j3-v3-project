@@ -153,7 +153,7 @@ export default function About2(){
                 </Reveal>
                 
             </div>
-            <div className="gallery px-10 hidden sm:flex relative" ref={gallery}>
+            <div className="gallery px-10 hidden sm:flex" ref={gallery}>
                 
                     {window.innerWidth > 1024 ? 
                     <div className="galleryWrapper">
@@ -188,12 +188,13 @@ const Column: React.FC<{ imagesData: ImageData[], y: any }> = ({ imagesData, y }
                         return <div key={image.id} className="imageContainer">
                             <Image
                                 src={image.src}
-                                style={{ transform: `rotate(${image.rotation}deg)`}}
                                 alt='polaroid'
-                                fill
-                                priority
-                                sizes='(height: 100%)'
+                                width={0}
+                                height={0}
+                                sizes="100vw"
+                                style={{ width: '100%', height: '100%', transform: `rotate(${image.rotation}deg)` }}
                                 className='object-cover relative'
+
                             />
                         </div>
                     })
