@@ -60,7 +60,7 @@
     width: 100%;
     max-height: 109.57%;
     /* top: 68.23%; */
-    top: 87%;
+    top: 89%;
     left: 54.03%;
     z-index: 1;
 }
@@ -68,7 +68,7 @@
 .left-cliff {
     position: absolute;
     width: 24.89%;
-    top: 23.96%;
+    top: 23%;
     left: 9.74%;
     z-index: 2;
 }
@@ -84,7 +84,7 @@
 .middle-cliff {
     position: absolute;
     width: 27.82%;
-    top: 22.01%;
+    top: 21%;
     left: 47.07%;
     z-index: 4;
 }
@@ -116,7 +116,7 @@
 .big-ship {
     position: absolute;
     width: 20.5%;
-    top: 50.65%;
+    top: 51.5%;
     left: 24.38%;
     z-index: 6;
 }
@@ -124,7 +124,7 @@
 .boat1 {
     position: absolute;
     width: 2.12%;
-    top: 63.02%;
+    top: 62%;
     left: 64.64%;
     z-index: 7;
 }
@@ -132,7 +132,7 @@
 .boat2 {
     position: absolute;
     width: 1.9%;
-    top: 63.02%;
+    top: 62%;
     left: 53.66%;
     z-index: 7;
 }
@@ -140,7 +140,7 @@
 .boat3 {
     position: absolute;
     width: 2.42%;
-    top: 73.44%;
+    top: 72.5%;
     left: 71.96%;
     z-index: 7;
 }
