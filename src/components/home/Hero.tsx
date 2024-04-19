@@ -131,7 +131,7 @@ export default function Hero(){
 
     return (
         <div ref={heroRef} className="h-screen w-full bg-black">
- 
+            {!mobileView ? 
             <div className="section hero" id="hero">
                 <div className="wrapper">
                     <div className="vignette"></div>
@@ -164,7 +164,9 @@ export default function Hero(){
                     <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-16" loop={true} />
                 </div>
             </div>
-
+            :
+            <HeroMobile />
+            }
         </div>
     )
 }
