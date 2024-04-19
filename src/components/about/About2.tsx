@@ -193,6 +193,7 @@ const Column: React.FC<{ imagesData: ImageData[], y: any }> = ({ imagesData, y }
                                 height={0}
                                 sizes="100vw"
                                 style={{ width: '100%', height: '100%', transform: `rotate(${image.rotation}deg)` }}
+                                priority
 
                             />
                         </div>
