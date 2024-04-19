@@ -20,6 +20,7 @@ import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 import { Reveal } from '@/context/Reveal';
 import { Slide } from '@/context/Slide';
 import Image from 'next/image';
+import Swal from 'sweetalert2'
 
 interface Tour {
     id: number;
@@ -85,8 +86,16 @@ export default function TourSelection(props: TourSelectionProps){
                                     <Link className='card-container' href={tour.available ? `/${tour.region}` : "#"} onClick={(e) => {
                                         if (tour.available) return
                                         e.preventDefault()
+                                        Swal.fire({
+                                            title: "Sorry!",
+                                            text: "Information for this tour is currently unavailable.",
+                                            icon: "error",
+                                            timer: 5000,
+                                            timerProgressBar: true,
+                                            showConfirmButton: false,
+                                            scrollbarPadding: false,
+                                        });
                                     }}>
-                                        {/* <img src={tour.imageSrc}/> */}
                                         <div className='image'>
                                             <Image
                                                 src={tour.imageSrc}
