@@ -138,7 +138,7 @@ export default function Hero(){
                     <img src="/hero/sky6.avif" loading="eager" alt="sky" className="sky parallax" data-speedx="0.08" data-speedy="0.075" data-speedz="0" data-rotation="0"/>
                     <div className="sea parallax" data-speedx="0.045" data-speedy="0.04" data-speedz="0" data-rotation="0">
                     <Image
-                            src="/hero/sea3.png"
+                            src="/hero/sea3.webp"
                             alt="sea"
                             width={0}
                             height={0}

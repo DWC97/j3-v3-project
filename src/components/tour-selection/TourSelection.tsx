@@ -101,7 +101,6 @@ export default function TourSelection(props: TourSelectionProps){
                                                 src={tour.imageSrc}
                                                 alt="location"
                                                 fill
-                                                priority
                                                 sizes='(height: 100%)'
                                                 className="image"
                                             />
