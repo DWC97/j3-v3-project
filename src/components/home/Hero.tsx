@@ -9,6 +9,7 @@ import useDetectSection from "@/hooks/useDetectSection";
 import { ActiveSectionContext } from "@/context/ActiveSectionContext";
 import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
+import HeroMobile from "./HeroMobile";
 import Image from "next/image";
 
 type ParallaxElement = HTMLImageElement & { 
