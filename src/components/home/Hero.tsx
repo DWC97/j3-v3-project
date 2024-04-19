@@ -10,6 +10,7 @@ import { ActiveSectionContext } from "@/context/ActiveSectionContext";
 import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
 import HeroMobile from "./HeroMobile";
+import Image from "next/image";
 
 type ParallaxElement = HTMLImageElement & { 
     dataset: { 
@@ -135,7 +136,17 @@ export default function Hero(){
                 <div className="wrapper">
                     <div className="vignette"></div>
                     <img src="/hero/sky6.avif" loading="eager" alt="sky" className="sky parallax" data-speedx="0.08" data-speedy="0.075" data-speedz="0" data-rotation="0"/>
-                    <img src="/hero/sea3.png" loading="eager" alt="sea" className="sea parallax" data-speedx="0.045" data-speedy="0.04" data-speedz="0" data-rotation="0"/>
+                    <div className="sea parallax" data-speedx="0.045" data-speedy="0.04" data-speedz="0" data-rotation="0">
+                    <Image
+                            src="/hero/sea3.png"
+                            alt="sea"
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                            style={{ width: '100%', height: '100%' }}
+                            priority
+                        />
+                    </div>
                     <img src="/hero/left-cliff.png" alt="left cliff" className="left-cliff parallax" data-speedx="0.05" data-speedy="0.045" data-speedz="0.6" data-rotation="0.15"/>
                     <img src="/hero/right-cliff.png" alt="right cliff" className="right-cliff parallax" data-speedx="0.05" data-speedy="0.043" data-speedz="0.5" data-rotation="0.13"/>
                     <img src="/hero/middle-cliff.png" alt="middle cliff" className="middle-cliff parallax" data-speedx="0.05" data-speedy="0.042" data-speedz="0.55" data-rotation="0.14"/>
