@@ -37,7 +37,7 @@ export default function HeroMobile(){
                     />
                 </div>
                 <h1 className="text-white font-bold text-3xl text-center mt-10 mb-4">JOLLY ROGER TOURS</h1>
-                <h2 className="text-white text-md font-medium text-center">THE ADVENTURE OF A LIFETIME AWAITS...</h3>
+                <h2 className="text-white text-md font-medium text-center">THE ADVENTURE OF A LIFETIME AWAITS...</h2>
             </div>
             <div className="absolute h-full w-full opacity-40"
             style={{background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.75))"}}
