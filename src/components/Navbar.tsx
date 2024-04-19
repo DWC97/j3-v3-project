@@ -115,30 +115,38 @@ export default function Navbar(){
                 </Link>
                 <div className='w-full px-10'>
                     <ul className='text-white font-medium text-[18px]'>
-                        <Link href="/#about" tabIndex={-1} onClick={() => {
+                        <li className='border-b border-gray-400 py-4'>
+                            <Link href="/#about" tabIndex={-1} onClick={() => {
                             setNav(!nav)
                             toggle()
-                        }}>
-                            <li className='border-b border-gray-400 py-4'>ABOUT</li>
-                        </Link>
-                        <Link href="/#tours" tabIndex={-1} onClick={() => {
-                            setNav(!nav)
-                            toggle()
-                        }}>
-                            <li className='border-b border-gray-400 py-4'>TOURS</li>
-                        </Link>
-                        <Link href="/#contact" tabIndex={-1} onClick={() => {
-                            setNav(!nav)
-                            toggle()
-                        }}>
-                            <li className='border-b border-gray-400 py-4'>CONTACT</li>
-                        </Link>
-                        <Link href="/store" tabIndex={-1} onClick={() => {
-                            setNav(!nav)
-                            toggle()
-                        }}>
-                            <li className='border-b border-gray-400 py-4'>STORE</li>
-                        </Link>
+                            }}>
+                                ABOUT
+                            </Link>
+                        </li>
+                        <li className='border-b border-gray-400 py-4'>
+                            <Link href="/#tours" tabIndex={-1} onClick={() => {
+                                setNav(!nav)
+                                toggle()
+                            }}>
+                                TOURS
+                            </Link>
+                        </li>
+                        <li className='border-b border-gray-400 py-4'>
+                            <Link href="/#contact" tabIndex={-1} onClick={() => {
+                                setNav(!nav)
+                                toggle()
+                            }}>
+                                CONTACT
+                            </Link>
+                        </li>   
+                        <li className='border-b border-gray-400 py-4'>
+                            <Link href="/store" tabIndex={-1} onClick={() => {
+                                setNav(!nav)
+                                toggle()
+                            }}>
+                                STORE
+                            </Link>
+                        </li>    
                     </ul>
                 </div>
                 

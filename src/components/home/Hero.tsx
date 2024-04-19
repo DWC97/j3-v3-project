@@ -141,7 +141,7 @@ export default function Hero(){
                     <img src="/hero/middle-cliff.png" alt="middle cliff" className="middle-cliff parallax" data-speedx="0.05" data-speedy="0.042" data-speedz="0.55" data-rotation="0.14"/>
                     <div className="text parallax w-full" data-speedx="0.05" data-speedy="0.05" data-speedz="0.55" data-rotation="0.14" >
                         <h1 className="font-semibold main-heading" ref={mainHeading}>JOLLY ROGER TOURS</h1>
-                        <h5 className="tracking-widest font-medium sub-heading" ref={subHeading}>THE ADVENTURE OF A LIFETIME AWAITS...</h5>
+                        <h2 className="tracking-widest font-medium sub-heading" ref={subHeading}>THE ADVENTURE OF A LIFETIME AWAITS...</h5>
                     </div>
                     <img src="/hero/big-ship.png" alt="ship" className="big-ship parallax" data-speedx="0.038" data-speedy="0.038" data-speedz="0.8" data-rotation="0.2"/>
                     <img src="/hero/boat1.png" alt="boat1" className="boat1 parallax" data-speedx="0.04" data-speedy="0.04" data-speedz="0.82" data-rotation="0.21"/>
