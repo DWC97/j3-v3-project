@@ -18,7 +18,7 @@ export default function AboutMobile(){
                         <span className='font-medium text-white text-[16px]'>No couples</span>
                     </div>
                     <div className='flex flex-row items-center'>
-                        <span className='text-[20px] mr-4'>&nbsp;🤘&nbsp;</span>
+                        <span className='text-[20px] mr-4'>🤘</span>
                         <span className='font-medium text-white text-[16px]'>18 to 30 only</span>
                     </div>
                     <div className='flex flex-row items-center mb-10'>
