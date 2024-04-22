@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Providers } from "@/context/Providers";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,12 @@ export default function RootLayout({
     <html lang="en" 
     className='scroll-smooth'
     >
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <body className={inter.className}>
         <Providers>
           <header>
