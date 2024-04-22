@@ -26,9 +26,9 @@ export default function HeroMobile(){
                 <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-16" loop={true} />
             </div>
             <div className="w-full px-[20px] h-1/2 flex flex-col items-center mb-[15vh]">
-                <div className="relative w-[40vw]">
+                <div className="relative max-w-[150px] w-[40vw]">
                     <Image
-                        src="/logo.webp"
+                        src="/logo2.webp"
                         alt="JR logo"
                         width={0}
                         height={0}
