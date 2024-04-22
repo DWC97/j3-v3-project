@@ -25,20 +25,8 @@ export default function HeroMobile(){
             <div className={`absolute w-full bottom-[30vh] ${scrollAnimation ? " opacity-100" : "opacity-0"}  left-0 flex justify-center items-center ease-in-out duration-1000`}>
                 <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-16" loop={true} />
             </div>
-            <div className="w-full px-[20px] h-1/2 flex flex-col items-center mb-[15vh]">
-                <div className="relative w-[40vw]">
-                    <Image
-                        src="/logo.webp"
-                        alt="JR logo"
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        style={{ width: '100%', height: '100%' }}
-                        priority
-                        loading="eager"
-                    />
-                </div>
-                <h1 className="text-white font-bold text-3xl text-center mt-10 mb-4">JOLLY ROGER TOURS</h1>
+            <div className="w-full px-[20px] h-full flex flex-col items-center justify-center gap-4 mb-8">
+                <h1 className="text-white font-bold text-3xl text-center">JOLLY ROGER TOURS</h1>
                 <h2 className="text-white text-md font-medium text-center">THE ADVENTURE OF A LIFETIME AWAITS...</h2>
             </div>
             <div className="absolute h-full w-full opacity-40"
