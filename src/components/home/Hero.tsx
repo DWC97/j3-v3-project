@@ -42,12 +42,14 @@ export default function Hero(){
     }, []);
 
     useEffect(() => {
+        if (mobileView) return
         if (isInView){
             setActiveSection("hero")
         }
     }, [isInView, setActiveSection])
 
     useEffect(() => {
+        if (mobileView) return
         const parallaxElements: ParallaxElement[] = Array.from(document.getElementsByClassName('parallax')) as ParallaxElement[];
         setTimeout(() => {
             setScrollAnimation(true);
@@ -110,6 +112,8 @@ export default function Hero(){
 
       
     function loadEvents(){
+        if (mobileView) return
+        
         if (typeof window !== 'undefined') {
             setTimeout(() => {
                 window.addEventListener("mousemove", handleMousemove)
