@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { useEffect, useRef, useState, useContext } from 'react';
 import { ActiveSectionContext } from "@/context/ActiveSectionContext"
