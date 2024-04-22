@@ -46,7 +46,7 @@ export default function Hero(){
         if (isInView){
             setActiveSection("hero")
         }
-    }, [isInView, setActiveSection])
+    }, [isInView, setActiveSection, mobileView])
 
     useEffect(() => {
         if (mobileView) return
@@ -54,7 +54,7 @@ export default function Hero(){
         setTimeout(() => {
             setScrollAnimation(true);
         }, 5000);
-    }, [setScrollAnimation]);
+    }, [setScrollAnimation, mobileView]);
 
     useGSAP(() => {
         if (mobileView) return
@@ -113,7 +113,7 @@ export default function Hero(){
       
     function loadEvents(){
         if (mobileView) return
-        
+
         if (typeof window !== 'undefined') {
             setTimeout(() => {
                 window.addEventListener("mousemove", handleMousemove)

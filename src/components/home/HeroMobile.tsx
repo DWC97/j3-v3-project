@@ -28,7 +28,7 @@ export default function HeroMobile(){
             <div className="w-full px-[20px] h-1/2 flex flex-col items-center mb-[15vh]">
                 <div className="relative aspect-square w-[40vw]">
                     <Image
-                        src="/logo.png"
+                        src="/logo.webp"
                         alt="JR logo"
                         fill
                         sizes='(width: 100%)'
