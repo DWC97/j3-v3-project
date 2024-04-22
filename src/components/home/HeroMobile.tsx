@@ -30,10 +30,8 @@ export default function HeroMobile(){
                     <Image
                         src="/logo2.webp"
                         alt="JR logo"
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        style={{ width: '100%', height: '100%' }}
+                        width={150}
+                        height={124}
                         priority
                     />
                 </div>
