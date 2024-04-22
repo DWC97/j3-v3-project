@@ -2,7 +2,7 @@ import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
 import { useEffect, useRef, useContext } from "react";
 import { ActiveSectionContext } from "@/context/ActiveSectionContext";
-import Image from "next/image";
+
 
 export default function HeroMobile(){
 
