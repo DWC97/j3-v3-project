@@ -3,13 +3,12 @@
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
 import SplitType from 'split-type'
-import { useContext, useEffect, useRef, useState, MouseEvent as ReactMouseEvent } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "./HeroStyles.css"
 import useDetectSection from "@/hooks/useDetectSection";
 import { ActiveSectionContext } from "@/context/ActiveSectionContext";
 import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
-import HeroMobile from "./HeroMobile";
 import Image from "next/image";
 
 type ParallaxElement = HTMLImageElement & { 
@@ -29,36 +28,21 @@ export default function Hero(){
     const heroRef = useRef<HTMLDivElement>(null);
     const [isInView] = useDetectSection(heroRef);
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null);
-    const [mobileView, setMobileView] = useState(false); // State to keep track of mobile view
-
-    // Set mobileView based on window size
-    useEffect(() => {
-        function updateSize() {
-            setMobileView(window.innerWidth < 500);
-        }
-        window.addEventListener('resize', updateSize);
-        updateSize(); // Initialize the state at mount
-        return () => window.removeEventListener('resize', updateSize); // Cleanup listener
-    }, []);
 
     useEffect(() => {
-        if (mobileView) return
         if (isInView){
             setActiveSection("hero")
         }
-    }, [isInView, setActiveSection, mobileView])
+    }, [isInView, setActiveSection])
 
     useEffect(() => {
-        if (mobileView) return
         const parallaxElements: ParallaxElement[] = Array.from(document.getElementsByClassName('parallax')) as ParallaxElement[];
         setTimeout(() => {
             setScrollAnimation(true);
         }, 5000);
-    }, [setScrollAnimation, mobileView]);
+    }, [setScrollAnimation]);
 
     useGSAP(() => {
-        if (mobileView) return
-
         const ourText = new SplitType(mainHeading.current!, { types: 'chars' })
         const chars = ourText.chars
 
@@ -112,8 +96,6 @@ export default function Hero(){
 
       
     function loadEvents(){
-        if (mobileView) return
-
         if (typeof window !== 'undefined') {
             setTimeout(() => {
                 window.addEventListener("mousemove", handleMousemove)
@@ -135,7 +117,6 @@ export default function Hero(){
 
     return (
         <div ref={heroRef} className="h-screen w-full bg-black">
-            {!mobileView ? 
             <div className="section hero" id="hero">
                 <div className="wrapper">
                     <div className="vignette"></div>
@@ -168,9 +149,6 @@ export default function Hero(){
                     <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-16" loop={true} />
                 </div>
             </div>
-            :
-            <HeroMobile />
-            }
         </div>
     )
 }

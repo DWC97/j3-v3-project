@@ -9,6 +9,7 @@ import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import { ShoppingCartContext } from '@/context/ShoppingCartContext';
 import Image from 'next/image';
+import useMobileView from '@/hooks/useMobileView';
 
 export default function Navbar(){
 
@@ -21,7 +22,7 @@ export default function Navbar(){
     const path = usePathname()
     const [nav, setNav] = useState<boolean>(false) // set mobile nav menu
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    let mobileView = typeof window !== 'undefined' ? window.innerWidth < 500 : false;
+    const isMobileView = useMobileView();
 
     useEffect(() => {
         if (path !== "/"){
@@ -78,7 +79,6 @@ export default function Navbar(){
 
     function loadEvents(){
         if (typeof window !== 'undefined') {
-                mobileView = window.innerWidth < 500
                 window.onscroll = function() {
                     scrollHandle()
                 }
@@ -101,8 +101,6 @@ export default function Navbar(){
                     toggle()
                 }}>
                     <div className='max-w-[250px] w-1/2 relative'>
-
-                    
                         <Image
                             src="/full.avif"
                             alt="logo"
@@ -152,7 +150,7 @@ export default function Navbar(){
                 
             </div>
             <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[45] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50 backdrop-blur-sm" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
-                {!mobileView && <Link href="/#hero" tabIndex={-1} >
+                {!isMobileView && <Link href="/#hero" tabIndex={-1} >
                     <div className="relative hover:opacity-85 ease-in-out duration-300">
                         <div className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}>
                             <Image
