@@ -25,6 +25,7 @@ export default function Navbar(){
     const isMobileView = useMobileView();
 
     useEffect(() => {
+        if (isMobileView) return
         if (path !== "/"){
             setActiveSection("")
         }
@@ -32,7 +33,7 @@ export default function Navbar(){
         if (path.includes("/store")){
             setActiveSection("store")
         } 
-    }, [path, setActiveSection])
+    }, [path, setActiveSection, isMobileView])
 
     useGSAP(() => {
         gsap.fromTo(

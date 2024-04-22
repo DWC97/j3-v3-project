@@ -6,18 +6,21 @@ import Swal from 'sweetalert2'
 import { Reveal } from "@/context/Reveal"
 import { Slide } from "@/context/Slide"
 import Image from "next/image"
+import useMobileView from "@/hooks/useMobileView";
 
 export default function Contact2(): JSX.Element{
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const contactRef = useRef<HTMLDivElement>(null)
     const [isInView] = useDetectSection(contactRef)
+    const isMobileView = useMobileView();
 
     useEffect(() => {
+        if (isMobileView) return
         if (isInView){
             setActiveSection("contact")
         }
-    }, [isInView, setActiveSection])
+    }, [isInView, setActiveSection, isMobileView])
 
     const [formData, setFormData] = useState({
         name: "",

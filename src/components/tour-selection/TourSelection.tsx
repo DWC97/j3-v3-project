@@ -21,6 +21,7 @@ import { Reveal } from '@/context/Reveal';
 import { Slide } from '@/context/Slide';
 import Image from 'next/image';
 import Swal from 'sweetalert2'
+import useMobileView from "@/hooks/useMobileView";
 
 interface Tour {
     id: number;
@@ -39,12 +40,14 @@ export default function TourSelection(props: TourSelectionProps){
     let { setActiveSection } = useContext(ActiveSectionContext)
     const toursRef = useRef<HTMLDivElement>(null)
     const [isInView] = useDetectSection(toursRef)
+    const isMobileView = useMobileView();
 
     useEffect(() => {
+        if (isMobileView) return
         if (isInView){
             setActiveSection("tours")
         }
-    }, [isInView, setActiveSection])
+    }, [isInView, setActiveSection, isMobileView])
 
     return (
         <div className="section w-full relative min-h-screen h-[1080px] flex justify-center items-center overflow-hidden" id='tours' ref={toursRef}
