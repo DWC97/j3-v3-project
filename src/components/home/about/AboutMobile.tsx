@@ -1,6 +1,12 @@
-import { Reveal } from "@/context/Reveal";
+// next components
 import Link from "next/link";
+
+// hooks
 import { useRef } from "react";
+
+// animations
+import { Reveal } from "@/context/Reveal";
+
 
 export default function AboutMobile(){
 
@@ -34,7 +40,6 @@ export default function AboutMobile(){
                         </Link>
                     </div> 
                 </Reveal>
-                
             </div>
         </div>
     )

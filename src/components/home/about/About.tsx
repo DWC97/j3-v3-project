@@ -1,14 +1,26 @@
 'use client'
 
-import { useEffect, useRef, useState, useContext } from 'react';
-import { ActiveSectionContext } from "@/context/ActiveSectionContext"
-import useDetectSection from "@/hooks/useDetectSection"
-import { useTransform, useScroll, motion } from 'framer-motion';
-import './AboutStyles.css'
+// next components
 import Image from 'next/image';
 import Link from 'next/link';
+// hooks
+import { useEffect, useRef, useState, useContext } from 'react';
+import useDetectSection from "@/hooks/useDetectSection"
+
+// context
+import { ActiveSectionContext } from "@/context/ActiveSectionContext"
+
+// styles
+import './AboutStyles.css'
+
+// packages
+import { useTransform, useScroll, motion } from 'framer-motion';
+
+// animations
 import { Reveal } from '@/context/Reveal';
 
+
+// interfaces to ensure type validity
 interface ImageData {
     id: number;
     src: string;
@@ -82,8 +94,20 @@ export default function About(){
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const aboutRef = useRef<HTMLDivElement>(null)
-    const [isInView] = useDetectSection(aboutRef)
+    const [isInView] = useDetectSection(aboutRef) // detect whether section is in view
+    const gallery = useRef(null);
+    const [dimension, setDimension] = useState({width:0, height:0}); // state to track window size
+    const { height } = dimension;
+    const { scrollYProgress } = useScroll({
 
+        target: gallery,
+        offset: ['start end', 'end start']
+
+    }) // track scroll position for gallery column positioning 
+    const y = useTransform(scrollYProgress, [0, 1], [0, height * -0.8])
+    const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3])
+
+    // set active section when it's in view
     useEffect(() => {
         if (isInView){
             setActiveSection("about")
@@ -93,20 +117,7 @@ export default function About(){
         }
     }, [isInView, setActiveSection])
 
-    const gallery = useRef(null);
-    const [dimension, setDimension] = useState({width:0, height:0});
-
-    const { scrollYProgress } = useScroll({
-
-        target: gallery,
-        offset: ['start end', 'end start']
-
-    })
-
-    const { height } = dimension;
-    const y = useTransform(scrollYProgress, [0, 1], [0, height * -0.8])
-    const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3])
-
+    // update window size when component has mounted
     useEffect( () => {
         const resize = () => {
             setDimension({width: window.innerWidth, height: window.innerHeight})
@@ -121,7 +132,6 @@ export default function About(){
         }
     }, [])
 
-    
 
     return (
         <div className="flex flex-row bg-black min-h-screen h-[1080px] relative" id="about" ref={aboutRef}>

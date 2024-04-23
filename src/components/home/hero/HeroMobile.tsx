@@ -1,7 +1,12 @@
+// hooks
+import { useEffect, useRef, useContext } from "react";
+
+// context
+import { ActiveSectionContext } from "@/context/ActiveSectionContext";
+
+// animations
 import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
-import { useEffect, useRef, useContext } from "react";
-import { ActiveSectionContext } from "@/context/ActiveSectionContext";
 
 
 export default function HeroMobile(){
@@ -9,6 +14,7 @@ export default function HeroMobile(){
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null)
     let { scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext)
 
+    // set the animation active after timeout
     useEffect(() => { 
         setTimeout(() => {
             setScrollAnimation(true)

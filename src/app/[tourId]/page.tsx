@@ -66,13 +66,15 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
         }));
     };
 
+    // set gallery active with clicked image
     function viewImage(image: string, i: number): void {
         if (window.innerWidth < 640) return
         setGallery({ image, i })
         toggle()
         setIsOverlayActive(true)
-    } // set gallery active with clicked image
+    } 
 
+    // generate style based on number value for tour metrics section
     function colorGenerator(val: number): string {
         if (val === 10){
             return "#0CEEE0"
@@ -83,8 +85,9 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
         else {
             return "#FFDD57"
         }
-    } // generate style based on number value for tour metrics section
+    } 
 
+    // animation for booking request
     function handleSubmit(){
         Swal.fire({
             title: "Sorry!",
@@ -96,7 +99,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
             showConfirmButton: false,
             scrollbarPadding: false,
         });
-    } // animation for booking request
+    } 
 
     function handlePrev(): void {
         // Directly access the `tour.gallery` or provide a default empty array if not available

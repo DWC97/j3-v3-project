@@ -1,7 +1,5 @@
 "use client"
 
-import Link from 'next/link'
-
 export default function Footer(){
     return (
         <div className="w-full h-[10vh] bg-black flex flex-col-reverse justify-center gap-4 lg:flex-row lg:justify-between items-center px-10 sm:px-20 relative">

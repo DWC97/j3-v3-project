@@ -1,16 +1,29 @@
 "use client"
 
-import gsap from "gsap"; 
-import { useGSAP } from "@gsap/react";
-import SplitType from 'split-type'
-import { useContext, useEffect, useRef } from "react";
-import "./HeroStyles.css"
-import useDetectSection from "@/hooks/useDetectSection";
-import { ActiveSectionContext } from "@/context/ActiveSectionContext";
-import Lottie, {LottieRefCurrentProps} from "lottie-react";
-import animationData from "@/animations/scroll-animation.json"
+// next components
 import Image from "next/image";
 
+// hooks
+import { useContext, useEffect, useRef } from "react";
+import useDetectSection from "@/hooks/useDetectSection";
+
+// context
+import { ActiveSectionContext } from "@/context/ActiveSectionContext";
+
+// styles
+import "./HeroStyles.css"
+
+// animations
+import gsap from "gsap"; 
+import { useGSAP } from "@gsap/react";
+import Lottie, {LottieRefCurrentProps} from "lottie-react";
+import animationData from "@/animations/scroll-animation.json"
+
+// packages
+import SplitType from 'split-type'
+
+
+// interfaces to ensure type validity
 type ParallaxElement = HTMLImageElement & { 
     dataset: { 
         speedx: string
@@ -23,18 +36,21 @@ type ParallaxElement = HTMLImageElement & {
 export default function Hero(){
 
     const { setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext);
+    // refs for gsap animation
     const mainHeading = useRef<HTMLHeadingElement>(null);
     const subHeading = useRef<HTMLHeadingElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
-    const [isInView] = useDetectSection(heroRef);
-    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null);
+    const [isInView] = useDetectSection(heroRef); // detect whether section is in view
+    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null); 
 
+    // set active section when it's in view
     useEffect(() => {
         if (isInView){
             setActiveSection("hero")
         }
     }, [isInView, setActiveSection])
 
+    // set parallax elements array and scroll animation after component has mounted
     useEffect(() => {
         const parallaxElements: ParallaxElement[] = Array.from(document.getElementsByClassName('parallax')) as ParallaxElement[];
         setTimeout(() => {
@@ -42,6 +58,7 @@ export default function Hero(){
         }, 5000);
     }, [setScrollAnimation]);
 
+    // gsap animations
     useGSAP(() => {
         const ourText = new SplitType(mainHeading.current!, { types: 'chars' })
         const chars = ourText.chars
@@ -78,8 +95,10 @@ export default function Hero(){
         )
     })
 
+    // function determines position of mouse and displaces the parallax layers based on their speed/rotation attributes
     function handleMousemove(e: MouseEvent) {
-        const xValue = e.clientX - window.innerWidth / 2;
+        // determine x,y coordinates of mouse
+        const xValue = e.clientX - window.innerWidth / 2; 
         const yValue = e.clientY - window.innerHeight / 2;
         const rotateDegree = (xValue / (window.innerWidth / 2)) * 25;
 
@@ -91,17 +110,12 @@ export default function Hero(){
             el.style.transform = `translateX(calc(-50% + ${-xValue * parseFloat(speedx)}px)) translateY(calc(-50% + ${yValue * parseFloat(speedy)}px))  translateZ(${zValue * parseFloat(speedz)}px) rotateY(${rotateDegree * parseFloat(rotation)}deg)`;
         });
     }
-
-
-
-      
+ 
     function loadEvents(){
         if (typeof window !== 'undefined') {
             setTimeout(() => {
                 window.addEventListener("mousemove", handleMousemove)
             }, 3000)
-    
-
         } 
 
         // Cleanup function to remove event listener when the component unmounts

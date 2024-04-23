@@ -1,9 +1,17 @@
 "use client"
 
+// next components
+import Link from 'next/link'
+import Image from 'next/image';
+
+// hooks
+import { useRef, useEffect, useContext } from "react"
+import useMobileView from "@/hooks/useMobileView";
+import useDetectSection from '@/hooks/useDetectSection';
+
+// swiper modules
 import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef, useEffect, useContext } from "react"
-import Link from 'next/link'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -13,16 +21,21 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/effect-coverflow';
 import "./SliderStyles.css"
 
+// data
 import toursData from "@/data/tours.json"
+
+// utilities
 import { formatNumber } from '@/utilities/Utils';
-import useDetectSection from '@/hooks/useDetectSection';
+
+// context
 import { ActiveSectionContext } from '@/context/ActiveSectionContext';
+
+// animations
 import { Reveal } from '@/context/Reveal';
 import { Slide } from '@/context/Slide';
-import Image from 'next/image';
 import Swal from 'sweetalert2'
-import useMobileView from "@/hooks/useMobileView";
 
+// interfaces to ensure type validity
 interface Tour {
     id: number;
     region: string;
@@ -33,15 +46,14 @@ interface Tour {
     price: number;
 }
 
-interface TourSelectionProps {}
-
-export default function TourSelection(props: TourSelectionProps){
+export default function TourSelection(){
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const toursRef = useRef<HTMLDivElement>(null)
-    const [isInView] = useDetectSection(toursRef)
+    const [isInView] = useDetectSection(toursRef) // detect whether section is in view
     const isMobileView = useMobileView();
 
+    // set active section when it's in view
     useEffect(() => {
         if (isMobileView) return
         if (isInView){

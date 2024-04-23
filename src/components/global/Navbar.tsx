@@ -1,15 +1,23 @@
 "use client"
 
+// next components
 import Link from 'next/link'
-import gsap from "gsap"; 
-import { useGSAP } from "@gsap/react";
-import { useRef, useState, useEffect, useContext } from "react";
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+
+// hooks
+import { useRef, useState, useEffect, useContext } from "react";
 import { ActiveSectionContext } from '@/context/ActiveSectionContext';
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
-import { ShoppingCartContext } from '@/context/ShoppingCartContext';
-import Image from 'next/image';
 import useMobileView from '@/hooks/useMobileView';
+
+// context
+import { ShoppingCartContext } from '@/context/ShoppingCartContext';
+
+// animations
+import gsap from "gsap"; 
+import { useGSAP } from "@gsap/react";
+
 
 export default function Navbar(){
 
@@ -19,11 +27,12 @@ export default function Navbar(){
     const [isShrunk, setIsShrunk] = useState<boolean>(false) // set height of navbar based on scroll distance from top
     const [isFixed, setIsFixed] = useState<boolean>(false) // set fixed position of navbar based on scroll distance from top
     const [isDropdown, setIsDropdown] = useState<boolean>(true) // set the navbar distance from top for a dropdown animation
-    const path = usePathname()
+    const path = usePathname() // find current path
     const [nav, setNav] = useState<boolean>(false) // set mobile nav menu
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    const isMobileView = useMobileView();
+    const isMobileView = useMobileView(); 
 
+    // track which navbar tab should be active based on current path
     useEffect(() => {
         if (isMobileView) return
         if (path !== "/"){
@@ -33,8 +42,9 @@ export default function Navbar(){
         if (path.includes("/store")){
             setActiveSection("store")
         } 
-    }, [path, setActiveSection, isMobileView])
+    }, [path, setActiveSection, isMobileView]) 
 
+    // animation for navbar appearing
     useGSAP(() => {
         gsap.fromTo(
             navbar.current,
@@ -51,7 +61,7 @@ export default function Navbar(){
                 ease: 'power4.out',
             }
         )
-    })
+    }) 
     
     // managing navbar height and visibility based on scroll position from top of home page
     function scrollHandle(){
@@ -84,12 +94,13 @@ export default function Navbar(){
                     scrollHandle()
                 }
             } 
-        };
+    };
 
     loadEvents()
 
     return (
         <div>
+            {/* mobile menu */}
             <div className={nav ? `fixed top-0 left-0 z-[1000] h-screen w-full flex flex-col justify-center items-center ease-in-out duration-500 bg-black` : "fixed -top-[100%]"}>   
                 <div className={`absolute top-0 left-0 flex justify-center items-center cursor-pointer ml-9 h-20`} onClick={() => {
                     setNav(!nav)
@@ -150,6 +161,7 @@ export default function Navbar(){
                 </div>
                 
             </div>
+            {/* desktop navbar */}
             <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[45] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50 backdrop-blur-sm" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
                 {!isMobileView && <Link href="/#hero" tabIndex={-1} >
                     <div className="relative hover:opacity-85 ease-in-out duration-300">

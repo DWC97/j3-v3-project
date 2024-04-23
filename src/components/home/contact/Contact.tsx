@@ -1,20 +1,38 @@
-import { ActiveSectionContext } from "@/context/ActiveSectionContext"
-import useDetectSection from "@/hooks/useDetectSection"
+// next components
 import Link from "next/link"
+import Image from "next/image"
+
+
+// hooks
+import useDetectSection from "@/hooks/useDetectSection"
 import { useState, useEffect, useRef, useContext } from "react"
+import useMobileView from "@/hooks/useMobileView";
+
+// context
+import { ActiveSectionContext } from "@/context/ActiveSectionContext"
+
+// animations
 import Swal from 'sweetalert2'
 import { Reveal } from "@/context/Reveal"
 import { Slide } from "@/context/Slide"
-import Image from "next/image"
-import useMobileView from "@/hooks/useMobileView";
+
 
 export default function Contact(): JSX.Element{
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const contactRef = useRef<HTMLDivElement>(null)
-    const [isInView] = useDetectSection(contactRef)
+    const [isInView] = useDetectSection(contactRef) // detect whether section is in view
     const isMobileView = useMobileView();
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        number: 1
+    });
+    const [nameValid, setNameValid] = useState(true) // state to track whether name input is valid
+    const [emailValid, setEmailValid] = useState(true) 
+    let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@") && formData.email.includes(".com") 
 
+    // set active section when it's in view
     useEffect(() => {
         if (isMobileView) return
         if (isInView){
@@ -22,50 +40,41 @@ export default function Contact(): JSX.Element{
         }
     }, [isInView, setActiveSection, isMobileView])
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        number: 1
-    });
-    const [nameValid, setNameValid] = useState(true)
-    const [emailValid, setEmailValid] = useState(true)
-    let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@") && formData.email.includes(".com")
-
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>){
-    const { name, value } = e.target;
+        const { name, value } = e.target;
 
-    // group number edge cases
-    if (name === "number") {
-        const parsedValue = parseInt(value, 10); // Parse value to integer
-        if (isNaN(parsedValue)) return; // Ensure parsedValue is a valid number
-        if (parsedValue < 1) {
-            setFormData({
-                ...formData,
-                [name]: 1
-            });
-            return
+        // group number edge cases
+        if (name === "number") {
+            const parsedValue = parseInt(value, 10); // Parse value to integer
+            if (isNaN(parsedValue)) return; // Ensure parsedValue is a valid number
+            if (parsedValue < 1) {
+                setFormData({
+                    ...formData,
+                    [name]: 1
+                });
+                return
+            }
+            if (parsedValue > 4) {
+                setFormData({
+                    ...formData,
+                    [name]: 4
+                });
+                return
+            }
         }
-        if (parsedValue > 4) {
-            setFormData({
-                ...formData,
-                [name]: 4
-            });
-            return
+
+        if (formData.name.length > 0){
+            setNameValid(true)
         }
-    }
 
-    if (formData.name.length > 0){
-        setNameValid(true)
-    }
+        if (formData.email !== "" && formData.email.includes("@") && formData.email.includes(".co")){
+            setEmailValid(true)
+        }
 
-    if (formData.email !== "" && formData.email.includes("@") && formData.email.includes(".co")){
-        setEmailValid(true)
-    }
-
-    setFormData({
-        ...formData,
-        [name]: value
-    });
+        setFormData({
+            ...formData,
+            [name]: value
+        });
     };
 
     function handleSubmit(e: React.SyntheticEvent){
@@ -81,7 +90,7 @@ export default function Contact(): JSX.Element{
 
         if (!submittable) return
 
-
+        // fire off success animation
         Swal.fire({
             title: "Submitted!",
             text: "We'll get back to you with details when tours are available for booking.",
@@ -100,6 +109,7 @@ export default function Contact(): JSX.Element{
 
     return (
         <div className="bg-black w-full min-h-[972px] xl:pb-0 pb-28 xl:pt-20 pt-60 flex flex-col-reverse  gap-24 xl:gap-0 xl:flex-row items-center justify-center" id="contact" ref={contactRef}>
+            {/* logo */}
             <div className="xl:mr-20 2xl:mr-28 flex flex-col items-center justify-center h-[500px]">
                 <Slide>
                     <div className="w-[300px] sm:w-[360px] aspect-square relative">
@@ -119,7 +129,7 @@ export default function Contact(): JSX.Element{
                     </Link>
                 </Reveal>
             </div>
-            
+            {/* form */}
             <Reveal><div className="flex flex-col justify-between px-10 sm:px-0 sm:w-[500px] md:w-[600px] h-[650px] sm:h-[500px] bg-black bg-opacity-50 rounded-3xl z-30 ">
                 <h1 className="font-semibold text-[32px] md:text-[44px] text-white sm:mb-0 mb-8">RESERVE A SPOT</h1>
                 <form action="" className="flex flex-col justify-between h-[450px] sm:h-[300px] relative" autoComplete="off">
