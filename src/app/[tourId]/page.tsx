@@ -41,7 +41,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
 
     const tour = toursData.tours.find(tour => {
         return tour.region === params.tourId
-    }) // find our tour in the json if it exists
+    }) // find tour in data using search param
     const [answersVisible, setAnswersVisible] = useState<AnswersVisible>({}) // state to check whether an FAQ has been opened
     const [gallery, setGallery] = useState<Gallery>({ image: "", i: 0 }) // state to keep track of gallery image to show
     const [toggle] = useBodyLockScroll() // toggle scroll lock
@@ -168,7 +168,6 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
         <div>
             {tour ? 
             <div className="bg-black -z-50 pb-8">
-
             {/* gallery */}
             {gallery.image && 
                 <div className='fixed overflow-hidden top-0 left-0 h-screen w-full z-50 flex flex-col justify-center items-center focus:outline-none'

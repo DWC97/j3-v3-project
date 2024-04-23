@@ -1,6 +1,8 @@
+// next components
 import Image from "next/image";
 import Link from "next/link";
 
+// 404 page
 export default function NotFound(){
     return (
         <div className="w-full h-[90vh] bg-black relative flex justify-center items-center">

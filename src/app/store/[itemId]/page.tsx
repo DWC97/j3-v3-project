@@ -1,24 +1,35 @@
 "use client"
 
-import storeItemsData from "@/data/storeItems.json"
+// next components
 import Link from "next/link"
+import Image from 'next/image';
+
+// functional components
+import NotFound from "@/app/not-found";
+
+// hooks
 import { useContext, useEffect, useRef, useState } from "react"
+
+// data
+import storeItemsData from "@/data/storeItems.json"
+
+// context
+import { ShoppingCartContext } from "@/context/ShoppingCartContext";
+
+// animations
 import Lottie, {LottieRefCurrentProps} from "lottie-react";
 import animationData from "@/animations/success.json"
-import { ShoppingCartContext } from "@/context/ShoppingCartContext";
-import NotFound from "@/app/not-found";
-import Image from 'next/image';
 
 
 export default function ItemDetails({ params }: { params: { itemId: string }}){
     
     const item = storeItemsData.items.find(item => {
         return item.name === params.itemId.replaceAll("%20", " ")
-    })
-    const { increaseCartQuantity } = useContext(ShoppingCartContext)
-    const [activeSize, setActiveSize] = useState<string>("XS")
+    }) // find store item in data using search param
+    const { increaseCartQuantity } = useContext(ShoppingCartContext) // access context for adding to cart
+    const [activeSize, setActiveSize] = useState<string>("XS") // state to track item size
     const [quantity, setQuantity] = useState<number>(1)
-    const [activeSlide, setActiveSlide] = useState<number>(0)
+    const [activeSlide, setActiveSlide] = useState<number>(0) // state to set gallery image
     const [submitted, setSubmitted] = useState<boolean>(false)
     const [notification, setNotification] = useState<boolean>(false)
     const scrollAnimationRef = useRef<LottieRefCurrentProps>(null) 
@@ -29,12 +40,13 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                 setNotification(false)
             }, 3000);
         }
-    }, [notification, setNotification])
+    }, [notification, setNotification]) // notification becomes active after successful addition to cart 
 
     return (
         <div>
             {item ? 
             <div className="w-full min-h-screen bg-black px-8 md:px-12 xl:px-20 2xl:px-60 pt-[120px] relative">
+                {/* notification */}
                 <div className={`z-50 fixed w-72 md:w-96 h-20 bg-white top-24 right-8 rounded-md flex flex-row ${notification ? "opacity-100 visible" : "opacity-0 invisible"} transition-opacity ease-in-out duration-500`}>
                     <Image
                         src={item.gallery[0]}
@@ -57,7 +69,9 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                     <svg xmlns="http://www.w3.org/2000/svg" className='pl-3 rotate-180' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                     <span className="text-gray-200 text-[14px] font-semibold">BACK TO PRODUCTS</span>
                 </Link>
+                {/* product */}
                 <div className="w-full flex flex-col md:flex-row-reverse justify-between pb-12 gap-16 md:gap-8 border-b border-gray-300">
+                    {/* product description */}
                     <div className="flex flex-col w-full md:w-1/2">
                         <h1 className="text-white font-bold text-[32px]">{item?.name}</h1>
                         <span className="text-white text-[36px]">£{item?.price}</span>
@@ -171,6 +185,7 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                             </div>
                         </div>
                     </div>
+                    {/* product gallery */}
                     <div className="flex flex-col w-full md:w-1/2 relative">
                         <div className="w-full overflow-hidden mb-8 rounded-lg relative aspect-square">
                             <Image
@@ -203,6 +218,7 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                         </div>
                     </div>
                 </div>
+                {/* customers also viewed section */}
                 <div className="w-full flex flex-col mt-20 pb-16">
                     <span className="text-white font-semibold text-[20px]">Customers also viewed</span>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-10 w-full mt-8">
