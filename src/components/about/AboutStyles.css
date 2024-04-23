@@ -2,7 +2,6 @@
     height: 100%;
     overflow: hidden;
     position: relative;
-
 }
 
 .galleryWrapper{
@@ -33,11 +32,8 @@
 }
 
 .imageContainer{
-   
     height: 340px;
-
     position: relative;
-
 }
 
 @media screen and (max-width: 1024px) {

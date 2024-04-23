@@ -56,9 +56,9 @@ export default function TourSelection(props: TourSelectionProps){
             <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b from-custom-blue to-custom-yellow opacity-80 -z-10" />
             <div className="w-full min-w-[1000px] h-[530px] 2xl:-mt-20 flex flex-col justify-between items-center">
                 <Reveal>
-                    <h2 className="w-screen px-10 text-center text-[32px] md:text-[44px] text-white font-bold  ">
+                    <h1 className="w-screen px-10 text-center text-[32px] md:text-[44px] text-white font-bold  ">
                         CHECK OUT OUR <span className="text-custom-yellow">UPCOMING TRIPS</span>!
-                    </h2>
+                    </h1>
                 </Reveal>
                 <Slide><div className='w-full flex justify-center items-center'>
                     <Swiper

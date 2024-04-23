@@ -223,7 +223,6 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                             priority
                         />
                     </div>
-                    {/* <img src={tour?.imageSrc} className="absolute object-cover object-center w-full h-[400px] -z-10"/> */}
                     <div className="absolute h-[200px] w-full top-0 left-0 bg-gradient-to-b from-black to-transparent opacity-35 z-0"/>
                     <div className="absolute h-[200px] w-full bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-35 z-0"/>
                     <div className="w-full h-1/2 flex flex-col justify-center z-10 px-10 xl:px-20 2xl:px-60">
@@ -231,7 +230,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                             <h1 className="font-bold text-[40px] md:text-[56px] text-white tracking-wide">{tour?.region.toUpperCase().replace("-"," ")}</h1>
                         </Reveal>
                         <Reveal>
-                            <h3 className="text-[28px] md:text-[32px] text-gray-200 font-medium">{tour?.title.toUpperCase()}</h3>
+                            <h2 className="text-[28px] md:text-[32px] text-gray-200 font-medium">{tour?.title.toUpperCase()}</h2>
                         </Reveal>
                     </div>
                 </div>
@@ -258,7 +257,6 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                         style={{ width: '100%', height: '100%' }}
                                     />
                                 </div>
-                                {/* <img src={tour?.mapUrl} className='mt-10 mb-16 w-full'/> */}
                             </Slide>
                             <div className={`w-full flex flex-col border-b border-gray-300 pb-4 `} >
                                 <div className='w-full flex flex-row items-center relative cursor-pointer hover:opacity-85 ease-in-out duration-300' 
@@ -292,7 +290,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                     }
                                 }}
                                 >
-                                    <h2 className='font-semibold text-[28px] sm:text-[36px] text-white pr-8'>What&apos;s included?</h2>
+                                    <h3 className='font-semibold text-[28px] sm:text-[36px] text-white pr-8'>What&apos;s included?</h3>
                                     <span className='text-[14px] hidden lg:block text-gray-200 ml-10'>{answersVisible['included'] ? "(close)" : "(open)"}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['included'] && "rotate-180"}`} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
                                 </div>
@@ -321,14 +319,14 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                     }
                                 }}
                                 >
-                                    <h2 className='font-semibold text-[28px] sm:text-[36px] text-white pr-8'>What do you need to join us?</h2>
+                                    <h3 className='font-semibold text-[28px] sm:text-[36px] text-white pr-8'>What do you need to join us?</h3>
                                     <span className='text-[14px] text-gray-200 ml-10 hidden lg:block'>{answersVisible['needed'] ? "(close)" : "(open)"}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className={`absolute right-0 ${answersVisible['needed'] && "rotate-180"}`} width={32} height={32} viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><circle cx={12} cy={12} r={9}></circle><path d="m15 13l-3-3l-3 3"></path></g></svg>
                                 </div>
                                 <p className={`my-4 text-gray-200 text-[18px] ${answersVisible['needed'] ? undefined : "hidden"}`}>{tour?.needed}</p>
                             </div>
                             <div className='mt-16'>
-                                <h2 className='font-semibold text-[28px] sm:text-[36px] text-white mb-8'>Gallery</h2>
+                                <h3 className='font-semibold text-[28px] sm:text-[36px] text-white mb-8'>Gallery</h3>
                                 <div className='w-full  overflow-hidden '>
                                 <ResponsiveMasonry
                                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
@@ -338,13 +336,6 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                             <div className='relative w-full h-full overflow-hidden hover:opacity-70 ease-in-out duration-300 cursor-pointer' key={i} onClick={() => {
                                                 viewImage(image, i)
                                             }}>
-                                                {/* <img
-                                                src={image}
-                                                style={{width: "100%", display: "block", cursor: "pointer"}}
-                                                onClick={() => {
-                                                    viewImage(image, i)
-                                                }}
-                                                /> */}
                                                 <Image
                                                     src={image}
                                                     alt="gallery image"
@@ -367,7 +358,6 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                             backgroundPosition: "center"
                             }}
                             >
-                                {/* <img src={tour?.cardSrc} className='w-full absolute object-cover object-center h-full -z-20'/> */}
                                 <div className='absolute top-0 left-0 w-full h-full bg-black opacity-30 z-[1]'/>
                                 <div className='flex flex-col w-full p-5 h-[700px] justify-between '>
                                     <h3 className='font-semibold text-[36px] text-white z-30'>Overview</h3>

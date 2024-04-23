@@ -127,8 +127,8 @@ export default function About2(){
         <div className="flex flex-row bg-black min-h-screen h-[1080px] relative" id="about" ref={aboutRef}>
             <div className={`z-10 flex flex-col h-full lg:w-3/5 sm:w-4/5 w-full justify-center px-10 sm:px-[7%] 2xl:pl-[15%] -pr-10 `}>
                 <Reveal>
-                    <h3 className='text-custom-blue text-[20px] font-bold mb-2'>JR SEASON 1</h3>
-                    <h2 className='text-white font-bold md:text-[40px] text-[32px] leading-snug mb-6'>Small group party tours starting in 2025</h2>
+                    <h2 className='text-custom-blue text-[20px] font-bold mb-2'>JR SEASON 1</h2>
+                    <h1 className='text-white font-bold md:text-[40px] text-[32px] leading-snug mb-6'>Small group party tours starting in 2025</h1>
                     <p className='text-white text-[16px] leading-relaxed mb-2'>Ahoy there! If you&apos;re looking to experience the best nightlife & culture South-East Asia has to offer with a rowdy group of travellers and tick-off bucket-list activities along the way, JR has you covered. We make logistics stress-free so you can focus on having a good time. Be warned, we do things a little differently over at JR:</p>
                     <div className='flex flex-row items-center'>
                         <span className='text-[20px] mr-4'>❌</span>

@@ -36,7 +36,6 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
             {item ? 
             <div className="w-full min-h-screen bg-black px-8 md:px-12 xl:px-20 2xl:px-60 pt-[120px] relative">
                 <div className={`z-50 fixed w-72 md:w-96 h-20 bg-white top-24 right-8 rounded-md flex flex-row ${notification ? "opacity-100 visible" : "opacity-0 invisible"} transition-opacity ease-in-out duration-500`}>
-                    {/* <img src={item.gallery[0]} className="object-cover"/> */}
                     <Image
                         src={item.gallery[0]}
                         alt="cart item"
@@ -60,7 +59,7 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                 </Link>
                 <div className="w-full flex flex-col md:flex-row-reverse justify-between pb-12 gap-16 md:gap-8 border-b border-gray-300">
                     <div className="flex flex-col w-full md:w-1/2">
-                        <h2 className="text-white font-bold text-[32px]">{item?.name}</h2>
+                        <h1 className="text-white font-bold text-[32px]">{item?.name}</h1>
                         <span className="text-white text-[36px]">£{item?.price}</span>
                         <p className="text-gray-300 mt-4 text-[14px]">{item?.description}</p>
                         {item?.sizes &&
@@ -173,7 +172,6 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                         </div>
                     </div>
                     <div className="flex flex-col w-full md:w-1/2 relative">
-                        {/* <img src={item?.gallery[activeSlide]} className="w-full "/> */}
                         <div className="w-full overflow-hidden mb-8 rounded-lg relative aspect-square">
                             <Image
                                 src={item?.gallery[activeSlide]}
@@ -190,7 +188,6 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                                     <div key={i} className={`w-full object-contain rounded-md overflow-hidden cursor-pointer ease-in-out duration-300 ${activeSlide === i ? "border-2 border-custom-pink" : "border-2 border-transparent  hover:opacity-85"}`}
                                     onClick={() => setActiveSlide(i)}
                                     >
-                                        {/* <img src={img}/> */}
                                         <div className="w-full overflow-hidden relative aspect-square">
                                             <Image
                                                 src={img}
@@ -213,7 +210,6 @@ export default function ItemDetails({ params }: { params: { itemId: string }}){
                             return (
                                 <div key={item.id} className="flex flex-col">
                                     <div className="relative w-full object-contain rounded-lg overflow-hidden">
-                                        {/* <img src={item.gallery[0]}/> */}
                                         <div className="w-full overflow-hidden relative aspect-square">
                                             <Image
                                                 src={item.gallery[0]}

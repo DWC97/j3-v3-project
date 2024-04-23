@@ -102,7 +102,6 @@ export default function Contact2(): JSX.Element{
         <div className="bg-black w-full min-h-[972px] xl:pb-0 pb-28 xl:pt-20 pt-60 flex flex-col-reverse  gap-24 xl:gap-0 xl:flex-row items-center justify-center" id="contact" ref={contactRef}>
             <div className="xl:mr-20 2xl:mr-28 flex flex-col items-center justify-center h-[500px]">
                 <Slide>
-                    {/* <img src="/contact/Jolly_Roger.jpg" className="w-[300px] sm:w-[360px] "/> */}
                     <div className="w-[300px] sm:w-[360px] aspect-square relative">
                         <Image
                             src="/contact/Jolly_Roger.avif"
@@ -122,7 +121,7 @@ export default function Contact2(): JSX.Element{
             </div>
             
             <Reveal><div className="flex flex-col justify-between px-10 sm:px-0 sm:w-[500px] md:w-[600px] h-[650px] sm:h-[500px] bg-black bg-opacity-50 rounded-3xl z-30 ">
-                <h2 className="font-semibold text-[32px] md:text-[44px] text-white sm:mb-0 mb-8">RESERVE A SPOT</h2>
+                <h1 className="font-semibold text-[32px] md:text-[44px] text-white sm:mb-0 mb-8">RESERVE A SPOT</h1>
                 <form action="" className="flex flex-col justify-between h-[450px] sm:h-[300px] relative" autoComplete="off">
                     <input type="text" autoComplete="off" name="name" id="nameInput" placeholder="" className={`w-[240px]  text-gray-300 border-b ${!nameValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 outline-none !bg-black`}
                         value={formData.name}

@@ -5,7 +5,7 @@ export default function Loading(){
         <div className="bg-black  h-screen w-full flex justify-center items-center">
             <div className='max-w-[250px] w-[100px] relative'>      
                 <Image
-                    src="/logo.avif"
+                    src="/misc/logo.avif"
                     alt="logo"
                     width={0}
                     height={0}

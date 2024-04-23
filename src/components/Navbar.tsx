@@ -103,7 +103,7 @@ export default function Navbar(){
                 }}>
                     <div className='max-w-[250px] w-1/2 relative'>
                         <Image
-                            src="/full.avif"
+                            src="/misc/full.avif"
                             alt="logo"
                             width={0}
                             height={0}
@@ -155,7 +155,7 @@ export default function Navbar(){
                     <div className="relative hover:opacity-85 ease-in-out duration-300">
                         <div className={`absolute left-0 right-0 m-auto my-auto ${isShrunk ? "w-16" : "w-20"} mt-2 ease-in-out duration-300`}>
                             <Image
-                                src="/logo.webp"
+                                src="/misc/logo.webp"
                                 alt="logo"
                                 width={0}
                                 height={0}

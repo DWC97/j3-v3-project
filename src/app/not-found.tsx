@@ -4,10 +4,9 @@ import Link from "next/link";
 export default function NotFound(){
     return (
         <div className="w-full h-[90vh] bg-black relative flex justify-center items-center">
-            {/* <img src="/404-bg.jpg" className="w-full h-full object-cover absolute top-0 left-0"/> */}
             <div className="w-full h-full absolute top-0 left-0 overflow-hidden">
                 <Image
-                    src="/404-bg.avif" 
+                    src="/misc/404-bg.avif" 
                     alt="404 background"
                     fill
                     sizes='(height: 100%)'
