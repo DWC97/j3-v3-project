@@ -78,7 +78,7 @@ const imageData: ImageData[] = [
     }
 ]
 
-export default function About2(){
+export default function About(){
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const aboutRef = useRef<HTMLDivElement>(null)

@@ -1,48 +1,62 @@
 "use client"
 
+// next components
 import Link from 'next/link'
-import toursData from "@/data/tours.json"
-import { formatNumber } from '@/utilities/Utils';
-import { useEffect, useRef, useState, KeyboardEvent } from 'react';
-import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
-import useBodyLockScroll from '@/hooks/useBodyLockScroll';
-import { useClickOutside } from '@/hooks/useClickOutside';
-import { Reveal } from '@/context/Reveal';
-import { Slide } from '@/context/Slide';
-import NotFound from '../not-found';
-import Swal from 'sweetalert2'
 import Image from 'next/image';
 
+// functional components
+import NotFound from '../not-found';
+
+// hooks
+import { useEffect, useRef, useState, KeyboardEvent } from 'react';
+import useBodyLockScroll from '@/hooks/useBodyLockScroll';
+import { useClickOutside } from '@/hooks/useClickOutside';
+
+// data
+import toursData from "@/data/tours.json"
+
+// utilities
+import { formatNumber } from '@/utilities/Utils';
+
+// packages
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+import Swal from 'sweetalert2'
+
+// animations
+import { Reveal } from '@/context/Reveal';
+import { Slide } from '@/context/Slide';
+
+
+// interfaces to ensure type validity
 interface Gallery {
     image: string;
     i: number;
 }
   
 interface AnswersVisible {
-[key: string]: boolean;
+    [key: string]: boolean;
 }
 
 export default function TourDetails({ params }: { params: { tourId: string }}){
 
     const tour = toursData.tours.find(tour => {
         return tour.region === params.tourId
-    })
-    const [answersVisible, setAnswersVisible] = useState<AnswersVisible>({})
-    const [gallery, setGallery] = useState<Gallery>({ image: "", i: 0 })
+    }) // find our tour in the json if it exists
+    const [answersVisible, setAnswersVisible] = useState<AnswersVisible>({}) // state to check whether an FAQ has been opened
+    const [gallery, setGallery] = useState<Gallery>({ image: "", i: 0 }) // state to keep track of gallery image to show
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    const prevArrowRef = useRef<HTMLDivElement>(null)
-    const nextArrowRef = useRef<HTMLDivElement>(null)
-    const overlayRef = useRef<HTMLDivElement>(null)
-    const [isOverlayActive, setIsOverlayActive] = useState(false)
-    const [focusedArrow, setFocusedArrow] = useState("")
-    // let mobileView = window.innerWidth < 640
+    const prevArrowRef = useRef<HTMLDivElement>(null) // gallery arrow
+    const nextArrowRef = useRef<HTMLDivElement>(null) // gallery arrow
+    const overlayRef = useRef<HTMLDivElement>(null) // gallery overlay
+    const [isOverlayActive, setIsOverlayActive] = useState(false) 
+    const [focusedArrow, setFocusedArrow] = useState("") // state to track which gallery arrow is focused
 
     let domNode = useClickOutside<HTMLDivElement>(() => {
         if (!gallery.image) return
         setGallery({ image: "", i: 0 })
         toggle()
         setIsOverlayActive(false)
-    })
+    }) // close gallery when user clicks outside of image
 
     // Function to toggle visibility of answer for a specific heading
     function toggleAnswer(heading: string): void{
@@ -57,7 +71,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
         setGallery({ image, i })
         toggle()
         setIsOverlayActive(true)
-    }
+    } // set gallery active with clicked image
 
     function colorGenerator(val: number): string {
         if (val === 10){
@@ -69,7 +83,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
         else {
             return "#FFDD57"
         }
-    }
+    } // generate style based on number value for tour metrics section
 
     function handleSubmit(){
         Swal.fire({
@@ -82,7 +96,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
             showConfirmButton: false,
             scrollbarPadding: false,
         });
-    }
+    } // animation for booking request
 
     function handlePrev(): void {
         // Directly access the `tour.gallery` or provide a default empty array if not available
@@ -92,7 +106,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
         const lastIndex = images.length - 1;
         const newIndex = gallery.i === 0 ? lastIndex : gallery.i - 1;
         setGallery({ image: images[newIndex], i: newIndex });
-    }
+    } // move to previous image in the gallery
       
     function handleNext(): void {
         const images = tour?.gallery ?? [];
@@ -101,14 +115,13 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
         const lastIndex = images.length - 1;
         const newIndex = gallery.i === lastIndex ? 0 : gallery.i + 1;
         setGallery({ image: images[newIndex], i: newIndex });
-    }
+    } // move to next image in the gallery
     
     
         
     function handleKeyDown(e: KeyboardEvent<HTMLDivElement>): void {
-
         if (!isOverlayActive) return;
-        
+        // handle different key events when gallery is active
         switch (e.key) {
             case "Tab":
             e.preventDefault();
@@ -144,6 +157,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
     }
 
     useEffect(() => {
+        // focus on the gallery components when it's active
         if (gallery.image){
             overlayRef.current?.focus()
         }
@@ -154,24 +168,30 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
         <div>
             {tour ? 
             <div className="bg-black -z-50 pb-8">
+
+            {/* gallery */}
             {gallery.image && 
                 <div className='fixed overflow-hidden top-0 left-0 h-screen w-full z-50 flex flex-col justify-center items-center focus:outline-none'
                 tabIndex={0}
                 ref={overlayRef}
                 onKeyDown={(e) => handleKeyDown(e)}
-                >
+                >   
+                    {/* overlay */}
                     <div className='absolute bg-black opacity-70 z-[50] h-screen w-full'/>
+                    {/* X button */}
                     <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
                         setGallery({ image: "", i: 0 })
                         toggle()
                         setIsOverlayActive(false)
                     }} className='absolute top-5 right-5 cursor-pointer z-[900] hover:opacity-85 ease-in-out duration-300' width={40} height={40} viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path></svg>
                     <div ref={domNode} className='relative flex flex-row justify-center items-center z-50 h-[80%] max-w-[80%]  pb-16 mt-16'>
+                        {/* prev button */}
                         <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none' tabIndex={0} ref={prevArrowRef} 
                         onClick={handlePrev}
                         onFocus={() => setFocusedArrow("prev")}>
                             <svg xmlns="http://www.w3.org/2000/svg"  className='' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                         </div>
+                        {/* gallery image */}
                         <div className='h-full max-w-full relative'>
                             <div className='h-[70vh] aspect-[4/3] max-w-[80vw] overflow-hidden relative'>
                                 <Image
@@ -186,12 +206,13 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                 <span className='absolute bottom-0 py-2 flex justify-center items-center text-gray-200 text-[16px] w-full bg-black bg-opacity-60'>{tour?.captions?.[gallery.i] ?? "No caption available"}</span>
                             </div>
                         </div>
-                        
+                        {/* next button */}
                         <div className='w-[80px] h-full bg-black ease-in-out duration-300 cursor-pointer bg-opacity-0 hover:bg-opacity-80 focus:bg-opacity-80 flex justify-center items-center focus:outline-none ' tabIndex={0} ref={nextArrowRef} 
                         onClick={handleNext}
                         onFocus={() => setFocusedArrow("next")}>
                             <svg xmlns="http://www.w3.org/2000/svg"  className='rotate-180' width={60} height={60} viewBox="0 0 1024 1024"><path fill="white" d="M609.408 149.376L277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0a30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688a29.12 29.12 0 0 0-41.728 0"></path></svg>
                         </div>
+                        {/* pagination dots */}
                         <div className='absolute bottom-5 left-50 flex flex-row justify-center items-center z-[60]'>
                         {tour?.gallery?.map((image, i) => {
                             if (gallery.i === i){
@@ -209,9 +230,9 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                         })}
                     </div>
                     </div>
-                    
                 </div>
-            }
+            }   
+                {/* tour banner */}
                 <div className="w-full h-[400px] relative flex flex-col justify-end z-0">
                     <div className='absolute object-center w-full h-[400px] -z-10'>
                         <Image
@@ -239,6 +260,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                         <svg xmlns="http://www.w3.org/2000/svg" className='pl-3 rotate-180' width={32} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                         <span className="text-gray-200 text-[14px] font-semibold">BACK TO TOUR SELECTION</span>    
                     </Link>
+                    {/* tour description and FAQs */}
                     <div className="w-full flex md:gap-0 gap-20 flex-col-reverse md:flex-row justify-between relative ">
                         <div className="flex flex-col md:mr-10">
                             <div className='text-white'>
@@ -325,6 +347,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                 </div>
                                 <p className={`my-4 text-gray-200 text-[18px] ${answersVisible['needed'] ? undefined : "hidden"}`}>{tour?.needed}</p>
                             </div>
+                            {/* masonry gallery */}
                             <div className='mt-16'>
                                 <h3 className='font-semibold text-[28px] sm:text-[36px] text-white mb-8'>Gallery</h3>
                                 <div className='w-full  overflow-hidden '>
@@ -351,6 +374,7 @@ export default function TourDetails({ params }: { params: { tourId: string }}){
                                 </div>
                             </div>
                         </div>
+                        {/* tour overview card */}
                         <div className='w-full md:w-[280px] lg:min-w-[400px] h-[815px] flex flex-col justify-between md:sticky -top-[220px] tall:-top-[80px] vtall:top-[60px]'>
                             <div className='min-h-[700px] w-full border border-gray-500 rounded-lg relative overflow-hidden z-0'
                             style={{backgroundImage: "url(" + tour.cardSrc + ")",

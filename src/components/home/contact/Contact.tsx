@@ -8,7 +8,7 @@ import { Slide } from "@/context/Slide"
 import Image from "next/image"
 import useMobileView from "@/hooks/useMobileView";
 
-export default function Contact2(): JSX.Element{
+export default function Contact(): JSX.Element{
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const contactRef = useRef<HTMLDivElement>(null)

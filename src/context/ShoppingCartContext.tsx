@@ -1,6 +1,6 @@
 "use client"
 
-import ShoppingCart from '@/components/ShoppingCart';
+import ShoppingCart from '@/components/store/ShoppingCart';
 import { ReactNode, createContext, useState } from 'react';
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import useLocalStorage from '@/hooks/useLocalStorage';
