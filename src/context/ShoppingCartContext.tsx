@@ -1,10 +1,14 @@
 "use client"
 
+// functional components
 import ShoppingCart from '@/components/store/ShoppingCart';
+
+// hooks
 import { ReactNode, createContext, useState } from 'react';
 import useBodyLockScroll from '@/hooks/useBodyLockScroll';
 import useLocalStorage from '@/hooks/useLocalStorage';
 
+// interfaces to ensure type validity
 type ShoppingCartProviderProps = {
     children: ReactNode
 }
@@ -30,8 +34,8 @@ export const ShoppingCartContext = createContext({} as ShoppingCartContext);
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
 
-    const [isOpen, setIsOpen] = useState(false)
-    const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping cart", [])
+    const [isOpen, setIsOpen] = useState(false) // state to track whether cart is open
+    const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping cart", []) // cart items array
     const [toggle] = useBodyLockScroll() // toggle scroll lock
 
     const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
@@ -84,7 +88,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
             })
         })
     }
-
+    
+    // entire app wrapped in context and cart component
     return (
         <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, openCart, closeCart }}>
             {children}

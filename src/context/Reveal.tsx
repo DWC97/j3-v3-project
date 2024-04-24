@@ -5,6 +5,7 @@ interface RevealProps {
     children: ReactNode;
 }
 
+// reveal animation
 export function Reveal({ children }: RevealProps){
 
     const ref = useRef<HTMLDivElement>(null)

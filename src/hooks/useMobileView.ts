@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-// Custom hook to check for mobile viewport width
+// check for mobile viewport width
 function useMobileView(): boolean {
     const [mobileView, setMobileView] = useState<boolean>(false); // State to keep track of mobile view
 

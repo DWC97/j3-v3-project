@@ -4,6 +4,7 @@ type UseDetectSectionReturn = [boolean];
 
 type RefType<T> = RefObject<T>;
 
+// detect whether a given element is in view
 export default function useDetectSection(ref: RefType<HTMLElement>): UseDetectSectionReturn {
     const [isInView, setIsInView] = useState(false)
 

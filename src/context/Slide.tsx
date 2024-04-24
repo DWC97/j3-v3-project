@@ -5,6 +5,7 @@ interface SlideProps {
     children: ReactNode;
 }
 
+// slide animation
 export function Slide({ children }: SlideProps){
 
     const ref = useRef<HTMLDivElement>(null)

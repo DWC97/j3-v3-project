@@ -1,8 +1,16 @@
-import { ShoppingCartContext } from "@/context/ShoppingCartContext"
-import storeItemsData from "@/data/storeItems.json"
-import { useContext } from "react"
+// next components
 import Image from 'next/image';
 
+// hooks
+import { useContext } from "react"
+
+// context
+import { ShoppingCartContext } from "@/context/ShoppingCartContext"
+
+// data
+import storeItemsData from "@/data/storeItems.json"
+
+// interfaces to ensure type validity
 interface CartItemProps {
     id: number;
     quantity: number;
@@ -11,9 +19,10 @@ interface CartItemProps {
 
 export default function CartItem({ id, quantity, size } : CartItemProps){
 
-    const item = storeItemsData.items.find(item => item.id === id)
+    const item = storeItemsData.items.find(item => item.id === id) // find item based on id fed down as prop
     const { removeFromCart } = useContext(ShoppingCartContext)
 
+    // if item doesn't exist, return nothing
     if (!item) {
         return null;
     }

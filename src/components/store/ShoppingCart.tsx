@@ -1,12 +1,22 @@
 "use client"
 
-import { ShoppingCartContext } from "@/context/ShoppingCartContext"
-import { useContext, useEffect, useRef } from "react"
+// functional components
 import CartItem from "./CartItem"
-import storeItemsData from "@/data/storeItems.json"
+
+// hooks
 import { useClickOutside } from '@/hooks/useClickOutside';
+import { useContext, useEffect, useRef } from "react"
+
+// context 
+import { ShoppingCartContext } from "@/context/ShoppingCartContext"
+
+// data
+import storeItemsData from "@/data/storeItems.json"
+
+// animations
 import Swal from 'sweetalert2'
 
+// interfaces to ensure type validity
 interface ShoppingCartProps {
     isOpen: boolean;
 }
@@ -14,10 +24,11 @@ interface ShoppingCartProps {
 export default function ShoppingCart({ isOpen }: ShoppingCartProps){
 
     const { cartItems, closeCart } = useContext(ShoppingCartContext)
-    const subtotal = cartItems.reduce((total, currItem) => total + (currItem.quantity * (storeItemsData.items.find(item => item.id === currItem.id)?.price || 0)), 0)
+    const subtotal = cartItems.reduce((total, currItem) => total + (currItem.quantity * (storeItemsData.items.find(item => item.id === currItem.id)?.price || 0)), 0) // reduce method to find subtotals for items in cart
     const cartRef = useRef<HTMLDivElement>(null)
     const checkoutRef = useRef<HTMLButtonElement>(null)
 
+    // close cart when user clicks outside of div
     let domNode = useClickOutside<HTMLDivElement>(() => {
         if (!isOpen) return
         closeCart()
@@ -54,6 +65,7 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps){
         }
     }
 
+    // focus on cart when it's opened
     useEffect(() => {
         if (isOpen){
             cartRef.current?.focus()
