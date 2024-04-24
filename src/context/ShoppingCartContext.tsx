@@ -32,7 +32,7 @@ type ShoppingCartContext = {
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContext);
 
-export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
+export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
     const [isOpen, setIsOpen] = useState(false) // state to track whether cart is open
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping cart", []) // cart items array
@@ -40,15 +40,15 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
 
     const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
 
-    function openCart(){
+    function openCart() {
         setIsOpen(true)
         toggle()
     }
-    function closeCart(){
+    function closeCart() {
         setIsOpen(false)
         toggle()
     }
-    function getItemQuantity(id: number, size: string){
+    function getItemQuantity(id: number, size: string) {
         return cartItems.find(item => item.id === id && item.size === size)?.quantity || 0
     }
     function increaseCartQuantity(id: number, quantity: number, size: string) {
@@ -66,13 +66,13 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
             }
         });
     }
-    function decreaseCartQuantity(id: number){
+    function decreaseCartQuantity(id: number) {
         setCartItems(currItems => {
-            if (currItems.find(item => item.id === id)?.quantity === 1){
+            if (currItems.find(item => item.id === id)?.quantity === 1) {
                 return currItems.filter(item => item.id !== id)
             } else {
                 return currItems.map(item => {
-                    if (item.id === id){
+                    if (item.id === id) {
                         return { ...item, quantity: item.quantity - 1 }
                     } else {
                         return item
@@ -81,19 +81,19 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps){
             }
         })
     }
-    function removeFromCart(id: number, size: string){
+    function removeFromCart(id: number, size: string) {
         setCartItems(currItems => {
             return currItems.filter(item => {
                 return item.id !== id || item.size !== size
             })
         })
     }
-    
+
     // entire app wrapped in context and cart component
     return (
         <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, openCart, closeCart }}>
             {children}
-            <ShoppingCart isOpen={isOpen}/>
+            <ShoppingCart isOpen={isOpen} />
         </ShoppingCartContext.Provider>
     )
 }

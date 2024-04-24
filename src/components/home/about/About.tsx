@@ -90,13 +90,13 @@ const imageData: ImageData[] = [
     }
 ]
 
-export default function About(){
+export default function About() {
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const aboutRef = useRef<HTMLDivElement>(null)
     const [isInView] = useDetectSection(aboutRef) // detect whether section is in view
     const gallery = useRef(null);
-    const [dimension, setDimension] = useState({width:0, height:0}); // state to track window size
+    const [dimension, setDimension] = useState({ width: 0, height: 0 }); // state to track window size
     const { height } = dimension;
     const { scrollYProgress } = useScroll({
 
@@ -109,7 +109,7 @@ export default function About(){
 
     // set active section when it's in view
     useEffect(() => {
-        if (isInView){
+        if (isInView) {
             setActiveSection("about")
         }
         else {
@@ -118,15 +118,15 @@ export default function About(){
     }, [isInView, setActiveSection])
 
     // update window size when component has mounted
-    useEffect( () => {
+    useEffect(() => {
         const resize = () => {
-            setDimension({width: window.innerWidth, height: window.innerHeight})
+            setDimension({ width: window.innerWidth, height: window.innerHeight })
         }
-      
+
         window.addEventListener("resize", resize)
-      
+
         resize();
-      
+
         return () => {
             window.removeEventListener("resize", resize);
         }
@@ -152,33 +152,33 @@ export default function About(){
                         <span className='text-[20px] mr-4'>🍻</span>
                         <span className='font-medium text-white text-[16px]'>Be prepared for LOTS of drinking...</span>
                     </div>
-                    <div className='flex flex-col sm:flex-row items-center gap-8 md:gap-16'>   
+                    <div className='flex flex-col sm:flex-row items-center gap-8 md:gap-16'>
                         <Link href={"/#tours"} className='z-[1000] w-full sm:w-1/2 cursor-pointer font-semibold text-center text-white  py-2 rounded-md bg-gradient-to-r from-custom-blue to-custom-yellow text-[18px] hover:opacity-85 ease-in-out duration-300'
                         >Learn more</Link>
                         <Link href={"/#contact"} className='flex flex-row items-center justify-center hover:opacity-85 ease-in-out duration-300'>
                             <button tabIndex={-1} className='text-white text-[18px]'>Get in touch</button>
                             <svg xmlns="http://www.w3.org/2000/svg" className='pl-3' width={40} height={32} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
                         </Link>
-                    </div> 
+                    </div>
                 </Reveal>
-                
+
             </div>
             <div className="gallery px-10 hidden sm:flex" ref={gallery}>
-                
-                    {window.innerWidth > 1024 ? 
+
+                {window.innerWidth > 1024 ?
                     <div className="galleryWrapper">
                         <div className="column column1">
-                        <Column  imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y}/>
+                            <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5]]} y={y} />
                         </div>
                         <div className="column column2">
-                        <Column   imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2}/> 
+                            <Column imagesData={[imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y2} />
                         </div>
-                        
-                    </div>  
+
+                    </div>
                     :
-                    <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5], imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y}/>
-                    }              
-            
+                    <Column imagesData={[imageData[0], imageData[1], imageData[2], imageData[3], imageData[4], imageData[5], imageData[6], imageData[7], imageData[8], imageData[9], imageData[10], imageData[11]]} y={y} />
+                }
+
             </div>
         </div>
     )

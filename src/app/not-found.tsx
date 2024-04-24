@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 // 404 page
-export default function NotFound(){
+export default function NotFound() {
     return (
         <div className="w-full h-[90vh] bg-black relative flex justify-center items-center">
             <div className="w-full h-full absolute top-0 left-0 overflow-hidden">
                 <Image
-                    src="/misc/404-bg.avif" 
+                    src="/misc/404-bg.avif"
                     alt="404 background"
                     fill
                     sizes='(height: 100%)'

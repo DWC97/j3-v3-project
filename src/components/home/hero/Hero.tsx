@@ -14,9 +14,9 @@ import { ActiveSectionContext } from "@/context/ActiveSectionContext";
 import "./HeroStyles.css"
 
 // animations
-import gsap from "gsap"; 
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import Lottie, {LottieRefCurrentProps} from "lottie-react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import animationData from "@/animations/scroll-animation.json"
 
 // packages
@@ -24,16 +24,17 @@ import SplitType from 'split-type'
 
 
 // interfaces to ensure type validity
-type ParallaxElement = HTMLImageElement & { 
-    dataset: { 
+type ParallaxElement = HTMLImageElement & {
+    dataset: {
         speedx: string
         speedy: string
         speedz: string
         rotation: string
-    } }
-    
+    }
+}
 
-export default function Hero(){
+
+export default function Hero() {
 
     const { setActiveSection, scrollAnimation, setScrollAnimation } = useContext(ActiveSectionContext);
     // refs for gsap animation
@@ -41,11 +42,11 @@ export default function Hero(){
     const subHeading = useRef<HTMLHeadingElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
     const [isInView] = useDetectSection(heroRef); // detect whether section is in view
-    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null); 
+    const scrollAnimationRef = useRef<LottieRefCurrentProps>(null);
 
     // set active section when it's in view
     useEffect(() => {
-        if (isInView){
+        if (isInView) {
             setActiveSection("hero")
         }
     }, [isInView, setActiveSection])
@@ -65,32 +66,32 @@ export default function Hero(){
 
         gsap.fromTo(
             chars,
-            { 
-              y: -300,
-              opacity: 0
+            {
+                y: -300,
+                opacity: 0
             },
             {
-              y: 0,
-              opacity: 1,
-              stagger: 0.05,
-              duration: 2,
-              ease: 'power4.out',
+                y: 0,
+                opacity: 1,
+                stagger: 0.05,
+                duration: 2,
+                ease: 'power4.out',
             }
         )
 
         gsap.fromTo(
             subHeading.current,
-            { 
-              y: 50,
-              opacity: 0
+            {
+                y: 50,
+                opacity: 0
             },
             {
-              y: 0,
-              opacity: 1,
-              stagger: 0.05,
-              duration: 3,
-              delay: 2,
-              ease: 'power4.out',
+                y: 0,
+                opacity: 1,
+                stagger: 0.05,
+                duration: 3,
+                delay: 2,
+                ease: 'power4.out',
             }
         )
     })
@@ -98,7 +99,7 @@ export default function Hero(){
     // function determines position of mouse and displaces the parallax layers based on their speed/rotation attributes
     function handleMousemove(e: MouseEvent) {
         // determine x,y coordinates of mouse
-        const xValue = e.clientX - window.innerWidth / 2; 
+        const xValue = e.clientX - window.innerWidth / 2;
         const yValue = e.clientY - window.innerHeight / 2;
         const rotateDegree = (xValue / (window.innerWidth / 2)) * 25;
 
@@ -110,13 +111,13 @@ export default function Hero(){
             el.style.transform = `translateX(calc(-50% + ${-xValue * parseFloat(speedx)}px)) translateY(calc(-50% + ${yValue * parseFloat(speedy)}px))  translateZ(${zValue * parseFloat(speedz)}px) rotateY(${rotateDegree * parseFloat(rotation)}deg)`;
         });
     }
- 
-    function loadEvents(){
+
+    function loadEvents() {
         if (typeof window !== 'undefined') {
             setTimeout(() => {
                 window.addEventListener("mousemove", handleMousemove)
             }, 3000)
-        } 
+        }
 
         // Cleanup function to remove event listener when the component unmounts
         return () => {
@@ -134,9 +135,9 @@ export default function Hero(){
             <div className="section hero" id="hero">
                 <div className="wrapper">
                     <div className="vignette"></div>
-                    <img src="/hero/sky6.avif" loading="eager" alt="sky" className="sky parallax" data-speedx="0.08" data-speedy="0.075" data-speedz="0" data-rotation="0"/>
+                    <img src="/hero/sky6.avif" loading="eager" alt="sky" className="sky parallax" data-speedx="0.08" data-speedy="0.075" data-speedz="0" data-rotation="0" />
                     <div className="sea parallax" data-speedx="0.045" data-speedy="0.04" data-speedz="0" data-rotation="0">
-                    <Image
+                        <Image
                             src="/hero/sea3.webp"
                             alt="sea"
                             width={0}
@@ -146,18 +147,18 @@ export default function Hero(){
                             priority
                         />
                     </div>
-                    <img src="/hero/left-cliff.png" alt="left cliff" className="left-cliff parallax" data-speedx="0.05" data-speedy="0.045" data-speedz="0.6" data-rotation="0.15"/>
-                    <img src="/hero/right-cliff.png" alt="right cliff" className="right-cliff parallax" data-speedx="0.05" data-speedy="0.043" data-speedz="0.5" data-rotation="0.13"/>
-                    <img src="/hero/middle-cliff.png" alt="middle cliff" className="middle-cliff parallax" data-speedx="0.05" data-speedy="0.042" data-speedz="0.55" data-rotation="0.14"/>
+                    <img src="/hero/left-cliff.png" alt="left cliff" className="left-cliff parallax" data-speedx="0.05" data-speedy="0.045" data-speedz="0.6" data-rotation="0.15" />
+                    <img src="/hero/right-cliff.png" alt="right cliff" className="right-cliff parallax" data-speedx="0.05" data-speedy="0.043" data-speedz="0.5" data-rotation="0.13" />
+                    <img src="/hero/middle-cliff.png" alt="middle cliff" className="middle-cliff parallax" data-speedx="0.05" data-speedy="0.042" data-speedz="0.55" data-rotation="0.14" />
                     <div className="text parallax w-full" data-speedx="0.05" data-speedy="0.05" data-speedz="0.55" data-rotation="0.14" >
                         <h1 className="font-semibold main-heading" ref={mainHeading}>JOLLY ROGER TOURS</h1>
                         <h2 className="tracking-widest font-medium sub-heading" ref={subHeading}>THE ADVENTURE OF A LIFETIME AWAITS...</h2>
                     </div>
-                    <img src="/hero/big-ship.png" alt="ship" className="big-ship parallax" data-speedx="0.038" data-speedy="0.038" data-speedz="0.8" data-rotation="0.2"/>
-                    <img src="/hero/boat1.png" alt="boat1" className="boat1 parallax" data-speedx="0.04" data-speedy="0.04" data-speedz="0.82" data-rotation="0.21"/>
-                    <img src="/hero/boat2.png" alt="boat2" className="boat2 parallax" data-speedx="0.04" data-speedy="0.04" data-speedz="0.83" data-rotation="0.22"/>
-                    <img src="/hero/boat3.png" alt="boat3" className="boat3 parallax " data-speedx="0.04" data-speedy="0.04" data-speedz="0.84" data-rotation="0.23"/>
-                    <img src="/hero/foliage.png" alt="foliage" className="foliage parallax" data-speedx="0.01" data-speedy="0.01" data-speedz="0.8" data-rotation="0.25"/>
+                    <img src="/hero/big-ship.png" alt="ship" className="big-ship parallax" data-speedx="0.038" data-speedy="0.038" data-speedz="0.8" data-rotation="0.2" />
+                    <img src="/hero/boat1.png" alt="boat1" className="boat1 parallax" data-speedx="0.04" data-speedy="0.04" data-speedz="0.82" data-rotation="0.21" />
+                    <img src="/hero/boat2.png" alt="boat2" className="boat2 parallax" data-speedx="0.04" data-speedy="0.04" data-speedz="0.83" data-rotation="0.22" />
+                    <img src="/hero/boat3.png" alt="boat3" className="boat3 parallax " data-speedx="0.04" data-speedy="0.04" data-speedz="0.84" data-rotation="0.23" />
+                    <img src="/hero/foliage.png" alt="foliage" className="foliage parallax" data-speedx="0.01" data-speedy="0.01" data-speedz="0.8" data-rotation="0.25" />
                 </div>
                 <div className={`absolute w-full bottom-[30vh] ${scrollAnimation ? " opacity-100" : "opacity-0"}  left-0 flex justify-center items-center ease-in-out duration-1000`}>
                     <Lottie lottieRef={scrollAnimationRef} animationData={animationData} className="w-16" loop={true} />

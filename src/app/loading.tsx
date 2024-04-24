@@ -2,10 +2,10 @@
 import Image from "next/image";
 
 // component that displays when routes are loading
-export default function Loading(){
+export default function Loading() {
     return (
         <div className="bg-black  h-screen w-full flex justify-center items-center">
-            <div className='max-w-[250px] w-[100px] relative'>      
+            <div className='max-w-[250px] w-[100px] relative'>
                 <Image
                     src="/misc/logo.avif"
                     alt="logo"

@@ -17,7 +17,7 @@ import { Reveal } from "@/context/Reveal"
 import { Slide } from "@/context/Slide"
 
 
-export default function Contact(): JSX.Element{
+export default function Contact(): JSX.Element {
 
     let { setActiveSection } = useContext(ActiveSectionContext)
     const contactRef = useRef<HTMLDivElement>(null)
@@ -29,18 +29,18 @@ export default function Contact(): JSX.Element{
         number: 1
     });
     const [nameValid, setNameValid] = useState(true) // state to track whether name input is valid
-    const [emailValid, setEmailValid] = useState(true) 
-    let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@") && formData.email.includes(".com") 
+    const [emailValid, setEmailValid] = useState(true)
+    let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@") && formData.email.includes(".com")
 
     // set active section when it's in view
     useEffect(() => {
         if (isMobileView) return
-        if (isInView){
+        if (isInView) {
             setActiveSection("contact")
         }
     }, [isInView, setActiveSection, isMobileView])
 
-    function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>){
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = e.target;
 
         // group number edge cases
@@ -63,11 +63,11 @@ export default function Contact(): JSX.Element{
             }
         }
 
-        if (formData.name.length > 0){
+        if (formData.name.length > 0) {
             setNameValid(true)
         }
 
-        if (formData.email !== "" && formData.email.includes("@") && formData.email.includes(".co")){
+        if (formData.email !== "" && formData.email.includes("@") && formData.email.includes(".co")) {
             setEmailValid(true)
         }
 
@@ -77,14 +77,14 @@ export default function Contact(): JSX.Element{
         });
     };
 
-    function handleSubmit(e: React.SyntheticEvent){
+    function handleSubmit(e: React.SyntheticEvent) {
         e.preventDefault()
 
-        if (formData.name === ""){
+        if (formData.name === "") {
             setNameValid(false)
         }
 
-        if (formData.email == "" || !formData.email.includes("@") || !formData.email.includes(".com")){
+        if (formData.email == "" || !formData.email.includes("@") || !formData.email.includes(".com")) {
             setEmailValid(false)
         }
 
@@ -136,22 +136,22 @@ export default function Contact(): JSX.Element{
                     <input type="text" autoComplete="off" name="name" id="nameInput" placeholder="" className={`w-[240px]  text-gray-300 border-b ${!nameValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 outline-none !bg-black`}
                         value={formData.name}
                         onChange={handleInputChange}
-                    /> 
+                    />
                     <label htmlFor="nameInput" className="absolute text-white -top-8">Full name</label>
-                    
+
                     <div className={`absolute top-1 left-56 ${nameValid ? "opacity-0 invisible" : "opacity-100 visible"} transition-opacity ease-in-out duration-300`} title="You haven't entered a valid name">
                         <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
                     </div>
-                    
+
                     <div className={`absolute top-[7rem] sm:top-[5.75rem] left-56 ${emailValid ? "opacity-0 invisible" : "opacity-100 visible"} transition-opacity ease-in-out duration-300`} title="Please include an valid email address">
                         <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
                     </div>
-                    
+
                     <input type="text" name="email" autoComplete="off" id="emailInput" placeholder="" className={`w-[240px] text-gray-300 border-b ${!emailValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 mt-2 outline-none bg-black`}
                         value={formData.email}
                         onChange={handleInputChange}
-                    />   
-                    <label htmlFor="emailInput" className="absolute text-white top-[5rem] sm:top-[3.75rem]">Email</label>  
+                    />
+                    <label htmlFor="emailInput" className="absolute text-white top-[5rem] sm:top-[3.75rem]">Email</label>
                     <div className="flex flex-col gap-12 sm:gap-0 sm:flex-row w-full sm:justify-between sm:items-center">
                         <div className="w-[240px]">
                             <select id="country" name="country" className="block w-full p-2 text-gray-300 bg-black border-white border-b outline-none">
@@ -165,14 +165,14 @@ export default function Contact(): JSX.Element{
                         <input type="number" name="number" id="numberInput" min={1} max={4} className="mt-2 sm:mt-0 w-[240px] text-gray-300 border-b border-white p-2 outline-none bg-black"
                             value={formData.number}
                             onChange={handleInputChange}
-                        />  
+                        />
                     </div>
-                    <label htmlFor="country" className="absolute text-white top-[10.5rem] sm:top-[9.25rem]">Destination</label>  
-                    <label htmlFor="numberInput" className="absolute text-white left-0 sm:left-auto top-[17rem] sm:right-[140px] sm:top-[9.25rem]">No. of people</label>  
+                    <label htmlFor="country" className="absolute text-white top-[10.5rem] sm:top-[9.25rem]">Destination</label>
+                    <label htmlFor="numberInput" className="absolute text-white left-0 sm:left-auto top-[17rem] sm:right-[140px] sm:top-[9.25rem]">No. of people</label>
                     <div className={`${submittable ? "cursor-pointer hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
                         tabIndex={0}
                         onKeyDown={(e) => {
-                            if (e.key === "Enter"){
+                            if (e.key === "Enter") {
                                 handleSubmit(e)
                             }
                         }}
@@ -187,10 +187,10 @@ export default function Contact(): JSX.Element{
                     </div>
                 </form>
                 <p className="text-white text-[12px] sm:text-[14px]">
-                    Please note. Jolly Roger Tours is currently going through the incorporation and licensing process in the UK and will launch officially in late 2024. 
+                    Please note. Jolly Roger Tours is currently going through the incorporation and licensing process in the UK and will launch officially in late 2024.
                 </p>
             </div></Reveal>
-        
+
         </div>
     )
 }

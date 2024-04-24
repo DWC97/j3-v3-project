@@ -15,11 +15,11 @@ import useMobileView from '@/hooks/useMobileView';
 import { ShoppingCartContext } from '@/context/ShoppingCartContext';
 
 // animations
-import gsap from "gsap"; 
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 
-export default function Navbar(){
+export default function Navbar() {
 
     const { activeSection, setActiveSection, setScrollAnimation } = useContext(ActiveSectionContext)
     const { openCart, cartQuantity } = useContext(ShoppingCartContext)
@@ -30,25 +30,25 @@ export default function Navbar(){
     const path = usePathname() // find current path
     const [nav, setNav] = useState<boolean>(false) // set mobile nav menu
     const [toggle] = useBodyLockScroll() // toggle scroll lock
-    const isMobileView = useMobileView(); 
+    const isMobileView = useMobileView();
 
     // track which navbar tab should be active based on current path
     useEffect(() => {
         if (isMobileView) return
-        if (path !== "/"){
+        if (path !== "/") {
             setActiveSection("")
         }
-        
-        if (path.includes("/store")){
+
+        if (path.includes("/store")) {
             setActiveSection("store")
-        } 
-    }, [path, setActiveSection, isMobileView]) 
+        }
+    }, [path, setActiveSection, isMobileView])
 
     // animation for navbar appearing
     useGSAP(() => {
         gsap.fromTo(
             navbar.current,
-            { 
+            {
                 y: -50,
                 opacity: 0
             },
@@ -61,10 +61,10 @@ export default function Navbar(){
                 ease: 'power4.out',
             }
         )
-    }) 
-    
+    })
+
     // managing navbar height and visibility based on scroll position from top of home page
-    function scrollHandle(){
+    function scrollHandle() {
         if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
             setScrollAnimation(false)
         }
@@ -79,7 +79,7 @@ export default function Navbar(){
         else {
             setIsFixed(false)
             setIsShrunk(false)
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200){
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 setIsDropdown(false)
             }
             else {
@@ -88,12 +88,12 @@ export default function Navbar(){
         }
     }
 
-    function loadEvents(){
+    function loadEvents() {
         if (typeof window !== 'undefined') {
-                window.onscroll = function() {
-                    scrollHandle()
-                }
-            } 
+            window.onscroll = function () {
+                scrollHandle()
+            }
+        }
     };
 
     loadEvents()
@@ -101,7 +101,7 @@ export default function Navbar(){
     return (
         <div>
             {/* mobile menu */}
-            <div className={nav ? `fixed top-0 left-0 z-[1000] h-screen w-full flex flex-col justify-center items-center ease-in-out duration-500 bg-black` : "fixed -top-[100%]"}>   
+            <div className={nav ? `fixed top-0 left-0 z-[1000] h-screen w-full flex flex-col justify-center items-center ease-in-out duration-500 bg-black` : "fixed -top-[100%]"}>
                 <div className={`absolute top-0 left-0 flex justify-center items-center cursor-pointer ml-9 h-20`} onClick={() => {
                     setNav(!nav)
                     toggle()
@@ -127,8 +127,8 @@ export default function Navbar(){
                     <ul className='text-white font-medium text-[18px]'>
                         <li className='border-b border-gray-400 py-4'>
                             <Link href="/#about" tabIndex={-1} onClick={() => {
-                            setNav(!nav)
-                            toggle()
+                                setNav(!nav)
+                                toggle()
                             }}>
                                 ABOUT
                             </Link>
@@ -148,7 +148,7 @@ export default function Navbar(){
                             }}>
                                 CONTACT
                             </Link>
-                        </li>   
+                        </li>
                         <li className='border-b border-gray-400 py-4'>
                             <Link href="/store" tabIndex={-1} onClick={() => {
                                 setNav(!nav)
@@ -156,10 +156,10 @@ export default function Navbar(){
                             }}>
                                 STORE
                             </Link>
-                        </li>    
+                        </li>
                     </ul>
                 </div>
-                
+
             </div>
             {/* desktop navbar */}
             <div className={`left-0 ${isDropdown ? "top-0" : "-top-20"} z-[45] w-screen ${isShrunk ? "h-16 bg-black bg-opacity-50 backdrop-blur-sm" : "h-20"} ${isFixed ? "fixed ease-in-out duration-300" : "absolute"}`} ref={navbar}>
@@ -182,23 +182,23 @@ export default function Navbar(){
                         setNav(!nav)
                         toggle()
                     }}>
-                        
+
                         <svg xmlns="http://www.w3.org/2000/svg" width={isShrunk ? 32 : 40} height={isShrunk ? 32 : 40} viewBox="0 0 32 32"><path fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h22M5 16h22M5 24h22"></path></svg>
                     </div>
                     <div className='flex justify-center items-center mr-4 relative cursor-pointer'
-                    onClick={() => {
-                        openCart()
-                    }}
+                        onClick={() => {
+                            openCart()
+                        }}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width={isShrunk ? 32 : 40} height={isShrunk ? 32 : 40} viewBox="0 0 24 24"><path fill="white" d="M7.308 21.115q-.633 0-1.067-.433q-.433-.434-.433-1.067q0-.632.433-1.066q.434-.434 1.067-.434q.632 0 1.066.434q.434.434.434 1.066q0 .633-.434 1.067q-.434.433-1.066.433m9.384 0q-.632 0-1.066-.433q-.434-.434-.434-1.067q0-.632.434-1.066q.434-.434 1.066-.434q.633 0 1.067.434q.433.434.433 1.066q0 .633-.433 1.067q-.434.433-1.067.433M5.881 5.5l2.669 5.615h6.635q.173 0 .307-.086q.135-.087.231-.24l2.615-4.75q.116-.212.02-.376q-.096-.163-.327-.163zm-.489-1h13.02q.651 0 .98.532q.33.531.035 1.095l-2.858 5.208q-.217.365-.564.573q-.347.207-.763.207H8.1l-1.215 2.231q-.154.23-.01.5t.433.27h10.884v1H7.308q-.875 0-1.306-.738q-.43-.738-.021-1.482l1.504-2.68L3.808 3.5H2v-1h2.442zm3.158 6.615h7z"></path></svg>
-                        {cartQuantity > 0 && 
+                        {cartQuantity > 0 &&
                             <div className='absolute bottom-2 -right-[1rem] w-8 h-8 rounded-full bg-custom-pink text-white font-semibold flex justify-center items-center'>
-                                {cartQuantity < 10 ? cartQuantity : "9+" }
+                                {cartQuantity < 10 ? cartQuantity : "9+"}
                             </div>}
                     </div>
                 </div>
                 <div className="hidden lg:flex flex-row w-screen h-full ">
-                    <div className="w-1/2 h-full flex justify-end text-white">  
+                    <div className="w-1/2 h-full flex justify-end text-white">
                         <span className={`mt-1 h-full  ${activeSection === "about" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 border-b-2 hover:opacity-85 border-custom-pink w-44 ease-in-out duration-300 out`} >
                             <Link href="/#about" tabIndex={0} className='w-full h-full flex items-center justify-center'>
                                 ABOUT
@@ -215,27 +215,27 @@ export default function Navbar(){
                             </Link>
                         </span>
                     </div>
-                    <div className="w-1/2 right-1/2 h-full flex justify-between text-white">   
+                    <div className="w-1/2 right-1/2 h-full flex justify-between text-white">
                         <span className={`mt-1 h-full w-44 ml-24 ${activeSection === "store" ? "border-opacity-100" : "border-opacity-0"} hover:border-opacity-100 hover:opacity-85 border-b-2 border-custom-pink ease-in-out duration-300`}>
                             <Link href={"/store"} tabIndex={0} className='w-full h-full flex items-center justify-center'>
                                 STORE
                             </Link>
-                        </span>  
+                        </span>
                         <div className='flex justify-center items-center w-44 relative cursor-pointer hover:opacity-85 ease-in-out duration-300' tabIndex={0}
-                        onClick={() => {
-                            openCart()
-                        }}
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter"){
+                            onClick={() => {
                                 openCart()
-                            }
-                        }}
+                            }}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    openCart()
+                                }
+                            }}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width={isShrunk ? 32 : 40} height={isShrunk ? 32 : 40} viewBox="0 0 24 24"><path fill="white" d="M7.308 21.115q-.633 0-1.067-.433q-.433-.434-.433-1.067q0-.632.433-1.066q.434-.434 1.067-.434q.632 0 1.066.434q.434.434.434 1.066q0 .633-.434 1.067q-.434.433-1.066.433m9.384 0q-.632 0-1.066-.433q-.434-.434-.434-1.067q0-.632.434-1.066q.434-.434 1.066-.434q.633 0 1.067.434q.433.434.433 1.066q0 .633-.433 1.067q-.434.433-1.067.433M5.881 5.5l2.669 5.615h6.635q.173 0 .307-.086q.135-.087.231-.24l2.615-4.75q.116-.212.02-.376q-.096-.163-.327-.163zm-.489-1h13.02q.651 0 .98.532q.33.531.035 1.095l-2.858 5.208q-.217.365-.564.573q-.347.207-.763.207H8.1l-1.215 2.231q-.154.23-.01.5t.433.27h10.884v1H7.308q-.875 0-1.306-.738q-.43-.738-.021-1.482l1.504-2.68L3.808 3.5H2v-1h2.442zm3.158 6.615h7z"></path></svg>
-                            {cartQuantity > 0 && 
-                            <div className='absolute bottom-2 right-[3.5rem] w-8 h-8 rounded-full bg-custom-pink text-white font-semibold flex justify-center items-center'>
-                                {cartQuantity < 10 ? cartQuantity : "9+" }
-                            </div>}
+                            {cartQuantity > 0 &&
+                                <div className='absolute bottom-2 right-[3.5rem] w-8 h-8 rounded-full bg-custom-pink text-white font-semibold flex justify-center items-center'>
+                                    {cartQuantity < 10 ? cartQuantity : "9+"}
+                                </div>}
                         </div>
                     </div>
                 </div>

@@ -14,9 +14,9 @@ interface ActiveSectionContextType {
 // Create the context with the specified type
 export const ActiveSectionContext = createContext<ActiveSectionContextType>({
     activeSection: "",
-    setActiveSection: () => {},
+    setActiveSection: () => { },
     scrollAnimation: false,
-    setScrollAnimation: () => {}
+    setScrollAnimation: () => { }
 });
 
 // Define the props type for ActiveSectionProvider

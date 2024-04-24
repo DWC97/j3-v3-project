@@ -14,23 +14,23 @@ import useMobileView from "@/hooks/useMobileView";
 // home page
 export default function Home() {
 
-  const isMobileView = useMobileView(); 
+  const isMobileView = useMobileView();
 
   return (
-      <>
-        {isMobileView ? 
+    <>
+      {isMobileView ?
         <>
           <HeroMobile />
           <AboutMobile />
-        </> 
-        : 
+        </>
+        :
         <>
-          <Hero/>
+          <Hero />
           <About />
         </>
-        }
-        <TourSelection />
-        <Contact />
-      </>
+      }
+      <TourSelection />
+      <Contact />
+    </>
   );
 }

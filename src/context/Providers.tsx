@@ -10,12 +10,12 @@ type ProviderProps = {
     children: ReactNode
 }
 
-export function Providers({ children }: ProviderProps){
+export function Providers({ children }: ProviderProps) {
     const mounted = useMounted()
     // return loading screen while app mounts
-    if (!mounted){
+    if (!mounted) {
         return (
-            <Loading />  
+            <Loading />
         )
     }
     // wrap entire layout in contexts that need to be global

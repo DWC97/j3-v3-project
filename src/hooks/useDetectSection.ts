@@ -9,7 +9,7 @@ export default function useDetectSection(ref: RefType<HTMLElement>): UseDetectSe
     const [isInView, setIsInView] = useState(false)
 
     function checkInView() {
-        if (ref.current){
+        if (ref.current) {
             const rect = ref.current.getBoundingClientRect();
             setIsInView(
                 rect.top < window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2

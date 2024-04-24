@@ -6,22 +6,22 @@ interface SlideProps {
 }
 
 // slide animation
-export function Slide({ children }: SlideProps){
+export function Slide({ children }: SlideProps) {
 
     const ref = useRef<HTMLDivElement>(null)
     const isInView = useInView(ref, { once: true })
     const slideControls = useAnimation()
 
     useEffect(() => {
-        if (isInView){
+        if (isInView) {
             slideControls.start("visible")
         }
     }, [isInView, slideControls])
 
     return (
         <div
-        ref={ref}
-        className="">
+            ref={ref}
+            className="">
             <motion.div
                 variants={{
                     hidden: { opacity: 0, x: -300 },

@@ -6,22 +6,22 @@ interface RevealProps {
 }
 
 // reveal animation
-export function Reveal({ children }: RevealProps){
+export function Reveal({ children }: RevealProps) {
 
     const ref = useRef<HTMLDivElement>(null)
     const isInView = useInView(ref, { once: true })
     const mainControls = useAnimation()
 
     useEffect(() => {
-        if (isInView){
+        if (isInView) {
             mainControls.start("visible")
         }
     }, [isInView, mainControls])
 
     return (
         <div
-        ref={ref}
-        className="">
+            ref={ref}
+            className="">
             <motion.div
                 variants={{
                     hidden: { opacity: 0, y: 75 },

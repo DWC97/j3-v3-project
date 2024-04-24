@@ -7,7 +7,7 @@ type ToggleFunction = () => void;
 function useBodyLockScroll(): [ToggleFunction] {
 
     const [locked, setLocked] = useState(false)
-    
+
     useEffect(() => {
         let bodyStyle: CSSStyleDeclaration | undefined;
         if (typeof document !== "undefined") {
@@ -22,7 +22,7 @@ function useBodyLockScroll(): [ToggleFunction] {
         }
     }, [locked]);
 
-    function toggle(){
+    function toggle() {
         setLocked(!locked)
     }
 
