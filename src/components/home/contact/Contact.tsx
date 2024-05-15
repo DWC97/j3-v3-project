@@ -120,7 +120,7 @@ export default function Contact(): JSX.Element {
         }
 
         try{
-            addReservation(formData)
+            await addReservation(formData)
             Swal.fire({
                 title: "Submitted!",
                 text: "We'll get back to you with details when tours are available for booking.",
