@@ -33,7 +33,12 @@ export default function Contact(): JSX.Element {
         destination: "Northern Thailand",
         numberInGroup: 1
     }
-    const [formData, setFormData] = useState(initFormData)
+    const [formData, setFormData] = useState<{
+        name: string;
+        email: string;
+        destination: string;
+        numberInGroup: number;
+    }>(initFormData)
     const [formErrors, setFormErrors] = useState({ name: "", email: "" });
     const [submittable, setSubmittable] = useState(false);
 
@@ -52,14 +57,14 @@ export default function Contact(): JSX.Element {
         setSubmittable(isValid);
     }, [formErrors, formData.name, formData.email]);
 
-    const validateName = (name) => {
+    const validateName = (name: string) => {
         if (name.trim() === "") {
             return "Name is required";
         }
         return "";
     };
 
-    const validateEmail = (email) => {
+    const validateEmail = (email: string) => {
         if (email.trim() === "") {
             return "Email is required";
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -69,9 +74,9 @@ export default function Contact(): JSX.Element {
     };
     
 
-    const handleChange = (e) => {
-        let value = e.target.value;
-        const name = e.target.name;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value: rawValue } = e.target;
+        let value: string | number = rawValue;
 
         // Validate inputs
         let error = "";
@@ -83,12 +88,12 @@ export default function Contact(): JSX.Element {
 
         setFormErrors(prevErrors => ({ ...prevErrors, [name]: error }));
 
-        if (name === "numberInGroup"){
-            if (value < 1) {
-                value = 1;
-            } else if (value > 4) {
-                value = 4;
+        if (name === "numberInGroup") {
+            value = parseInt(rawValue);
+            if (isNaN(value)) {
+                value = 1;  // Default to 1 if conversion fails
             }
+            value = Math.max(1, Math.min(value, 4));  // Ensure value stays between 1 and 4
         }
     
         setFormData((preState) => ({
