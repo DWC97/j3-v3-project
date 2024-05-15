@@ -127,6 +127,7 @@ export default function About() {
 
         resize();
 
+        // remove event listener when component unmounts
         return () => {
             window.removeEventListener("resize", resize);
         }
