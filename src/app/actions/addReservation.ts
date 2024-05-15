@@ -1,18 +1,12 @@
 "use server"
 
 import prisma from "@/lib/prisma"
+import { FormData } from "@/components/home/contact/Contact";
 
-interface ReservationFormData {
-    name: string;
-    email: string;
-    destination: string;
-    numberInGroup: string;  
-  }
-
-export default async function addReservation(formData: ReservationFormData){
+export default async function addReservation(formData: FormData): Promise<void>{
 
     const {name, email, destination, numberInGroup} = formData;
-    const intNumberInGroup = parseInt(numberInGroup, 10);
+
 
     try {
         await prisma.reservation.create({
@@ -20,7 +14,7 @@ export default async function addReservation(formData: ReservationFormData){
                 name, 
                 email,
                 destination,
-                numberInGroup: intNumberInGroup
+                numberInGroup
             }
         })
     } catch (e) {
