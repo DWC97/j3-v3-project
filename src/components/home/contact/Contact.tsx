@@ -1,3 +1,5 @@
+"use client"
+
 // next components
 import Link from "next/link"
 import Image from "next/image"
@@ -18,6 +20,14 @@ import { FloatingLabel } from "flowbite-react";
 
 // styles
 import "./ContactStyles.css"
+import addReservation from "@/app/actions/addReservation";
+
+type FormData = {
+    name: string;
+    email: string;
+    destination: string;
+    numberInGroup: number;
+}
 
 const destinations = ["Northern Thailand", "Southern Thailand", "Bali", "Philippines", "Vietnam"]
 
@@ -33,12 +43,7 @@ export default function Contact(): JSX.Element {
         destination: "Northern Thailand",
         numberInGroup: 1
     }
-    const [formData, setFormData] = useState<{
-        name: string;
-        email: string;
-        destination: string;
-        numberInGroup: number;
-    }>(initFormData)
+    const [formData, setFormData] = useState<FormData>(initFormData)
     const [formErrors, setFormErrors] = useState({ name: "", email: "" });
     const [submittable, setSubmittable] = useState(false);
 
@@ -115,7 +120,7 @@ export default function Contact(): JSX.Element {
         }
 
         try{
-            // addPost(formData)
+            addReservation(formData)
             Swal.fire({
                 title: "Submitted!",
                 text: "We'll get back to you with details when tours are available for booking.",
