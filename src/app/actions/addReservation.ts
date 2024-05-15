@@ -2,7 +2,14 @@
 
 import prisma from "@/lib/prisma"
 
-export default async function addReservation(formData){
+interface ReservationFormData {
+    name: string;
+    email: string;
+    destination: string;
+    numberInGroup: string;  
+  }
+
+export default async function addReservation(formData: ReservationFormData){
 
     const {name, email, destination, numberInGroup} = formData;
     const intNumberInGroup = parseInt(numberInGroup, 10);
