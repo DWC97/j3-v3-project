@@ -19,5 +19,6 @@ export default async function addReservation(formData: FormData): Promise<void>{
         })
     } catch (e) {
         console.error(e)
+        throw new Error("Failed to add reservation");
     }
 }
