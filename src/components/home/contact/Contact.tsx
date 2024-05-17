@@ -20,7 +20,7 @@ import { FloatingLabel } from "flowbite-react";
 
 // styles
 import "./ContactStyles.css"
-import addReservation from "@/app/actions/addReservation";
+import addReservation from "@/actions/addReservation";
 
 export type FormData = {
     name: string;
