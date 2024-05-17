@@ -25,7 +25,7 @@ import "./SliderStyles.css"
 import toursData from "@/data/tours.json"
 
 // utilities
-import { formatNumber } from '@/utilities/Utils';
+import { formatNumber } from '@/lib/Utils';
 
 // context
 import { ActiveSectionContext } from '@/context/ActiveSectionContext';

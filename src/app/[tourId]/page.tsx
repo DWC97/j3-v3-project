@@ -16,7 +16,7 @@ import { useClickOutside } from '@/hooks/useClickOutside';
 import toursData from "@/data/tours.json"
 
 // utilities
-import { formatNumber } from '@/utilities/Utils';
+import { formatNumber } from '@/lib/Utils';
 
 // packages
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
