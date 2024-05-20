@@ -182,14 +182,14 @@ export default function Contact(): JSX.Element {
                             autoComplete='off'
                             value={formData.name}
                             onChange={handleChange}
-                            className={`w-full ${formErrors.name ? "border-[red]" : "border-gray-300"}  bg-black text-gray-300 focus:border-custom-pink ease-in-out duration-300 outline-none transition peer-focus:text-white pr-6`}
+                            className={`w-full ${formErrors.name ? "border-red-600" : "border-gray-300"}  bg-black text-gray-300 focus:border-custom-pink ease-in-out duration-300 outline-none transition peer-focus:text-white pr-6`}
                         />
                         
                         <div className={`${formErrors.name ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute right-0 top-5 z-10`} title={formErrors.name}>
                             <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
                         </div>
                         
-                        <span className={`${formErrors.name ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute text-[red] text-[12px] left-[0.75rem] top-[3.75rem]`}>{formErrors.name}</span>
+                        <span className={`${formErrors.name ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute text-red-600 text-[12px] left-[0.75rem] top-[3.75rem]`}>{formErrors.name}</span>
                     </div>
                     <div className='flex flex-col relative w-full sm:w-[220px] md:w-[260px]'>
                         <FloatingLabel 
@@ -201,13 +201,13 @@ export default function Contact(): JSX.Element {
                             value={formData.email}
                             onChange={handleChange}
                             autoComplete='off'
-                            className={`w-full ${formErrors.email ? "border-[red]" : "border-gray-300"}  bg-black text-gray-300 focus:border-custom-pink ease-in-out duration-300 outline-none transition peer-focus:text-white pr-6`}
+                            className={`w-full ${formErrors.email ? "border-red-600" : "border-gray-300"}  bg-black text-gray-300 focus:border-custom-pink ease-in-out duration-300 outline-none transition peer-focus:text-white pr-6`}
                         />
                         <div className={`${formErrors.email ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute right-0 top-5 z-10`} title={formErrors.email}>
                             <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
                         </div>
                         
-                        <span className={`${formErrors.email ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute text-[red] text-[12px] left-[0.75rem] top-[3.75rem]`}>{formErrors.email}</span>
+                        <span className={`${formErrors.email ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute text-red-600 text-[12px] left-[0.75rem] top-[3.75rem]`}>{formErrors.email}</span>
                     </div>
                     
                     <div className='flex flex-col sm:gap-0 gap-10 sm:flex-row justify-between '>

@@ -18,6 +18,7 @@ interface StoreItem {
     type: string;
     color: string;
     price: number;
+    inStock: boolean;
     popularity: number;
     gallery: string[];
 }
@@ -253,6 +254,13 @@ function ItemCard({ item }: ItemCardProps) {
                         className="object-cover"
                         priority
                     />
+                    {!item.inStock && 
+                    <div className='absolute h-full w-full flex justify-center items-center'>
+                    <span className='text-red-600 border-2 sm:border-4 border-red-600 py-1 px-2 sm:py-2 text-sm sm:px-4 font-bold md:text-xl rotate-[-30deg] min-[415px]:text-md'>
+                        OUT OF STOCK
+                    </span>
+                    </div>
+                    }
                 </div>
             </Suspense>
             <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
