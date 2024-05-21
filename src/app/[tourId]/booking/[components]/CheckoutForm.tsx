@@ -11,10 +11,13 @@ type CheckoutFormProps = {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string)
 
 const appearance = {
-    theme: 'flat',
+    theme: 'stripe',
+    labels: 'floating',
     variables: {
-    
-        colorText: '#eeeeee',
+        colorPrimary: '#ec2aa2',
+        colorText: '#ffffff',
+        colorBackground: '#000000',
+        fontFamily: 'Poppins, system-ui, sans-serif'
         
       }
   };
