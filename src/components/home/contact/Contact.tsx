@@ -239,7 +239,6 @@ export default function Contact(): JSX.Element {
                             />
                         </div>
                     </div>
-                    {/* <button type="submit" className='text-white py-4 '>Submit</button> */}
                     <button type="submit" className={`${submittable ? "hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px] my-2`}
                     title={submittable ? "" : "Please fill out each field in the form correctly"}
                     >
