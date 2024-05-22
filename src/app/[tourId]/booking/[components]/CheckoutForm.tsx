@@ -15,7 +15,7 @@ type CheckoutFormProps = {
         title: string
         price: number
         duration: number
-        id: string
+        id: number
     },
     clientSecret: string
 }
@@ -78,7 +78,7 @@ export default function CheckoutForm({ tour, clientSecret }: CheckoutFormProps){
     )
 }
 
-function Form({ price, tourId }: { price: number, tourId: string }){
+function Form({ price, tourId }: { price: number, tourId: number }){
     const stripe = useStripe()
     const elements = useElements()
     const [isLoading, setIsLoading] = useState(false)
