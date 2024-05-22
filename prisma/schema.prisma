@@ -17,3 +17,11 @@ model Reservation {
   numberInGroup Int
   createdAt     DateTime   @default(now())
 }
+
+model Booking {
+  tourId        String     @id  
+  email         String   
+  destination   String
+  createdAt     DateTime   @default(now())
+  price         Int
+}

@@ -1,14 +1,24 @@
 "use client"
 
-import { Elements, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
+import userBookingExists from "@/actions/userBookingExists"
+import { Elements, LinkAuthenticationElement, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 import Image from "next/image"
 import Link from "next/link"
+import { FormEvent, useState } from "react"
 
-// type CheckoutFormProps = {
-//     tour: {},
-//     clientSecret: string
-// }
+type CheckoutFormProps = {
+    tour: {
+        destination: string
+        imageSrc: string
+        region: string
+        title: string
+        price: number
+        duration: number
+        id: string
+    },
+    clientSecret: string
+}
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string)
 
@@ -19,12 +29,12 @@ const appearance = {
         colorPrimary: '#ec2aa2',
         colorText: '#ffffff',
         colorBackground: '#000000',
-        fontFamily: 'Poppins, system-ui, sans-serif'
-        
+        fontFamily: 'Poppins, system-ui, sans-serif',
+        colorDanger: '#d32f2f',
       }
   };
 
-export default function CheckoutForm({ tour, clientSecret }){
+export default function CheckoutForm({ tour, clientSecret }: CheckoutFormProps){
     return (
         <div className="pb-28 px-10">
             <Link href={`/${tour.destination}`} className="mt-24 mb-10 bg-black flex flex-row items-center w-[230px] hover:opacity-85 ease-in-out duration-300">
@@ -59,22 +69,71 @@ export default function CheckoutForm({ tour, clientSecret }){
                     </div>
                 </div>
             </div>
-            <h1 className="text-[28px] font-semibold text-white mt-10 mb-6">Checkout</h1>
+            <h1 className="text-[28px] font-semibold text-white mt-10 mb-4">Checkout</h1>
             <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
-                <Form />
+                <Form price={tour.price} tourId={tour.id}/>
             </Elements>
-            <button className='font-semibold mt-8 text-white w-full py-2 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink hover:opacity-85 ease-in-out duration-300'>
-                Purchase - £{tour.price}
-            </button>
+            
         </div>
     )
 }
 
-function Form(){
+function Form({ price, tourId }: { price: number, tourId: string }){
     const stripe = useStripe()
     const elements = useElements()
+    const [isLoading, setIsLoading] = useState(false)
+    const [errorMessage, setErrorMessage] = useState<string>()
+    const [email, setEmail] = useState<string>()
 
+    async function handleSubmit(e: FormEvent){
+        e.preventDefault()
+
+        if (stripe == null || elements == null || email == null) return
+
+        setIsLoading(true)
+
+        const bookingExists = await userBookingExists(email, tourId)
+
+        if (bookingExists) {
+            setErrorMessage(
+              "You have already booked this tour. Use a different email if you would like to book another spot."
+            )
+            setIsLoading(false)
+            return
+          }
+
+        stripe
+            .confirmPayment({
+                elements,
+                confirmParams: {
+                return_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/stripe/purchase-success`,
+                },
+            })
+            .then(({ error }) => {
+                if (error.type === "card_error" || error.type === "validation_error") {
+                setErrorMessage(error.message)
+                } else {
+                setErrorMessage("An unknown error occurred")
+                }
+            })
+            .finally(() => setIsLoading(false))
+    }
+        
+    
     return (
-        <PaymentElement />
+        <form onSubmit={handleSubmit} className="">
+            {errorMessage && <p className="text-red-600 font-semibold mb-2">{errorMessage}</p>}
+            <PaymentElement />
+            <div className="mt-4">
+                <LinkAuthenticationElement 
+                onChange={(e) => setEmail(e.value.email)}
+                />
+            </div>
+            <button className={`font-semibold mt-8 text-white w-full py-2 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink ${isLoading ? "opacity-70 hover:opacity-70" : "hover:opacity-85"}  ease-in-out duration-300`}
+            disabled={stripe == null || elements == null || isLoading}
+            >
+                {isLoading ? "Purchasing..." : `Purchase - £${price}`}
+            </button>
+        </form>
     )
 }
