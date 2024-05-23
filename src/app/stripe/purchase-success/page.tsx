@@ -18,7 +18,7 @@ export default async function SuccessPage({ searchParams }: { searchParams: { pa
 
     const tour = toursData.tours.find(tour => {
         return tour.id === parseInt(paymentIntent.metadata.tourId)
-    }) // find tour in data using search param
+    }) // find tour in data using payment intent metadata
 
     if (tour == null) return NotFound()
 
