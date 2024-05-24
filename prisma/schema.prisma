@@ -19,7 +19,7 @@ model Reservation {
 }
 
 model Booking {
-  id            String    @default(cuid()) @id
+  id            String     @id
   tourId        Int     
   email         String   
   destination   String

@@ -17,6 +17,7 @@ export async function POST(req: NextRequest){
         const tourId = parseInt(charge.metadata.tourId)
         const email = charge.billing_details.email
         const price = charge.amount
+        const id = charge.id
 
         const tour = toursData.tours.find(tour => {
             return tour.id === tourId
@@ -28,6 +29,7 @@ export async function POST(req: NextRequest){
         try {
             await prisma.booking.create({
                 data: {
+                    id,
                     tourId, 
                     email,
                     destination: tour.region,

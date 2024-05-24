@@ -7,6 +7,7 @@ import storeItemsData from "@/data/storeItems.json"
 // backend
 import Stripe from "stripe"
 import { formatNumber } from "@/lib/Utils";
+import prisma from "@/lib/prisma"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
@@ -23,6 +24,12 @@ export default async function SuccessPage({ searchParams }: { searchParams: { pa
     if (tour == null) return NotFound()
 
     const isSuccess = paymentIntent.status === "succeeded"
+
+    const booking = await prisma.booking.findUnique({
+        where: {
+          id: paymentIntent.latest_charge,
+        },
+      })
     
     return (
         <div className="w-full min-h-[90vh] bg-black flex justify-center">
@@ -36,7 +43,7 @@ export default async function SuccessPage({ searchParams }: { searchParams: { pa
                         <path fill="#e53935" d="M12 17q.425 0 .713-.288T13 16t-.288-.712T12 15t-.712.288T11 16t.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"></path>
                     </svg>}
                 </div>
-                {isSuccess ? <p className="text-white text-[16px] mb-10 mt-4">You're all set! A booking confirmation has been sent to </p> :
+                {isSuccess ? <p className="text-white text-[16px] mb-10 mt-4">You're all set! A booking confirmation has been sent to <span className="underline">{booking.email}</span></p> :
                 <p className="text-white text-[16px] mb-10 mt-4">Looks like something went wrong... Click <Link className="text-custom-pink underline" href={`/${tour.region}/booking`}>here</Link> to try again.</p> }
                 <div className="w-full h-[180px] hidden sm:flex bg-gradient-to-r from-custom-orange to-custom-pink p-[2px] rounded-2xl">
                     <div className="bg-black w-full h-full rounded-2xl flex flex-row overflow-hidden">
@@ -79,7 +86,7 @@ export default async function SuccessPage({ searchParams }: { searchParams: { pa
                                                 alt="cart item"
                                                 fill
                                                 sizes='(width: 100%)'
-                                                className=""
+                                                priority
                                             />
                                         </div>
                                         <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-black to-transparent opacity-70" />
