@@ -1,11 +1,12 @@
+"use client"
+
 // next components
 import Link from "next/link"
 import Image from "next/image"
 
-
 // hooks
 import useDetectSection from "@/hooks/useDetectSection"
-import { useState, useEffect, useRef, useContext } from "react"
+import { useState, useEffect, useRef, useContext, FormEvent } from "react"
 import useMobileView from "@/hooks/useMobileView";
 
 // context
@@ -15,7 +16,20 @@ import { ActiveSectionContext } from "@/context/ActiveSectionContext"
 import Swal from 'sweetalert2'
 import { Reveal } from "@/context/Reveal"
 import { Slide } from "@/context/Slide"
+import { FloatingLabel } from "flowbite-react";
 
+// styles
+import "./ContactStyles.css"
+import addReservation from "@/actions/addReservation";
+
+export type FormData = {
+    name: string;
+    email: string;
+    destination: string;
+    numberInGroup: number;
+}
+
+const destinations = ["Northern Thailand", "Southern Thailand", "Bali", "Philippines", "Vietnam"]
 
 export default function Contact(): JSX.Element {
 
@@ -23,14 +37,15 @@ export default function Contact(): JSX.Element {
     const contactRef = useRef<HTMLDivElement>(null)
     const [isInView] = useDetectSection(contactRef) // detect whether section is in view
     const isMobileView = useMobileView();
-    const [formData, setFormData] = useState({
+    const initFormData = {
         name: "",
         email: "",
-        number: 1
-    });
-    const [nameValid, setNameValid] = useState(true) // state to track whether name input is valid
-    const [emailValid, setEmailValid] = useState(true)
-    let submittable = formData.name.length > 0 && formData.email !== "" && formData.email.includes("@") && formData.email.includes(".com")
+        destination: "Northern Thailand",
+        numberInGroup: 1
+    }
+    const [formData, setFormData] = useState<FormData>(initFormData)
+    const [formErrors, setFormErrors] = useState({ name: "", email: "" });
+    const [submittable, setSubmittable] = useState(false);
 
     // set active section when it's in view
     useEffect(() => {
@@ -40,72 +55,96 @@ export default function Contact(): JSX.Element {
         }
     }, [isInView, setActiveSection, isMobileView])
 
-    function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-        const { name, value } = e.target;
+    useEffect(() => {
+        const isValid = !Object.values(formErrors).some(error => error !== "") &&
+                        formData.name !== "" &&
+                        formData.email !== "";
+        setSubmittable(isValid);
+    }, [formErrors, formData.name, formData.email]);
 
-        // group number edge cases
-        if (name === "number") {
-            const parsedValue = parseInt(value, 10); // Parse value to integer
-            if (isNaN(parsedValue)) return; // Ensure parsedValue is a valid number
-            if (parsedValue < 1) {
-                setFormData({
-                    ...formData,
-                    [name]: 1
-                });
-                return
-            }
-            if (parsedValue > 4) {
-                setFormData({
-                    ...formData,
-                    [name]: 4
-                });
-                return
-            }
+    const validateName = (name: string) => {
+        if (name.trim() === "") {
+            return "Name is required";
         }
-
-        if (formData.name.length > 0) {
-            setNameValid(true)
-        }
-
-        if (formData.email !== "" && formData.email.includes("@") && formData.email.includes(".co")) {
-            setEmailValid(true)
-        }
-
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        return "";
     };
 
-    function handleSubmit(e: React.SyntheticEvent) {
-        e.preventDefault()
+    const validateEmail = (email: string) => {
+        if (email.trim() === "") {
+            return "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return "Please enter a valid email address";
+        }
+        return "";
+    };
+    
 
-        if (formData.name === "") {
-            setNameValid(false)
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value: rawValue } = e.target;
+        let value: string | number = rawValue;
+
+        // Validate inputs
+        let error = "";
+        if (name === "name") {
+            error = validateName(value);
+        } else if (name === "email") {
+            error = validateEmail(value);
         }
 
-        if (formData.email == "" || !formData.email.includes("@") || !formData.email.includes(".com")) {
-            setEmailValid(false)
+        setFormErrors(prevErrors => ({ ...prevErrors, [name]: error }));
+
+        if (name === "numberInGroup") {
+            value = parseInt(rawValue);
+            if (isNaN(value)) {
+                value = 1;  // Default to 1 if conversion fails
+            }
+            value = Math.max(1, Math.min(value, 4));  // Ensure value stays between 1 and 4
+        }
+    
+        setFormData((preState) => ({
+          ...preState,
+          [name]: value,
+        }));
+      };
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        
+        
+        if (!submittable) {
+            const nameError = validateName(formData.name);
+            const emailError = validateEmail(formData.email);
+            setFormErrors({ name: nameError, email: emailError });
+            return; // Prevent submission if form is not submittable
         }
 
-        if (!submittable) return
+        try{
+            await addReservation(formData)
+            Swal.fire({
+                title: "Submitted!",
+                text: "We'll get back to you with details when tours are available for booking.",
+                icon: "success",
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                scrollbarPadding: false,
+            });
+        } catch (error){
+            console.error(error)
+            Swal.fire({
+                title: "Error!",
+                text: "Looks like something stopped that reservation from sending...",
+                icon: "error",
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                scrollbarPadding: false,
+            });
+        }
 
-        // fire off success animation
-        Swal.fire({
-            title: "Submitted!",
-            text: "We'll get back to you with details when tours are available for booking.",
-            icon: "success",
-            timer: 5000,
-            timerProgressBar: true,
-            showConfirmButton: false,
-            scrollbarPadding: false,
-        });
-        setFormData({
-            name: "",
-            email: "",
-            number: 1
-        })
-    }
+        setFormData(initFormData)
+    };
 
     return (
         <div className="bg-black w-full min-h-[972px] xl:pb-0 pb-28 xl:pt-20 pt-60 flex flex-col-reverse  gap-24 xl:gap-0 xl:flex-row items-center justify-center" id="contact" ref={contactRef}>
@@ -130,65 +169,89 @@ export default function Contact(): JSX.Element {
                 </Reveal>
             </div>
             {/* form */}
-            <Reveal><div className="flex flex-col justify-between px-10 sm:px-0 sm:w-[500px] md:w-[600px] h-[650px] sm:h-[500px] bg-black bg-opacity-50 rounded-3xl z-30 ">
-                <h1 className="font-semibold text-[32px] md:text-[44px] text-white sm:mb-0 mb-8">RESERVE A SPOT</h1>
-                <form action="" className="flex flex-col justify-between h-[450px] sm:h-[300px] relative" autoComplete="off">
-                    <input type="text" autoComplete="off" name="name" id="nameInput" placeholder="" className={`w-[240px]  text-gray-300 border-b ${!nameValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 outline-none !bg-black`}
-                        value={formData.name}
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="nameInput" className="absolute text-white -top-8">Full name</label>
-
-                    <div className={`absolute top-1 left-56 ${nameValid ? "opacity-0 invisible" : "opacity-100 visible"} transition-opacity ease-in-out duration-300`} title="You haven't entered a valid name">
-                        <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
+            <Reveal><div className='flex flex-col px-10 sm:px-0 sm:w-[500px] md:w-[600px] h-[600px] sm:h-[500px]'>
+                <h1 className="font-semibold text-[32px] md:text-[44px] text-white mb-4">RESERVE A SPOT</h1>
+                <form onSubmit={handleSubmit} className='flex flex-col justify-around h-[600px] sm:h-[500px]'>
+                    <div className='flex flex-col relative w-full sm:w-[220px] md:w-[260px]'>
+                        <FloatingLabel 
+                            variant="filled" 
+                            label="Your name"  
+                            type="text"
+                            id="name"
+                            name='name'
+                            autoComplete='off'
+                            value={formData.name}
+                            onChange={handleChange}
+                            className={`w-full ${formErrors.name ? "border-red-600" : "border-gray-300"}  bg-black text-gray-300 focus:border-custom-pink ease-in-out duration-300 outline-none transition peer-focus:text-white pr-6`}
+                        />
+                        
+                        <div className={`${formErrors.name ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute right-0 top-5 z-10`} title={formErrors.name}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
+                        </div>
+                        
+                        <span className={`${formErrors.name ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute text-red-600 text-[12px] left-[0.75rem] top-[3.75rem]`}>{formErrors.name}</span>
                     </div>
-
-                    <div className={`absolute top-[7rem] sm:top-[5.75rem] left-56 ${emailValid ? "opacity-0 invisible" : "opacity-100 visible"} transition-opacity ease-in-out duration-300`} title="Please include an valid email address">
-                        <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
+                    <div className='flex flex-col relative w-full sm:w-[220px] md:w-[260px]'>
+                        <FloatingLabel 
+                            variant="filled" 
+                            label="Email"  
+                            type="text"
+                            id="email"
+                            name='email'
+                            value={formData.email}
+                            onChange={handleChange}
+                            autoComplete='off'
+                            className={`w-full ${formErrors.email ? "border-red-600" : "border-gray-300"}  bg-black text-gray-300 focus:border-custom-pink ease-in-out duration-300 outline-none transition peer-focus:text-white pr-6`}
+                        />
+                        <div className={`${formErrors.email ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute right-0 top-5 z-10`} title={formErrors.email}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path fill="red" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22"></path></svg>
+                        </div>
+                        
+                        <span className={`${formErrors.email ? "opacity-100" : "opacity-0"} ease-in-out duration-300 transition-opacity absolute text-red-600 text-[12px] left-[0.75rem] top-[3.75rem]`}>{formErrors.email}</span>
                     </div>
-
-                    <input type="text" name="email" autoComplete="off" id="emailInput" placeholder="" className={`w-[240px] text-gray-300 border-b ${!emailValid ? "border-[red]" : "border-white"} ease-in-out duration-300 pl-2 pr-6 pb-2 mt-2 outline-none bg-black`}
-                        value={formData.email}
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="emailInput" className="absolute text-white top-[5rem] sm:top-[3.75rem]">Email</label>
-                    <div className="flex flex-col gap-12 sm:gap-0 sm:flex-row w-full sm:justify-between sm:items-center">
-                        <div className="w-[240px]">
-                            <select id="country" name="country" className="block w-full p-2 text-gray-300 bg-black border-white border-b outline-none">
-                                <option>Northern Thailand</option>
-                                <option>Southern Thailand</option>
-                                <option>Vietnam</option>
-                                <option>Bali</option>
-                                <option>Philippines</option>
+                    
+                    <div className='flex flex-col sm:gap-0 gap-10 sm:flex-row justify-between '>
+                        <div className='flex flex-col w-full sm:w-[220px] md:w-[260px]'>
+                            <label htmlFor="destination" className='text-white text-sm pl-2'>Choose your destination:</label>
+                            <select 
+                                name="destination" 
+                                id="destination"
+                                value={formData.destination}
+                                onChange={handleChange}
+                                className='w-fullpy-2 mt-2 outline-none focus:outline-none bg-transparent border-b border-gray-300 text-gray-300 input'
+                            >
+                                {destinations.map(destination => (
+                                    <option key={destination} value={destination} className='bg-black'>{destination}</option>
+                                ))}
                             </select>
                         </div>
-                        <input type="number" name="number" id="numberInput" min={1} max={4} className="mt-2 sm:mt-0 w-[240px] text-gray-300 border-b border-white p-2 outline-none bg-black"
-                            value={formData.number}
-                            onChange={handleInputChange}
-                        />
+                        <div className='flex flex-col w-full sm:w-[220px] md:w-[260px]'>
+                            <label htmlFor="numberInGroup" className='text-white text-sm pl-2'>Number in Group:</label>
+                            <input
+                                type="number"
+                                name="numberInGroup"
+                                id="numberInGroup"
+                                min="1"
+                                max="4"
+                                value={formData.numberInGroup}
+                                onChange={handleChange}
+                                className='w-full py-2 mt-2 outline-none bg-transparent border-b border-gray-300 text-gray-300 input'
+                            />
+                        </div>
                     </div>
-                    <label htmlFor="country" className="absolute text-white top-[10.5rem] sm:top-[9.25rem]">Destination</label>
-                    <label htmlFor="numberInput" className="absolute text-white left-0 sm:left-auto top-[17rem] sm:right-[140px] sm:top-[9.25rem]">No. of people</label>
-                    <div className={`${submittable ? "cursor-pointer hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px]`}
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                                handleSubmit(e)
-                            }
-                        }}
-                        onClick={(e) => handleSubmit(e)}
-                        title={submittable ? "" : "Please fill out each field in the form correctly"}
+                    <button type="submit" className={`${submittable ? "hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px] my-2`}
+                    title={submittable ? "" : "Please fill out each field in the form correctly"}
                     >
                         <div className={`w-full h-full rounded-md py-[6px] ${submittable ? "bg-transparent" : "bg-black"}`}>
                             <div className={`w-full flex justify-center items-center ${submittable ? "text-white" : "bg-gradient-to-r from-custom-orange to-custom-pink text-transparent bg-clip-text"}`}>
                                 SUBMIT
                             </div>
                         </div>
-                    </div>
-                </form>
-                <p className="text-white text-[12px] sm:text-[14px]">
+                    </button>
+                    <p className="text-white text-[12px] sm:text-[14px]">
                     Please note. Jolly Roger Tours is currently going through the incorporation and licensing process in the UK and will launch officially in late 2024.
-                </p>
+                    </p>
+                </form>
             </div></Reveal>
 
         </div>

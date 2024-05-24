@@ -1,0 +1,28 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Reservation {
+  id            String       @default(cuid()) @id
+  name          String
+  email         String   
+  destination   String
+  numberInGroup Int
+  createdAt     DateTime   @default(now())
+}
+
+model Booking {
+  id            String     @id
+  tourId        Int     
+  email         String   
+  destination   String
+  createdAt     DateTime   @default(now())
+  price         Int
+}

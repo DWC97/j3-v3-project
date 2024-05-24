@@ -16,7 +16,7 @@ import { useClickOutside } from '@/hooks/useClickOutside';
 import toursData from "@/data/tours.json"
 
 // utilities
-import { formatNumber } from '@/utilities/Utils';
+import { formatNumber } from '@/lib/Utils';
 
 // packages
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
@@ -85,20 +85,6 @@ export default function TourDetails({ params }: { params: { tourId: string } }) 
         else {
             return "#FFDD57"
         }
-    }
-
-    // animation for booking request
-    function handleSubmit() {
-        Swal.fire({
-            title: "Sorry!",
-            text: "Booking is currently unavailable while we sort out our licensing.",
-            icon: "error",
-            timer: 5000,
-            footer: '<a className="text-custom-pink" href="#contact">Click here to reserve a spot</a>',
-            timerProgressBar: true,
-            showConfirmButton: false,
-            scrollbarPadding: false,
-        });
     }
 
     function handlePrev(): void {
@@ -430,14 +416,8 @@ export default function TourDetails({ params }: { params: { tourId: string } }) 
                                         </div>
                                     </div>
                                 </div>
-                                <button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px] hover:opacity-85 ease-in-out duration-300'
-                                    onClick={handleSubmit}
-                                    onKeyDown={(e) => {
-                                        if (e.key === "Enter") {
-                                            handleSubmit()
-                                        }
-                                    }}
-                                >BOOK NOW</button>
+                                <Link href={`/${params.tourId}/booking`}><button className='font-semibold  text-white w-full py-4 rounded-md bg-gradient-to-r from-custom-orange to-custom-pink text-[24px] hover:opacity-85 ease-in-out duration-300'
+                                >BOOK NOW</button></Link> 
                             </div>
                         </div>
                     </div>

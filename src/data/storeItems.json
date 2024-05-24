@@ -5,6 +5,7 @@
             "name": "JR Tee",
             "type": "t-shirt",
             "price": 25,
+            "inStock": true,
             "color": "Black",
             "description": "The modern basic t-shirt of every man’s dreams. It features a contemporary look with a thin collar rib for a modern appearance, tubular construction for movement and short sleeves. Made of 100% ringspun cotton, this t-shirt offers softness, comfort and a premium printing surface. If your style is modern, this is your tee.",
             "sizes": true,
@@ -28,6 +29,7 @@
             "name": "Bangkok Tee",
             "type": "t-shirt",
             "price": 25,
+            "inStock": true,
             "color": "White",
             "description": "This single jersey t-shirt is made of high-quality 100% ring-spun cotton with a soft touch. It is made of extra-light fabric for the ultimate comfort, the perfect choice for those who prefer a lighter feel.",
             "sizes": true,
@@ -50,6 +52,7 @@
             "name": "JR Hoodie",
             "type": "hoodie",
             "price": 35,
+            "inStock": true,
             "color": "Black",
             "description": "This iconic unisex hoodie sweatshirt helps you tackle cold seasons in style. The double-layered hood adds soft coziness to the mix while the kangaroo pocket in the front brings utility to everyday life. Its organic fabric is tight-knit, making for a high-end feel and better durability with less than 5% shrinkage.",
             "sizes": true,
@@ -74,6 +77,7 @@
             "name": "JR Tank Top",
             "type": "tank-top",
             "price": 25,
+            "inStock": true,
             "color": "Black",
             "description": "Show off those arms in this nice and airy men’s tank top. It’s made of breathable material to make it nice and comfortable for long runs or hard workouts at the gym. It features a self-fabric binding on the collar and armholes with narrow double topstitching, plus a bottom hem with a narrow double topstitch. Your gym gear just got an upgrade.",
             "sizes": true,
@@ -90,13 +94,14 @@
                 "/store/items/JR-Tank-Top/3.jpg",
                 "/store/items/JR-Tank-Top/4.jpg"
             ],
-            "popularity": 9
+            "popularity": 10
         },
         {
             "id": 5,
             "name": "JR Fanny Pack",
             "type": "accessory",
             "price": 40,
+            "inStock": true,
             "color": "Black",
             "description": "Get with the trend with this lightweight bag that includes an adjustable strap to fit any waist while lying flat against your body. The back panel is made to protect from wear and tear and is easy to clean. It also includes a back zipper, an inside zipper pocket, and 3 cardholders. It also features an adjustable handle with a clip and a liner with an inside divider for organizing. ",
             "sizes": false,
@@ -119,6 +124,7 @@
             "name": "JR Phone Case",
             "type": "accessory",
             "price": 20,
+            "inStock": false,
             "color": "Black",
             "description": "Personalize Apple iPhone, Samsung Galaxy, and Google Pixel phones with a premium-quality protective phone case. Every case has double layers for extra durability and protection.",
             "sizes": false,
@@ -134,7 +140,7 @@
                 "/store/items/JR-Phone-Case/2.jpg",
                 "/store/items/JR-Phone-Case/3.jpg"
             ],
-            "popularity": 10
+            "popularity": 9
         }
     ]
     
