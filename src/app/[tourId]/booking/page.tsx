@@ -29,9 +29,6 @@ export default async function BookingPage({ params }: { params: { tourId: string
 
     return (
         <div className="w-full min-h-[90vh] bg-black flex justify-center items-center">
-            {/* <div className="w-full h-[250px] bg-black text-white font-bold text-[32px] md:text-[40px] px-10 xl:px-20 2xl:px-60 flex items-end mb-10">
-                <h1 className="pb-4">{tour.region.toUpperCase().replace("-", " ")} - {tour.title.toUpperCase()}</h1>
-            </div> */}
             <div className="w-[800px]">
                 <CheckoutForm tour={tour} clientSecret={paymentIntent.client_secret}/>
             </div>

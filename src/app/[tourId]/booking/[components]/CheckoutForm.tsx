@@ -10,7 +10,6 @@ import { FormEvent, useState } from "react"
 
 type CheckoutFormProps = {
     tour: {
-        destination: string
         imageSrc: string
         region: string
         title: string
@@ -21,9 +20,22 @@ type CheckoutFormProps = {
     clientSecret: string
 }
 
+type Appearance = {
+    theme?: 'stripe' | 'night' | 'flat'
+    labels?: 'floating' | 'above'
+    variables?: {
+        colorPrimary?: string
+        colorText?: string
+        colorBackground?: string
+        fontFamily?: string
+        colorDanger?: string
+        [key: string]: string | undefined
+    }
+}
+
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string)
 
-const appearance = {
+const appearance: Appearance = {
     theme: 'stripe',
     labels: 'floating',
     variables: {
@@ -32,8 +44,8 @@ const appearance = {
         colorBackground: '#000000',
         fontFamily: 'Poppins, system-ui, sans-serif',
         colorDanger: '#d32f2f',
-      }
-  };
+    }
+};
 
 export default function CheckoutForm({ tour, clientSecret }: CheckoutFormProps){
     return (
