@@ -19,7 +19,8 @@ model Reservation {
 }
 
 model Booking {
-  tourId        Int     @id  
+  id            String    @default(cuid()) @id
+  tourId        Int     
   email         String   
   destination   String
   createdAt     DateTime   @default(now())
