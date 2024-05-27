@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from "next/image";
 
 // hooks
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { useClickOutside } from '@/hooks/useClickOutside';
 
 // data
@@ -219,10 +219,7 @@ export default function Store() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-10 w-3/4 sm:pl-0 pl-4">
                     {sortedItems.length > 0 ? sortedItems.map(item => {
                         return (
-                            <Suspense fallback={<ItemCardSkeleton />} key={item.id}>
-                                <ItemCard item={item} />
-                            </Suspense>
-
+                            <ItemCard key={item.id} item={item} />
                         )
                     })
                         :
@@ -242,45 +239,52 @@ interface ItemCardProps {
 
 function ItemCard({ item }: ItemCardProps) {
 
+    const [isLoading, setIsLoading] = useState(true);
+
     return (
-        <Link href={`/store/${item.name}`} className="flex flex-col justify-between hover:opacity-85 ease-in-out duration-300">
-            <Suspense fallback={<div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden bg-custom-pink" />}>
-                <div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden">
-                    <Image
-                        src={item.gallery[0]}
-                        alt="store item"
-                        fill
-                        sizes='(width: 100%)'
-                        className="object-cover"
-                        priority
-                    />
-                    {!item.inStock && 
+        <Link href={`/store/${item.name}`} className="relative flex flex-col justify-between hover:opacity-85 ease-in-out duration-300">
+
+            {isLoading && 
+            <div className="z-[100] absolute top-0 left-0 w-full aspect-[5/6] rounded-t-lg overflow-hidden bg-gray-300 animate-pulse" />
+            }
+            <div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden">
+                <Image
+                    src={item.gallery[0]}
+                    alt="store item"
+                    fill
+                    sizes='(width: 100%)'
+                    className="object-cover"
+                    priority
+                    onLoad={() => setIsLoading(false)} 
+                />
+                {!item.inStock && !isLoading &&
                     <div className='absolute h-full w-full flex justify-center items-center'>
                     <span className='text-red-600 border-2 sm:border-4 border-red-600 py-1 px-2 sm:py-2 text-sm sm:px-4 font-bold md:text-xl rotate-[-30deg] min-[415px]:text-md'>
                         OUT OF STOCK
                     </span>
                     </div>
-                    }
-                </div>
-            </Suspense>
-            <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
-                <span>{item.name}</span>
-                <span className="font-semibold">£{item.price}</span>
+                }
+                
             </div>
-            <span className="text-gray-300">{item.color}</span>
-        </Link>
-    )
-}
 
-function ItemCardSkeleton() {
-    return (
-        <div className="flex flex-col justify-between">
-            <div className="w-full aspect-[5/6] rounded-t-lg relative overflow-hidden bg-custom-pink" />
-            <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
-                <div className="w-1/2 h-4 bg-custom-pink" />
-                <div className="w-8 h-4 bg-custom-pink" />
+            {isLoading ? 
+            <>
+            <div className="flex flex-row  justify-between items-center text-white pt-4 pb-1 animate-pulse">
+                <div className="w-1/2 h-4 bg-gray-400 rounded-sm" />
+                <div className="w-8 h-4 bg-gray-500 rounded-sm" />
             </div>
-            <div className="w-16 h-4 bg-custom-pink" />
+            <div className="w-16 h-4 bg-gray-400 animate-pulse rounded-sm" />
+            </>
+            :
+            <>
+            <div className="flex flex-row justify-between items-center text-white pt-4 pb-1">
+            <span>{item.name}</span>
+            <span className="font-semibold">£{item.price}</span>
         </div>
+        <span className="text-gray-300">{item.color}</span>
+        </>
+            }
+            
+        </Link>
     )
 }
