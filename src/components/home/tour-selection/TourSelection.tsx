@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image';
 
 // hooks
-import { useRef, useEffect, useContext } from "react"
+import { useRef, useEffect, useContext, useState } from "react"
 import useMobileView from "@/hooks/useMobileView";
 import useDetectSection from '@/hooks/useDetectSection';
 
@@ -96,52 +96,10 @@ export default function TourSelection() {
                     >
                         {toursData.tours.map((tour: Tour) => {
                             return (
+                                
                                 <SwiperSlide key={tour.id}>
-
-                                    <Link className='card-container' href={tour.available ? `/${tour.region}` : "#"} onClick={(e) => {
-                                        if (tour.available) return
-                                        e.preventDefault()
-                                        Swal.fire({
-                                            title: "Sorry!",
-                                            text: "Information for this tour is currently unavailable.",
-                                            icon: "error",
-                                            timer: 5000,
-                                            timerProgressBar: true,
-                                            showConfirmButton: false,
-                                            scrollbarPadding: false,
-                                        });
-                                    }}>
-                                        <div className='image'>
-                                            <Image
-                                                src={tour.imageSrc}
-                                                alt="location"
-                                                fill
-                                                sizes='(height: 100%)'
-                                                className="image"
-                                            />
-                                        </div>
-                                        <div className='card-content'>
-                                            <span className='region'>{tour.region.toUpperCase().replace("-", " ")}</span>
-                                            <span className='title'>{tour.title.toUpperCase()}</span>
-                                            <div className="hidden-content flex flex-col">
-                                                {tour.available ?
-                                                    (<div className='flex flex-row items-center justify-between'>
-                                                        <p className='text-sm text-gray-200'>Learn more</p>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className='-mr-4' width={20} height={20} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
-                                                    </div>) :
-                                                    (<div className='flex flex-row items-center justify-between'>
-                                                        <p className='text-sm text-gray-200'>Currently unavailable</p>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className='-mr-4' width={20} height={20} viewBox="0 0 21 21"><g fill="none" fillRule="evenodd" stroke="red" strokeLinecap="round" strokeLinejoin="round" transform="translate(2 2)"><circle cx={8.5} cy={8.5} r={8}></circle><path d="M14 3L3 14"></path></g></svg>
-                                                    </div>)
-                                                }
-
-                                                <div className='flex flex-row justify-between items-center pb-3'>
-                                                    <p className='italic'>{tour.duration} days</p>
-                                                    <p className='font-semibold text-xl -mr-4'>{formatNumber(tour.price)}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
+                                    <TourCard tour={tour} key={tour.id} />
+                                    
                                 </SwiperSlide>
                             )
                         })}
@@ -161,5 +119,61 @@ export default function TourSelection() {
                 </Reveal>
             </div>
         </div>
+    )
+}
+
+function TourCard({ tour }){
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    return (
+
+            <Link className='card-container' href={tour.available ? `/${tour.region}` : "#"} onClick={(e) => {
+                if (tour.available) return
+                e.preventDefault()
+                Swal.fire({
+                    title: "Sorry!",
+                    text: "Information for this tour is currently unavailable.",
+                    icon: "error",
+                    timer: 5000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    scrollbarPadding: false,
+                });
+            }}>
+                <div className='image'>
+                    <Image
+                        src={tour.imageSrc}
+                        alt="location"
+                        fill
+                        sizes='(height: 100%)'
+                        className="image"
+                        onLoad={() => setIsLoading(false)} 
+                    />
+                </div>
+                {isLoading && <div className="absolute w-full h-full bg-gray-300 animate-pulse" />}
+                <div className='card-content'>
+                    <span className='region'>{tour.region.toUpperCase().replace("-", " ")}</span>
+                    <span className='title'>{tour.title.toUpperCase()}</span>
+                    <div className="hidden-content flex flex-col">
+                        {tour.available ?
+                            (<div className='flex flex-row items-center justify-between'>
+                                <p className='text-sm text-gray-200'>Learn more</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" className='-mr-4' width={20} height={20} viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path></svg>
+                            </div>) :
+                            (<div className='flex flex-row items-center justify-between'>
+                                <p className='text-sm text-gray-200'>Currently unavailable</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" className='-mr-4' width={20} height={20} viewBox="0 0 21 21"><g fill="none" fillRule="evenodd" stroke="red" strokeLinecap="round" strokeLinejoin="round" transform="translate(2 2)"><circle cx={8.5} cy={8.5} r={8}></circle><path d="M14 3L3 14"></path></g></svg>
+                            </div>)
+                        }
+
+                        <div className='flex flex-row justify-between items-center pb-3'>
+                            <p className='italic'>{tour.duration} days</p>
+                            <p className='font-semibold text-xl -mr-4'>{formatNumber(tour.price)}</p>
+                        </div>
+                    </div>
+                </div>
+            </Link>
+
     )
 }
