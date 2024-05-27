@@ -122,7 +122,11 @@ export default function TourSelection() {
     )
 }
 
-function TourCard({ tour }){
+interface TourCardProps {
+    tour: Tour;
+}
+
+function TourCard({ tour }: TourCardProps){
 
     const [isLoading, setIsLoading] = useState(true);
 
