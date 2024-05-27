@@ -21,6 +21,13 @@ import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import animationData from "@/animations/success.json"
 
 
+interface GalleryImageProps {
+    img: string;
+    i: number;
+    activeSlide: number;
+    setActiveSlide: (index: number) => void;
+}
+
 export default function ItemDetails({ params }: { params: { itemId: string } }) {
 
     const item = storeItemsData.items.find(item => {
@@ -203,19 +210,7 @@ export default function ItemDetails({ params }: { params: { itemId: string } }) 
                             <div className="grid grid-cols-2 lg:grid-cols-4 w-full gap-6">
                                 {item?.gallery.map((img, i) => {
                                     return (
-                                        <div key={i} className={`w-full object-contain rounded-md overflow-hidden cursor-pointer ease-in-out duration-300 ${activeSlide === i ? "border-2 border-custom-pink" : "border-2 border-transparent  hover:opacity-85"}`}
-                                            onClick={() => setActiveSlide(i)}
-                                        >
-                                            <div className="w-full overflow-hidden relative aspect-square">
-                                                <Image
-                                                    src={img}
-                                                    alt="cart item"
-                                                    fill
-                                                    sizes='(width: 100%)'
-                                                    className=""
-                                                />
-                                            </div>
-                                        </div>
+                                        <GalleryImage img={img} key={i} i={i} activeSlide={activeSlide} setActiveSlide={setActiveSlide} />
                                     )
                                 })}
                             </div>
@@ -253,6 +248,29 @@ export default function ItemDetails({ params }: { params: { itemId: string } }) 
                 :
                 <NotFound />
             }
+        </div>
+    )
+}
+
+function GalleryImage({ img, i, activeSlide, setActiveSlide }: GalleryImageProps){
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    return (
+        <div className={`w-full object-contain rounded-md overflow-hidden cursor-pointer ease-in-out duration-300 ${activeSlide === i ? "border-2 border-custom-pink" : "border-2 border-transparent  hover:opacity-85"}`}
+            onClick={() => setActiveSlide(i)}
+        >
+            <div className="w-full overflow-hidden relative aspect-square">
+                <Image
+                    src={img}
+                    alt="gallery image"
+                    fill
+                    sizes='(width: 100%)'
+                    className=""
+                    onLoad={() => setIsLoading(false)} 
+                />
+                {isLoading && <div className="absolute w-full h-full bg-gray-300 animate-pulse" />}
+            </div>
         </div>
     )
 }
