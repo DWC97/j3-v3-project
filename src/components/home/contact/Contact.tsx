@@ -46,6 +46,7 @@ export default function Contact(): JSX.Element {
     const [formData, setFormData] = useState<FormData>(initFormData)
     const [formErrors, setFormErrors] = useState({ name: "", email: "" });
     const [submittable, setSubmittable] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     // set active section when it's in view
     useEffect(() => {
@@ -110,17 +111,19 @@ export default function Contact(): JSX.Element {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        
+        setIsSubmitting(true)
         
         if (!submittable) {
             const nameError = validateName(formData.name);
             const emailError = validateEmail(formData.email);
             setFormErrors({ name: nameError, email: emailError });
+            setIsSubmitting(false)
             return; // Prevent submission if form is not submittable
         }
 
         try{
             await addReservation(formData)
+            setIsSubmitting(false)
             Swal.fire({
                 title: "Submitted!",
                 text: "We'll get back to you with details when tours are available for booking.",
@@ -132,6 +135,7 @@ export default function Contact(): JSX.Element {
             });
         } catch (error){
             console.error(error)
+            setIsSubmitting(false)
             Swal.fire({
                 title: "Error!",
                 text: "Looks like something stopped that reservation from sending...",
@@ -239,12 +243,12 @@ export default function Contact(): JSX.Element {
                             />
                         </div>
                     </div>
-                    <button type="submit" className={`${submittable ? "hover:opacity-85 ease-in-out duration-300" : ""} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px] my-2`}
+                    <button type="submit" className={`${submittable ? "hover:opacity-85 ease-in-out duration-300" : ""} ${isSubmitting ? "opacity-85 hover:opacity-85" : "opacity-100"} font-semibold flex justify-center items-center  w-full self-center rounded-md  bg-gradient-to-r from-custom-orange to-custom-pink p-[2px] my-2`}
                     title={submittable ? "" : "Please fill out each field in the form correctly"}
                     >
                         <div className={`w-full h-full rounded-md py-[6px] ${submittable ? "bg-transparent" : "bg-black"}`}>
                             <div className={`w-full flex justify-center items-center ${submittable ? "text-white" : "bg-gradient-to-r from-custom-orange to-custom-pink text-transparent bg-clip-text"}`}>
-                                SUBMIT
+                                {isSubmitting ? "SUBMITTING" : "SUBMIT"}
                             </div>
                         </div>
                     </button>
