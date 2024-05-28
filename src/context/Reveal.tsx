@@ -1,5 +1,5 @@
-import { motion, useInView, useAnimation } from "framer-motion"
-import { ReactNode, useEffect, useRef } from "react"
+import { motion, useInView, useAnimation } from 'framer-motion';
+import { ReactNode, useEffect, useRef } from 'react';
 
 interface RevealProps {
     children: ReactNode;
@@ -7,30 +7,29 @@ interface RevealProps {
 
 // reveal animation
 export function Reveal({ children }: RevealProps) {
-
-    const ref = useRef<HTMLDivElement>(null)
-    const isInView = useInView(ref, { once: true })
-    const mainControls = useAnimation()
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { once: true });
+    const mainControls = useAnimation();
 
     useEffect(() => {
         if (isInView) {
-            mainControls.start("visible")
+            mainControls.start('visible');
         }
-    }, [isInView, mainControls])
+    }, [isInView, mainControls]);
 
     return (
-        <div
-            ref={ref}
-            className="">
+        <div ref={ref} className="">
             <motion.div
                 variants={{
                     hidden: { opacity: 0, y: 75 },
-                    visible: { opacity: 1, y: 0 }
+                    visible: { opacity: 1, y: 0 },
                 }}
                 initial="hidden"
                 animate={mainControls}
                 transition={{ duration: 1, delay: 0.25 }}
-            >{children}</motion.div>
+            >
+                {children}
+            </motion.div>
         </div>
-    )
+    );
 }

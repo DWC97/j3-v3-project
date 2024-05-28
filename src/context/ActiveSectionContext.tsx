@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 // hooks
 import React, { createContext, useState, ReactNode } from 'react';
@@ -13,10 +13,10 @@ interface ActiveSectionContextType {
 
 // Create the context with the specified type
 export const ActiveSectionContext = createContext<ActiveSectionContextType>({
-    activeSection: "",
-    setActiveSection: () => { },
+    activeSection: '',
+    setActiveSection: () => {},
     scrollAnimation: false,
-    setScrollAnimation: () => { }
+    setScrollAnimation: () => {},
 });
 
 // Define the props type for ActiveSectionProvider
@@ -25,12 +25,21 @@ interface ActiveSectionProviderProps {
 }
 
 // Use the defined props type
-export function ActiveSectionProvider({ children }: ActiveSectionProviderProps) {
-    const [activeSection, setActiveSection] = useState("");
+export function ActiveSectionProvider({
+    children,
+}: ActiveSectionProviderProps) {
+    const [activeSection, setActiveSection] = useState('');
     const [scrollAnimation, setScrollAnimation] = useState(false);
 
     return (
-        <ActiveSectionContext.Provider value={{ activeSection, setActiveSection, scrollAnimation, setScrollAnimation }}>
+        <ActiveSectionContext.Provider
+            value={{
+                activeSection,
+                setActiveSection,
+                scrollAnimation,
+                setScrollAnimation,
+            }}
+        >
             {children}
         </ActiveSectionContext.Provider>
     );

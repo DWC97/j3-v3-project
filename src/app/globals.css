@@ -18,3 +18,39 @@ body {
         transform: rotate(720deg);
     }
 }
+
+.input {
+    border-bottom: #e0e0e0 2px solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    transition: ease-in-out 300ms;
+}
+
+.input-general {
+    border: none;
+    outline: none;
+}
+
+.input:focus {
+    border-bottom: #ec2aa2 2px solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+  --tw-ring-color: transparent; /* Make the ring transparent */
+  --tw-ring-offset-width: 0px; /* Optionally remove ring offset if needed */
+  --tw-ring-offset-color: transparent;
+  --tw-ring-shadow: 0 0 transparent; /* Remove shadow if present */
+}
+
+.input-general:focus {
+    border: none;
+    outline: none;
+    --tw-ring-color: transparent; /* Make the ring transparent */
+    --tw-ring-offset-width: 0px; /* Optionally remove ring offset if needed */
+    --tw-ring-offset-color: transparent;
+    --tw-ring-shadow: 0 0 transparent; /* Remove shadow if present */
+}
+
