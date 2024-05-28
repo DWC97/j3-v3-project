@@ -5,31 +5,20 @@ import { ActiveSectionProvider } from "./ActiveSectionContext"
 import { ShoppingCartProvider } from "./ShoppingCartContext"
 import { useMounted } from "@/hooks/useMounted"
 import Loading from "@/app/loading"
-import nProgress from "nprogress"
 
 type ProviderProps = {
     children: ReactNode
 }
 
 export function Providers({ children }: ProviderProps) {
-
     const mounted = useMounted()
-
-    nProgress.configure({ 
-        showSpinner: false,
-        minimum: 0.1
-     })
-
     // return loading screen while app mounts
     if (!mounted) {
-        nProgress.start()
         return (
             <Loading />
         )
-    } else {
-        nProgress.done()
     }
-
+    // wrap entire layout in contexts that need to be global
     return (
         <ActiveSectionProvider>
             <ShoppingCartProvider>

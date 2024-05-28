@@ -19,7 +19,6 @@
     "gsap": "^3.12.5",
     "lottie-react": "^2.4.0",
     "next": "^14.2.3",
-    "nprogress": "^0.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-responsive-masonry": "^2.2.0",
@@ -31,7 +30,6 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/nprogress": "^0.2.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-responsive-masonry": "^2.1.3",
