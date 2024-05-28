@@ -6,6 +6,7 @@ import Footer from "@/components/global/Footer";
 import { Providers } from "@/context/Providers";
 import Head from "next/head";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'nprogress/nprogress.css';
 
 body {
     overflow-x: hidden;
@@ -18,3 +19,7 @@ body {
         transform: rotate(720deg);
     }
 }
+
+#nprogress .bar {
+    background: #ec2aa2;
+  }
