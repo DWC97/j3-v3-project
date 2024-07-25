@@ -1,16 +1,19 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/global/Navbar';
 import Footer from '@/components/global/Footer';
 import { Providers } from '@/context/Providers';
-import Head from 'next/head';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({ 
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-    title: 'Jolly Roger Tours',
-    description: 'Small group party tours around Thailand',
+    title: 'Jolly Roger Tours | Thailand party tours',
+    description: 'Small group party tours around South-East Asia. Starting in 2025.',
     icons: {
         icon: '/logo.webp',
     },
@@ -23,13 +26,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth">
-            <Head>
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-                    rel="stylesheet"
-                />
-            </Head>
-            <body className={inter.className}>
+            <body className={poppins.className}>
                 <Providers>
                     <header>
                         <nav className="relative">

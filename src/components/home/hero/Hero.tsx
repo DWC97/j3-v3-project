@@ -169,6 +169,7 @@ export default function Hero() {
                             priority
                         />
                     </div>
+                    
                     <img
                         src="/hero/left-cliff.png"
                         alt="left cliff"
